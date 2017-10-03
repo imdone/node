@@ -1,7 +1,7 @@
 #!/usr/local/bin/perl
 #
 # This is just a quick script to scan for cases where the 'error'
-# function name in a XXXerr() macro is wrong.
+# function name in a XXX err() macro is wrong. id:844
 # 
 # Run in the top level by going
 # perl util/ck_errf.pl */*.c */*/*.c

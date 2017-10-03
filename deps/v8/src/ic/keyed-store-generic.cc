@@ -423,7 +423,7 @@ void KeyedStoreGenericAssembler::StoreElementWithCapacity(
 
   BIND(&check_cow_elements);
   {
-    // TODO(jkummerow): Use GrowElementsCapacity instead of bailing out.
+    // TODO (jkummerow): Use GrowElementsCapacity instead of bailing out. id:2165
     Goto(slow);
   }
 }
@@ -483,7 +483,7 @@ void KeyedStoreGenericAssembler::EmitGenericElementStore(
   BIND(&if_grow);
   {
     Comment("Grow backing store");
-    // TODO(jkummerow): Support inline backing store growth.
+    // TODO (jkummerow): Support inline backing store growth. id:1694
     Goto(slow);
   }
 
@@ -504,14 +504,14 @@ void KeyedStoreGenericAssembler::EmitGenericElementStore(
   BIND(&if_dictionary);
   {
     Comment("Dictionary");
-    // TODO(jkummerow): Support storing to dictionary elements.
+    // TODO (jkummerow): Support storing to dictionary elements. id:3068
     Goto(slow);
   }
 
   BIND(&if_typed_array);
   {
     Comment("Typed array");
-    // TODO(jkummerow): Support typed arrays.
+    // TODO (jkummerow): Support typed arrays. id:2084
     Goto(slow);
   }
 }
@@ -551,7 +551,7 @@ void KeyedStoreGenericAssembler::LookupPropertyOnPrototypeChain(
         JumpIfDataProperty(details, &ok_to_write, readonly);
 
         // Accessor case.
-        // TODO(jkummerow): Implement a trimmed-down LoadAccessorFromFastObject.
+        // TODO (jkummerow): Implement a trimmed-down LoadAccessorFromFastObject. id:2214
         VARIABLE(var_details, MachineRepresentation::kWord32);
         LoadPropertyFromFastObject(holder, holder_map, descriptors, name_index,
                                    &var_details, var_accessor_pair);
@@ -674,7 +674,7 @@ void KeyedStoreGenericAssembler::OverwriteExistingFastProperty(
          slow);
 
   if (FLAG_track_constant_fields) {
-    // TODO(ishell): Taking the slow path is not necessary if new and old
+    // TODO (ishell): Taking the slow path is not necessary if new and old id:2168
     // values are identical.
     GotoIf(Word32Equal(DecodeWord32<PropertyDetails::ConstnessField>(details),
                        Int32Constant(kConst)),
@@ -765,7 +765,7 @@ void KeyedStoreGenericAssembler::EmitGenericPropertyStore(
     Node* descriptors = LoadMapDescriptors(receiver_map);
     Label descriptor_found(this);
     VARIABLE(var_name_index, MachineType::PointerRepresentation());
-    // TODO(jkummerow): Maybe look for existing map transitions?
+    // TODO (jkummerow): Maybe look for existing map transitions? id:1699
     Label* notfound = use_stub_cache == kUseStubCache ? &stub_cache : slow;
     DescriptorLookup(p->name, descriptors, bitfield3, &descriptor_found,
                      &var_name_index, notfound);
@@ -779,7 +779,7 @@ void KeyedStoreGenericAssembler::EmitGenericPropertyStore(
       JumpIfDataProperty(details, &data_property, &readonly);
 
       // Accessor case.
-      // TODO(jkummerow): Implement a trimmed-down LoadAccessorFromFastObject.
+      // TODO (jkummerow): Implement a trimmed-down LoadAccessorFromFastObject. id:3070
       VARIABLE(var_details, MachineRepresentation::kWord32);
       LoadPropertyFromFastObject(receiver, receiver_map, descriptors,
                                  name_index, &var_details, &var_accessor_pair);

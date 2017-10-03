@@ -93,7 +93,7 @@ class Arm64OperandGenerator final : public OperandGenerator {
     unsigned ignored;
     switch (mode) {
       case kLogical32Imm:
-        // TODO(dcarney): some unencodable values can be handled by
+        // TODO (dcarney): some unencodable values can be handled by id:1575
         // switching instructions.
         return Assembler::IsImmLogical(static_cast<uint64_t>(value), 32,
                                        &ignored, &ignored, &ignored);
@@ -123,7 +123,7 @@ class Arm64OperandGenerator final : public OperandGenerator {
   }
 
   bool CanBeLoadStoreShiftImmediate(Node* node, MachineRepresentation rep) {
-    // TODO(arm64): Load and Store on 128 bit Q registers is not supported yet.
+    // TODO (arm64): Load and Store on 128 bit Q registers is not supported yet. id:1781
     DCHECK_GT(MachineRepresentation::kSimd128, rep);
     return IsIntegerConstant(node) &&
            (GetIntegerConstantValue(node) == ElementSizeLog2Of(rep));
@@ -627,7 +627,7 @@ void InstructionSelector::VisitLoad(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedLoad(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:1645
   UNIMPLEMENTED();
 }
 
@@ -641,7 +641,7 @@ void InstructionSelector::VisitStore(Node* node) {
   WriteBarrierKind write_barrier_kind = store_rep.write_barrier_kind();
   MachineRepresentation rep = store_rep.representation();
 
-  // TODO(arm64): I guess this could be done in a better way.
+  // TODO (arm64): I guess this could be done in a better way. id:1251
   if (write_barrier_kind != kNoWriteBarrier) {
     DCHECK(CanBeTaggedPointer(rep));
     AddressingMode addressing_mode;
@@ -745,7 +745,7 @@ void InstructionSelector::VisitStore(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedStore(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:2190
   UNIMPLEMENTED();
 }
 
@@ -894,7 +894,7 @@ static void VisitLogical(InstructionSelector* selector, Node* node, Matcher* m,
   if ((m->left().IsWord32Xor() || m->left().IsWord64Xor()) && left_can_cover) {
     Matcher mleft(m->left().node());
     if (mleft.right().Is(-1)) {
-      // TODO(all): support shifted operand on right.
+      // TODO (all): support shifted operand on right. id:1578
       selector->Emit(inv_opcode, g.DefineAsRegister(node),
                      g.UseRegister(m->right().node()),
                      g.UseRegister(mleft.left().node()));
@@ -907,7 +907,7 @@ static void VisitLogical(InstructionSelector* selector, Node* node, Matcher* m,
       right_can_cover) {
     Matcher mright(m->right().node());
     if (mright.right().Is(-1)) {
-      // TODO(all): support shifted operand on right.
+      // TODO (all): support shifted operand on right. id:1786
       selector->Emit(inv_opcode, g.DefineAsRegister(node),
                      g.UseRegister(m->left().node()),
                      g.UseRegister(mright.left().node()));
@@ -1788,8 +1788,8 @@ void InstructionSelector::EmitPrepareArguments(
   int slot = claim_count - 1;
   // Bump the stack pointer(s).
   if (claim_count > 0 || always_claim) {
-    // TODO(titzer): claim and poke probably take small immediates.
-    // TODO(titzer): it would be better to bump the csp here only
+    // TODO (titzer): claim and poke probably take small immediates. id:1648
+    // TODO (titzer): it would be better to bump the csp here only id:1253
     //                and emit paired stores with increment for non c frames.
     ArchOpcode claim = to_native_stack ? kArm64ClaimCSP : kArm64ClaimJSSP;
     // ClaimJSSP(0) or ClaimCSP(0) isn't a nop if there is a mismatch between
@@ -1803,7 +1803,7 @@ void InstructionSelector::EmitPrepareArguments(
     Emit(poke, g.NoOutput(), g.UseRegister((*arguments)[slot].node()),
          g.TempImmediate(slot));
     slot--;
-    // TODO(ahaas): Poke arguments in pairs if two subsequent arguments have the
+    // TODO (ahaas): Poke arguments in pairs if two subsequent arguments have the id:2194
     //              same type.
     // Emit(kArm64PokePair, g.NoOutput(), g.UseRegister((*arguments)[slot]),
     //      g.UseRegister((*arguments)[slot - 1]), g.TempImmediate(slot));

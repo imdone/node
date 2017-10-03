@@ -58,7 +58,7 @@ process.on('exit', onexit);
 function onexit() {
   hooks.disable();
   hooks.sanityCheck('ZLIB');
-  // TODO: destroy never called here even with large amounts of ticks
+  // TODO: destroy never called here even with large amounts of ticks id:3950
   // is that correct?
   checkInvocations(hdl, { init: 1, before: 2, after: 2 }, 'when process exits');
 }

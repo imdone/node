@@ -156,7 +156,7 @@ void HeapObject::HeapObjectPrint(std::ostream& os) {  // NOLINT
     case JS_ARGUMENTS_TYPE:
     case JS_ERROR_TYPE:
     case JS_PROMISE_CAPABILITY_TYPE:
-    case WASM_INSTANCE_TYPE:  // TODO(titzer): debug printing for wasm objects
+    case WASM_INSTANCE_TYPE:  // TODO (titzer): debug printing for wasm objects id:2203
     case WASM_MEMORY_TYPE:
     case WASM_MODULE_TYPE:
     case WASM_TABLE_TYPE:
@@ -649,7 +649,7 @@ void FixedArray::FixedArrayPrint(std::ostream& os) {  // NOLINT
   os << "\n";
 }
 
-// TODO(gsathya): Templatize PrintFixedArrayElements to print this as
+// TODO (gsathya): Templatize PrintFixedArrayElements to print this as id:2340
 // well.
 void PropertyArray::PropertyArrayPrint(std::ostream& os) {  // NOLINT
   HeapObject::PrintHeader(os, "PropertyArray");
@@ -904,7 +904,7 @@ void JSDate::JSDatePrint(std::ostream& os) {  // NOLINT
   if (!year()->IsSmi()) {
     os << "\n - time = NaN\n";
   } else {
-    // TODO(svenpanne) Add some basic formatting to our streams.
+    // TODO (svenpanne) Add some basic formatting to our streams. id:2362
     ScopedVector<char> buf(100);
     SNPrintF(buf, "\n - time = %s %04d/%02d/%02d %02d:%02d:%02d\n",
              weekdays[weekday()->IsSmi() ? Smi::ToInt(weekday()) + 1 : 0],

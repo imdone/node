@@ -852,7 +852,7 @@ int dtls1_read_bytes(SSL *s, int type, unsigned char *buf, int len, int peek)
         if (!ssl3_setup_buffers(s))
             return (-1);
 
-    /* XXX: check what the second '&& type' is about */
+    /* XXX: check what the second '&& type' is about  id:1144*/
     if ((type && (type != SSL3_RT_APPLICATION_DATA) &&
          (type != SSL3_RT_HANDSHAKE) && type) ||
         (peek && (type != SSL3_RT_APPLICATION_DATA))) {
@@ -1252,7 +1252,7 @@ int dtls1_read_bytes(SSL *s, int type, unsigned char *buf, int len, int peek)
                 return (0);
             }
 #if 0
-            /* XXX: this is a possible improvement in the future */
+            /* XXX: this is a possible improvement in the future  id:1246*/
             /* now check if it's a missing record */
             if (alert_descr == DTLS1_AD_MISSING_HANDSHAKE_MESSAGE) {
                 unsigned short seq;

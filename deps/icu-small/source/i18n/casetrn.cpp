@@ -94,8 +94,8 @@ CaseMapTransliterator::CaseMapTransliterator(const UnicodeString &id, UCaseMapFu
     Transliterator(id, 0),
     fMap(map)
 {
-    // TODO test incremental mode with context-sensitive text (e.g. greek sigma)
-    // TODO need to call setMaximumContextLength()?!
+    // TODO test incremental mode with context-sensitive text (e.g. greek sigma) id:223
+    // TODO need to call setMaximumContextLength()?! id:197
 }
 
 /**

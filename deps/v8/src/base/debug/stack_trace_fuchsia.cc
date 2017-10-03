@@ -14,7 +14,7 @@ namespace base {
 namespace debug {
 
 bool EnableInProcessStackDumping() {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1070
   return false;
 }
 

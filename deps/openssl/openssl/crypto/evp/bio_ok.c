@@ -488,7 +488,7 @@ static int sig_out(BIO *b)
     if (!EVP_DigestInit_ex(md, md->digest, NULL))
         goto berr;
     /*
-     * FIXME: there's absolutely no guarantee this makes any sense at all,
+     * FIXME: there's absolutely no guarantee this makes any sense at all, id:1003
      * particularly now EVP_MD_CTX has been restructured.
      */
     if (RAND_bytes(md->md_data, md->digest->md_size) <= 0)

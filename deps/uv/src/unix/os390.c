@@ -107,7 +107,7 @@ typedef union {
 
 
 void uv_loadavg(double avg[3]) {
-  /* TODO: implement the following */
+  /* TODO: implement the following  id:897*/
   avg[0] = 0;
   avg[1] = 0;
   avg[2] = 0;
@@ -416,7 +416,7 @@ int uv_cpu_info(uv_cpu_info_t** cpu_infos, int* count) {
     memset(cpu_info->model, '\0', CPCMODEL_LENGTH + 1);
     memcpy(cpu_info->model, info.siv1v2si11v1.si11v1cpcmodel, CPCMODEL_LENGTH);
     cpu_info->cpu_times.user = cpu_usage_avg;
-    /* TODO: implement the following */
+    /* TODO: implement the following  id:898*/
     cpu_info->cpu_times.sys = 0;
     cpu_info->cpu_times.idle = 0;
     cpu_info->cpu_times.irq = 0;
@@ -508,7 +508,7 @@ static int uv__interface_addresses_v6(uv_interface_address_t** addresses,
     else
       address->address.address4 = *((struct sockaddr_in*) &p->__nif6e_addr);
 
-    /* TODO: Retrieve netmask using SIOCGIFNETMASK ioctl */
+    /* TODO: Retrieve netmask using SIOCGIFNETMASK ioctl  id:1508*/
 
     address->is_internal = flg.__nif6e_flags & _NIF6E_FLAGS_LOOPBACK ? 1 : 0;
 
@@ -728,7 +728,7 @@ void uv__io_poll(uv_loop_t* loop, int timeout) {
     else
       op = UV__EPOLL_CTL_MOD;
 
-    /* XXX Future optimization: do EPOLL_CTL_MOD lazily if we stop watching
+    /* XXX Future optimization: do EPOLL_CTL_MOD lazily if we stop watching id:1190
      * events, skip the syscall and squelch the events after epoll_wait().
      */
     if (epoll_ctl(loop->ep, op, w->fd, &e)) {

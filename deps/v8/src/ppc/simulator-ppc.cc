@@ -909,7 +909,7 @@ Simulator* Simulator::current(Isolate* isolate) {
 
   Simulator* sim = isolate_data->simulator();
   if (sim == NULL) {
-    // TODO(146): delete the simulator object when a thread/isolate goes away.
+    // TODO (146): delete the simulator object when a thread/isolate goes away. id:2983
     sim = new Simulator(isolate);
     isolate_data->set_simulator(sim);
   }

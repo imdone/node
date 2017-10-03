@@ -74,7 +74,7 @@ class LEBHelper {
     }
   }
 
-  // TODO(titzer): move core logic for decoding LEBs from decoder.h to here.
+  // TODO (titzer): move core logic for decoding LEBs from decoder.h to here. id:2587
 
   // Compute the size of {val} if emitted as an LEB32.
   static inline size_t sizeof_u32v(size_t val) {

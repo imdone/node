@@ -217,7 +217,7 @@ async function testAsyncAwait() {
   await awaitBoo();
 }
 
-// TODO(kozyatinskiy): fix this.
+// TODO (kozyatinskiy): fix this. id:2666
 async function testPromiseAsyncWithCode() {
   var nextTest;
   var testPromise = new Promise(resolve => nextTest = resolve);

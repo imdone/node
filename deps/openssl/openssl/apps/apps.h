@@ -356,7 +356,7 @@ void store_setup_crl_download(X509_STORE *st);
 # define FORMAT_PKCS12   5
 # define FORMAT_SMIME    6
 # define FORMAT_ENGINE   7
-# define FORMAT_IISSGC   8      /* XXX this stupid macro helps us to avoid
+# define FORMAT_IISSGC   8      /* XXX this stupid macro helps us to avoid id:1090
                                  * adding yet another param to load_*key() */
 # define FORMAT_PEMRSA   9      /* PEM RSAPubicKey format */
 # define FORMAT_ASN1RSA  10     /* DER RSAPubicKey format */

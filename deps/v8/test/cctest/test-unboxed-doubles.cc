@@ -1585,12 +1585,12 @@ TEST(IncrementalWriteBarrierObjectShiftFieldsRight) {
 }
 
 
-// TODO(ishell): add respective tests for property kind reconfiguring from
+// TODO (ishell): add respective tests for property kind reconfiguring from id:3405
 // accessor field to double, once accessor fields are supported by
 // Map::ReconfigureProperty().
 
 
-// TODO(ishell): add respective tests for fast property removal case once
+// TODO (ishell): add respective tests for fast property removal case once id:2452
 // Map::ReconfigureProperty() supports that.
 
 #endif

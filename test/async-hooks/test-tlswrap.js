@@ -57,7 +57,7 @@ function onsecureConnection() {
   assert.strictEqual(typeof client.uid, 'number');
   assert.strictEqual(typeof client.triggerAsyncId, 'number');
 
-  // TODO(thlorenz) which callback did the server wrap execute that already
+  // TODO (thlorenz) which callback did the server wrap execute that already id:3328
   // finished as well?
   checkInvocations(svr, { init: 1, before: 1, after: 1 },
                    'server: when server has secure connection');
@@ -88,7 +88,7 @@ function onsecureConnect() {
   function tick1() {
     checkInvocations(svr, { init: 1, before: 2, after: 2 },
                      'server: when client destroyed');
-    // TODO: why is client not destroyed here even after 5 ticks?
+    // TODO: why is client not destroyed here even after 5 ticks? id:3646
     // or could it be that it isn't actually destroyed until
     // the server is closed?
     checkInvocations(client, { init: 1, before: 3, after: 3 },

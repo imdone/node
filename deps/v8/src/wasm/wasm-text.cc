@@ -190,7 +190,7 @@ void wasm::PrintWasmText(const WasmModule *module,
         // This group is just printed by their internal opcode name, as they
         // should never be shown to end-users.
         FOREACH_ASMJS_COMPAT_OPCODE(CASE_OPCODE)
-        // TODO(wasm): Add correct printing for SIMD and atomic opcodes once
+        // TODO (wasm): Add correct printing for SIMD and atomic opcodes once id:3438
         // they are publicly available.
         FOREACH_SIMD_0_OPERAND_OPCODE(CASE_OPCODE)
         FOREACH_SIMD_1_OPERAND_OPCODE(CASE_OPCODE)

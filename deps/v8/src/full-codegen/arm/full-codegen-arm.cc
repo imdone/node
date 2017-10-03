@@ -444,7 +444,7 @@ void FullCodeGenerator::EmitReturnSequence() {
       int32_t arg_count = info_->scope()->num_parameters() + 1;
       int32_t sp_delta = arg_count * kPointerSize;
       SetReturnPosition(literal());
-      // TODO(svenpanne) The code below is sometimes 4 words, sometimes 5!
+      // TODO (svenpanne) The code below is sometimes 4 words, sometimes 5! id:2082
       PredictableCodeSizeScope predictable(masm_, -1);
       __ LeaveFrame(StackFrame::JAVA_SCRIPT);
       { ConstantPoolUnavailableScope constant_pool_unavailable(masm_);

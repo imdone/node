@@ -18,7 +18,7 @@
 # Power6,xlc-7		+150%	+90%	|	+100%	+430%(*)
 #
 # (*)	64-bit code in 32-bit application context, which actually is
-#	on TODO list. It should be noted that for safe deployment in
+#	on TODO list. It should be noted that for safe deployment in id:728
 #	32-bit *mutli-threaded* context asyncronous signals should be
 #	blocked upon entry to SHA512 block routine. This is because
 #	32-bit signaling procedure invalidates upper halves of GPRs.

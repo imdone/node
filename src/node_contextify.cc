@@ -111,7 +111,7 @@ class ContextifyContext {
     return Local<Object>::Cast(context()->GetEmbedderData(kSandboxObjectIndex));
   }
 
-  // XXX(isaacs): This function only exists because of a shortcoming of
+  // XXX (isaacs): This function only exists because of a shortcoming of id:4047
   // the V8 SetNamedPropertyHandler function.
   //
   // It does not provide a way to intercept Object.defineProperty(..)

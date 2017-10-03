@@ -196,7 +196,7 @@ class WasmModuleBuilder {
   }
 
   addType(type) {
-    // TODO: canonicalize types?
+    // TODO: canonicalize types? id:3845
     this.types.push(type);
     return this.types.length - 1;
   }

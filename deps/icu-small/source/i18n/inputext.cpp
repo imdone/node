@@ -93,7 +93,7 @@ void InputText::MungeInput(UBool fStripTags) {
     //     discard everything within < brackets >
     //     Count how many total '<' and illegal (nested) '<' occur, so we can make some
     //     guess as to whether the input was actually marked up at all.
-    // TODO: Think about how this interacts with EBCDIC charsets that are detected.
+    // TODO: Think about how this interacts with EBCDIC charsets that are detected. id:262
     if (fStripTags) {
         for (srci = 0; srci < fRawLength && dsti < BUFFER_SIZE; srci += 1) {
             b = fRawInput[srci];

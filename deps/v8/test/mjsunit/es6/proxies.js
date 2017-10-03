@@ -715,7 +715,7 @@ function TestDescriptor2(create, handler) {
     assertEquals(p, Object.defineProperty(p, i, descs[i]))
     var desc = Object.getOwnPropertyDescriptor(p, i)
     for (prop in descs[i]) {
-      // TODO(rossberg): Ignore user attributes as long as the spec isn't
+      // TODO (rossberg): Ignore user attributes as long as the spec isn't id:3698
       // fixed suitably.
       if (prop != "mine") assertEquals(descs[i][prop], desc[prop])
     }

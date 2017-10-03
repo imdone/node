@@ -106,7 +106,7 @@ function createCacheEntryStream (cacheFile, cb) {
   log.verbose('all-package-metadata', cacheFile)
   fs.stat(cacheFile, function (err, stat) {
     if (err) return cb(err)
-    // TODO - This isn't very helpful if `cacheFile` is empty or just `{}`
+    // TODO - This isn't very helpful if `cacheFile` is empty or just `{}` id:623
     var entryStream = ms.pipeline.obj(
       fs.createReadStream(cacheFile),
       jsonstream.parse('*'),
@@ -146,7 +146,7 @@ function createEntryUpdateStream (all, auth, staleness, latest, cb) {
   npm.registry.request(all, params, function (er, res) {
     if (er) return cb(er)
     log.silly('all-package-metadata', 'request stream opened, code:', res.statusCode)
-    // NOTE - The stream returned by `request` seems to be very persnickety
+    // NOTE - The stream returned by `request` seems to be very persnickety id:363
     //        and this is almost a magic incantation to get it to work.
     //        Modify how `res` is used here at your own risk.
     var entryStream = ms.pipeline.obj(

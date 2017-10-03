@@ -361,7 +361,7 @@ bool AstGraphBuilder::CreateGraph(bool stack_check) {
   // Initialize control scope.
   ControlScope control(this);
 
-  // TODO(mstarzinger): For now we cannot assume that the {this} parameter is
+  // TODO (mstarzinger): For now we cannot assume that the {this} parameter is id:1580
   // not {the_hole}, because for derived classes {this} has a TDZ and the
   // JSConstructStubForDerived magically passes {the_hole} as a receiver.
   if (scope->has_this_declaration() && scope->receiver()->mode() == CONST) {
@@ -1050,7 +1050,7 @@ void AstGraphBuilder::VisitFunctionLiteral(FunctionLiteral* expr) {
   // Find or build a shared function info.
   Handle<SharedFunctionInfo> shared_info =
       Compiler::GetSharedFunctionInfo(expr, info()->script(), info());
-  CHECK(!shared_info.is_null());  // TODO(mstarzinger): Set stack overflow?
+  CHECK(!shared_info.is_null());  // TODO (mstarzinger): Set stack overflow? id:1789
 
   // Create node to instantiate a new closure.
   PretenureFlag pretenure = expr->pretenure() ? TENURED : NOT_TENURED;
@@ -2168,7 +2168,7 @@ Node* AstGraphBuilder::BuildVariableLoad(Variable* variable,
     case VariableLocation::CONTEXT: {
       // Context variable (potentially up the context chain).
       int depth = current_scope()->ContextChainLength(variable->scope());
-      // TODO(mstarzinger): The {maybe_assigned} flag computed during variable
+      // TODO (mstarzinger): The {maybe_assigned} flag computed during variable id:1651
       // resolution is highly inaccurate and cannot be trusted. We are only
       // taking this information into account when asm.js compilation is used.
       bool immutable = variable->maybe_assigned() == kNotAssigned &&
@@ -2176,7 +2176,7 @@ Node* AstGraphBuilder::BuildVariableLoad(Variable* variable,
       const Operator* op =
           javascript()->LoadContext(depth, variable->index(), immutable);
       Node* value = NewNode(op);
-      // TODO(titzer): initialization checks are redundant for already
+      // TODO (titzer): initialization checks are redundant for already id:1255
       // initialized immutable context loads, but only specialization knows.
       // Maybe specializer should be a parameter to the graph builder?
       if (variable->binding_needs_init()) {

@@ -813,7 +813,7 @@ static TableResource *
 addCollation(ParseState* state, TableResource  *result, const char *collationType,
              uint32_t startline, UErrorCode *status)
 {
-    // TODO: Use LocalPointer for result, or make caller close it when there is a failure.
+    // TODO: Use LocalPointer for result, or make caller close it when there is a failure. id:560
     struct SResource  *member = NULL;
     struct UString    *tokenValue;
     struct UString     comment;
@@ -913,7 +913,7 @@ addCollation(ParseState* state, TableResource  *result, const char *collationTyp
             result->add(member, line, *status);
             member = NULL;
         }
-        res_close(member);  // TODO: use LocalPointer
+        res_close(member);  // TODO: use LocalPointer id:701
         if (U_FAILURE(*status))
         {
             res_close(result);
@@ -950,7 +950,7 @@ addCollation(ParseState* state, TableResource  *result, const char *collationTyp
     if(U_FAILURE(intStatus)) {
         error(line, "failed to load root collator (ucadata.icu) - %s", u_errorName(intStatus));
         res_close(result);
-        return NULL;  // TODO: use LocalUResourceBundlePointer for result
+        return NULL;  // TODO: use LocalUResourceBundlePointer for result id:555
     }
     icu::CollationBuilder builder(base, intStatus);
     if(uprv_strncmp(collationType, "search", 6) == 0) {

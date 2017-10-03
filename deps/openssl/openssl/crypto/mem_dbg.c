@@ -734,7 +734,7 @@ void CRYPTO_mem_leaks(BIO *b)
          * Make sure that, if we found no leaks, memory-leak debugging itself
          * does not introduce memory leaks (which might irritate external
          * debugging tools). (When someone enables leak checking, but does not
-         * call this function, we declare it to be their fault.) XXX This
+         * call this function, we declare it to be their fault.) XXX This id:1072
          * should be in CRYPTO_mem_leaks_cb, and CRYPTO_mem_leaks should be
          * implemented by using CRYPTO_mem_leaks_cb. (Also there should be a
          * variant of lh_doall_arg that takes a function pointer instead of a
@@ -794,7 +794,7 @@ void CRYPTO_mem_leaks_fp(FILE *fp)
 #endif
 
 /*
- * FIXME: We really don't allow much to the callback.  For example, it has no
+ * FIXME: We really don't allow much to the callback.  For example, it has no id:700
  * chance of reaching the info stack for the item it processes.  Should it
  * really be this way? -- Richard Levitte
  */

@@ -88,7 +88,7 @@
 /* include system headers */
 #if U_PLATFORM_USES_ONLY_WIN32_API
     /*
-     * TODO: U_PLATFORM_USES_ONLY_WIN32_API includes MinGW.
+     * TODO: U_PLATFORM_USES_ONLY_WIN32_API includes MinGW. id:79
      * Should Cygwin be included as well (U_PLATFORM_HAS_WIN32_API)
      * to use native APIs as much as possible?
      */
@@ -105,7 +105,7 @@
 #if U_PLATFORM_HAS_WINUWP_API == 0
 #   include "wintz.h"
 #else // U_PLATFORM_HAS_WINUWP_API
-typedef PVOID LPMSG; // TODO: figure out how to get rid of this typedef
+typedef PVOID LPMSG; // TODO: figure out how to get rid of this typedef id:76
 #include <Windows.Globalization.h>
 #include <windows.system.userprofile.h>
 #include <wrl\wrappers\corewrappers.h>
@@ -1465,7 +1465,7 @@ static void U_CALLCONV TimeZoneDataDirInitFn(UErrorCode &status) {
 #if U_PLATFORM_HAS_WINUWP_API == 0
     const char *dir = getenv("ICU_TIMEZONE_FILES_DIR");
 #else
-    // TODO: UWP does not support alternate timezone data directories at this time
+    // TODO: UWP does not support alternate timezone data directories at this time id:75
     const char *dir = "";
 #endif // U_PLATFORM_HAS_WINUWP_API
 #if defined(U_TIMEZONE_FILES_DIR)
@@ -1585,7 +1585,7 @@ static const char *uprv_getPOSIXIDForDefaultCodepage(void)
 #endif
 #endif
 
-/* NOTE: The caller should handle thread safety */
+/* NOTE: The caller should handle thread safety  id:155*/
 U_CAPI const char* U_EXPORT2
 uprv_getDefaultLocaleID()
 {

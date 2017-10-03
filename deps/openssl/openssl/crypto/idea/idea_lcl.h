@@ -93,7 +93,7 @@ else    { \
  * old version :-(.
  */
 
-/* NOTE - c is not incremented as per n2l */
+/* NOTE - c is not incremented as per n2l  id:694*/
 #define n2ln(c,l1,l2,n) { \
                         c+=n; \
                         l1=l2=0; \
@@ -109,7 +109,7 @@ else    { \
                                 } \
                         }
 
-/* NOTE - c is not incremented as per l2n */
+/* NOTE - c is not incremented as per l2n  id:791*/
 #define l2nn(l1,l2,c,n) { \
                         c+=n; \
                         switch (n) { \
@@ -145,7 +145,7 @@ else    { \
                          l|=((IDEA_INT)(*((c)++)))      )
 
 #ifdef undef
-/* NOTE - c is not incremented as per c2l */
+/* NOTE - c is not incremented as per c2l  id:1165*/
 # define c2ln(c,l1,l2,n) { \
                         c+=n; \
                         l1=l2=0; \
@@ -161,7 +161,7 @@ else    { \
                                 } \
                         }
 
-/* NOTE - c is not incremented as per l2c */
+/* NOTE - c is not incremented as per l2c  id:1012*/
 # define l2cn(l1,l2,c,n) { \
                         c+=n; \
                         switch (n) { \

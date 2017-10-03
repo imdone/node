@@ -436,7 +436,7 @@ uloc_getDisplayCountry(const char *locale,
 }
 
 /*
- * TODO separate variant1_variant2_variant3...
+ * TODO separate variant1_variant2_variant3... id:65
  * by getting each tag's display string and concatenating them with ", "
  * in between - similar to uloc_getDisplayName()
  */

@@ -287,7 +287,7 @@ class TapProgressIndicator(SimpleProgressIndicator):
       self.traceback = output.output.stdout + output.output.stderr
 
       if FLAKY in output.test.outcomes and self.flaky_tests_mode == DONTCARE:
-        status_line = status_line + ' # TODO : Fix flaky test'
+        status_line = status_line + ' # TODO : Fix flaky test' id:4080
         self.severity = 'flaky'
 
       logger.info(status_line)
@@ -308,7 +308,7 @@ class TapProgressIndicator(SimpleProgressIndicator):
       else:
         status_line = 'ok %i %s' % (self._done, command)
         if FLAKY in output.test.outcomes:
-          status_line = status_line + ' # TODO : Fix flaky test'
+          status_line = status_line + ' # TODO : Fix flaky test' id:3307
         logger.info(status_line)
 
       if output.diagnostic:

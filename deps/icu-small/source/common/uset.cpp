@@ -518,12 +518,12 @@ uset_getSerializedRange(const USerializedSet* set, int32_t rangeIndex,
     }
 }
 
-// TODO The old, internal uset.c had an efficient uset_containsOne function.
+// TODO The old, internal uset.c had an efficient uset_containsOne function. id:176
 // Returned the one and only code point, or else -1 or something.
 // Consider adding such a function to both C and C++ UnicodeSet/uset.
 // See tools/gennorm/store.c for usage, now usetContainsOne there.
 
-// TODO Investigate incorporating this code into UnicodeSet to improve
+// TODO Investigate incorporating this code into UnicodeSet to improve id:211
 // efficiency.
 // ---
 // #define USET_GROW_DELTA 20

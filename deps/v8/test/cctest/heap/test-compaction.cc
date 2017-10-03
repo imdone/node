@@ -5,10 +5,10 @@
 #include "src/factory.h"
 #include "src/heap/mark-compact.h"
 #include "src/isolate.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:3352
 // (disallowed) include: src/factory.h -> src/objects-inl.h
 #include "src/objects-inl.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2412
 // (disallowed) include: src/feedback-vector.h ->
 // src/feedback-vector-inl.h
 #include "src/feedback-vector-inl.h"

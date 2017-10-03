@@ -20,8 +20,8 @@
 #include "unicode/unistr.h"
 #include "uvector.h"
 
-// TODO(claireho): Split off Builder class.
-// TODO(claireho): If splitting off Builder class: As subclass or independent?
+// TODO (claireho): Split off Builder class. id:314
+// TODO (claireho): If splitting off Builder class: As subclass or independent? id:426
 
 #define MAX_PATTERN_ENTRIES 52
 #define MAX_CLDR_FIELD_LEN  60
@@ -165,7 +165,7 @@ public:
     UnicodeString getBaseSkeleton() const;
     UChar getFirstChar() const;
 
-    // TODO: Why is this virtual, as well as the other destructors in this file? We don't want
+    // TODO: Why is this virtual, as well as the other destructors in this file? We don't want id:576
     // vtables when we don't use class objects polymorphically.
     virtual ~PtnSkeleton();
 };

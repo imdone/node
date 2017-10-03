@@ -581,7 +581,7 @@ void TS_RESP_CTX_set_time_cb(TS_RESP_CTX *ctx, TS_time_cb cb, void *data);
  * Default callback rejects all extensions. The extension callback is called
  * when the TS_TST_INFO object is already set up and not signed yet.
  */
-/* FIXME: extension handling is not tested yet. */
+/* FIXME: extension handling is not tested yet.  id:731*/
 void TS_RESP_CTX_set_extension_cb(TS_RESP_CTX *ctx,
                                   TS_extension_cb cb, void *data);
 

@@ -65,7 +65,7 @@ RUNTIME_FUNCTION(Runtime_CanonicalizeLanguageTag) {
   v8::String::Utf8Value locale_id(v8::Utils::ToLocal(locale_id_str));
 
   // Return value which denotes invalid language tag.
-  // TODO(jshin): Can uloc_{for,to}TanguageTag fail even for structually valid
+  // TODO (jshin): Can uloc_{for,to}TanguageTag fail even for structually valid id:3008
   // language tags? If not, just add CHECK instead of returning 'invalid-tag'.
   const char* const kInvalidTag = "invalid-tag";
 
@@ -540,7 +540,7 @@ RUNTIME_FUNCTION(Runtime_CurrencyDigits) {
 
   CONVERT_ARG_HANDLE_CHECKED(String, currency, 0);
 
-  // TODO(littledan): Avoid transcoding the string twice
+  // TODO (littledan): Avoid transcoding the string twice id:3228
   v8::String::Utf8Value currency_string(v8::Utils::ToLocal(currency));
   icu::UnicodeString currency_icu =
       icu::UnicodeString::fromUTF8(*currency_string);
@@ -744,7 +744,7 @@ RUNTIME_FUNCTION(Runtime_BreakIteratorBreakType) {
       V8BreakIterator::UnpackBreakIterator(isolate, break_iterator_holder);
   CHECK_NOT_NULL(break_iterator);
 
-  // TODO(cira): Remove cast once ICU fixes base BreakIterator class.
+  // TODO (cira): Remove cast once ICU fixes base BreakIterator class. id:2293
   icu::RuleBasedBreakIterator* rule_based_iterator =
       static_cast<icu::RuleBasedBreakIterator*>(break_iterator);
   int32_t status = rule_based_iterator->getRuleStatus();
@@ -807,7 +807,7 @@ RUNTIME_FUNCTION(Runtime_StringLocaleConvertCase) {
     c1 = lang.Get(0);
     c2 = lang.Get(1);
   }
-  // TODO(jshin): Consider adding a fast path for ASCII or Latin-1. The fastpath
+  // TODO (jshin): Consider adding a fast path for ASCII or Latin-1. The fastpath id:2465
   // in the root locale needs to be adjusted for az, lt and tr because even case
   // mapping of ASCII range characters are different in those locales.
   // Greek (el) does not require any adjustment.

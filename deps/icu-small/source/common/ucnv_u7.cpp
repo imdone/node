@@ -199,7 +199,7 @@ _UTF7Open(UConverter *cnv,
           UErrorCode *pErrorCode) {
     (void)pArgs;
     if(UCNV_GET_VERSION(cnv)<=1) {
-        /* TODO(markus): Should just use cnv->options rather than copying the version number. */
+        /* TODO (markus): Should just use cnv->options rather than copying the version number.  id:104*/
         cnv->fromUnicodeStatus=UCNV_GET_VERSION(cnv)<<28;
         _UTF7Reset(cnv, UCNV_RESET_BOTH);
     } else {
@@ -774,7 +774,7 @@ static const UConverterImpl _UTF7Impl={
 static const UConverterStaticData _UTF7StaticData={
     sizeof(UConverterStaticData),
     "UTF-7",
-    0, /* TODO CCSID for UTF-7 */
+    0, /* TODO CCSID for UTF-7  id:109*/
     UCNV_IBM, UCNV_UTF7,
     1, 4,
     { 0x3f, 0, 0, 0 }, 1, /* the subchar is not used */
@@ -1475,7 +1475,7 @@ static const UConverterImpl _IMAPImpl={
 static const UConverterStaticData _IMAPStaticData={
     sizeof(UConverterStaticData),
     "IMAP-mailbox-name",
-    0, /* TODO CCSID for IMAP-mailbox-name */
+    0, /* TODO CCSID for IMAP-mailbox-name  id:174*/
     UCNV_IBM, UCNV_IMAP_MAILBOX,
     1, 4,
     { 0x3f, 0, 0, 0 }, 1, /* the subchar is not used */

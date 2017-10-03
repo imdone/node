@@ -94,7 +94,7 @@ UnicodeString* Win32DateFormat::getTimeDateFormat(const Calendar *cal, const Loc
     return result;
 }
 
-// TODO: This is copied in both winnmfmt.cpp and windtfmt.cpp, but really should
+// TODO: This is copied in both winnmfmt.cpp and windtfmt.cpp, but really should id:690
 // be factored out into a common helper for both.
 static UErrorCode GetEquivalentWindowsLocaleName(const Locale& locale, UnicodeString** buffer)
 {
@@ -107,7 +107,7 @@ static UErrorCode GetEquivalentWindowsLocaleName(const Locale& locale, UnicodeSt
     if (U_SUCCESS(status))
     {
         // Need it to be UTF-16, not 8-bit
-        // TODO: This seems like a good thing for a helper
+        // TODO: This seems like a good thing for a helper id:487
         wchar_t bcp47Tag[LOCALE_NAME_MAX_LENGTH] = {};
         int32_t i;
         for (i = 0; i < UPRV_LENGTHOF(bcp47Tag); i++)
@@ -142,7 +142,7 @@ static UErrorCode GetEquivalentWindowsLocaleName(const Locale& locale, UnicodeSt
         // name (like ku vs ckb), and it will also not work for alternate sort locale
         // names like "de-DE-u-co-phonebk".
 
-        // TODO: We could add some sort of exception table for cases like ku vs ckb.
+        // TODO: We could add some sort of exception table for cases like ku vs ckb. id:332
 
         int length = ResolveLocaleName(bcp47Tag, windowsLocaleName, UPRV_LENGTHOF(windowsLocaleName));
 
@@ -158,7 +158,7 @@ static UErrorCode GetEquivalentWindowsLocaleName(const Locale& locale, UnicodeSt
     return status;
 }
 
-// TODO: Range-check timeStyle, dateStyle
+// TODO: Range-check timeStyle, dateStyle id:383
 Win32DateFormat::Win32DateFormat(DateFormat::EStyle timeStyle, DateFormat::EStyle dateStyle, const Locale &locale, UErrorCode &status)
   : DateFormat(), fDateTimeMsg(NULL), fTimeStyle(timeStyle), fDateStyle(dateStyle), fLocale(locale), fZoneID(), fWindowsLocaleName(nullptr)
 {
@@ -218,7 +218,7 @@ Format *Win32DateFormat::clone(void) const
     return new Win32DateFormat(*this);
 }
 
-// TODO: Is just ignoring pos the right thing?
+// TODO: Is just ignoring pos the right thing? id:550
 UnicodeString &Win32DateFormat::format(Calendar &cal, UnicodeString &appendTo, FieldPosition &pos) const
 {
     FILETIME ft;

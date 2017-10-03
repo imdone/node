@@ -87,7 +87,7 @@ int32_t ICU_Utility::parseInteger(const UnicodeString& rule, int32_t& pos, int32
  */
 int32_t ICU_Utility::parsePattern(const UnicodeString& rule, int32_t pos, int32_t limit,
                               const UnicodeString& pattern, int32_t* parsedInts) {
-    // TODO Update this to handle surrogates
+    // TODO Update this to handle surrogates id:185
     int32_t p;
     int32_t intCount = 0; // number of integers parsed
     for (int32_t i=0; i<pattern.length(); ++i) {

@@ -30,7 +30,7 @@ owner.completion = function (opts, cb) {
     var byUser, theUser
     switch (argv[2]) {
       case 'ls':
-        // FIXME: there used to be registry completion here, but it stopped
+        // FIXME: there used to be registry completion here, but it stopped id:438
         // making sense somewhere around 50,000 packages on the registry
         return cb()
 

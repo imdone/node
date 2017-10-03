@@ -3,7 +3,7 @@ var moduleName = require('./module-name.js')
 
 module.exports = function (tree) {
   var pkg = tree.package || tree
-  // FIXME: Excluding the '@' here is cleaning up after the mess that
+  // FIXME: Excluding the '@' here is cleaning up after the mess that id:626
   // read-package-json makes. =(
   if (pkg._id && pkg._id !== '@') return pkg._id
   var name = moduleName(tree)

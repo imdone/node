@@ -180,7 +180,7 @@ int32_t ScriptSet::hashCode() const {
 }
 
 int32_t ScriptSet::nextSetBit(int32_t fromIndex) const {
-    // TODO: Wants a better implementation.
+    // TODO: Wants a better implementation. id:283
     if (fromIndex < 0) {
         return -1;
     }

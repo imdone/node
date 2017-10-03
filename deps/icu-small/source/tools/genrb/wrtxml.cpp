@@ -502,7 +502,7 @@ printComments(struct UString *src, const char *resName, UBool printTranslate, UE
         uprv_free(trans);
         return;
     }
-    // TODO: make src const, stop modifying it in-place, make printContainer() take const resource, etc.
+    // TODO: make src const, stop modifying it in-place, make printContainer() take const resource, etc. id:570
     src->fLength = removeCmtText(src->fChars, src->fLength, status);
     descLen  = getDescription(src->fChars,src->fLength, &desc, capacity, status);
     transLen = getTranslate(src->fChars,src->fLength, &trans, capacity, status);

@@ -34,7 +34,7 @@
 // use external string resources.
 #define EXTERN_APEX 0xFBEE9
 
-// TODO(addaleax): These should all have better error messages. In particular,
+// TODO (addaleax): These should all have better error messages. In particular, id:3944
 // they should mention what the actual limits are.
 #define SB_MALLOC_FAILED_ERROR \
   v8::Exception::Error(OneByteString(isolate, "\"toString()\" failed"))
@@ -439,7 +439,7 @@ bool StringBytes::IsValidString(Local<String> string,
                                 enum encoding enc) {
   if (enc == HEX && string->Length() % 2 != 0)
     return false;
-  // TODO(bnoordhuis) Add BASE64 check?
+  // TODO (bnoordhuis) Add BASE64 check? id:3098
   return true;
 }
 

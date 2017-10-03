@@ -185,7 +185,7 @@ class WasmTranslation::TranslatorImpl::DisassemblingTranslator
     String16 fake_script_url = GetFakeScriptUrl(isolate, func_idx);
 
     v8::Local<debug::WasmScript> script = script_.Get(isolate);
-    // TODO(clemensh): Generate disassembly lazily when queried by the frontend.
+    // TODO (clemensh): Generate disassembly lazily when queried by the frontend. id:2267
     debug::WasmDisassembly disassembly = script->DisassembleFunction(func_idx);
 
     DCHECK_EQ(0, offset_tables_.count(func_idx));
@@ -214,7 +214,7 @@ class WasmTranslation::TranslatorImpl::DisassemblingTranslator
   const OffsetTable& GetOffsetTable(const TransLocation* loc) {
     int func_index = loc->line;
     auto it = offset_tables_.find(func_index);
-    // TODO(clemensh): Once we load disassembly lazily, the offset table
+    // TODO (clemensh): Once we load disassembly lazily, the offset table id:1714
     // might not be there yet. Load it lazily then.
     DCHECK(it != offset_tables_.end());
     return it->second;

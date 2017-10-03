@@ -1155,7 +1155,7 @@ void Builtins::Generate_InterpreterEntryTrampoline(MacroAssembler* masm) {
   __ bind(&bytecode_array_loaded);
 
   // Check whether we should continue to use the interpreter.
-  // TODO(rmcilroy) Remove self healing once liveedit only has to deal with
+  // TODO (rmcilroy) Remove self healing once liveedit only has to deal with id:1178
   // Ignition bytecode.
   Label switch_to_different_code_kind;
   __ LoadP(r2, FieldMemOperand(r2, SharedFunctionInfo::kCodeOffset));
@@ -1212,7 +1212,7 @@ void Builtins::Generate_InterpreterEntryTrampoline(MacroAssembler* masm) {
     __ bind(&ok);
 
     // If ok, push undefined as the initial value for all register file entries.
-    // TODO(rmcilroy): Consider doing more than one push per loop iteration.
+    // TODO (rmcilroy): Consider doing more than one push per loop iteration. id:2110
     Label loop, no_args;
     __ LoadRoot(r5, Heap::kUndefinedValueRootIndex);
     __ ShiftRightP(r4, r4, Operand(kPointerSizeLog2));
@@ -2330,7 +2330,7 @@ void Builtins::Generate_CallFunction(MacroAssembler* masm,
       __ bind(&convert_to_object);
       {
         // Convert receiver using ToObject.
-        // TODO(bmeurer): Inline the allocation here to avoid building the frame
+        // TODO (bmeurer): Inline the allocation here to avoid building the frame id:1514
         // in the fast case? (fall back to AllocateInNewSpace?)
         FrameAndConstantPoolScope scope(masm, StackFrame::INTERNAL);
         __ SmiTag(r2);

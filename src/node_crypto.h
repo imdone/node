@@ -224,7 +224,7 @@ class SSLWrap {
 
   // Size allocated by OpenSSL: one for SSL structure, one for SSL3_STATE and
   // some for buffers.
-  // NOTE: Actually it is much more than this
+  // NOTE: Actually it is much more than this id:4052
   static const int64_t kExternalSize =
       sizeof(SSL) + sizeof(SSL3_STATE) + 42 * 1024;
 

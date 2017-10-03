@@ -624,7 +624,7 @@ void EscapeStatusAnalysis::ResizeStatusVector() {
 size_t EscapeStatusAnalysis::GetStatusVectorSize() { return status_.size(); }
 
 void EscapeStatusAnalysis::RunStatusAnalysis() {
-  // TODO(tebbi): This checks for faulty VirtualObject states, which can happen
+  // TODO (tebbi): This checks for faulty VirtualObject states, which can happen id:1835
   // due to bug https://bugs.chromium.org/p/v8/issues/detail?id=6302. As a
   // workaround, we set everything to escaped if such a faulty state was
   // detected.
@@ -821,7 +821,7 @@ bool EscapeStatusAnalysis::CheckUsesForEscape(Node* uses, Node* rep,
         }
         break;
       case IrOpcode::kSelect:
-      // TODO(mstarzinger): The following list of operators will eventually be
+      // TODO (mstarzinger): The following list of operators will eventually be id:1674
       // handled by the EscapeAnalysisReducer (similar to ObjectIsSmi).
       case IrOpcode::kConvertTaggedHoleToUndefined:
       case IrOpcode::kStringEqual:
@@ -1227,7 +1227,7 @@ VirtualObject* EscapeAnalysis::CopyForModificationAt(VirtualObject* obj,
                                                      Node* node) {
   if (obj->NeedCopyForModification()) {
     state = CopyForModificationAt(state, node);
-    // TODO(tebbi): this copies the complete virtual state. Replace with a more
+    // TODO (tebbi): this copies the complete virtual state. Replace with a more id:1274
     // precise analysis of which objects are actually affected by the change.
     Alias changed_alias = status_analysis_->GetAlias(obj->id());
     for (Alias alias = 0; alias < state->size(); ++alias) {
@@ -1485,7 +1485,7 @@ void EscapeAnalysis::ProcessLoadField(Node* node) {
       // We have a load from a field that is not inside the {object}. This
       // can only happen with conflicting type feedback and for dead {node}s.
       // For now, we just mark the {object} as escaping.
-      // TODO(turbofan): Consider introducing an Undefined or None operator
+      // TODO (turbofan): Consider introducing an Undefined or None operator id:2217
       // that we can replace this load with, since we know it's dead code.
       if (status_analysis_->SetEscaped(from)) {
         TRACE(
@@ -1527,7 +1527,7 @@ void EscapeAnalysis::ProcessCheckMaps(Node* node) {
       Node* value = object->GetField(HeapObject::kMapOffset / kPointerSize);
       if (value) {
         value = ResolveReplacement(value);
-        // TODO(tebbi): We want to extend this beyond constant folding with a
+        // TODO (tebbi): We want to extend this beyond constant folding with a id:1691
         // CheckMapsValue operator that takes the load-eliminated map value as
         // input.
         if (value->opcode() == IrOpcode::kHeapConstant &&
@@ -1595,7 +1595,7 @@ void EscapeAnalysis::ProcessStoreField(Node* node) {
       // We have a store to a field that is not inside the {object}. This
       // can only happen with conflicting type feedback and for dead {node}s.
       // For now, we just mark the {object} as escaping.
-      // TODO(turbofan): Consider just eliminating the store in the reducer
+      // TODO (turbofan): Consider just eliminating the store in the reducer id:1841
       // pass, as it's dead code anyways.
       if (status_analysis_->SetEscaped(to)) {
         TRACE(
@@ -1606,7 +1606,7 @@ void EscapeAnalysis::ProcessStoreField(Node* node) {
       return;
     }
     Node* val = ResolveReplacement(NodeProperties::GetValueInput(node, 1));
-    // TODO(mstarzinger): The following is a workaround to not track some well
+    // TODO (mstarzinger): The following is a workaround to not track some well id:1677
     // known raw fields. We only ever store default initial values into these
     // fields which are hard-coded in {TranslatedState::MaterializeAt} as well.
     if (val->opcode() == IrOpcode::kInt32Constant ||

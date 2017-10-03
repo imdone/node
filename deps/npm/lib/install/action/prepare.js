@@ -7,7 +7,7 @@ var moduleStagingPath = require('../module-staging-path.js')
 
 module.exports = function (staging, pkg, log, next) {
   log.silly('prepublish', packageId(pkg))
-  // TODO: for `npm@5`, change the behavior and remove this warning.
+  // TODO: for `npm@5`, change the behavior and remove this warning. id:743
   // see https://github.com/npm/npm/issues/10074 for details
   if (pkg.package && pkg.package.scripts && pkg.package.scripts.prepublish) {
     prepublishWarning([

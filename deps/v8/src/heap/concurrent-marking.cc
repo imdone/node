@@ -168,7 +168,7 @@ class ConcurrentMarkingVisitor final
   }
 
   int VisitMap(Map* map, Map* object) {
-    // TODO(ulan): implement iteration of strong fields.
+    // TODO (ulan): implement iteration of strong fields. id:2126
     bailout_.Push(object);
     return 0;
   }
@@ -179,7 +179,7 @@ class ConcurrentMarkingVisitor final
       int size = Context::BodyDescriptorWeak::SizeOf(map, object);
       VisitMapPointer(object, object->map_slot());
       Context::BodyDescriptorWeak::IterateBody(object, size, this);
-      // TODO(ulan): implement proper weakness for normalized map cache
+      // TODO (ulan): implement proper weakness for normalized map cache id:1647
       // and remove this bailout.
       bailout_.Push(object);
     }
@@ -199,19 +199,19 @@ class ConcurrentMarkingVisitor final
   }
 
   int VisitTransitionArray(Map* map, TransitionArray* object) {
-    // TODO(ulan): implement iteration of strong fields.
+    // TODO (ulan): implement iteration of strong fields. id:3032
     bailout_.Push(object);
     return 0;
   }
 
   int VisitWeakCell(Map* map, WeakCell* object) {
-    // TODO(ulan): implement iteration of strong fields.
+    // TODO (ulan): implement iteration of strong fields. id:2057
     bailout_.Push(object);
     return 0;
   }
 
   int VisitJSWeakCollection(Map* map, JSWeakCollection* object) {
-    // TODO(ulan): implement iteration of strong fields.
+    // TODO (ulan): implement iteration of strong fields. id:2162
     bailout_.Push(object);
     return 0;
   }
@@ -253,7 +253,7 @@ class ConcurrentMarkingVisitor final
   };
 
   const SlotSnapshot& MakeSlotSnapshot(Map* map, HeapObject* object, int size) {
-    // TODO(ulan): Iterate only the existing fields and skip slack at the end
+    // TODO (ulan): Iterate only the existing fields and skip slack at the end id:2128
     // of the object.
     SlotSnapshottingVisitor visitor(&slot_snapshot_);
     visitor.VisitPointer(object,

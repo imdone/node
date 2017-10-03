@@ -207,7 +207,7 @@ PredictableCodeSizeScope::PredictableCodeSizeScope(AssemblerBase* assembler,
 
 
 PredictableCodeSizeScope::~PredictableCodeSizeScope() {
-  // TODO(svenpanne) Remove the 'if' when everything works.
+  // TODO (svenpanne) Remove the 'if' when everything works. id:1356
   if (expected_size_ >= 0) {
     CHECK_EQ(expected_size_, assembler_->pc_offset() - start_offset_);
   }
@@ -788,7 +788,7 @@ void RelocInfo::Verify(Isolate* isolate) {
     case WASM_GLOBAL_REFERENCE:
     case WASM_FUNCTION_TABLE_SIZE_REFERENCE:
     case WASM_PROTECTED_INSTRUCTION_LANDING:
-    // TODO(eholk): make sure the protected instruction is in range.
+    // TODO (eholk): make sure the protected instruction is in range. id:1531
     case NONE32:
     case NONE64:
       break;

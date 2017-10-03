@@ -160,7 +160,7 @@ static void uv__udp_recvmsg(uv_udp_t* handle) {
   assert(handle->alloc_cb != NULL);
 
   /* Prevent loop starvation when the data comes in as fast as (or faster than)
-   * we can read it. XXX Need to rearm fd if we switch to edge-triggered I/O.
+   * we can read it. XXX Need to rearm fd if we switch to edge-triggered I/O. id:1308
    */
   count = 32;
 
@@ -849,7 +849,7 @@ int uv_udp_getsockname(const uv_udp_t* handle,
   socklen_t socklen;
 
   if (handle->io_watcher.fd == -1)
-    return -EINVAL;  /* FIXME(bnoordhuis) -EBADF */
+    return -EINVAL;  /* FIXME (bnoordhuis) -EBADF  id:919*/
 
   /* sizeof(socklen_t) != sizeof(int) on some systems. */
   socklen = (socklen_t) *namelen;
@@ -871,7 +871,7 @@ int uv__udp_recv_start(uv_udp_t* handle,
     return -EINVAL;
 
   if (uv__io_active(&handle->io_watcher, POLLIN))
-    return -EALREADY;  /* FIXME(bnoordhuis) Should be -EBUSY. */
+    return -EALREADY;  /* FIXME (bnoordhuis) Should be -EBUSY.  id:918*/
 
   err = uv__udp_maybe_deferred_bind(handle, AF_INET, 0);
   if (err)

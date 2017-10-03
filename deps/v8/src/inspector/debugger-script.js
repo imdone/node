@@ -203,7 +203,7 @@ DebuggerScript.getBreakpointNumbers = function(breakpoints)
     return numbers;
 }
 
-// NOTE: This function is performance critical, as it can be run on every
+// NOTE: This function is performance critical, as it can be run on every id:2218
 // statement that generates an async event (like addEventListener) to support
 // asynchronous call stacks. Thus, when possible, initialize the data lazily.
 /**

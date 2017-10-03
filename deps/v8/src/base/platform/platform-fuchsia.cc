@@ -27,19 +27,19 @@ void* OS::Allocate(const size_t requested, size_t* allocated,
 }
 
 std::vector<OS::SharedLibraryAddress> OS::GetSharedLibraryAddresses() {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1788
   return std::vector<SharedLibraryAddress>();
 }
 
 void OS::SignalCodeMovingGC() {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1431
 }
 
 VirtualMemory::VirtualMemory() : address_(NULL), size_(0) {}
 
 VirtualMemory::VirtualMemory(size_t size, void* hint)
     : address_(ReserveRegion(size, hint)), size_(size) {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1614
 }
 
 VirtualMemory::VirtualMemory(size_t size, size_t alignment, void* hint)
@@ -59,38 +59,38 @@ bool VirtualMemory::Guard(void* address) { return false; }
 
 // static
 void* VirtualMemory::ReserveRegion(size_t size, void* hint) {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1365
   return NULL;
 }
 
 // static
 bool VirtualMemory::CommitRegion(void* base, size_t size, bool is_executable) {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1107
   return false;
 }
 
 // static
 bool VirtualMemory::UncommitRegion(void* base, size_t size) {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1793
   return false;
 }
 
 // static
 bool VirtualMemory::ReleasePartialRegion(void* base, size_t size,
                                          void* free_start, size_t free_size) {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1434
   return false;
 }
 
 // static
 bool VirtualMemory::ReleaseRegion(void* base, size_t size) {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1618
   return false;
 }
 
 // static
 bool VirtualMemory::HasLazyCommits() {
-  CHECK(false);  // TODO(fuchsia): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (fuchsia): Port, https://crbug.com/731217. id:1368
   return false;
 }
 

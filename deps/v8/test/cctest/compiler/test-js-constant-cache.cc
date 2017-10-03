@@ -6,10 +6,10 @@
 #include "src/compiler/js-graph.h"
 #include "src/compiler/node-properties.h"
 #include "src/factory.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2565
 // (disallowed) include: src/factory.h -> src/objects-inl.h
 #include "src/objects-inl.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2669
 // (disallowed) include: src/feedback-vector.h ->
 // src/feedback-vector-inl.h
 #include "src/feedback-vector-inl.h"
@@ -34,7 +34,7 @@ class JSCacheTesterHelper {
 };
 
 
-// TODO(dcarney): JSConstantCacheTester inherits from JSGraph???
+// TODO (dcarney): JSConstantCacheTester inherits from JSGraph??? id:3559
 class JSConstantCacheTester : public HandleAndZoneScope,
                               public JSCacheTesterHelper,
                               public JSGraph {
@@ -222,7 +222,7 @@ TEST(OddballValues) {
 
 
 TEST(ExternalReferences) {
-  // TODO(titzer): test canonicalization of external references.
+  // TODO (titzer): test canonicalization of external references. id:3318
 }
 
 

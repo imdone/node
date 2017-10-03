@@ -51,7 +51,7 @@ function thenCheckTop (idealTree, next) {
   validate('OF', arguments)
   if (idealTree.package.error) return next()
 
-  // FIXME: when we replace read-package-json with something less magic,
+  // FIXME: when we replace read-package-json with something less magic, id:606
   // this should done elsewhere.
   // As it is, the package has already been normalized and thus some
   // errors are suppressed.

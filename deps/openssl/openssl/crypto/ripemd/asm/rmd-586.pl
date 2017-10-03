@@ -89,7 +89,7 @@ sub RIP1
 	&rotl($c,	10);
 	&add($a,	$tmp1);
 	 &mov($tmp1,	&Np($c));	# NEXT
-	 # XXX
+	 # XXX id:1034
 	&rotl($a,	$s);
 	&add($a,	$e);
 		}
@@ -101,7 +101,7 @@ sub RIP1
 	&add($a,	$tmp1);
 	 &mov($tmp1,	&Np($c)) if $o <= 0;
 	 &mov($tmp1,	-1) if $o == 1;
-	 # XXX if $o == 2;
+	 # XXX if $o == 2; id:1194
 	&rotl($c,	10);
 	&add($a,	$tmp2);
 	 &xor($tmp1,	&Np($d)) if $o <= 0;
@@ -130,17 +130,17 @@ sub RIP2
 	 &and($tmp1,	$d);
 	&or($tmp2,	$tmp1);
 	 &mov($tmp1,	&Xv($pos2)) if $o <= 0; # XXXXXXXXXXXXXX
-	 # XXX
+	 # XXX id:718
 	&rotl($c,	10);
 	&lea($a,	&DWP($K,$a,$tmp2,1));
 	 &mov($tmp2,	-1) if $o <= 0;
-	 # XXX
+	 # XXX id:809
 	&rotl($a,	$s);
 	&add($a,	$e);
 		}
 	else
 		{
-	 # XXX
+	 # XXX id:1183
 	 &add($a,	$tmp1);
 	&mov($tmp1,	$c);
 	 &sub($tmp2,	$b);
@@ -181,11 +181,11 @@ sub RIP3
 	 &add($a,	$tmp1);
 	&xor($tmp2,	$d);
 	 &mov($tmp1,	-1) if $o <= 0;		# NEXT
-	 # XXX
+	 # XXX id:1084
 	&rotl($c,	10);
 	&lea($a,	&DWP($K,$a,$tmp2,1));
 	 &sub($tmp1,	&Np($c)) if $o <= 0;	# NEXT
-	 # XXX
+	 # XXX id:1198
 	&rotl($a,	$s);
 	&add($a,	$e);
 		}
@@ -225,10 +225,10 @@ sub RIP4
 	&rotl($c,	10);
 	&lea($a,	&DWP($K,$a,$tmp2));
 	 &mov($tmp2,	-1) unless $o > 0;	# NEXT
-	 # XXX
+	 # XXX id:723
 	&add($a,	$tmp1);
 	 &mov($tmp1,	&Np($d)) unless $o > 0; # NEXT
-	 # XXX
+	 # XXX id:812
 	&rotl($a,	$s);
 	&add($a,	$e);
 		}
@@ -244,12 +244,12 @@ sub RIP4
 	 &mov($tmp2,	-1) if $o == 0;	# NEXT
 	 &mov($tmp2,	-1) if $o == 1;
 	 &mov($tmp2,	-1) if $o == 2;
-	 # XXX
+	 # XXX id:1186
 	&add($a,	$tmp1);
 	 &mov($tmp1,	&Np($d)) if $o == 0;	# NEXT
 	 &sub($tmp2,	&Np($d)) if $o == 1;
 	 &sub($tmp2,	&Np($c)) if $o == 2;
-	 # XXX
+	 # XXX id:1097
 	&rotl($a,	$s);
 	&add($a,	$e);
 		}
@@ -269,11 +269,11 @@ sub RIP5
 	 &add($a,	$tmp1);
 	&xor($tmp2,	$b);
 	 &mov($tmp1,	-1) if $o <= 0;
-	 # XXX
+	 # XXX id:1201
 	&rotl($c,	10);
 	&lea($a,	&DWP($K,$a,$tmp2,1));
 	 &sub($tmp1,	&Np($d)) if $o <= 0;
-	 # XXX
+	 # XXX id:725
 	&rotl($a,	$s);
 	&add($a,	$e);
 		}

@@ -133,12 +133,12 @@ main(int argc, char* argv[]) {
         printAssemblyHeadersToStdErr();
     } else {
         const char *message, *filename;
-        /* TODO: remove void (*writeCode)(const char *, const char *); */
+        /* TODO: remove void (*writeCode)(const char *, const char *);  id:696*/
 
         if(options[kOptAssembly].doesOccur) {
             message="generating assembly code for %s\n";
             writeCode = CALL_WRITEASSEMBLY;
-            /* TODO: remove writeCode=&writeAssemblyCode; */
+            /* TODO: remove writeCode=&writeAssemblyCode;  id:493*/
 
             if (!checkAssemblyHeaderName(options[kOptAssembly].value)) {
                 fprintf(stderr,
@@ -150,14 +150,14 @@ main(int argc, char* argv[]) {
         else if(options[kOptObject].doesOccur) {
             message="generating object code for %s\n";
             writeCode = CALL_WRITEOBJECT;
-            /* TODO: remove writeCode=&writeObjectCode; */
+            /* TODO: remove writeCode=&writeObjectCode;  id:336*/
         }
 #endif
         else
         {
             message="generating C code for %s\n";
             writeCode = CALL_WRITECCODE;
-            /* TODO: remove writeCode=&writeCCode; */
+            /* TODO: remove writeCode=&writeCCode;  id:387*/
         }
         while(--argc) {
             filename=getLongPathname(argv[argc]);
@@ -191,7 +191,7 @@ main(int argc, char* argv[]) {
                 /* Should never occur. */
                 break;
             }
-            /* TODO: remove writeCode(filename, options[kOptDestDir].value); */
+            /* TODO: remove writeCode(filename, options[kOptDestDir].value);  id:557*/
         }
     }
 

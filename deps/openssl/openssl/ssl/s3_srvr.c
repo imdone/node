@@ -656,7 +656,7 @@ int ssl3_accept(SSL *s)
 
                 /*
                  * We need to get hashes here so if there is a client cert,
-                 * it can be verified FIXME - digest processing for
+                 * it can be verified FIXME - digest processing for id:1464
                  * CertificateVerify should be generalized. But it is next
                  * step
                  */
@@ -1773,7 +1773,7 @@ int ssl3_send_server_key_exchange(SSL *s)
             }
 
             /*
-             * XXX: For now, we only support ephemeral ECDH keys over named
+             * XXX: For now, we only support ephemeral ECDH keys over named id:1150
              * (not generic) curves. For supported named curves, curve_id is
              * non-zero.
              */
@@ -1817,7 +1817,7 @@ int ssl3_send_server_key_exchange(SSL *s)
             bn_ctx = NULL;
 
             /*
-             * XXX: For now, we only support named (not generic) curves in
+             * XXX: For now, we only support named (not generic) curves in id:1254
              * ECDH ephemeral key exchanges. In this situation, we need four
              * additional bytes to encode the entire ServerECDHParams
              * structure.
@@ -1936,7 +1936,7 @@ int ssl3_send_server_key_exchange(SSL *s)
 #ifndef OPENSSL_NO_ECDH
         if (type & SSL_kEECDH) {
             /*
-             * XXX: For now, we only support named (not generic) curves. In
+             * XXX: For now, we only support named (not generic) curves. In id:834
              * this situation, the serverKeyExchange message has: [1 byte
              * CurveType], [2 byte CurveName] [1 byte length of encoded
              * point], followed by the actual encoded point itself
@@ -2678,7 +2678,7 @@ int ssl3_get_client_key_exchange(SSL *s)
             if (((clnt_pub_pkey = X509_get_pubkey(s->session->peer))
                  == NULL) || (clnt_pub_pkey->type != EVP_PKEY_EC)) {
                 /*
-                 * XXX: For now, we do not support client authentication
+                 * XXX: For now, we do not support client authentication id:862
                  * using ECDH certificates so this branch (n == 0L) of the
                  * code is never executed. When that support is added, we
                  * ought to ensure the key received in the certificate is

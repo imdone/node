@@ -23,7 +23,7 @@ import gyp.MSVSVersion as MSVSVersion
 from gyp.common import GypError
 from gyp.common import OrderedSet
 
-# TODO: Remove once bots are on 2.7, http://crbug.com/241769
+# TODO: Remove once bots are on 2.7, http://crbug.com/241769 id:3745
 def _import_OrderedDict():
   import collections
   try:
@@ -108,7 +108,7 @@ cached_username = None
 cached_domain = None
 
 
-# TODO(gspencer): Switch the os.environ calls to be
+# TODO (gspencer): Switch the os.environ calls to be id:4103
 # win32api.GetDomainName() and win32api.GetUserName() once the
 # python version in depot_tools has been updated to work on Vista
 # 64-bit.
@@ -250,7 +250,7 @@ def _ToolAppend(tools, tool_name, setting, value, only_if_unset=False):
 
 
 def _ToolSetOrAppend(tools, tool_name, setting, value, only_if_unset=False):
-  # TODO(bradnelson): ugly hack, fix this more generally!!!
+  # TODO (bradnelson): ugly hack, fix this more generally!!! id:4036
   if 'Directories' in setting or 'Dependencies' in setting:
     if type(value) == str:
       value = value.replace('/', '\\')
@@ -351,7 +351,7 @@ def _BuildCommandLineForRuleRaw(spec, cmd, cygwin_shell, has_input_path,
     direct_cmd = ['\\"%s\\"' % i.replace('"', '\\\\\\"') for i in direct_cmd]
     # direct_cmd = gyp.common.EncodePOSIXShellList(direct_cmd)
     direct_cmd = ' '.join(direct_cmd)
-    # TODO(quote):  regularize quoting path names throughout the module
+    # TODO (quote):  regularize quoting path names throughout the module id:3273
     cmd = ''
     if do_setup_env:
       cmd += 'call "$(ProjectDir)%(cygwin_dir)s\\setup_env.bat" && '
@@ -380,7 +380,7 @@ def _BuildCommandLineForRuleRaw(spec, cmd, cygwin_shell, has_input_path,
     # actually batch files themselves.
     command.insert(0, 'call')
     # Fix the paths
-    # TODO(quote): This is a really ugly heuristic, and will miss path fixing
+    # TODO (quote): This is a really ugly heuristic, and will miss path fixing id:3445
     #              for arguments like "--arg=path" or "/opt:path".
     # If the argument starts with a slash or dash, it's probably a command line
     # switch
@@ -390,7 +390,7 @@ def _BuildCommandLineForRuleRaw(spec, cmd, cygwin_shell, has_input_path,
     if quote_cmd:
       # Support a mode for using cmd directly.
       # Convert any paths to native form (first element is used directly).
-      # TODO(quote):  regularize quoting path names throughout the module
+      # TODO (quote):  regularize quoting path names throughout the module id:3748
       arguments = ['"%s"' % i for i in arguments]
     # Collapse into a single command.
     return input_dir_preamble + ' '.join(command + arguments)
@@ -965,7 +965,7 @@ def _GenerateProject(project, options, version, generator_flags):
     return _GenerateMSVSProject(project, options, version, generator_flags)
 
 
-# TODO: Avoid code duplication with _ValidateSourcesForOSX in make.py.
+# TODO: Avoid code duplication with _ValidateSourcesForOSX in make.py. id:4104
 def _ValidateSourcesForMSVSProject(spec, version):
   """Makes sure if duplicate basenames are not specified in the source list.
 
@@ -976,7 +976,7 @@ def _ValidateSourcesForMSVSProject(spec, version):
   # This validation should not be applied to MSVC2010 and later.
   assert not version.UsesVcxproj()
 
-  # TODO: Check if MSVC allows this for loadable_module targets.
+  # TODO: Check if MSVC allows this for loadable_module targets. id:4037
   if spec.get('type', None) not in ('static_library', 'shared_library'):
     return
   sources = spec.get('sources', [])
@@ -1028,7 +1028,7 @@ def _GenerateMSVSProject(project, options, version, generator_flags):
 
   # MSVC08 and prior version cannot handle duplicate basenames in the same
   # target.
-  # TODO: Take excluded sources into consideration if possible.
+  # TODO: Take excluded sources into consideration if possible. id:3274
   _ValidateSourcesForMSVSProject(spec, version)
 
   # Prepare list of sources and excluded sources.
@@ -1057,7 +1057,7 @@ def _GenerateMSVSProject(project, options, version, generator_flags):
   _AddCopies(actions_to_add, spec)
   _WriteMSVSUserFile(project.path, version, spec)
 
-  # NOTE: this stanza must appear after all actions have been decided.
+  # NOTE: this stanza must appear after all actions have been decided. id:3447
   # Don't excluded sources with actions attached, or they won't run.
   excluded_sources = _FilterActionsFromExcluded(
       excluded_sources, actions_to_add)
@@ -1232,7 +1232,7 @@ def _GetIncludeDirs(config):
   Returns:
     The list of directory paths.
   """
-  # TODO(bradnelson): include_dirs should really be flexible enough not to
+  # TODO (bradnelson): include_dirs should really be flexible enough not to id:3751
   #                   require this sort of thing.
   include_dirs = (
       config.get('include_dirs', []) +
@@ -1520,8 +1520,8 @@ def _AdjustSourcesAndConvertToFilterHierarchy(
   # Add excluded sources into sources for good measure.
   sources.update(excluded_sources)
   # Convert to proper windows form.
-  # NOTE: sources goes from being a set to a list here.
-  # NOTE: excluded_sources goes from being a set to a list here.
+  # NOTE: sources goes from being a set to a list here. id:4105
+  # NOTE: excluded_sources goes from being a set to a list here. id:4039
   sources = _FixPaths(sources)
   # Convert to proper windows form.
   excluded_sources = _FixPaths(excluded_sources)
@@ -2911,15 +2911,15 @@ def _GetMSBuildAttributes(spec, config, build_file):
 
 
 def _GetMSBuildConfigurationGlobalProperties(spec, configurations, build_file):
-  # TODO(jeanluc) We could optimize out the following and do it only if
+  # TODO (jeanluc) We could optimize out the following and do it only if id:3275
   # there are actions.
-  # TODO(jeanluc) Handle the equivalent of setting 'CYGWIN=nontsec'.
+  # TODO (jeanluc) Handle the equivalent of setting 'CYGWIN=nontsec'. id:3450
   new_paths = []
   cygwin_dirs = spec.get('msvs_cygwin_dirs', ['.'])[0]
   if cygwin_dirs:
     cyg_path = '$(MSBuildProjectDirectory)\\%s\\bin\\' % _FixPath(cygwin_dirs)
     new_paths.append(cyg_path)
-    # TODO(jeanluc) Change the convention to have both a cygwin_dir and a
+    # TODO (jeanluc) Change the convention to have both a cygwin_dir and a id:3753
     # python_dir.
     python_path = cyg_path.replace('cygwin\\bin', 'python_26')
     new_paths.append(python_path)
@@ -3018,7 +3018,7 @@ def _GetMSBuildPropertyGroup(spec, label, properties):
   # Walk properties in the reverse of a topological sort on
   # user_of_variable -> used_variable as this ensures variables are
   # defined before they are used.
-  # NOTE: reverse(topsort(DAG)) = topsort(reverse_edges(DAG))
+  # NOTE: reverse(topsort(DAG)) = topsort(reverse_edges(DAG)) id:4106
   for name in reversed(properties_ordered):
     values = properties[name]
     for value, conditions in sorted(values.iteritems()):
@@ -3089,7 +3089,7 @@ def _FinalizeMSBuildSettings(spec, configuration):
   precompiled_header = configuration.get('msvs_precompiled_header')
 
   # Add the information to the appropriate tool
-  # TODO(jeanluc) We could optimize and generate these settings only if
+  # TODO (jeanluc) We could optimize and generate these settings only if id:4041
   # the corresponding files are found, e.g. don't generate ResourceCompile
   # if you don't have any resources.
   _ToolAppend(msbuild_settings, 'ClCompile',
@@ -3150,7 +3150,7 @@ def _FinalizeMSBuildSettings(spec, configuration):
 def _GetValueFormattedForMSBuild(tool_name, name, value):
   if type(value) == list:
     # For some settings, VS2010 does not automatically extends the settings
-    # TODO(jeanluc) Is this what we want?
+    # TODO (jeanluc) Is this what we want? id:3276
     if name in ['AdditionalIncludeDirectories',
                 'AdditionalLibraryDirectories',
                 'AdditionalOptions',
@@ -3346,7 +3346,7 @@ def _GenerateMSBuildProject(project, options, version, generator_flags):
     _AddActions(actions_to_add, spec, project.build_file)
     _AddCopies(actions_to_add, spec)
 
-    # NOTE: this stanza must appear after all actions have been decided.
+    # NOTE: this stanza must appear after all actions have been decided. id:3457
     # Don't excluded sources with actions attached, or they won't run.
     excluded_sources = _FilterActionsFromExcluded(
         excluded_sources, actions_to_add)
@@ -3414,7 +3414,7 @@ def _GenerateMSBuildProject(project, options, version, generator_flags):
   if spec.get('msvs_external_builder'):
     content += _GetMSBuildExternalBuilderTargets(spec)
 
-  # TODO(jeanluc) File a bug to get rid of runas.  We had in MSVS:
+  # TODO (jeanluc) File a bug to get rid of runas.  We had in MSVS: id:3755
   # has_run_as = _WriteMSVSUserFile(project.path, version, spec)
 
   easy_xml.WriteXmlIfChanged(content, project.path, pretty=True, win32=True)
@@ -3535,7 +3535,7 @@ def _AddMSBuildAction(spec, primary_input, inputs, outputs, cmd, description,
   sources_handled_by_action.add(primary_input)
   action_spec = ['CustomBuild', {'Include': primary_input}]
   action_spec.extend(
-      # TODO(jeanluc) 'Document' for all or just if as_sources?
+      # TODO (jeanluc) 'Document' for all or just if as_sources? id:4107
       [['FileType', 'Document'],
        ['Command', command],
        ['Message', description],

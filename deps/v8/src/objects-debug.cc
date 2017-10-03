@@ -305,7 +305,7 @@ void ByteArray::ByteArrayVerify() {
 
 
 void BytecodeArray::BytecodeArrayVerify() {
-  // TODO(oth): Walk bytecodes and immediate values to validate sanity.
+  // TODO (oth): Walk bytecodes and immediate values to validate sanity. id:1987
   // - All bytecodes are known and well formed.
   // - Jumps must go to new instructions starts.
   // - No Illegal bytecodes.
@@ -430,7 +430,7 @@ void Map::MapVerify() {
   SLOW_DCHECK(instance_descriptors()->IsSortedNoDuplicates());
   SLOW_DCHECK(TransitionArray::IsSortedNoDuplicates(this));
   SLOW_DCHECK(TransitionArray::IsConsistentWithBackPointers(this));
-  // TODO(ishell): turn it back to SLOW_DCHECK.
+  // TODO (ishell): turn it back to SLOW_DCHECK. id:3135
   CHECK(!FLAG_unbox_double_fields ||
         layout_descriptor()->IsConsistentWithMap(this));
 }
@@ -953,7 +953,7 @@ void JSSet::JSSetVerify() {
   JSObjectVerify();
   VerifyHeapPointer(table());
   CHECK(table()->IsOrderedHashTable() || table()->IsUndefined(GetIsolate()));
-  // TODO(arv): Verify OrderedHashTable too.
+  // TODO (arv): Verify OrderedHashTable too. id:2196
 }
 
 
@@ -962,7 +962,7 @@ void JSMap::JSMapVerify() {
   JSObjectVerify();
   VerifyHeapPointer(table());
   CHECK(table()->IsOrderedHashTable() || table()->IsUndefined(GetIsolate()));
-  // TODO(arv): Verify OrderedHashTable too.
+  // TODO (arv): Verify OrderedHashTable too. id:2336
 }
 
 

@@ -220,7 +220,7 @@ if (process.argv[2] === 'child') {
     });
 
     listenSocket.on('close', function() {
-      // HACK: Wait to exit the process to ensure that the parent
+      // HACK: Wait to exit the process to ensure that the parent id:3330
       // process has had time to receive all messages via process.send()
       // This may be indicative of some other issue.
       setTimeout(function() {

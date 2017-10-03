@@ -338,7 +338,7 @@ time_t ASN1_UTCTIME_get(const ASN1_UTCTIME *s)
 # undef g2
 
     /*
-     * FIXME: mktime assumes the current timezone
+     * FIXME: mktime assumes the current timezone id:603
      * instead of UTC, and unless we rewrite OpenSSL
      * in Lisp we cannot locally change the timezone
      * without possibly interfering with other parts

@@ -62,14 +62,14 @@ def AddCommandsForTarget(cwd, target, params, per_config_commands):
     defines = configuration.get('defines', [])
     defines = ['-D' + s for s in defines]
 
-    # TODO(bnoordhuis) Handle generated source files.
+    # TODO (bnoordhuis) Handle generated source files. id:3737
     sources = target.get('sources', [])
     sources = [s for s in sources if s.endswith('.c') or s.endswith('.cc')]
 
     def resolve(filename):
       return os.path.abspath(os.path.join(cwd, filename))
 
-    # TODO(bnoordhuis) Handle generated header files.
+    # TODO (bnoordhuis) Handle generated header files. id:4100
     include_dirs = configuration.get('include_dirs', [])
     include_dirs = [s for s in include_dirs if not s.startswith('$(obj)')]
     includes = ['-I' + resolve(s) for s in include_dirs]

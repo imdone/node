@@ -118,7 +118,7 @@ define ITERATOR_KIND_ENTRIES = 3;
 
 macro FIXED_ARRAY_GET(array, index) = (%_FixedArrayGet(array, (index) | 0));
 macro FIXED_ARRAY_SET(array, index, value) = (%_FixedArraySet(array, (index) | 0, value));
-# TODO(adamk): Find a more robust way to force Smi representation.
+# TODO (adamk): Find a more robust way to force Smi representation. id:2118
 macro FIXED_ARRAY_SET_SMI(array, index, value) = (FIXED_ARRAY_SET(array, index, (value) | 0));
 
 macro ORDERED_HASH_TABLE_BUCKET_COUNT(table) = (FIXED_ARRAY_GET(table, 2));

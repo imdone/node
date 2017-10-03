@@ -610,7 +610,7 @@ int SSL_CTX_use_certificate_chain(SSL_CTX* ctx,
     for (int i = 0; i < sk_X509_num(extra_certs); i++) {
       X509* ca = sk_X509_value(extra_certs, i);
 
-      // NOTE: Increments reference count on `ca`
+      // NOTE: Increments reference count on `ca` id:3932
       r = SSL_CTX_add1_chain_cert(ctx, ca);
 
       if (!r) {
@@ -636,7 +636,7 @@ int SSL_CTX_use_certificate_chain(SSL_CTX* ctx,
     if (*issuer == nullptr) {
       ret = SSL_CTX_get_issuer(ctx, x, issuer);
       ret = ret < 0 ? 0 : 1;
-      // NOTE: get_cert_store doesn't increment reference count,
+      // NOTE: get_cert_store doesn't increment reference count, id:3037
       // no need to free `store`
     } else {
       // Increment issuer reference count
@@ -1726,7 +1726,7 @@ static Local<Object> X509ToObject(Environment* env, X509* cert) {
 }
 
 
-// TODO(indutny): Split it into multiple smaller functions
+// TODO (indutny): Split it into multiple smaller functions id:3314
 template <class Base>
 void SSLWrap<Base>::GetPeerCertificate(
     const FunctionCallbackInfo<Value>& args) {
@@ -1739,7 +1739,7 @@ void SSLWrap<Base>::GetPeerCertificate(
   Local<Object> result;
   Local<Object> info;
 
-  // NOTE: This is because of the odd OpenSSL behavior. On client `cert_chain`
+  // NOTE: This is because of the odd OpenSSL behavior. On client `cert_chain` id:3626
   // contains the `peer_certificate`, but on server it doesn't
   X509* cert = w->is_server() ? SSL_get_peer_certificate(w->ssl_) : nullptr;
   STACK_OF(X509)* ssl_certs = SSL_get_peer_cert_chain(w->ssl_);
@@ -1787,7 +1787,7 @@ void SSLWrap<Base>::GetPeerCertificate(
       info->Set(env->issuercert_string(), ca_info);
       info = ca_info;
 
-      // NOTE: Intentionally freeing cert that is not used anymore
+      // NOTE: Intentionally freeing cert that is not used anymore id:4049
       X509_free(cert);
 
       // Delete cert and continue aggregating issuers
@@ -1810,7 +1810,7 @@ void SSLWrap<Base>::GetPeerCertificate(
     info->Set(env->issuercert_string(), ca_info);
     info = ca_info;
 
-    // NOTE: Intentionally freeing cert that is not used anymore
+    // NOTE: Intentionally freeing cert that is not used anymore id:3934
     X509_free(cert);
 
     // Delete cert and continue aggregating issuers
@@ -2078,7 +2078,7 @@ void SSLWrap<Base>::VerifyError(const FunctionCallbackInfo<Value>& args) {
   Base* w;
   ASSIGN_OR_RETURN_UNWRAP(&w, args.Holder());
 
-  // XXX(bnoordhuis) The UNABLE_TO_GET_ISSUER_CERT error when there is no
+  // XXX (bnoordhuis) The UNABLE_TO_GET_ISSUER_CERT error when there is no id:3040
   // peer certificate is questionable but it's compatible with what was
   // here before.
   long x509_verify_error =  // NOLINT(runtime/int)
@@ -2091,7 +2091,7 @@ void SSLWrap<Base>::VerifyError(const FunctionCallbackInfo<Value>& args) {
   if (x509_verify_error == X509_V_OK)
     return args.GetReturnValue().SetNull();
 
-  // XXX(bnoordhuis) X509_verify_cert_error_string() is not actually thread-safe
+  // XXX (bnoordhuis) X509_verify_cert_error_string() is not actually thread-safe id:3316
   // in the presence of invalid error codes.  Probably academical but something
   // to keep in mind if/when node ever grows multi-isolate capabilities.
   const char* reason = X509_verify_cert_error_string(x509_verify_error);
@@ -2526,7 +2526,7 @@ void SSLWrap<Base>::CertCbDone(const FunctionCallbackInfo<Value>& args) {
 
     int rv;
 
-    // NOTE: reference count is not increased by this API methods
+    // NOTE: reference count is not increased by this API methods id:3629
     X509* x509 = SSL_CTX_get0_certificate(sc->ctx_);
     EVP_PKEY* pkey = SSL_CTX_get0_privatekey(sc->ctx_);
     STACK_OF(X509)* chain;
@@ -2608,7 +2608,7 @@ int SSLWrap<Base>::SetCACerts(SecureContext* sc) {
   STACK_OF(X509_NAME)* list = SSL_dup_CA_list(
       SSL_CTX_get_client_CA_list(sc->ctx_));
 
-  // NOTE: `SSL_set_client_CA_list` takes the ownership of `list`
+  // NOTE: `SSL_set_client_CA_list` takes the ownership of `list` id:4051
   SSL_set_client_CA_list(ssl_, list);
   return 1;
 }
@@ -2719,7 +2719,7 @@ int Connection::HandleSSLError(const char* func,
 
     CHECK(err == SSL_ERROR_SSL || err == SSL_ERROR_SYSCALL);
 
-    // XXX We need to drain the error queue for this thread or else OpenSSL
+    // XXX We need to drain the error queue for this thread or else OpenSSL id:3936
     // has the possibility of blocking connections? This problem is not well
     // understood. And we should be somehow propagating these errors up
     // into JavaScript. There is no test which demonstrates this problem.
@@ -3539,7 +3539,7 @@ void CipherBase::SetAuthTag(const FunctionCallbackInfo<Value>& args) {
     return env->ThrowError("Attempting to set auth tag in unsupported state");
   }
 
-  // FIXME(bnoordhuis) Throw when buffer length is not a valid tag size.
+  // FIXME (bnoordhuis) Throw when buffer length is not a valid tag size. id:3042
   // Note: we don't use std::max() here to work around a header conflict.
   cipher->auth_tag_len_ = Buffer::Length(args[0]);
   if (cipher->auth_tag_len_ > sizeof(cipher->auth_tag_))
@@ -4962,7 +4962,7 @@ void ECDH::New(const FunctionCallbackInfo<Value>& args) {
 
   MarkPopErrorOnReturn mark_pop_error_on_return;
 
-  // TODO(indutny): Support raw curves?
+  // TODO (indutny): Support raw curves? id:3317
   THROW_AND_RETURN_IF_NOT_STRING(args[0], "ECDH curve name");
   node::Utf8Value curve(env->isolate(), args[0]);
 
@@ -5036,7 +5036,7 @@ void ECDH::ComputeSecret(const FunctionCallbackInfo<Value>& args) {
   if (pub == nullptr)
     return;
 
-  // NOTE: field_size is in bits
+  // NOTE: field_size is in bits id:3633
   int field_size = EC_GROUP_get_degree(ecdh->group_);
   size_t out_len = (field_size + 7) / 8;
   char* out = node::Malloc(out_len);

@@ -222,7 +222,7 @@ TEST(CodeRange) {
       // Allocate a block.
       // Geometrically distributed sizes, greater than
       // kMaxRegularHeapObjectSize (which is greater than code page area).
-      // TODO(gc): instead of using 3 use some contant based on code_range_size
+      // TODO (gc): instead of using 3 use some contant based on code_range_size id:3594
       // kMaxRegularHeapObjectSize.
       size_t requested = (kMaxRegularHeapObjectSize << (Pseudorandom() % 3)) +
                          Pseudorandom() % 5000 + 1;

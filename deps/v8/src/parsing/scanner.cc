@@ -1625,7 +1625,7 @@ Token::Value Scanner::ScanIdentifierSuffix(LiteralScope* literal,
     Vector<const uint8_t> chars = next_.literal_chars->one_byte_literal();
     Token::Value token =
         KeywordOrIdentifierToken(chars.start(), chars.length());
-    /* TODO(adamk): YIELD should be handled specially. */
+    /* TODO (adamk): YIELD should be handled specially.  id:2438*/
     if (token == Token::IDENTIFIER || Token::IsContextualKeyword(token)) {
       return token;
     } else if (token == Token::FUTURE_STRICT_RESERVED_WORD ||
@@ -1675,7 +1675,7 @@ bool Scanner::ScanRegExpPattern() {
       // or not, since any '/', '\\' or '[' is guaranteed to not be part
       // of the escape sequence.
 
-      // TODO(896): At some point, parse RegExps more throughly to capture
+      // TODO (896): At some point, parse RegExps more throughly to capture id:2481
       // octal esacpes in strict mode.
     } else {  // Unescaped character.
       if (c0_ == '[') in_character_class = true;
@@ -1779,7 +1779,7 @@ bool Scanner::IsDuplicateSymbol(DuplicateFinder* duplicate_finder,
 
 void Scanner::SeekNext(size_t position) {
   // Use with care: This cleanly resets most, but not all scanner state.
-  // TODO(vogelheim): Fix this, or at least DCHECK the relevant conditions.
+  // TODO (vogelheim): Fix this, or at least DCHECK the relevant conditions. id:2980
 
   // To re-scan from a given character position, we need to:
   // 1, Reset the current_, next_ and next_next_ tokens

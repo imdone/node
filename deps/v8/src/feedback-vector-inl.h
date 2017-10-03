@@ -243,7 +243,7 @@ void FeedbackVector::ComputeCounts(int* with_type_info, int* generic,
       case FeedbackSlotKind::kBinaryOp:
         // If we are not running interpreted code, we need to ignore the special
         // IC slots for binaryop/compare used by the interpreter.
-        // TODO(mvstanton): Remove code_is_interpreted when full code is retired
+        // TODO (mvstanton): Remove code_is_interpreted when full code is retired id:2075
         // from service.
         if (code_is_interpreted) {
           int const feedback = Smi::ToInt(obj);
@@ -260,7 +260,7 @@ void FeedbackVector::ComputeCounts(int* with_type_info, int* generic,
       case FeedbackSlotKind::kCompareOp: {
         // If we are not running interpreted code, we need to ignore the special
         // IC slots for binaryop/compare used by the interpreter.
-        // TODO(mvstanton): Remove code_is_interpreted when full code is retired
+        // TODO (mvstanton): Remove code_is_interpreted when full code is retired id:1586
         // from service.
         if (code_is_interpreted) {
           int const feedback = Smi::ToInt(obj);

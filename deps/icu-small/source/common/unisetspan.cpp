@@ -219,7 +219,7 @@ UnicodeSetStringSpan::UnicodeSetStringSpan(const UnicodeSet &set,
     // Determine if the strings even need to be taken into account at all for span() etc.
     // If any string is relevant, then all strings need to be used for
     // span(longest match) but only the relevant ones for span(while contained).
-    // TODO: Possible optimization: Distinguish CONTAINED vs. LONGEST_MATCH
+    // TODO: Possible optimization: Distinguish CONTAINED vs. LONGEST_MATCH id:126
     //   and do not store UTF-8 strings if !thisRelevant and CONTAINED.
     //   (Only store irrelevant UTF-8 strings for LONGEST_MATCH where they are relevant after all.)
     // Also count the lengths of the UTF-8 versions of the strings for memory allocation.

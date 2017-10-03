@@ -61,7 +61,7 @@ bool BytecodeLoopAssignments::ContainsLocal(int index) const {
 }
 
 bool BytecodeLoopAssignments::ContainsAccumulator() const {
-  // TODO(leszeks): This assumes the accumulator is always assigned. This is
+  // TODO (leszeks): This assumes the accumulator is always assigned. This is id:1258
   // probably correct, but that assignment is also probably dead, so we should
   // check liveness.
   return true;
@@ -201,7 +201,7 @@ void UpdateOutLiveness(Bytecode bytecode, BytecodeLivenessState& out_liveness,
   // Update from exception handler (if any).
   if (!interpreter::Bytecodes::IsWithoutExternalSideEffects(bytecode)) {
     int handler_context;
-    // TODO(leszeks): We should look up this range only once per entry.
+    // TODO (leszeks): We should look up this range only once per entry. id:2199
     HandlerTable* table = HandlerTable::cast(bytecode_array->handler_table());
     int handler_offset =
         table->LookupRange(current_offset, &handler_context, nullptr);
@@ -294,7 +294,7 @@ void BytecodeAnalysis::Analyze(BailoutId osr_bailout_id) {
       LoopStackEntry& current_loop = loop_stack_.top();
       LoopInfo* current_loop_info = current_loop.loop_info;
 
-      // TODO(leszeks): Ideally, we'd only set values that were assigned in
+      // TODO (leszeks): Ideally, we'd only set values that were assigned in id:1587
       // the loop *and* are live when the loop exits. However, this requires
       // tracking the out-liveness of *all* loop exits, which is not
       // information we currently have.

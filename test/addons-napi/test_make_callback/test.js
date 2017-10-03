@@ -31,7 +31,7 @@ assert.strictEqual(42,
                    makeCallback(this,
                                 common.mustCall(myMultiArgFunc), 1, 2, 3));
 
-// TODO(node-api): napi_make_callback needs to support
+// TODO (node-api): napi_make_callback needs to support id:3327
 // strings passed for the func argument
 /*
 const recv = {

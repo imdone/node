@@ -71,7 +71,7 @@ CompoundTransliterator::CompoundTransliterator(const UnicodeString& id,
                               UErrorCode& status) :
     Transliterator(id, adoptedFilter),
     trans(0), numAnonymousRBTs(0) {
-    // TODO add code for parseError...currently unused, but
+    // TODO add code for parseError...currently unused, but id:540
     // later may be used by parsing code...
     init(id, direction, TRUE, status);
 }
@@ -81,7 +81,7 @@ CompoundTransliterator::CompoundTransliterator(const UnicodeString& id,
                               UErrorCode& status) :
     Transliterator(id, 0), // set filter to 0 here!
     trans(0), numAnonymousRBTs(0) {
-    // TODO add code for parseError...currently unused, but
+    // TODO add code for parseError...currently unused, but id:233
     // later may be used by parsing code...
     init(id, UTRANS_FORWARD, TRUE, status);
 }
@@ -113,7 +113,7 @@ CompoundTransliterator::CompoundTransliterator(UVector& list,
     Transliterator(UnicodeString(), NULL),
     trans(0), numAnonymousRBTs(0)
 {
-    // TODO add code for parseError...currently unused, but
+    // TODO add code for parseError...currently unused, but id:206
     // later may be used by parsing code...
     init(list, UTRANS_FORWARD, FALSE, status);
     // assume caller will fixup ID

@@ -317,7 +317,7 @@ void InstructionSelector::VisitLoad(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedLoad(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:1949
   UNIMPLEMENTED();
 }
 
@@ -331,7 +331,7 @@ void InstructionSelector::VisitStore(Node* node) {
   WriteBarrierKind write_barrier_kind = store_rep.write_barrier_kind();
   MachineRepresentation rep = store_rep.representation();
 
-  // TODO(mips): I guess this could be done in a better way.
+  // TODO (mips): I guess this could be done in a better way. id:1804
   if (write_barrier_kind != kNoWriteBarrier) {
     DCHECK(CanBeTaggedPointer(rep));
     InstructionOperand inputs[3];
@@ -406,7 +406,7 @@ void InstructionSelector::VisitStore(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedStore(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:1354
   UNIMPLEMENTED();
 }
 
@@ -1262,7 +1262,7 @@ void InstructionSelector::VisitUnalignedStore(Node* node) {
 
   UnalignedStoreRepresentation rep = UnalignedStoreRepresentationOf(node->op());
 
-  // TODO(mips): I guess this could be done in a better way.
+  // TODO (mips): I guess this could be done in a better way. id:2556
   ArchOpcode opcode = kArchNop;
   switch (rep) {
     case MachineRepresentation::kFloat32:

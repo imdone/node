@@ -564,7 +564,7 @@ SSL_CTX_callback_ctrl(ssl,SSL_CTRL_SET_TLSEXT_TICKET_KEY_CB,(void (*)(void))cb)
 # define TLS1_CK_ECDH_RSA_WITH_AES_256_GCM_SHA384        0x0300C032
 
 /*
- * XXX * Backward compatibility alert: + * Older versions of OpenSSL gave
+ * XXX * Backward compatibility alert: + * Older versions of OpenSSL gave id:841
  * some DHE ciphers names with "EDH" + * instead of "DHE".  Going forward, we
  * should be using DHE + * everywhere, though we may indefinitely maintain
  * aliases for users + * or configurations that used "EDH" +

@@ -14,7 +14,7 @@
 
 // Simulator specific helpers.
 #if USE_SIMULATOR
-  // TODO(all): If possible automatically prepend an indicator like
+  // TODO (all): If possible automatically prepend an indicator like id:1028
   // UNIMPLEMENTED or LOCATION.
   #define ASM_UNIMPLEMENTED(message)                                         \
   __ Debug(message, __LINE__, NO_PARAM)

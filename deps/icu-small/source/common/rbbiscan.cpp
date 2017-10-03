@@ -189,7 +189,7 @@ RBBIRuleScanner::~RBBIRuleScanner() {
 //                       Actions build the parse tree and Unicode Sets,
 //                       and maintain the parse stack for nested expressions.
 //
-//                       TODO:  unify EParseAction and RBBI_RuleParseAction enum types.
+//                       TODO: unify EParseAction and RBBI_RuleParseAction enum types. id:91
 //                              They represent exactly the same thing.  They're separate
 //                              only to work around enum forward declaration restrictions
 //                              in some compilers, while at the same time avoiding multiple
@@ -347,7 +347,7 @@ UBool RBBIRuleScanner::doParseActions(int32_t action)
             endNode->fLookAheadEnd    = TRUE;
             thisRule                  = catNode;
 
-            // TODO: Disable chaining out of look-ahead (hard break) rules.
+            // TODO: Disable chaining out of look-ahead (hard break) rules. id:92
             //   The break on rule match is forced, so there is no point in building up
             //   the state table to chain into another rule for a longer match.
         }
@@ -1228,7 +1228,7 @@ void RBBIRuleScanner::scanSet() {
         uset->applyPatternIgnoreSpace(fRB->fRules, pos, fSymbolTable, localStatus);
     }
     if (U_FAILURE(localStatus)) {
-        //  TODO:  Get more accurate position of the error from UnicodeSet's return info.
+        //  TODO: Get more accurate position of the error from UnicodeSet's return info. id:93
         //         UnicodeSet appears to not be reporting correctly at this time.
         #ifdef RBBI_DEBUG
             RBBIDebugPrintf("UnicodeSet parse postion.ErrorIndex = %d\n", pos.getIndex());

@@ -60,7 +60,7 @@ class Interpreter {
     return reinterpret_cast<Address>(bytecode_dispatch_counters_table_.get());
   }
 
-  // TODO(ignition): Tune code size multiplier.
+  // TODO (ignition): Tune code size multiplier. id:2114
   static const int kCodeSizeMultiplier = 24;
 
  private:

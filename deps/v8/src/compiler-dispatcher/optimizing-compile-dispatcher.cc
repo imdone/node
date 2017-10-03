@@ -25,7 +25,7 @@ void DisposeCompilationJob(CompilationJob* job, bool restore_function_code) {
     if (function->IsInOptimizationQueue()) {
       function->ClearOptimizationMarker();
     }
-    // TODO(mvstanton): We can't call ensureliterals here due to allocation,
+    // TODO (mvstanton): We can't call ensureliterals here due to allocation, id:1748
     // but we probably shouldn't call ReplaceCode either, as this
     // sometimes runs on the worker thread!
     // JSFunction::EnsureLiterals(function);

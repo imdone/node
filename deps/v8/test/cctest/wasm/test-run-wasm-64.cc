@@ -1496,7 +1496,7 @@ WASM_EXEC_TEST(I64Rol) {
 }
 
 WASM_EXEC_TEST(StoreMem_offset_oob_i64) {
-  // TODO(eholk): Fix this test for the trap handler.
+  // TODO (eholk): Fix this test for the trap handler. id:2454
   if (trap_handler::UseTrapHandler()) return;
   static const MachineType machineTypes[] = {
       MachineType::Int8(),   MachineType::Uint8(),  MachineType::Int16(),

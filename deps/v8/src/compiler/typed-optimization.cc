@@ -34,7 +34,7 @@ Reduction TypedOptimization::Reduce(Node* node) {
   // result value and can simply replace the node if it's eliminable.
   if (!NodeProperties::IsConstant(node) && NodeProperties::IsTyped(node) &&
       node->op()->HasProperty(Operator::kEliminatable)) {
-    // TODO(v8:5303): We must not eliminate FinishRegion here. This special
+    // TODO (v8:5303): We must not eliminate FinishRegion here. This special id:2886
     // case can be removed once we have separate operators for value and
     // effect regions.
     if (node->opcode() == IrOpcode::kFinishRegion) return NoChange();

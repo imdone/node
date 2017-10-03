@@ -137,7 +137,7 @@ struct WasmIndirectFunctionTable {
   uint32_t min_size = 0;  // minimum table size.
   uint32_t max_size = 0;  // maximum table size.
   bool has_max = false;   // true if there is a maximum size.
-  // TODO(titzer): Move this to WasmInstance. Needed by interpreter only.
+  // TODO (titzer): Move this to WasmInstance. Needed by interpreter only. id:3300
   std::vector<int32_t> values;  // function table, -1 indicating invalid.
   bool imported = false;        // true if imported.
   bool exported = false;        // true if exported.
@@ -189,7 +189,7 @@ struct V8_EXPORT_PRIVATE WasmModule {
   uint32_t num_declared_functions = 0;
   uint32_t num_exported_functions = 0;
   WireBytesRef name = {0, 0};
-  // TODO(wasm): Add url here, for spec'ed location information.
+  // TODO (wasm): Add url here, for spec'ed location information. id:2372
   std::vector<FunctionSig*> signatures;
   std::vector<WasmFunction> functions;
   std::vector<WasmDataSegment> data_segments;
@@ -208,7 +208,7 @@ struct V8_EXPORT_PRIVATE WasmModule {
   bool is_asm_js() const { return origin_ == kAsmJsOrigin; }
 
  private:
-  // TODO(kschimpf) - Encapsulate more fields.
+  // TODO (kschimpf) - Encapsulate more fields. id:2542
   ModuleOrigin origin_ = kWasmOrigin;  // origin of the module
 };
 
@@ -222,7 +222,7 @@ struct WasmInstance {
   std::vector<Handle<FixedArray>> function_tables;  // indirect function tables.
   std::vector<Handle<FixedArray>>
       signature_tables;                    // indirect signature tables.
-  // TODO(wasm): Remove this vector, since it is only used for testing.
+  // TODO (wasm): Remove this vector, since it is only used for testing. id:2652
   std::vector<Handle<Code>> function_code;  // code objects for each function.
   // -- raw memory ------------------------------------------------------------
   byte* mem_start = nullptr;  // start of linear memory.
@@ -526,7 +526,7 @@ Handle<Code> CompileLazy(Isolate* isolate);
 // patching the calling wasm code.
 // Once we support concurrent lazy compilation, this class will contain the
 // logic to actually orchestrate parallel execution of wasm compilation jobs.
-// TODO(clemensh): Implement concurrent lazy compilation.
+// TODO (clemensh): Implement concurrent lazy compilation. id:3431
 class LazyCompilationOrchestrator {
   void CompileFunction(Isolate*, Handle<WasmInstanceObject>, int func_index);
 

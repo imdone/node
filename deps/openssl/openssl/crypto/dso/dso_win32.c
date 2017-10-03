@@ -232,7 +232,7 @@ static int win32_unload(DSO *dso)
 }
 
 /*
- * Using GetProcAddress for variables? TODO: Check this out in the Win32 API
+ * Using GetProcAddress for variables? TODO: Check this out in the Win32 API id:1042
  * docs, there's probably a variant for variables.
  */
 static void *win32_bind_var(DSO *dso, const char *symname)

@@ -418,7 +418,7 @@ var stdlib_math_members = [
     cos_f64: looseEqual,
     sin_f64: looseEqual,
     tan_f64: looseEqual,
-    // TODO(bradnelson):
+    // TODO (bradnelson): id:2750
     // Figure out why some builds (avx2, rel_ng) return a uint.
     imul_u32: function(x, y) { return (x | 0) === (y | 0); },
   };

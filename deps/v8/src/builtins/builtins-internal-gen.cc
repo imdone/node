@@ -236,7 +236,7 @@ TF_BUILTIN(DeleteProperty, DeletePropertyBaseAssembler) {
   BIND(&if_index);
   {
     Comment("integer index");
-    Goto(&slow);  // TODO(jkummerow): Implement more smarts here.
+    Goto(&slow);  // TODO (jkummerow): Implement more smarts here. id:1844
   }
 
   BIND(&if_unique_name);

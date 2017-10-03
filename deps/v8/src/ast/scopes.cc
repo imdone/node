@@ -52,7 +52,7 @@ Variable* VariableMap::Declare(Zone* zone, Scope* scope,
                                bool* added) {
   // AstRawStrings are unambiguous, i.e., the same string is always represented
   // by the same AstRawString*.
-  // FIXME(marja): fix the type of Lookup.
+  // FIXME (marja): fix the type of Lookup. id:1541
   Entry* p =
       ZoneHashMap::LookupOrInsert(const_cast<AstRawString*>(name), name->Hash(),
                                   ZoneAllocationPolicy(zone));
@@ -400,7 +400,7 @@ Scope* Scope::DeserializeScopeChain(Zone* zone, ScopeInfo* scope_info,
       // For scope analysis, debug-evaluate is equivalent to a with scope.
       outer_scope = new (zone) Scope(zone, WITH_SCOPE, handle(scope_info));
 
-      // TODO(yangguo): Remove once debug-evaluate properly keeps track of the
+      // TODO (yangguo): Remove once debug-evaluate properly keeps track of the id:1145
       // function scope in which we are evaluating.
       if (scope_info->IsDebugEvaluateScope()) {
         outer_scope->set_is_debug_evaluate_scope();
@@ -895,7 +895,7 @@ void Scope::Snapshot::Reparent(DeclarationScope* new_parent) const {
     outer_scope_->unresolved_ = top_unresolved_;
   }
 
-  // TODO(verwaest): This currently only moves do-expression declared variables
+  // TODO (verwaest): This currently only moves do-expression declared variables id:1057
   // in default arguments that weren't already previously declared with the same
   // name in the closure-scope. See
   // test/mjsunit/harmony/default-parameter-do-expression.js.
@@ -979,7 +979,7 @@ Variable* Scope::LookupInScopeInfo(const AstRawString* name) {
       index == scope_info_->ReceiverContextSlotIndex()) {
     kind = THIS_VARIABLE;
   }
-  // TODO(marja, rossberg): Correctly declare FUNCTION, CLASS, NEW_TARGET, and
+  // TODO (marja, rossberg): Correctly declare FUNCTION, CLASS, NEW_TARGET, and id:1742
   // ARGUMENTS bindings as their corresponding VariableKind.
 
   Variable* var = variables_.Declare(zone(), this, name, mode, kind, init_flag,
@@ -1013,7 +1013,7 @@ Variable* DeclarationScope::DeclareParameter(
   } else {
     DCHECK_EQ(mode, VAR);
     var = Declare(zone(), name, mode);
-    // TODO(wingo): Avoid O(n^2) check.
+    // TODO (wingo): Avoid O(n^2) check. id:1367
     if (is_duplicate != nullptr) {
       *is_duplicate = *is_duplicate || IsDeclaredParameter(name);
     }
@@ -1235,7 +1235,7 @@ Variable* DeclarationScope::DeclareDynamicGlobal(const AstRawString* name,
                                                  VariableKind kind) {
   DCHECK(is_script_scope());
   return variables_.Declare(zone(), this, name, DYNAMIC_GLOBAL, kind);
-  // TODO(neis): Mark variable as maybe-assigned?
+  // TODO (neis): Mark variable as maybe-assigned? id:1545
 }
 
 
@@ -1336,7 +1336,7 @@ void DeclarationScope::AllocateVariables(ParseInfo* info, Isolate* isolate,
   // The debugger expects all shared function infos to contain a scope info.
   // Since the top-most scope will end up in a shared function info, make sure
   // it has one, even if it doesn't need a scope info.
-  // TODO(jochen|yangguo): Remove this requirement.
+  // TODO (jochen|yangguo): Remove this requirement. id:1149
   if (scope_info_.is_null()) {
     scope_info_ = ScopeInfo::Create(isolate, zone(), this, outer_scope);
   }
@@ -1424,7 +1424,7 @@ bool Scope::NeedsScopeInfo() const {
   DCHECK(!already_resolved_);
   DCHECK(GetClosureScope()->ShouldEagerCompile());
   // The debugger expects all functions to have scope infos.
-  // TODO(jochen|yangguo): Remove this requirement.
+  // TODO (jochen|yangguo): Remove this requirement. id:1060
   if (is_function_scope()) return true;
   return NeedsContext();
 }
@@ -1575,7 +1575,7 @@ const char* Header(ScopeType scope_type, FunctionKind function_kind,
                    bool is_declaration_scope) {
   switch (scope_type) {
     case EVAL_SCOPE: return "eval";
-    // TODO(adamk): Should we print concise method scopes specially?
+    // TODO (adamk): Should we print concise method scopes specially? id:1746
     case FUNCTION_SCOPE:
       if (IsGeneratorFunction(function_kind)) return "function*";
       if (IsAsyncFunction(function_kind)) return "async function";
@@ -1825,7 +1825,7 @@ Variable* Scope::LookupRecursive(VariableProxy* proxy, Scope* outer_scope_end) {
   // lookups it does. It may not have a valid 'this' declaration, and anything
   // accessed through debug-evaluate might invalidly resolve to stack-allocated
   // variables.
-  // TODO(yangguo): Remove once debug-evaluate creates proper ScopeInfo for the
+  // TODO (yangguo): Remove once debug-evaluate creates proper ScopeInfo for the id:1371
   // scopes in which it's evaluating.
   if (is_debug_evaluate_scope_) return NonLocal(proxy->raw_name(), DYNAMIC);
 
@@ -1853,7 +1853,7 @@ Variable* Scope::LookupRecursive(VariableProxy* proxy, Scope* outer_scope_end) {
   // The variable could not be resolved statically.
   if (var == nullptr) return var;
 
-  // TODO(marja): Separate LookupRecursive for preparsed scopes better.
+  // TODO (marja): Separate LookupRecursive for preparsed scopes better. id:1550
   if (var == kDummyPreParserVariable || var == kDummyPreParserLexicalVariable) {
     DCHECK(GetDeclarationScope()->is_being_lazily_parsed());
     DCHECK(FLAG_lazy_inner_functions);
@@ -1865,7 +1865,7 @@ Variable* Scope::LookupRecursive(VariableProxy* proxy, Scope* outer_scope_end) {
   }
   // "this" can't be shadowed by "eval"-introduced bindings or by "with"
   // scopes.
-  // TODO(wingo): There are other variables in this category; add them.
+  // TODO (wingo): There are other variables in this category; add them. id:1153
   if (var->is_this()) return var;
 
   if (is_with_scope()) {
@@ -1963,7 +1963,7 @@ void UpdateNeedsHoleCheck(Variable* var, VariableProxy* proxy, Scope* scope) {
 
   if (var->is_this()) {
     DCHECK(IsDerivedConstructor(scope->GetClosureScope()->function_kind()));
-    // TODO(littledan): implement 'this' hole check elimination.
+    // TODO (littledan): implement 'this' hole check elimination. id:1063
     return SetNeedsHoleCheck(var, proxy);
   }
 

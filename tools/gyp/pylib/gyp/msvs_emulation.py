@@ -393,7 +393,7 @@ class MsvsSettings(object):
     config = self._TargetConfig(config)
     type = self.spec['type']
     root = 'VCLibrarianTool' if type == 'static_library' else 'VCLinkerTool'
-    # TODO(scottmg): Handle OutputDirectory without OutputFile.
+    # TODO (scottmg): Handle OutputDirectory without OutputFile. id:3778
     output_file = self._Setting((root, 'OutputFile'), config)
     if output_file:
       output_file = expand_special(self.ConvertVSMacros(
@@ -636,7 +636,7 @@ class MsvsSettings(object):
     ld('Profile', map={'true': '/PROFILE'})
     ld('LargeAddressAware',
         map={'1': ':NO', '2': ''}, prefix='/LARGEADDRESSAWARE')
-    # TODO(scottmg): This should sort of be somewhere else (not really a flag).
+    # TODO (scottmg): This should sort of be somewhere else (not really a flag). id:4115
     ld('AdditionalDependencies', prefix='')
 
     if self.GetArch(config) == 'x86':
@@ -871,7 +871,7 @@ class MsvsSettings(object):
                  ('dlldata', dlldata),
                  ('iid', iid),
                  ('proxy', proxy)]
-    # TODO(scottmg): Are there configuration settings to set these flags?
+    # TODO (scottmg): Are there configuration settings to set these flags? id:4060
     target_platform = 'win32' if self.GetArch(config) == 'x86' else 'x64'
     flags = ['/char', 'signed', '/env', target_platform, '/Oicf']
     return outdir, output, variables, flags
@@ -962,7 +962,7 @@ def _ExtractImportantEnvironment(output_of_set):
   """Extracts environment variables required for the toolchain to run from
   a textual dump output by the cmd.exe 'set' command."""
   envvars_to_save = (
-      'goma_.*', # TODO(scottmg): This is ugly, but needed for goma.
+      'goma_.*', # TODO (scottmg): This is ugly, but needed for goma. id:3288
       'include',
       'lib',
       'libpath',

@@ -27,7 +27,7 @@ actions['global-install'] = require('./action/global-install.js')
 actions['global-link'] = require('./action/global-link.js')
 actions['refresh-package-json'] = require('./action/refresh-package-json.js')
 
-// FIXME: We wrap actions like three ways to sunday here.
+// FIXME: We wrap actions like three ways to sunday here. id:359
 // Rewrite this to only work one way.
 
 Object.keys(actions).forEach(function (actionName) {

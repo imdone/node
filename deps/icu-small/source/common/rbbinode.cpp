@@ -66,7 +66,7 @@ RBBINode::RBBINode(NodeType t) : UMemory() {
     fPrecedence   = precZero;
 
     UErrorCode     status = U_ZERO_ERROR;
-    fFirstPosSet  = new UVector(status);  // TODO - get a real status from somewhere
+    fFirstPosSet  = new UVector(status);  // TODO - get a real status from somewhere id:90
     fLastPosSet   = new UVector(status);
     fFollowPos    = new UVector(status);
     if      (t==opCat)    {fPrecedence = precOpCat;}
@@ -95,7 +95,7 @@ RBBINode::RBBINode(const RBBINode &other) : UMemory(other) {
     fRuleRoot    = FALSE;
     fChainIn     = other.fChainIn;
     UErrorCode     status = U_ZERO_ERROR;
-    fFirstPosSet = new UVector(status);   // TODO - get a real status from somewhere
+    fFirstPosSet = new UVector(status);   // TODO - get a real status from somewhere id:88
     fLastPosSet  = new UVector(status);
     fFollowPos   = new UVector(status);
 }
@@ -199,7 +199,7 @@ RBBINode *RBBINode::flattenVariables() {
             retNode->fRuleRoot = this->fRuleRoot;
             retNode->fChainIn  = this->fChainIn;
         }
-        delete this;   // TODO: undefined behavior. Fix.
+        delete this;   // TODO: undefined behavior. Fix. id:162
         return retNode;
     }
 

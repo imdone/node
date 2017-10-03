@@ -197,7 +197,7 @@ class SourceRangeScope final {
 //   // Synonyms for ParserBase<Impl> and Impl, respectively.
 //   typedef Base;
 //   typedef Impl;
-//   // TODO(nikolaos): this one will probably go away, as it is
+//   // TODO (nikolaos): this one will probably go away, as it is id:2958
 //   // not related to pure parsing.
 //   typedef Variable;
 //   // Return types for traversing functions.
@@ -617,7 +617,7 @@ class ParserBase {
     // Record presence of an inner function scope
     function_state_->RecordFunctionOrEvalCall();
 
-    // TODO(verwaest): Move into the DeclarationScope constructor.
+    // TODO (verwaest): Move into the DeclarationScope constructor. id:3182
     if (!IsArrowFunction(kind)) {
       result->DeclareDefaultFunctionVariables(ast_value_factory());
     }
@@ -1141,7 +1141,7 @@ class ParserBase {
   // - all starting with an identifier (i.e., no if, for, while, etc.)
   static const int kLazyParseTrialLimit = 200;
 
-  // TODO(nikolaos, marja): The first argument should not really be passed
+  // TODO (nikolaos, marja): The first argument should not really be passed id:2243
   // by value. The method is expected to add the parsed statements to the
   // list. This works because in the case of the parser, StatementListT is
   // a pointer whereas the preparser does not really modify the body.
@@ -2049,7 +2049,7 @@ typename ParserBase<Impl>::ExpressionT ParserBase<Impl>::ParsePropertyName(
       token = peek();
       *is_generator = true;
     } else if (SetPropertyKindFromToken(token, kind)) {
-      *name = impl()->GetSymbol();  // TODO(bakkot) specialize on 'async'
+      *name = impl()->GetSymbol();  // TODO (bakkot) specialize on 'async' id:2411
       impl()->PushLiteralName(*name);
       return factory()->NewStringLiteral(*name, pos);
     }
@@ -2185,11 +2185,11 @@ ParserBase<Impl>::ParseClassPropertyDefinition(
     name_token_position = scanner()->peek_location().beg_pos;
     if (peek() == Token::LPAREN) {
       kind = PropertyKind::kMethodProperty;
-      name = impl()->GetSymbol();  // TODO(bakkot) specialize on 'static'
+      name = impl()->GetSymbol();  // TODO (bakkot) specialize on 'static' id:2408
       name_expression = factory()->NewStringLiteral(name, position());
     } else if (peek() == Token::ASSIGN || peek() == Token::SEMICOLON ||
                peek() == Token::RBRACE) {
-      name = impl()->GetSymbol();  // TODO(bakkot) specialize on 'static'
+      name = impl()->GetSymbol();  // TODO (bakkot) specialize on 'static' id:2959
       name_expression = factory()->NewStringLiteral(name, position());
     } else {
       *is_static = true;
@@ -2741,7 +2741,7 @@ ParserBase<Impl>::ParseAssignmentExpression(bool accept_IN, bool* ok) {
     // sub-expression of the parameter list failed to be a valid formal
     // parameter initializer. Since YieldExpressions are banned anywhere
     // in an arrow parameter list, this is correct.
-    // TODO(adamk): Rename "FormalParameterInitializerError" to refer to
+    // TODO (adamk): Rename "FormalParameterInitializerError" to refer to id:3183
     // "YieldExpression", which is its only use.
     ValidateFormalParameterInitializer(ok);
 
@@ -2920,7 +2920,7 @@ typename ParserBase<Impl>::ExpressionT ParserBase<Impl>::ParseYieldExpression(
   }
 
   // Hackily disambiguate o from o.next and o [Symbol.iterator]().
-  // TODO(verwaest): Come up with a better solution.
+  // TODO (verwaest): Come up with a better solution. id:2246
   ExpressionT yield =
       factory()->NewYield(expression, pos, Suspend::kOnExceptionThrow);
   return yield;
@@ -3369,7 +3369,7 @@ typename ParserBase<Impl>::ExpressionT ParserBase<Impl>::ParseMemberExpression(
       ExpectMetaProperty(Token::SENT, "function.sent", pos, CHECK_OK);
 
       if (!is_generator()) {
-        // TODO(neis): allow escaping into closures?
+        // TODO (neis): allow escaping into closures? id:2415
         impl()->ReportMessageAt(scanner()->location(),
                                 MessageTemplate::kUnexpectedFunctionSent);
         *ok = false;
@@ -3450,7 +3450,7 @@ typename ParserBase<Impl>::ExpressionT ParserBase<Impl>::ParseSuperExpression(
     // new super() is never allowed.
     // super() is only allowed in derived constructor
     if (!is_new && peek() == Token::LPAREN && IsDerivedConstructor(kind)) {
-      // TODO(rossberg): This might not be the correct FunctionState for the
+      // TODO (rossberg): This might not be the correct FunctionState for the id:2410
       // method here.
       return impl()->NewSuperCallReference(pos);
     }
@@ -3662,7 +3662,7 @@ typename ParserBase<Impl>::BlockT ParserBase<Impl>::ParseVariableDeclarations(
   //   ('var' | 'const' | 'let') (Identifier ('=' AssignmentExpression)?)+[',']
   //
   // ES6:
-  // FIXME(marja, nikolaos): Add an up-to-date comment about ES6 variable
+  // FIXME (marja, nikolaos): Add an up-to-date comment about ES6 variable id:2960
   // declaration syntax.
 
   DCHECK_NOT_NULL(parsing_result);
@@ -4045,7 +4045,7 @@ void ParserBase<Impl>::ParseFunctionBody(
       impl()->InsertSloppyBlockFunctionVarBindings(inner_scope);
     }
 
-    // TODO(littledan): Merge the two rejection blocks into one
+    // TODO (littledan): Merge the two rejection blocks into one id:3184
     if (IsAsyncFunction(kind) && !IsAsyncGeneratorFunction(kind)) {
       init_block = impl()->BuildRejectPromiseOnException(init_block);
     }
@@ -4184,7 +4184,7 @@ ParserBase<Impl>::ParseArrowFunctionLiteral(
       default_eager_compile_hint_;
   bool can_preparse = impl()->parse_lazily() &&
                       eager_compile_hint == FunctionLiteral::kShouldLazyCompile;
-  // TODO(marja): consider lazy-parsing inner arrow functions too. is_this
+  // TODO (marja): consider lazy-parsing inner arrow functions too. is_this id:2249
   // handling in Scope::ResolveVariable needs to change.
   bool is_lazy_top_level_function =
       can_preparse && impl()->AllowsLazyParsingWithoutUnresolvedVariables();
@@ -4201,7 +4201,7 @@ ParserBase<Impl>::ParseArrowFunctionLiteral(
       // Multiple statement body
       DCHECK_EQ(scope(), formal_parameters.scope);
       if (is_lazy_top_level_function) {
-        // FIXME(marja): Arrow function parameters will be parsed even if the
+        // FIXME (marja): Arrow function parameters will be parsed even if the id:2419
         // body is preparsed; move relevant parts of parameter handling to
         // simulate consistent parameter handling.
 
@@ -4821,7 +4821,7 @@ typename ParserBase<Impl>::StatementT ParserBase<Impl>::ParseStatement(
       // These statements must have their labels preserved in an enclosing
       // block, as the corresponding AST nodes do not currently store their
       // labels.
-      // TODO(nikolaos, marja): Consider adding the labels to the AST nodes.
+      // TODO (nikolaos, marja): Consider adding the labels to the AST nodes. id:2413
       if (labels == nullptr) {
         return ParseStatementAsUnlabelled(labels, ok);
       } else {

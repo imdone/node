@@ -40,7 +40,7 @@ ECDHE_RSA_CIPHER_LIST="ECDHE-RSA-AES256-SHA ECDHE-RSA-AES128-SHA ECDHE-RSA-DES-C
 
 # List of Elliptic curves over which we wish to test generation of
 # ephemeral ECDH keys when using AECDH or ECDHE ciphers
-# NOTE: secp192r1 = prime192v1 and secp256r1 = prime256v1
+# NOTE: secp192r1 = prime192v1 and secp256r1 = prime256v1 id:1121
 #ELLIPTIC_CURVE_LIST="secp112r1 sect113r2 secp128r1 sect131r1 secp160k1 sect163r2 wap-wsg-idm-ecid-wtls7 c2pnb163v3 c2pnb176v3 c2tnb191v3 secp192r1 prime192v3 sect193r2 secp224r1 wap-wsg-idm-ecid-wtls10 sect239k1 prime239v2 secp256r1 prime256v1 sect283k1 secp384r1 sect409r1 secp521r1 sect571r1"
 ELLIPTIC_CURVE_LIST="sect163k1 sect163r1 sect163r2 sect193r1 sect193r2 sect233k1 sect233r1 sect239k1 sect283k1 sect283r1 sect409k1 sect409r1 sect571k1 sect571r1 secp160k1 secp160r1 secp160r2 secp192k1 prime192v1 secp224k1 secp224r1 secp256k1 prime256v1 secp384r1 secp521r1"
 

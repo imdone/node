@@ -2,7 +2,7 @@
 // Original test written by Jakub Lekstan <kuebzky@gmail.com>
 const common = require('../common');
 
-// FIXME add sunos support
+// FIXME add sunos support id:3136
 if (common.isSunOS)
   common.skip(`Unsupported platform [${process.platform}]`);
 

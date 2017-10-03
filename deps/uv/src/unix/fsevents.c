@@ -168,7 +168,7 @@ static void (*pFSEventStreamStop)(FSEventStreamRef);
         q = QUEUE_HEAD(&events);                                              \
         event = QUEUE_DATA(q, uv__fsevents_event_t, member);                  \
         QUEUE_REMOVE(q);                                                      \
-        /* NOTE: Checking uv__is_active() is required here, because handle    \
+        /* NOTE: Checking uv__is_active() is required here, because handle    \ id:1498
          * callback may close handle and invoking it after it will lead to    \
          * incorrect behaviour */                                             \
         if (!uv__is_closing((handle)) && uv__is_active((handle)))             \
@@ -340,7 +340,7 @@ static int uv__fsevents_create_stream(uv_loop_t* loop, CFArrayRef paths) {
   flags = kFSEventStreamCreateFlagNoDefer | kFSEventStreamCreateFlagFileEvents;
 
   /*
-   * NOTE: It might sound like a good idea to remember last seen StreamEventId,
+   * NOTE: It might sound like a good idea to remember last seen StreamEventId, id:1180
    * but in reality one dir might have last StreamEventId less than, the other,
    * that is being watched now. Which will cause FSEventStream API to report
    * changes to files from the past.
@@ -404,7 +404,7 @@ static void uv__fsevents_reschedule(uv_fs_event_t* handle,
   paths = NULL;
   cf_paths = NULL;
   err = 0;
-  /* NOTE: `i` is used in deallocation loop below */
+  /* NOTE: `i` is used in deallocation loop below  id:1283*/
   i = 0;
 
   /* Optimization to prevent O(n^2) time spent when starting to watch
@@ -487,7 +487,7 @@ final:
    * Main thread will block until the removal of handle from the list,
    * we must tell it when we're ready.
    *
-   * NOTE: This is coupled with `uv_sem_wait()` in `uv__fsevents_close`
+   * NOTE: This is coupled with `uv_sem_wait()` in `uv__fsevents_close` id:865
    */
   if (type == kUVCFLoopSignalClosing)
     uv_sem_post(&state->fsevent_sem);

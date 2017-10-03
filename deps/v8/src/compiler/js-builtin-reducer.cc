@@ -122,7 +122,7 @@ MaybeHandle<Map> GetMapWitness(Node* node) {
   return MaybeHandle<Map>();
 }
 
-// TODO(turbofan): This was copied from Crankshaft, might be too restrictive.
+// TODO (turbofan): This was copied from Crankshaft, might be too restrictive. id:1726
 bool IsReadOnlyLengthDescriptor(Handle<Map> jsarray_map) {
   DCHECK(!jsarray_map->is_dictionary_map());
   Isolate* isolate = jsarray_map->GetIsolate();
@@ -134,7 +134,7 @@ bool IsReadOnlyLengthDescriptor(Handle<Map> jsarray_map) {
   return descriptors->GetDetails(number).IsReadOnly();
 }
 
-// TODO(turbofan): This was copied from Crankshaft, might be too restrictive.
+// TODO (turbofan): This was copied from Crankshaft, might be too restrictive. id:1303
 bool CanInlineArrayResizeOperation(Handle<Map> receiver_map) {
   Isolate* const isolate = receiver_map->GetIsolate();
   if (!receiver_map->prototype()->IsJSArray()) return false;
@@ -421,7 +421,7 @@ Reduction JSBuiltinReducer::ReduceFastArrayIteratorNext(
           value = graph()->NewNode(simplified()->ConvertTaggedHoleToUndefined(),
                                    value);
         } else if (elements_kind == HOLEY_DOUBLE_ELEMENTS) {
-          // TODO(6587): avoid deopt if not all uses of value are truncated.
+          // TODO (6587): avoid deopt if not all uses of value are truncated. id:2244
           CheckFloat64HoleMode mode = CheckFloat64HoleMode::kAllowReturnHole;
           value = etrue1 = graph()->NewNode(
               simplified()->CheckFloat64Hole(mode), value, etrue1, if_true1);
@@ -843,7 +843,7 @@ Reduction JSBuiltinReducer::ReduceArrayPop(Node* node) {
   Node* receiver = NodeProperties::GetValueInput(node, 1);
   Node* effect = NodeProperties::GetEffectInput(node);
   Node* control = NodeProperties::GetControlInput(node);
-  // TODO(turbofan): Extend this to also handle fast holey double elements
+  // TODO (turbofan): Extend this to also handle fast holey double elements id:1765
   // once we got the hole NaN mess sorted out in TurboFan/V8.
   if (GetMapWitness(node).ToHandle(&receiver_map) &&
       CanInlineArrayResizeOperation(receiver_map) &&
@@ -873,7 +873,7 @@ Reduction JSBuiltinReducer::ReduceArrayPop(Node* node) {
     Node* efalse = effect;
     Node* vfalse;
     {
-      // TODO(tebbi): We should trim the backing store if the capacity is too
+      // TODO (tebbi): We should trim the backing store if the capacity is too id:1879
       // big, as implemented in elements.cc:ElementsAccessorBase::SetLengthImpl.
 
       // Load the elements backing store from the {receiver}.
@@ -944,7 +944,7 @@ Reduction JSBuiltinReducer::ReduceArrayPush(Node* node) {
   if (receiver_maps.size() != 1) return NoChange();
   DCHECK_NE(NodeProperties::kNoReceiverMaps, result);
 
-  // TODO(turbofan): Relax this to deal with multiple {receiver} maps.
+  // TODO (turbofan): Relax this to deal with multiple {receiver} maps. id:1728
   Handle<Map> receiver_map = receiver_maps[0];
   if (CanInlineArrayResizeOperation(receiver_map)) {
     // Install code dependencies on the {receiver} prototype maps and the
@@ -958,7 +958,7 @@ Reduction JSBuiltinReducer::ReduceArrayPush(Node* node) {
       if (receiver_map->is_stable()) {
         dependencies()->AssumeMapStable(receiver_map);
       } else {
-        // TODO(turbofan): This is a potential - yet unlikely - deoptimization
+        // TODO (turbofan): This is a potential - yet unlikely - deoptimization id:1306
         // loop, since we might not learn from this deoptimization in baseline
         // code. We need a way to learn from deoptimizations in optimized to
         // address these problems.
@@ -968,7 +968,7 @@ Reduction JSBuiltinReducer::ReduceArrayPush(Node* node) {
       }
     }
 
-    // TODO(turbofan): Perform type checks on the {value}. We are not guaranteed
+    // TODO (turbofan): Perform type checks on the {value}. We are not guaranteed id:2247
     // to learn from these checks in case they fail, as the witness (i.e. the
     // map check from the LoadIC for a.push) might not be executed in baseline
     // code (after we stored the value in the builtin and thereby changed the
@@ -997,7 +997,7 @@ Reduction JSBuiltinReducer::ReduceArrayPush(Node* node) {
         simplified()->LoadField(AccessBuilder::ForJSObjectElements()), receiver,
         effect, control);
 
-    // TODO(turbofan): Check if we need to grow the {elements} backing store.
+    // TODO (turbofan): Check if we need to grow the {elements} backing store. id:1769
     // This will deopt if we cannot grow the array further, and we currently
     // don't necessarily learn from it. See the comment on the value type check
     // above.
@@ -1034,7 +1034,7 @@ Reduction JSBuiltinReducer::ReduceArrayShift(Node* node) {
   Node* effect = NodeProperties::GetEffectInput(node);
   Node* control = NodeProperties::GetControlInput(node);
 
-  // TODO(turbofan): Extend this to also handle fast holey double elements
+  // TODO (turbofan): Extend this to also handle fast holey double elements id:1881
   // once we got the hole NaN mess sorted out in TurboFan/V8.
   Handle<Map> receiver_map;
   if (GetMapWitness(node).ToHandle(&receiver_map) &&
@@ -1304,7 +1304,7 @@ Reduction JSBuiltinReducer::ReduceCollectionIteratorNext(
   // collection iterator object and the iterator results, including the
   // key-value arrays in case of Set/Map entry iteration.
   //
-  // TODO(turbofan): Currently the escape analysis (and the store-load
+  // TODO (turbofan): Currently the escape analysis (and the store-load id:1731
   // forwarding) is unable to eliminate the allocations for the key-value
   // arrays in case of Set/Map entry iteration, and we should investigate
   // how to update the escape analysis / arrange the graph in a way that
@@ -2552,7 +2552,7 @@ Reduction JSBuiltinReducer::ReduceStringConcat(Node* node) {
       StringAddFlags flags = r.InputsMatchOne(Type::String())
                                  ? STRING_ADD_CHECK_NONE
                                  : STRING_ADD_CONVERT_RIGHT;
-      // TODO(turbofan): Massage the FrameState of the {node} here once we
+      // TODO (turbofan): Massage the FrameState of the {node} here once we id:1309
       // have an artificial builtin frame type, so that it looks like the
       // exception from StringAdd overflow came from String.prototype.concat
       // builtin instead of the calling function.

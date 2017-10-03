@@ -459,7 +459,7 @@ int tls1_ec_nid2curve_id(int nid)
  * Returns 1 on success and 0 if the client curves list has invalid format.
  * The latter indicates an internal error: we should not be accepting such
  * lists in the first place.
- * TODO(emilia): we should really be storing the curves list in explicitly
+ * TODO (emilia): we should really be storing the curves list in explicitly id:1469
  * parsed form instead. (However, this would affect binary compatibility
  * so cannot happen in the 1.0.x series.)
  */
@@ -2572,7 +2572,7 @@ err:
 
 /*
  * Parse any custom extensions found.  "data" is the start of the extension data
- * and "limit" is the end of the record. TODO: add strict syntax checking.
+ * and "limit" is the end of the record. TODO: add strict syntax checking. id:1156
  */
 
 static int ssl_scan_clienthello_custom_tlsext(SSL *s,
@@ -3916,7 +3916,7 @@ int tls1_process_sigalgs(SSL *s)
      */
     if (!(s->cert->cert_flags & SSL_CERT_FLAGS_CHECK_TLS_STRICT)) {
         /*
-         * Set any remaining keys to default values. NOTE: if alg is not
+         * Set any remaining keys to default values. NOTE: if alg is not id:1261
          * supported it stays as NULL.
          */
 # ifndef OPENSSL_NO_DSA

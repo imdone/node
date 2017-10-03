@@ -306,7 +306,7 @@ bool Builtins::AllowDynamicFunction(Isolate* isolate, Handle<JSFunction> target,
   Handle<Context> responsible_context =
       impl->MicrotaskContextIsLastEnteredContext() ? impl->MicrotaskContext()
                                                    : impl->LastEnteredContext();
-  // TODO(jochen): Remove this.
+  // TODO (jochen): Remove this. id:2098
   if (responsible_context.is_null()) {
     return true;
   }

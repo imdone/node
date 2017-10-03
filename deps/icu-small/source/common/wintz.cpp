@@ -61,7 +61,7 @@ static const char TZ_REGKEY[] = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion
 
 static LONG openTZRegKey(HKEY *hkey, const char *winid)
 {
-    char subKeyName[110]; /* TODO: why 110?? */
+    char subKeyName[110]; /* TODO: why 110??  id:187*/
     char *name;
     LONG result;
 

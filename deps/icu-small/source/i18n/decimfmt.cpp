@@ -436,7 +436,7 @@ DecimalFormat::construct(UErrorCode&            status,
         // plural count. If not, the right pattern need to be re-applied
         // during format.
         fCurrencyPluralInfo->getCurrencyPluralPattern(UNICODE_STRING("other", 5), currencyPluralPatternForOther);
-        // TODO(refactor): Revisit, we are setting the pattern twice.
+        // TODO (refactor): Revisit, we are setting the pattern twice. id:286
         fImpl->applyPatternFavorCurrencyPrecision(
                 currencyPluralPatternForOther, status);
         patternUsed = &currencyPluralPatternForOther;
@@ -1013,7 +1013,7 @@ void DecimalFormat::parse(const UnicodeString& text,
     if (status[fgStatusInfinite]) {
         double inf = uprv_getInfinity();
         result.setDouble(digits->isPositive() ? inf : -inf);
-        // TODO:  set the dl to infinity, and let it fall into the code below.
+        // TODO: set the dl to infinity, and let it fall into the code below. id:411
     }
 
     else {
@@ -1147,7 +1147,7 @@ DecimalFormat::parseForCurrency(const UnicodeString& text,
     // We will just use simple affix comparison (look for exact match)
     // to pass it.
     //
-    // TODO: We should parse against simple affix first when
+    // TODO: We should parse against simple affix first when id:558
     // output currency is not requested. After the complex currency
     // parsing implementation was introduced, the default currency
     // instance parsing slowed down because of the new code flow.
@@ -1596,7 +1596,7 @@ UBool DecimalFormat::subparse(const UnicodeString& text,
                    isScientificNotation()) { // .. it's an exponent format - ignore setting and parse anyways
                     const UnicodeString *tmp;
                     tmp = &fImpl->getConstSymbol(DecimalFormatSymbols::kExponentialSymbol);
-                    // TODO: CASE
+                    // TODO: CASE id:247
                     if (!text.caseCompare(position, tmp->length(), *tmp, U_FOLD_CASE_DEFAULT))    // error code is set below if !sawDigit
                     {
                         // Parse sign, if present

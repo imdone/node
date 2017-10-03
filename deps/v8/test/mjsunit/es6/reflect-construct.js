@@ -132,7 +132,7 @@
   function A() {}
   function B() {}
   var O = Reflect.construct(A, [], B);
-  // TODO(caitp): bug: newTarget prototype is not used if it is not
+  // TODO (caitp): bug: newTarget prototype is not used if it is not id:2729
   // explicitly set.
   //assertSame(B.prototype, Object.getPrototypeOf(O));
 })();
@@ -142,7 +142,7 @@
   function A() {}
   function B() {}
   var O = Reflect.construct(A, [], B);
-  // TODO(caitp): bug: newTarget prototype is not used if it is not
+  // TODO (caitp): bug: newTarget prototype is not used if it is not id:2876
   // explicitly set.
   //assertSame(B.prototype, Object.getPrototypeOf(O));
 })();

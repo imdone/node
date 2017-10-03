@@ -201,7 +201,7 @@ _internal_toASCII(const UChar* src, int32_t srcLength,
                   UErrorCode* status)
 {
 
-    // TODO Revisit buffer handling. The label should not be over 63 ASCII characters. ICU4J may need to be updated too.
+    // TODO Revisit buffer handling. The label should not be over 63 ASCII characters. ICU4J may need to be updated too. id:113
     UChar b1Stack[MAX_LABEL_BUFFER_SIZE], b2Stack[MAX_LABEL_BUFFER_SIZE];
     //initialize pointers to stack buffers
     UChar  *b1 = b1Stack, *b2 = b2Stack;
@@ -331,7 +331,7 @@ _internal_toASCII(const UChar* src, int32_t srcLength,
             //step 6: encode the sequence with punycode
 
             // do not preserve the case flags for now!
-            // TODO: Preserve the case while implementing the RFE
+            // TODO: Preserve the case while implementing the RFE id:118
             // caseFlags = (UBool*) uprv_malloc(b1Len * sizeof(UBool));
             // uprv_memset(caseFlags,TRUE,b1Len);
 
@@ -354,7 +354,7 @@ _internal_toASCII(const UChar* src, int32_t srcLength,
             if(U_FAILURE(*status)){
                 goto CLEANUP;
             }
-            // TODO : Reconsider while implementing the case preserve RFE
+            // TODO : Reconsider while implementing the case preserve RFE id:184
             // convert all codepoints to lower case ASCII
             // toASCIILower(b2,b2Len);
             reqLength = b2Len+ACE_PREFIX_LENGTH;
@@ -405,7 +405,7 @@ _internal_toUnicode(const UChar* src, int32_t srcLength,
     //UBool useSTD3ASCIIRules = (UBool)((options & UIDNA_USE_STD3_RULES) != 0);
     int32_t namePrepOptions = ((options & UIDNA_ALLOW_UNASSIGNED) != 0) ? USPREP_ALLOW_UNASSIGNED: 0;
 
-    // TODO Revisit buffer handling. The label should not be over 63 ASCII characters. ICU4J may need to be updated too.
+    // TODO Revisit buffer handling. The label should not be over 63 ASCII characters. ICU4J may need to be updated too. id:186
     UChar b1Stack[MAX_LABEL_BUFFER_SIZE], b2Stack[MAX_LABEL_BUFFER_SIZE], b3Stack[MAX_LABEL_BUFFER_SIZE];
 
     //initialize pointers to stack buffers

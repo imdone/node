@@ -32,10 +32,10 @@
 #include "src/factory.h"
 #include "src/global-handles.h"
 #include "src/isolate.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2653
 // (disallowed) include: src/factory.h -> src/objects-inl.h
 #include "src/objects-inl.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2762
 // (disallowed) include: src/feedback-vector.h ->
 // src/feedback-vector-inl.h
 #include "src/feedback-vector-inl.h"

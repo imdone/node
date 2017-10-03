@@ -1586,7 +1586,7 @@ class MacroAssembler : public TurboAssembler {
 
   template <typename Field>
   void DecodeFieldToSmi(Register dst, Register src) {
-    // TODO(joransiu): Optimize into single instruction
+    // TODO (joransiu): Optimize into single instruction id:2479
     DecodeField<Field>(dst, src);
     SmiTag(dst);
   }

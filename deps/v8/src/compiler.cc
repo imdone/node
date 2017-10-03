@@ -169,11 +169,11 @@ void CompilationJob::RecordUnoptimizedCompilationStats() const {
   }
 
   Counters* counters = isolate()->counters();
-  // TODO(4280): Rename counters from "baseline" to "unoptimized" eventually.
+  // TODO (4280): Rename counters from "baseline" to "unoptimized" eventually. id:1622
   counters->total_baseline_code_size()->Increment(code_size);
   counters->total_baseline_compile_count()->Increment(1);
 
-  // TODO(5203): Add timers for each phase of compilation.
+  // TODO (5203): Add timers for each phase of compilation. id:1226
 }
 
 void CompilationJob::RecordOptimizedCompilationStats() const {
@@ -252,7 +252,7 @@ void EnsureFeedbackMetadata(CompilationInfo* info) {
   // vectors for a different configuration, hence we also recreate a new vector
   // when the function is not compiled (i.e. no code was serialized).
 
-  // TODO(mvstanton): reintroduce is_empty() predicate to feedback_metadata().
+  // TODO (mvstanton): reintroduce is_empty() predicate to feedback_metadata(). id:2166
   if (info->shared_info()->feedback_metadata()->length() == 0 ||
       !info->shared_info()->is_compiled()) {
     Handle<FeedbackMetadata> feedback_metadata = FeedbackMetadata::New(
@@ -333,7 +333,7 @@ void InstallUnoptimizedCode(CompilationInfo* info) {
   EnsureFeedbackMetadata(info);
 
   // Mark code to be executed once before being aged if necessary.
-  // TODO(6409): Remove when full-codegen dies.
+  // TODO (6409): Remove when full-codegen dies. id:1555
   DCHECK(!info->code().is_null());
   if (info->parse_info()->literal()->should_be_used_once_hint()) {
     info->code()->MarkToBeExecutedOnce(info->isolate());
@@ -348,7 +348,7 @@ void InstallUnoptimizedCode(CompilationInfo* info) {
   }
 
   // Install compilation result on the shared function info.
-  // TODO(mstarzinger): Compiling for debug code might be used to reveal inner
+  // TODO (mstarzinger): Compiling for debug code might be used to reveal inner id:1753
   // functions via {FindSharedFunctionInfoInScript}, in which case we end up
   // regenerating existing bytecode. Fix this!
   if (info->is_debug() && info->has_bytecode_array()) {
@@ -982,7 +982,7 @@ MaybeHandle<Code> GetLazyCode(Handle<JSFunction> function) {
       }
       return cached_code;
     }
-    // TODO(leszeks): Either handle optimization markers here, or DCHECK that
+    // TODO (leszeks): Either handle optimization markers here, or DCHECK that id:1625
     // there aren't any.
 
     return Handle<Code>(function->shared()->code());
@@ -1230,7 +1230,7 @@ MaybeHandle<JSArray> Compiler::CompileForLiveEdit(Handle<Script> script) {
                        Handle<JSFunction>::null());
   info.MarkAsDebug();
 
-  // TODO(635): support extensions.
+  // TODO (635): support extensions. id:1229
   const bool compilation_succeeded = !CompileToplevel(&info).is_null();
   Handle<JSArray> infos;
   if (compilation_succeeded) {
@@ -1594,7 +1594,7 @@ Handle<SharedFunctionInfo> Compiler::GetSharedFunctionInfoForScript(
 Handle<SharedFunctionInfo> Compiler::GetSharedFunctionInfoForStreamedScript(
     Handle<Script> script, ParseInfo* parse_info, int source_length) {
   Isolate* isolate = script->GetIsolate();
-  // TODO(titzer): increment the counters in caller.
+  // TODO (titzer): increment the counters in caller. id:2169
   isolate->counters()->total_load_size()->Increment(source_length);
   isolate->counters()->total_compile_size()->Increment(source_length);
 
@@ -1714,7 +1714,7 @@ void Compiler::PostInstantiation(Handle<JSFunction> function,
   if (FLAG_always_opt && shared->allows_lazy_compilation() &&
       !function->shared()->HasAsmWasmData() &&
       function->shared()->is_compiled()) {
-    // TODO(mvstanton): pass pretenure flag to EnsureLiterals.
+    // TODO (mvstanton): pass pretenure flag to EnsureLiterals. id:1558
     JSFunction::EnsureLiterals(function);
 
     if (!function->IsOptimized()) {
@@ -1726,7 +1726,7 @@ void Compiler::PostInstantiation(Handle<JSFunction> function,
   }
 
   if (shared->is_compiled()) {
-    // TODO(mvstanton): pass pretenure flag to EnsureLiterals.
+    // TODO (mvstanton): pass pretenure flag to EnsureLiterals. id:1759
     JSFunction::EnsureLiterals(function);
 
     Code* code = function->feedback_vector()->optimized_code();

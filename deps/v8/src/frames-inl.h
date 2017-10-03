@@ -61,7 +61,7 @@ inline StackHandler* StackFrame::top_handler() const {
 
 
 inline Code* StackFrame::LookupCode() const {
-  // TODO(jgruber): This should really check that pc is within the returned
+  // TODO (jgruber): This should really check that pc is within the returned id:2974
   // code's instruction range [instruction_start(), instruction_end()[.
   return GetContainingCode(isolate(), pc());
 }
@@ -294,7 +294,7 @@ inline JavaScriptFrameIterator::JavaScriptFrameIterator(
 }
 
 inline JavaScriptFrame* JavaScriptFrameIterator::frame() const {
-  // TODO(1233797): The frame hierarchy needs to change. It's
+  // TODO (1233797): The frame hierarchy needs to change. It's id:2041
   // problematic that we can't use the safe-cast operator to cast to
   // the JavaScript frame type, because we may encounter arguments
   // adaptor frames.

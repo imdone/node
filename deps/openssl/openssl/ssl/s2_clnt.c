@@ -840,7 +840,7 @@ static int client_certificate(SSL *s)
         EVP_SignUpdate(&ctx, cert_ch, (unsigned int)cert_ch_len);
         i = i2d_X509(s->session->sess_cert->peer_key->x509, &p);
         /*
-         * Don't update the signature if it fails - FIXME: probably should
+         * Don't update the signature if it fails - FIXME: probably should id:761
          * handle this better
          */
         if (i > 0)
@@ -957,7 +957,7 @@ static int get_server_finished(SSL *s)
     i = ssl2_read(s, (char *)&(buf[s->init_num]), n);
     if (i < n) {
         /*
-         * XXX could be shorter than SSL2_SSL_SESSION_ID_LENGTH,
+         * XXX could be shorter than SSL2_SSL_SESSION_ID_LENGTH, id:858
          * that's the maximum
          */
         return (ssl2_part_read(s, SSL_F_GET_SERVER_FINISHED, i));

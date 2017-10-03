@@ -339,7 +339,7 @@ public:
      * is reliable, and is more efficient.
      * </p>
      *
-     * TODO:  deprecate this function?
+     * TODO: deprecate this function? id:124
      *
      * @return An iterator over the text being analyzed.
      * @stable ICU 2.0

@@ -2036,7 +2036,7 @@ static void loadLists(UPKGOptions *o, UErrorCode *status)
         if(o->verbose) {
             fprintf(stdout, "# pkgdata: Reading %s..\n", l->str);
         }
-        /* TODO: stdin */
+        /* TODO: stdin  id:402*/
         in = T_FileStream_open(l->str, "r"); /* open files list */
 
         if(!in) {

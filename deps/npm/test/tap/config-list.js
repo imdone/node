@@ -35,7 +35,7 @@ test('config list includes project config', function (t) {
   )
 })
 
-// TODO: test cases for other configuration types (cli, env, user, global)
+// TODO: test cases for other configuration types (cli, env, user, global) id:640
 
 test('clean', function (t) {
   rimraf.sync(pkg)

@@ -170,7 +170,7 @@ void FullCodeGenerator::Generate() {
         Label loop_header;
         __ bind(&loop_header);
         // Do pushes.
-        // TODO(joransiu): Use MVC for better performance
+        // TODO (joransiu): Use MVC for better performance id:3011
         __ lay(sp, MemOperand(sp, -kMaxPushes * kPointerSize));
         for (int i = 0; i < kMaxPushes; i++) {
           __ StoreP(ip, MemOperand(sp, i * kPointerSize));
@@ -180,7 +180,7 @@ void FullCodeGenerator::Generate() {
       }
       int remaining = locals_count % kMaxPushes;
       // Emit the remaining pushes.
-      // TODO(joransiu): Use MVC for better performance
+      // TODO (joransiu): Use MVC for better performance id:2048
       if (remaining > 0) {
         __ lay(sp, MemOperand(sp, -remaining * kPointerSize));
         for (int i = 0; i < remaining; i++) {

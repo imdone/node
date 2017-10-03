@@ -541,7 +541,7 @@ Parser::Parser(ParseInfo* info)
 
 void Parser::DeserializeScopeChain(
     ParseInfo* info, MaybeHandle<ScopeInfo> maybe_outer_scope_info) {
-  // TODO(wingo): Add an outer SCRIPT_SCOPE corresponding to the native
+  // TODO (wingo): Add an outer SCRIPT_SCOPE corresponding to the native id:2962
   // context, which will have the "this" binding for script scopes.
   DeclarationScope* script_scope = NewScriptScope();
   info->set_script_scope(script_scope);
@@ -559,7 +559,7 @@ void Parser::DeserializeScopeChain(
 }
 
 FunctionLiteral* Parser::ParseProgram(Isolate* isolate, ParseInfo* info) {
-  // TODO(bmeurer): We temporarily need to pass allow_nesting = true here,
+  // TODO (bmeurer): We temporarily need to pass allow_nesting = true here, id:3185
   // see comment for HistogramTimerScope class.
 
   // It's OK to use the Isolate & counters here, since this function is only
@@ -712,7 +712,7 @@ FunctionLiteral* Parser::DoParseProgram(ParseInfo* info) {
       CheckStrictOctalLiteral(beg_pos, scanner()->location().end_pos, &ok);
     }
     if (ok && is_sloppy(language_mode())) {
-      // TODO(littledan): Function bindings on the global object that modify
+      // TODO (littledan): Function bindings on the global object that modify id:2253
       // pre-existing bindings should be made writable, enumerable and
       // nonconfigurable if possible, whereas this code will leave attributes
       // unchanged if the property already exists.
@@ -871,7 +871,7 @@ FunctionLiteral* Parser::DoParseFunction(ParseInfo* info) {
         }
       }
 
-      // TODO(adamk): We should construct this scope from the ScopeInfo.
+      // TODO (adamk): We should construct this scope from the ScopeInfo. id:2422
       DeclarationScope* scope = NewFunctionScope(kind);
 
       // This bit only needs to be explicitly set because we're
@@ -1197,7 +1197,7 @@ void Parser::ParseImportDeclaration(bool* ok) {
   // Now that we have all the information, we can make the appropriate
   // declarations.
 
-  // TODO(neis): Would prefer to call DeclareVariable for each case below rather
+  // TODO (neis): Would prefer to call DeclareVariable for each case below rather id:2416
   // than above and in ParseNamedImports, but then a possible error message
   // would point to the wrong location.  Maybe have a DeclareAt version of
   // Declare that takes a location?
@@ -1389,7 +1389,7 @@ Statement* Parser::ParseExportDeclaration(bool* ok) {
       break;
 
     case Token::ASYNC:
-      // TODO(neis): Why don't we have the same check here as in
+      // TODO (neis): Why don't we have the same check here as in id:2965
       // ParseStatementListItem?
       Consume(Token::ASYNC);
       result = ParseAsyncFunctionDeclaration(&names, false, CHECK_OK);
@@ -1540,7 +1540,7 @@ Statement* Parser::DeclareNative(const AstRawString* name, int pos, bool* ok) {
   // because of lazy compilation.
   GetClosureScope()->ForceEagerCompilation();
 
-  // TODO(1240846): It's weird that native function declarations are
+  // TODO (1240846): It's weird that native function declarations are id:3187
   // introduced dynamically when we meet their declarations, whereas
   // other functions are set up when entering the surrounding scope.
   Declaration* decl = DeclareVariable(name, VAR, pos, CHECK_OK);
@@ -1556,7 +1556,7 @@ ZoneList<const AstRawString*>* Parser::DeclareLabel(
     ZoneList<const AstRawString*>* labels, VariableProxy* var, bool* ok) {
   DCHECK(IsIdentifier(var));
   const AstRawString* label = var->raw_name();
-  // TODO(1240780): We don't check for redeclaration of labels
+  // TODO (1240780): We don't check for redeclaration of labels id:2257
   // during preparsing since keeping track of the set of active
   // labels requires nontrivial changes to the way scopes are
   // structured.  However, these are probably changes we want to
@@ -2075,7 +2075,7 @@ Block* Parser::CreateForEachStatementTDZ(Block* init_block,
     init_block = factory()->NewBlock(nullptr, 1, false, kNoSourcePosition);
 
     for (int i = 0; i < for_info.bound_names.length(); ++i) {
-      // TODO(adamk): This needs to be some sort of special
+      // TODO (adamk): This needs to be some sort of special id:2426
       // INTERNAL variable that's invisible to the debugger
       // but visible to everything else.
       Declaration* tdz_decl = DeclareVariable(for_info.bound_names[i], LET,
@@ -2863,7 +2863,7 @@ Parser::LazyParsingResult Parser::SkipFunction(
     cached_parse_data_->Reject();
   }
 
-  // FIXME(marja): There are 3 ways to skip functions now. Unify them.
+  // FIXME (marja): There are 3 ways to skip functions now. Unify them. id:2418
   DCHECK_NOT_NULL(consumed_preparsed_scope_data_);
   if (consumed_preparsed_scope_data_->HasData()) {
     DCHECK(FLAG_experimental_preparser_scope_analysis);
@@ -3019,7 +3019,7 @@ Block* Parser::BuildParameterInitializationBlock(
     // The position that will be used by the AssignmentExpression
     // which copies from the temp parameter to the pattern.
     //
-    // TODO(adamk): Should this be kNoSourcePosition, since
+    // TODO (adamk): Should this be kNoSourcePosition, since id:2968
     // it's just copying from a temp var to the real param var?
     descriptor.initialization_pos = parameter->pattern->position();
     Expression* initial_value =
@@ -3299,7 +3299,7 @@ void Parser::DeclareClassProperty(const AstRawString* class_name,
 
   if (property->kind() == ClassLiteralProperty::FIELD) {
     DCHECK(allow_harmony_class_fields());
-    // TODO(littledan): Implement class fields
+    // TODO (littledan): Implement class fields id:3189
   }
   class_info->properties->Add(property, zone());
 }
@@ -3999,7 +3999,7 @@ Expression* Parser::RewriteSpreads(ArrayLiteral* lit) {
   ZoneList<Expression*>::iterator s = lit->FirstSpread();
   if (s == lit->EndValue()) return nullptr;  // no spread, no rewriting...
   Variable* result = NewTemporary(ast_value_factory()->dot_result_string());
-  // NOTE: The value assigned to R is the whole original array literal,
+  // NOTE: The value assigned to R is the whole original array literal, id:2259
   // spreads included. This will be fixed before the rewritten AST is returned.
   // $R = lit
   Expression* init_result = factory()->NewAssignment(
@@ -5047,13 +5047,13 @@ void Parser::StitchAst(ParseInfo* top_level_parse_info, Isolate* isolate) {
       }
     }
     FunctionLiteral* literal = *it;
-    // FIXME(wiktorg) better handling of default params for arrow functions
+    // FIXME (wiktorg) better handling of default params for arrow functions id:2432
     Scope* outer_scope = literal->scope()->outer_scope();
     if (outer_scope->is_declaration_scope() &&
         outer_scope->AsDeclarationScope()->was_lazily_parsed()) {
       continue;
     }
-    // TODO(wiktorg) in the future internalize somewhere else (stitching may be
+    // TODO (wiktorg) in the future internalize somewhere else (stitching may be id:2421
     // done on streamer thread)
     result->ast_value_factory()->Internalize(isolate);
     literal->ReplaceBodyAndScope(result->literal());

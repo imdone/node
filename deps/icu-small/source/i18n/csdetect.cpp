@@ -77,7 +77,7 @@ charsetMatchComparator(const void * /*context*/, const void *left, const void *r
     const CharsetMatch **csm_l = (const CharsetMatch **) left;
     const CharsetMatch **csm_r = (const CharsetMatch **) right;
 
-    // NOTE: compare is backwards to sort from highest to lowest.
+    // NOTE: compare is backwards to sort from highest to lowest. id:278
     return (*csm_r)->getConfidence() - (*csm_l)->getConfidence();
 }
 
@@ -243,7 +243,7 @@ const CharsetMatch *CharsetDetector::detect(UErrorCode &status)
 const CharsetMatch * const *CharsetDetector::detectAll(int32_t &maxMatchesFound, UErrorCode &status)
 {
     if(!textIn->isSet()) {
-        status = U_MISSING_RESOURCE_ERROR;// TODO:  Need to set proper status code for input text not set
+        status = U_MISSING_RESOURCE_ERROR;// TODO: Need to set proper status code for input text not set id:401
 
         return NULL;
     } else if (fFreshTextSet) {

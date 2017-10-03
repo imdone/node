@@ -805,7 +805,7 @@ RuleBasedNumberFormat::RuleBasedNumberFormat(URBNFRuleSetTag tag, const Locale& 
     default: status = U_ILLEGAL_ARGUMENT_ERROR; return;
     }
 
-    // TODO: read localization info from resource
+    // TODO: read localization info from resource id:327
     LocalizationInfo* locinfo = NULL;
 
     UResourceBundle* nfrb = ures_open(U_ICUDATA_RBNF, locale.getName(), &status);
@@ -1101,7 +1101,7 @@ RuleBasedNumberFormat::format(const DigitList &number,
             // We're outside of our normal range that this framework can handle.
             // The DecimalFormat will provide more accurate results.
 
-            // TODO this section should probably be optimized. The DecimalFormat is shared in ICU4J.
+            // TODO this section should probably be optimized. The DecimalFormat is shared in ICU4J. id:451
             NumberFormat *decimalFormat = NumberFormat::createInstance(locale, UNUM_DECIMAL, status);
             Formattable f;
             f.adoptDigitList(new DigitList(number));
@@ -1134,7 +1134,7 @@ RuleBasedNumberFormat::format(const DigitList &number,
             // We're outside of our normal range that this framework can handle.
             // The DecimalFormat will provide more accurate results.
 
-            // TODO this section should probably be optimized. The DecimalFormat is shared in ICU4J.
+            // TODO this section should probably be optimized. The DecimalFormat is shared in ICU4J. id:602
             NumberFormat *decimalFormat = NumberFormat::createInstance(locale, UNUM_DECIMAL, status);
             Formattable f;
             f.adoptDigitList(new DigitList(number));
@@ -1263,7 +1263,7 @@ RuleBasedNumberFormat::format(int64_t number, NFRuleSet *ruleSet, UnicodeString&
         if (number == U_INT64_MIN) {
             // We can't handle this value right now. Provide an accurate default value.
 
-            // TODO this section should probably be optimized. The DecimalFormat is shared in ICU4J.
+            // TODO this section should probably be optimized. The DecimalFormat is shared in ICU4J. id:272
             NumberFormat *decimalFormat = NumberFormat::createInstance(locale, UNUM_DECIMAL, status);
             Formattable f;
             FieldPosition pos(FieldPosition::DONT_CARE);
@@ -1444,7 +1444,7 @@ void
 RuleBasedNumberFormat::init(const UnicodeString& rules, LocalizationInfo* localizationInfos,
                             UParseError& pErr, UErrorCode& status)
 {
-    // TODO: implement UParseError
+    // TODO: implement UParseError id:250
     uprv_memset(&pErr, 0, sizeof(UParseError));
     // Note: this can leave ruleSets == NULL, so remaining code should check
     if (U_FAILURE(status)) {

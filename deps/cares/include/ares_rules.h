@@ -20,7 +20,7 @@
 /* ================================================================ */
 
 /*
- * NOTE 1:
+ * NOTE 1: id:5
  * -------
  *
  * All checks done in this file are intentionally placed in a public
@@ -42,7 +42,7 @@
  * You can find further help on the c-ares development mailing list:
  * http://cool.haxx.se/mailman/listinfo/c-ares/
  *
- * NOTE 2
+ * NOTE 2 id:7
  * ------
  *
  * Some of the following compile time checks are based on the fact

@@ -137,7 +137,7 @@ T BinaryComplement(T x) {
 }
 
 // Here are the actual portable checked integer math implementations.
-// TODO(jschuh): Break this code out from the enable_if pattern and find a clean
+// TODO (jschuh): Break this code out from the enable_if pattern and find a clean id:1116
 // way to coalesce things into the CheckedNumericState specializations below.
 
 template <typename T>

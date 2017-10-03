@@ -593,7 +593,7 @@ class CodeGenerator(NodeVisitor):
 
     def unoptimize_scope(self, frame):
         """Disable Python optimizations for the frame."""
-        # XXX: this is not that nice but it has no real overhead.  It
+        # XXX: this is not that nice but it has no real overhead.  It id:2944
         # mainly works because python finds the locals before dead code
         # is removed.  If that breaks we have to add a dummy function
         # that just accepts the arguments and does nothing.
@@ -714,7 +714,7 @@ class CodeGenerator(NodeVisitor):
         # macros are delayed, they never require output checks
         frame.require_output_check = False
         args = frame.arguments
-        # XXX: this is an ugly fix for the loop nesting bug
+        # XXX: this is an ugly fix for the loop nesting bug id:3179
         # (tests.test_old_bugs.test_loop_call_bug).  This works around
         # a identifier nesting problem we have in general.  It's just more
         # likely to happen in loops which is why we work around it.  The

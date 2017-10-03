@@ -422,7 +422,7 @@ int OBJ_obj2nid(const ASN1_OBJECT *a)
 
     if (added != NULL) {
         ad.type = ADDED_DATA;
-        ad.obj = (ASN1_OBJECT *)a; /* XXX: ugly but harmless */
+        ad.obj = (ASN1_OBJECT *)a; /* XXX: ugly but harmless  id:1075*/
         adp = lh_ADDED_OBJ_retrieve(added, &ad);
         if (adp != NULL)
             return (adp->obj->nid);

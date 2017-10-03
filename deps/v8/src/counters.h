@@ -309,7 +309,7 @@ class HistogramTimer : public TimedHistogram {
     return Enabled() && timer_.IsStarted();
   }
 
-  // TODO(bmeurer): Remove this when HistogramTimerScope is fixed.
+  // TODO (bmeurer): Remove this when HistogramTimerScope is fixed. id:1906
 #ifdef DEBUG
   base::ElapsedTimer* timer() { return &timer_; }
 #endif
@@ -323,7 +323,7 @@ class HistogramTimer : public TimedHistogram {
 };
 
 // Helper class for scoping a HistogramTimer.
-// TODO(bmeurer): The ifdeffery is an ugly hack around the fact that the
+// TODO (bmeurer): The ifdeffery is an ugly hack around the fact that the id:1549
 // Parser is currently reentrant (when it throws an error, we call back
 // into JavaScript and all bets are off), but ElapsedTimer is not
 // reentry-safe. Fix this properly and remove |allow_nesting|.

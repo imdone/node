@@ -804,7 +804,7 @@ void* OS::Allocate(const size_t requested, size_t* allocated,
 }
 
 void OS::Free(void* address, const size_t size) {
-  // TODO(1240712): VirtualFree has a return value which is ignored here.
+  // TODO (1240712): VirtualFree has a return value which is ignored here. id:1621
   VirtualFree(address, 0, MEM_RELEASE);
   USE(size);
 }
@@ -1084,7 +1084,7 @@ TLHELP32_FUNCTION_LIST(DLL_FUNC_LOADED)
 
   dbghelp_loaded = result;
   return result;
-  // NOTE: The modules are never unloaded and will stay around until the
+  // NOTE: The modules are never unloaded and will stay around until the id:1370
   // application is closed.
 }
 
@@ -1133,7 +1133,7 @@ static std::vector<OS::SharedLibraryAddress> LoadSymbols(
   BOOL cont = _Module32FirstW(snapshot, &module_entry);
   while (cont) {
     DWORD64 base;
-    // NOTE the SymLoadModule64 function has the peculiarity of accepting a
+    // NOTE the SymLoadModule64 function has the peculiarity of accepting a id:1113
     // both unicode and ASCII strings even though the parameter is PSTR.
     base = _SymLoadModule64(
         process_handle,                                       // hProcess
@@ -1301,7 +1301,7 @@ bool VirtualMemory::ReleaseRegion(void* base, size_t size) {
 
 
 bool VirtualMemory::HasLazyCommits() {
-  // TODO(alph): implement for the platform.
+  // TODO (alph): implement for the platform. id:1801
   return false;
 }
 

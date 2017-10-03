@@ -193,7 +193,7 @@ HEAP_TEST(MarkCompactCollector) {
 }
 
 
-// TODO(1600): compaction of map space is temporary removed from GC.
+// TODO (1600): compaction of map space is temporary removed from GC. id:3639
 #if 0
 static Handle<Map> CreateMap(Isolate* isolate) {
   return isolate->factory()->NewMap(JS_OBJECT_TYPE, JSObject::kHeaderSize);

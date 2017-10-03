@@ -23,7 +23,7 @@ function onlistening() {
 
   // init not called synchronously because dns lookup always wraps
   // callback in a next tick even if no lookup is needed
-  // TODO (trevnorris) submit patch to fix creation of tick objects and instead
+  // TODO (trevnorris) submit patch to fix creation of tick objects and instead id:4065
   // create the send wrap synchronously.
   assert.strictEqual(hooks.activitiesOfTypes('UDPSENDWRAP').length, 0);
 }

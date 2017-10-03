@@ -62,7 +62,7 @@
 })();
 
 
-// TODO(caitp): indexed properties of String are read-only and setting them
+// TODO (caitp): indexed properties of String are read-only and setting them id:3685
 //              should throw in strict mode. See bug v8:4042
 // (function copyWithinStringThis() {
 //   // test with this value as string

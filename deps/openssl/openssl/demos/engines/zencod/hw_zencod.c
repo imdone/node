@@ -1338,7 +1338,7 @@ static const EVP_CIPHER engine_rc4 = {
     NID_rc4,
     1,
     16,                         /* EVP_RC4_KEY_SIZE should be 128 bits */
-    0,                          /* FIXME: key should be up to 256 bytes */
+    0,                          /* FIXME: key should be up to 256 bytes  id:836*/
     EVP_CIPH_VARIABLE_LENGTH,
     engine_rc4_init_key,
     engine_rc4_cipher,

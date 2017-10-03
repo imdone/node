@@ -806,18 +806,18 @@ class WasmFullDecoder : public WasmDecoder {
             break;
           }
           case kExprRethrow: {
-            // TODO(kschimpf): Implement.
+            // TODO (kschimpf): Implement. id:2583
             CHECK_PROTOTYPE_OPCODE(eh);
             PROTOTYPE_NOT_FUNCTIONAL(opcode);
             break;
           }
           case kExprThrow: {
-            // TODO(kschimpf): Fix to use type signature of exception.
+            // TODO (kschimpf): Fix to use type signature of exception. id:3025
             CHECK_PROTOTYPE_OPCODE(eh);
             PROTOTYPE_NOT_FUNCTIONAL(opcode);
             Value value = Pop(0, kWasmI32);
             BUILD(Throw, value.node);
-            // TODO(titzer): Throw should end control, but currently we build a
+            // TODO (titzer): Throw should end control, but currently we build a id:3245
             // (reachable) runtime call instead of connecting it directly to
             // end.
             //            EndControl();
@@ -836,7 +836,7 @@ class WasmFullDecoder : public WasmDecoder {
             break;
           }
           case kExprCatch: {
-            // TODO(kschimpf): Fix to use type signature of exception.
+            // TODO (kschimpf): Fix to use type signature of exception. id:2335
             CHECK_PROTOTYPE_OPCODE(eh);
             PROTOTYPE_NOT_FUNCTIONAL(opcode);
             LocalIndexOperand<true> operand(this, pc_);
@@ -878,7 +878,7 @@ class WasmFullDecoder : public WasmDecoder {
             break;
           }
           case kExprCatchAll: {
-            // TODO(kschimpf): Implement.
+            // TODO (kschimpf): Implement. id:2501
             CHECK_PROTOTYPE_OPCODE(eh);
             PROTOTYPE_NOT_FUNCTIONAL(opcode);
             break;

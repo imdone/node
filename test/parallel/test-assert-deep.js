@@ -477,7 +477,7 @@ assertOnlyDeepEqual([1, , , 3], [1, , , 3, , , ]);
   const err3 = new TypeError('foo1');
   assertNotDeepOrStrict(err1, err2, assert.AssertionError);
   assertNotDeepOrStrict(err1, err3, assert.AssertionError);
-  // TODO: evaluate if this should throw or not. The same applies for RegExp
+  // TODO: evaluate if this should throw or not. The same applies for RegExp id:3648
   // Date and any object that has the same keys but not the same prototype.
   assertOnlyDeepEqual(err1, {}, assert.AssertionError);
 }

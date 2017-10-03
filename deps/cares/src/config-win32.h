@@ -335,7 +335,7 @@
 /*                              Win CE                              */
 /* ---------------------------------------------------------------- */
 
-/* FIXME: A proper config-win32ce.h should be created to hold these */
+/* FIXME: A proper config-win32ce.h should be created to hold these  id:6*/
 
 /*
  *  System error codes for Windows CE

@@ -496,7 +496,7 @@ void bn_mul_recursive(BN_ULONG *r, BN_ULONG *a, BN_ULONG *b, int n2,
     }
 
 # ifdef BN_MUL_COMBA
-    if (n == 4 && dna == 0 && dnb == 0) { /* XXX: bn_mul_comba4 could take
+    if (n == 4 && dna == 0 && dnb == 0) { /* XXX: bn_mul_comba4 could take id:667
                                            * extra args to do this well */
         if (!zero)
             bn_mul_comba4(&(t[n2]), t, &(t[n]));
@@ -505,7 +505,7 @@ void bn_mul_recursive(BN_ULONG *r, BN_ULONG *a, BN_ULONG *b, int n2,
 
         bn_mul_comba4(r, a, b);
         bn_mul_comba4(&(r[n2]), &(a[n]), &(b[n]));
-    } else if (n == 8 && dna == 0 && dnb == 0) { /* XXX: bn_mul_comba8 could
+    } else if (n == 8 && dna == 0 && dnb == 0) { /* XXX: bn_mul_comba8 could id:770
                                                   * take extra args to do
                                                   * this well */
         if (!zero)

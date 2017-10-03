@@ -376,7 +376,7 @@ BasicTimeZone::getTimeZoneRulesAfter(UDate start, InitialTimeZoneRule*& initial,
         if (updatedTime == time) {
             // Can get here if rules for start & end of daylight time have exactly
             // the same time.
-            // TODO:  fix getNextTransition() to prevent it?
+            // TODO: fix getNextTransition() to prevent it? id:386
             status = U_INVALID_STATE_ERROR;
             goto error;
         }

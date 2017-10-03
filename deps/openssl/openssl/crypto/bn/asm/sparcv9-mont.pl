@@ -22,7 +22,7 @@
 # implements one, because it was easiest to draft it in SPARCv9
 # instructions...
 
-# (*)	Engine accessing the driver in question is on my TODO list.
+# (*)	Engine accessing the driver in question is on my TODO list. id:967
 #	For reference, acceleator is estimated to give 6 to 10 times
 #	improvement on single-threaded RSA sign. It should be noted
 #	that 6-10x improvement coefficient does not actually mean
@@ -39,7 +39,7 @@
 # Fujitsu SPARC64 V users who should notice and hopefully appreciate
 # the advantage... Currently this module surpasses sparcv9a-mont.pl
 # by ~20% on UltraSPARC-III and later cores, but recall that sparcv9a
-# module still have hidden potential [see TODO list there], which is
+# module still have hidden potential [see TODO list there], which is id:1021
 # estimated to be larger than 20%...
 
 # int bn_mul_mont(

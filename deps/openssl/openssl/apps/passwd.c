@@ -453,7 +453,7 @@ static int do_passwd(int passed_salt, char **salt_p, char **salt_malloc_p,
     if ((strlen(passwd) > pw_maxlen)) {
         if (!quiet)
             /*
-             * XXX: really we should know how to print a size_t, not cast it
+             * XXX: really we should know how to print a size_t, not cast it id:597
              */
             BIO_printf(bio_err,
                        "Warning: truncating password to %u characters\n",

@@ -323,25 +323,25 @@ void Instruction::SetImmLLiteral(Instruction* source) {
 }
 
 
-// TODO(jbramley): We can't put this inline in the class because things like
+// TODO (jbramley): We can't put this inline in the class because things like id:1491
 // xzr and Register are not defined in that header. Consider adding
 // instructions-arm64-inl.h to work around this.
 bool InstructionSequence::IsInlineData() const {
   // Inline data is encoded as a single movz instruction which writes to xzr
   // (x31).
   return IsMovz() && SixtyFourBits() && (Rd() == kZeroRegCode);
-  // TODO(all): If we extend ::InlineData() to support bigger data, we need
+  // TODO (all): If we extend ::InlineData() to support bigger data, we need id:1056
   // to update this method too.
 }
 
 
-// TODO(jbramley): We can't put this inline in the class because things like
+// TODO (jbramley): We can't put this inline in the class because things like id:1014
 // xzr and Register are not defined in that header. Consider adding
 // instructions-arm64-inl.h to work around this.
 uint64_t InstructionSequence::InlineData() const {
   DCHECK(IsInlineData());
   uint64_t payload = ImmMoveWide();
-  // TODO(all): If we extend ::InlineData() to support bigger data, we need
+  // TODO (all): If we extend ::InlineData() to support bigger data, we need id:1637
   // to update this method too.
   return payload;
 }

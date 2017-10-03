@@ -123,7 +123,7 @@ int SRP_VBASE_init(SRP_VBASE *vb, char *verifier_file);
 
 /* This method ignores the configured seed and fails for an unknown user. */
 SRP_user_pwd *SRP_VBASE_get_by_user(SRP_VBASE *vb, char *username);
-/* NOTE: unlike in SRP_VBASE_get_by_user, caller owns the returned pointer.*/
+/* NOTE: unlike in SRP_VBASE_get_by_user, caller owns the returned pointer. id:1454*/
 SRP_user_pwd *SRP_VBASE_get1_by_user(SRP_VBASE *vb, char *username);
 
 char *SRP_create_verifier(const char *user, const char *pass, char **salt,

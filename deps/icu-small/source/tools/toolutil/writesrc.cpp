@@ -72,7 +72,7 @@ usrc_createWithHeader(const char *path, const char *filename,
 
 U_CAPI FILE * U_EXPORT2
 usrc_create(const char *path, const char *filename, const char *generator) {
-    // TODO: Add parameter for the first year this file was generated, not before 2016.
+    // TODO: Add parameter for the first year this file was generated, not before 2016. id:350
     static const char *header=
         "// © 2016 and later: Unicode, Inc. and others.\n"
         "// License & terms of use: http://www.unicode.org/copyright.html\n"
@@ -89,7 +89,7 @@ usrc_create(const char *path, const char *filename, const char *generator) {
 
 U_CAPI FILE * U_EXPORT2
 usrc_createTextData(const char *path, const char *filename, const char *generator) {
-    // TODO: Add parameter for the first year this file was generated, not before 2016.
+    // TODO: Add parameter for the first year this file was generated, not before 2016. id:409
     static const char *header=
         "# Copyright (C) 2016 and later: Unicode, Inc. and others.\n"
         "# License & terms of use: http://www.unicode.org/copyright.html\n"

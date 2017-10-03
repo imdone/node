@@ -165,7 +165,7 @@ public:
 
 #ifndef U_HIDE_INTERNAL_API
     /**
-     * TODO: document & propose as public API
+     * TODO: document & propose as public API id:368
      * @internal
      */
     RuleBasedCollator(const UnicodeString &rules,

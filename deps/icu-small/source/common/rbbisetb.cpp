@@ -665,7 +665,7 @@ void RangeDescriptor::split(UChar32 where, UErrorCode &status) {
 //            (the range) includes, and sets the bit in fNum when
 //            "dictionary" is among them.
 //
-//            TODO:  a faster way would be to find the set node for
+//            TODO: a faster way would be to find the set node for id:164
 //                   "dictionary" just once, rather than looking it
 //                   up by name every time.
 //
@@ -683,7 +683,7 @@ void RangeDescriptor::setDictionaryFlag() {
                 setName = varRef->fText;
             }
         }
-        if (setName.compare(UNICODE_STRING("dictionary", 10)) == 0) {   // TODO:  no string literals.
+        if (setName.compare(UNICODE_STRING("dictionary", 10)) == 0) {   // TODO: no string literals. id:165
             this->fNum |= 0x4000;
             break;
         }

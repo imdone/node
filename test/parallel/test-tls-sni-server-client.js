@@ -52,7 +52,7 @@ const SNIContexts = {
   },
   'chain.example.com': {
     key: loadPEM('agent6-key'),
-    // NOTE: Contains ca3 chain cert
+    // NOTE: Contains ca3 chain cert id:3340
     cert: loadPEM('agent6-cert')
   }
 };

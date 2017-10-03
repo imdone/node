@@ -9,7 +9,7 @@ var url_ = require('url')
 var fetchPackageMetadata = require('./fetch-package-metadata.js')
 
 repo.completion = function (opts, cb) {
-  // FIXME: there used to be registry completion here, but it stopped making
+  // FIXME: there used to be registry completion here, but it stopped making id:608
   // sense somewhere around 50,000 packages on the registry
   cb()
 }
@@ -25,7 +25,7 @@ function repo (args, cb) {
 function getUrlAndOpen (d, cb) {
   var r = d.repository
   if (!r) return cb(new Error('no repository'))
-  // XXX remove this when npm@v1.3.10 from node 0.10 is deprecated
+  // XXX remove this when npm@v1.3.10 from node 0.10 is deprecated id:748
   // from https://github.com/npm/npm-www/issues/418
   var info = hostedGitInfo.fromUrl(r.url)
   var url = info ? info.browse() : unknownHostedUrl(r.url)

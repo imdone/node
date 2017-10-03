@@ -250,7 +250,7 @@ u_fflush(UFILE *file)
     else if (file->str.fPos < file->str.fLimit) {
         *(file->str.fPos++) = 0;
     }
-    /* TODO: flush input */
+    /* TODO: flush input  id:3800*/
 }
 
 U_CAPI void

@@ -465,11 +465,11 @@ ucol_getMaxExpansion(const UCollationElements *elems,
 {
     return CollationElementIterator::fromUCollationElements(elems)->getMaxExpansion(order);
 
-    // TODO: The old code masked the order according to strength and then did a binary search.
+    // TODO: The old code masked the order according to strength and then did a binary search. id:500
     // However this was probably at least partially broken because of the following comment.
     // Still, it might have found a match when this version may not.
 
-    // FIXME: with a masked search, there might be more than one hit,
+    // FIXME: with a masked search, there might be more than one hit, id:662
     // so we need to look forward and backward from the match to find all
     // of the hits...
 }

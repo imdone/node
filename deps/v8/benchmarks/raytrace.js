@@ -620,7 +620,7 @@ Flog.RayTracer.Engine.prototype = {
         this.options.canvasHeight /= this.options.pixelHeight;
         this.options.canvasWidth /= this.options.pixelWidth;
 
-        /* TODO: dynamically include other scripts */
+        /* TODO: dynamically include other scripts  id:953*/
     },
 
     setPixel: function(x, y, color){
@@ -760,7 +760,7 @@ Flog.RayTracer.Engine.prototype = {
           }
 
                 // Refraction
-                /* TODO */
+                /* TODO id:948*/
             }
 
             /* Render shadows and highlights */

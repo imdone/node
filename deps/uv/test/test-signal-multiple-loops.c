@@ -194,7 +194,7 @@ static void loop_creating_worker(void* context) {
 
 TEST_IMPL(signal_multiple_loops) {
 #if defined(__CYGWIN__) || defined(__MSYS__)
-  /* FIXME: This test needs more investigation.  Somehow the `read` in
+  /* FIXME: This test needs more investigation.  Somehow the `read` in id:1559
      uv__signal_lock fails spuriously with EACCES or even EAGAIN even
      though it is supposed to be blocking.  Also the test hangs during
      thread setup occasionally.  */

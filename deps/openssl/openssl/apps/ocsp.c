@@ -1131,7 +1131,7 @@ static char **lookup_serial(CA_DB *db, ASN1_INTEGER *ser)
     for (i = 0; i < DB_NUMBER; i++)
         row[i] = NULL;
     bn = ASN1_INTEGER_to_BN(ser, NULL);
-    OPENSSL_assert(bn);         /* FIXME: should report an error at this
+    OPENSSL_assert(bn);         /* FIXME: should report an error at this id:642
                                  * point and abort */
     if (BN_is_zero(bn))
         itmp = BUF_strdup("00");

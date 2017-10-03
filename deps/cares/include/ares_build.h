@@ -20,7 +20,7 @@
 /* ================================================================ */
 
 /*
- * NOTE 1:
+ * NOTE 1: id:21
  * -------
  *
  * See file ares_build.h.in, run configure, and forget that this file
@@ -34,7 +34,7 @@
 /* ================================================================ */
 
 /*
- * NOTE 1:
+ * NOTE 1: id:3
  * -------
  *
  * Nothing in this file is intended to be modified or adjusted by the
@@ -55,7 +55,7 @@
  * This header file shall only export symbols which are 'cares' or 'CARES'
  * prefixed, otherwise public name space would be polluted.
  *
- * NOTE 2:
+ * NOTE 2: id:2
  * -------
  *
  * Right now you might be staring at file ares_build.h.dist or ares_build.h,

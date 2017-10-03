@@ -445,7 +445,7 @@ int MAIN(int argc, char **argv)
             if (!EC_GROUP_get_curve_GFp(group, ec_p, ec_a, ec_b, NULL))
                 goto end;
         } else {
-            /* TODO */
+            /* TODO id:941*/
             goto end;
         }
 
@@ -514,7 +514,7 @@ int MAIN(int argc, char **argv)
                        "GFp(tmp_1, tmp_2, tmp_3, NULL)) == NULL)"
                        "\n\t\tgoto err;\n\n");
         } else {
-            /* TODO */
+            /* TODO id:1000*/
             goto end;
         }
         BIO_printf(out, "\t/* build generator */\n");

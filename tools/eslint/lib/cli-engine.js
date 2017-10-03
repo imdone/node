@@ -186,7 +186,7 @@ function processText(text, configHelper, filename, fix, allowInlineConfig, linte
             }));
         });
 
-        // TODO(nzakas): Figure out how fixes might work for processors
+        // TODO (nzakas): Figure out how fixes might work for processors id:3356
 
         messages = processor.postprocess(unprocessedMessages, filename);
 
@@ -600,7 +600,7 @@ class CLIEngine {
 
                     /*
                      * since the file passed we store the result here
-                     * TODO: check this as we might not need to store the
+                     * TODO: check this as we might not need to store the id:3666
                      * successful runs as it will always should be 0 errors and
                      * 0 warnings.
                      */

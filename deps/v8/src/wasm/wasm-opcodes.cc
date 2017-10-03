@@ -359,7 +359,7 @@ constexpr WasmOpcodeSig GetAtomicOpcodeSigIndex(byte opcode) {
 
 // gcc 4.7 - 4.9 have a bug which prohibits marking the array constexpr
 // (https://gcc.gnu.org/bugzilla/show_bug.cgi?id=52892).
-// TODO(clemensh): Remove this once we require gcc >= 5.0.
+// TODO (clemensh): Remove this once we require gcc >= 5.0. id:2656
 #if defined(__GNUC__) && !defined(__clang__) && __GNUC__ == 4
 #define CONSTEXPR_IF_NOT_GCC_4
 #else

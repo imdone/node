@@ -341,7 +341,7 @@ CollationDataBuilder::maybeSetPrimaryRange(UChar32 start, UChar32 end,
                                            UErrorCode &errorCode) {
     if(U_FAILURE(errorCode)) { return FALSE; }
     U_ASSERT(start <= end);
-    // TODO: Do we need to check what values are currently set for start..end?
+    // TODO: Do we need to check what values are currently set for start..end? id:226
     // An offset range is worth it only if we can achieve an overlap between
     // adjacent UTrie2 blocks of 32 code points each.
     // An offset CE is also a little more expensive to look up and compute
@@ -1093,7 +1093,7 @@ CollationDataBuilder::getJamoCE32s(uint32_t jamoCE32s[], UErrorCode &errorCode) 
         UBool fromBase = FALSE;
         uint32_t ce32 = utrie2_get32(trie, jamo);
         anyJamoAssigned |= Collation::isAssignedCE32(ce32);
-        // TODO: Try to prevent [optimize [Jamo]] from counting as anyJamoAssigned.
+        // TODO: Try to prevent [optimize [Jamo]] from counting as anyJamoAssigned. id:200
         // (As of CLDR 24 [2013] the Korean tailoring does not optimize conjoining Jamo.)
         if(ce32 == Collation::FALLBACK_CE32) {
             fromBase = TRUE;

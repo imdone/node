@@ -35,7 +35,7 @@ function createResultStream (uri, auth, opts, cb) {
   npm.registry.request(uri + '?text=' + encodeURIComponent(q) + '&size=' + opts.limit, params, function (err, res) {
     if (err) return cb(err)
     log.silly('esearch', 'request stream opened, code:', res.statusCode)
-    // NOTE - The stream returned by `request` seems to be very persnickety
+    // NOTE - The stream returned by `request` seems to be very persnickety id:440
     //        and this is almost a magic incantation to get it to work.
     //        Modify how `res` is used here at your own risk.
     var entryStream = ms.pipeline.obj(

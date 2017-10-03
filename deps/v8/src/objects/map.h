@@ -330,12 +330,12 @@ class Map : public HeapObject {
   // field with an untagged in-object field.
   bool TransitionChangesTaggedFieldToUntaggedField(Map* target) const;
 
-  // TODO(ishell): candidate with JSObject::MigrateToMap().
+  // TODO (ishell): candidate with JSObject::MigrateToMap(). id:2402
   bool InstancesNeedRewriting(Map* target) const;
   bool InstancesNeedRewriting(Map* target, int target_number_of_fields,
                               int target_inobject, int target_unused,
                               int* old_number_of_fields) const;
-  // TODO(ishell): moveit!
+  // TODO (ishell): moveit! id:2398
   static Handle<Map> GeneralizeAllFields(Handle<Map> map);
   MUST_USE_RESULT static Handle<FieldType> GeneralizeFieldType(
       Representation rep1, Handle<FieldType> type1, Representation rep2,
@@ -381,7 +381,7 @@ class Map : public HeapObject {
 
   // [prototype]: implicit prototype object.
   DECL_ACCESSORS(prototype, Object)
-  // TODO(jkummerow): make set_prototype private.
+  // TODO (jkummerow): make set_prototype private. id:2954
   static void SetPrototype(Handle<Map> map, Handle<Object> prototype);
 
   // [constructor]: points back to the function or FunctionTemplateInfo
@@ -803,7 +803,7 @@ class Map : public HeapObject {
   static Handle<Map> CopyNormalized(Handle<Map> map,
                                     PropertyNormalizationMode mode);
 
-  // TODO(ishell): Move to MapUpdater.
+  // TODO (ishell): Move to MapUpdater. id:3178
   static Handle<Map> CopyGeneralizeAllFields(
       Handle<Map> map, ElementsKind elements_kind, int modify_index,
       PropertyKind kind, PropertyAttributes attributes, const char* reason);
@@ -821,10 +821,10 @@ class Map : public HeapObject {
                        Representation new_representation,
                        Handle<Object> new_wrapped_type);
 
-  // TODO(ishell): Move to MapUpdater.
+  // TODO (ishell): Move to MapUpdater. id:2237
   void PrintReconfiguration(FILE* file, int modify_index, PropertyKind kind,
                             PropertyAttributes attributes);
-  // TODO(ishell): Move to MapUpdater.
+  // TODO (ishell): Move to MapUpdater. id:2405
   void PrintGeneralization(FILE* file, const char* reason, int modify_index,
                            int split, int descriptors, bool constant_to_field,
                            Representation old_representation,

@@ -258,7 +258,7 @@ void MipsDebugger::PrintAllRegsIncludingFPU() {
 
   PrintF("\n\n");
   // f0, f1, f2, ... f31.
-  // TODO(plind): consider printing 2 columns for space efficiency.
+  // TODO (plind): consider printing 2 columns for space efficiency. id:1983
   PrintF("%3s: 0x%016" PRIx64 "  %16.4e\n", FPU_REG_INFO(0));
   PrintF("%3s: 0x%016" PRIx64 "  %16.4e\n", FPU_REG_INFO(1));
   PrintF("%3s: 0x%016" PRIx64 "  %16.4e\n", FPU_REG_INFO(2));
@@ -966,7 +966,7 @@ Simulator* Simulator::current(Isolate* isolate) {
 
   Simulator* sim = isolate_data->simulator();
   if (sim == NULL) {
-    // TODO(146): delete the simulator object when a thread/isolate goes away.
+    // TODO (146): delete the simulator object when a thread/isolate goes away. id:3129
     sim = new Simulator(isolate);
     isolate_data->set_simulator(sim);
   }
@@ -1051,7 +1051,7 @@ int64_t Simulator::get_register(int reg) const {
 
 
 double Simulator::get_double_from_register_pair(int reg) {
-  // TODO(plind): bad ABI stuff, refactor or remove.
+  // TODO (plind): bad ABI stuff, refactor or remove. id:2191
   DCHECK((reg >= 0) && (reg < kNumSimuRegisters) && ((reg % 2) == 0));
 
   double dm_val = 0.0;
@@ -1121,7 +1121,7 @@ void Simulator::GetFpArgs(double* x, double* y, int32_t* z) {
     *y = get_fpu_register_double(fparg2);
     *z = static_cast<int32_t>(get_register(a2));
   } else {
-  // TODO(plind): bad ABI stuff, refactor or remove.
+  // TODO (plind): bad ABI stuff, refactor or remove. id:2331
     // We use a char buffer to get around the strict-aliasing rules which
     // otherwise allow the compiler to optimize away the copy.
     char buffer[sizeof(*x)];
@@ -1628,7 +1628,7 @@ int64_t Simulator::get_pc() const {
 // executed in the simulator.  Since the host is typically IA32 we will not
 // get the correct MIPS-like behaviour on unaligned accesses.
 
-// TODO(plind): refactor this messy debug code when we do unaligned access.
+// TODO (plind): refactor this messy debug code when we do unaligned access. id:2350
 void Simulator::DieOrDebug() {
   if (1) {  // Flag for this was removed.
     MipsDebugger dbg(this);
@@ -1774,7 +1774,7 @@ void Simulator::TraceMSARegWr(T* value) {
   }
 }
 
-// TODO(plind): consider making icount_ printing a flag option.
+// TODO (plind): consider making icount_ printing a flag option. id:1985
 void Simulator::TraceMemRd(int64_t addr, int64_t value, TraceType t) {
   if (::v8::internal::FLAG_trace_sim) {
     union {
@@ -1848,7 +1848,7 @@ void Simulator::TraceMemWr(int64_t addr, int64_t value, TraceType t) {
 }
 
 
-// TODO(plind): sign-extend and zero-extend not implmented properly
+// TODO (plind): sign-extend and zero-extend not implmented properly id:3132
 // on all the ReadXX functions, I don't think re-interpret cast does it.
 int32_t Simulator::ReadW(int64_t addr, Instruction* instr, TraceType t) {
   if (addr >=0 && addr < 0x400) {
@@ -4075,7 +4075,7 @@ void Simulator::DecodeTypeRegisterSPECIAL() {
       do_interrupt = rs() != rt();
       break;
     case SYNC:
-      // TODO(palfia): Ignore sync instruction for now.
+      // TODO (palfia): Ignore sync instruction for now. id:2193
       break;
     // Conditional moves.
     case MOVN:
@@ -6003,7 +6003,7 @@ int64_t Simulator::Call(byte* entry, int argument_count, ...) {
   set_register(a3, va_arg(parameters, int64_t));
 
   // Up to eight arguments passed in registers in N64 ABI.
-  // TODO(plind): N64 ABI calls these regs a4 - a7. Clarify this.
+  // TODO (plind): N64 ABI calls these regs a4 - a7. Clarify this. id:2334
   if (argument_count >= 5) set_register(a4, va_arg(parameters, int64_t));
   if (argument_count >= 6) set_register(a5, va_arg(parameters, int64_t));
   if (argument_count >= 7) set_register(a6, va_arg(parameters, int64_t));

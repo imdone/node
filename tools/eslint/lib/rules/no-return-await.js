@@ -17,7 +17,7 @@ module.exports = {
         docs: {
             description: "disallow unnecessary `return await`",
             category: "Best Practices",
-            recommended: false // TODO: set to true
+            recommended: false // TODO: set to true id:4083
         },
         fixable: null,
         schema: [

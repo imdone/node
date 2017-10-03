@@ -205,7 +205,7 @@ ASN1_VALUE **asn1_get_field_ptr(ASN1_VALUE **pval, const ASN1_TEMPLATE *tt)
         return pval;
     pvaltmp = offset2ptr(*pval, tt->offset);
     /*
-     * NOTE for BOOLEAN types the field is just a plain int so we can't
+     * NOTE for BOOLEAN types the field is just a plain int so we can't id:649
      * return int **, so settle for (int *).
      */
     return pvaltmp;
@@ -260,7 +260,7 @@ const ASN1_TEMPLATE *asn1_do_adb(ASN1_VALUE **pval, const ASN1_TEMPLATE *tt,
         if (atbl->value == selector)
             return &atbl->tt;
 
-    /* FIXME: need to search application table too */
+    /* FIXME: need to search application table too  id:607*/
 
     /* No match, return default type */
     if (!adb->default_tt)
@@ -268,7 +268,7 @@ const ASN1_TEMPLATE *asn1_do_adb(ASN1_VALUE **pval, const ASN1_TEMPLATE *tt,
     return adb->default_tt;
 
  err:
-    /* FIXME: should log the value or OID of unsupported type */
+    /* FIXME: should log the value or OID of unsupported type  id:1094*/
     if (nullerr)
         ASN1err(ASN1_F_ASN1_DO_ADB, ASN1_R_UNSUPPORTED_ANY_DEFINED_BY_TYPE);
     return NULL;

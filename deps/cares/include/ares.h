@@ -230,7 +230,7 @@ typedef void (*ares_sock_state_cb)(void *data,
 
 struct apattern;
 
-/* NOTE about the ares_options struct to users and developers.
+/* NOTE about the ares_options struct to users and developers. id:19
 
    This struct will remain looking like this. It will not be extended nor
    shrunk in future releases, but all new options will be set by ares_set_*()
@@ -473,7 +473,7 @@ CARES_EXTERN int ares_expand_string(const unsigned char *encoded,
                                     long *enclen);
 
 /*
- * NOTE: before c-ares 1.7.0 we would most often use the system in6_addr
+ * NOTE: before c-ares 1.7.0 we would most often use the system in6_addr id:1
  * struct below when ares itself was built, but many apps would use this
  * private version since the header checked a HAVE_* define for it. Starting
  * with 1.7.0 we always declare and use our own to stop relying on the
@@ -515,7 +515,7 @@ struct ares_txt_reply {
   size_t                  length;  /* length excludes null termination */
 };
 
-/* NOTE: This structure is a superset of ares_txt_reply
+/* NOTE: This structure is a superset of ares_txt_reply id:4
  */
 struct ares_txt_ext {
   struct ares_txt_ext      *next;

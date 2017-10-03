@@ -290,7 +290,7 @@ void Int64Lowering::LowerNode(Node* node) {
       break;
     }
     case IrOpcode::kCall: {
-      // TODO(turbofan): Make wasm code const-correct wrt. CallDescriptor.
+      // TODO (turbofan): Make wasm code const-correct wrt. CallDescriptor. id:1875
       CallDescriptor* descriptor =
           const_cast<CallDescriptor*>(CallDescriptorOf(node->op()));
       if (DefaultLowering(node) ||
@@ -422,7 +422,7 @@ void Int64Lowering::LowerNode(Node* node) {
       break;
     }
     case IrOpcode::kWord64Shl: {
-      // TODO(turbofan): if the shift count >= 32, then we can set the low word
+      // TODO (turbofan): if the shift count >= 32, then we can set the low word id:1722
       // of the output to 0 and just calculate the high word.
       DCHECK(node->InputCount() == 2);
       Node* shift = node->InputAt(1);
@@ -446,7 +446,7 @@ void Int64Lowering::LowerNode(Node* node) {
       break;
     }
     case IrOpcode::kWord64Shr: {
-      // TODO(turbofan): if the shift count >= 32, then we can set the low word
+      // TODO (turbofan): if the shift count >= 32, then we can set the low word id:1300
       // of the output to 0 and just calculate the high word.
       DCHECK(node->InputCount() == 2);
       Node* shift = node->InputAt(1);
@@ -470,7 +470,7 @@ void Int64Lowering::LowerNode(Node* node) {
       break;
     }
     case IrOpcode::kWord64Sar: {
-      // TODO(turbofan): if the shift count >= 32, then we can set the low word
+      // TODO (turbofan): if the shift count >= 32, then we can set the low word id:2241
       // of the output to 0 and just calculate the high word.
       DCHECK(node->InputCount() == 2);
       Node* shift = node->InputAt(1);
@@ -498,7 +498,7 @@ void Int64Lowering::LowerNode(Node* node) {
       Node* left = node->InputAt(0);
       Node* right = node->InputAt(1);
 
-      // TODO(wasm): Use explicit comparisons and && here?
+      // TODO (wasm): Use explicit comparisons and && here? id:1761
       Node* replacement = graph()->NewNode(
           machine()->Word32Equal(),
           graph()->NewNode(
@@ -800,7 +800,7 @@ void Int64Lowering::LowerNode(Node* node) {
           const_cast<CallDescriptor*>(CallDescriptorOf(call->op()));
       for (size_t i = 0; i < descriptor->ReturnCount(); i++) {
         if (descriptor->GetReturnType(i) == MachineType::Int64()) {
-          UNREACHABLE();  // TODO(titzer): implement multiple i64 returns.
+          UNREACHABLE();  // TODO (titzer): implement multiple i64 returns. id:1877
         }
       }
       break;

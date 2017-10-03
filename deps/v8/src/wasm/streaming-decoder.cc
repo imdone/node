@@ -248,7 +248,7 @@ StreamingDecoder::DecodeVarInt32::Next(StreamingDecoder* streaming) {
 #define BYTES(x) (x & 0xff), (x >> 8) & 0xff, (x >> 16) & 0xff, (x >> 24) & 0xff
 // Decode the module header. The error state of the decoder stores the result.
 void StreamingDecoder::DecodeModuleHeader::CheckHeader(Decoder* decoder) {
-  // TODO(ahaas): Share code with the module-decoder.
+  // TODO (ahaas): Share code with the module-decoder. id:3039
   decoder->Reset(buffer(), buffer() + size());
   uint32_t magic_word = decoder->consume_u32("wasm magic");
   if (magic_word != kWasmMagic) {
@@ -351,7 +351,7 @@ StreamingDecoder::DecodeFunctionLength::NextWithValue(
 
 std::unique_ptr<StreamingDecoder::DecodingState>
 StreamingDecoder::DecodeFunctionBody::Next(StreamingDecoder* streaming) {
-  // TODO(ahaas): Start compilation of the function here.
+  // TODO (ahaas): Start compilation of the function here. id:3256
   if (num_remaining_functions() != 0) {
     return base::make_unique<DecodeFunctionLength>(
         section_buffer(), buffer_offset() + size(), num_remaining_functions());

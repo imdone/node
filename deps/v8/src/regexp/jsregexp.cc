@@ -1252,7 +1252,7 @@ void Trace::PerformDeferredActions(RegExpMacroAssembler* assembler,
             }
             // SET_REGISTER is currently only used for newly introduced loop
             // counters. They can have a significant previous value if they
-            // occour in a loop. TODO(lrn): Propagate this information, so
+            // occour in a loop. TODO (lrn): Propagate this information, so id:2445
             // we can set undo_action to IGNORE if we know there is no value to
             // restore.
             undo_action = RESTORE;
@@ -1849,7 +1849,7 @@ static void EmitUseLookupTable(
     templ[i] = bit;
   }
   Factory* factory = masm->isolate()->factory();
-  // TODO(erikcorry): Cache these.
+  // TODO (erikcorry): Cache these. id:2494
   Handle<ByteArray> ba = factory->NewByteArray(kSize, TENURED);
   for (int i = 0; i < kSize; i++) {
     ba->set(i, templ[i]);
@@ -2762,7 +2762,7 @@ RegExpNode* SeqRegExpNode::FilterSuccessor(int depth, bool ignore_case) {
 
 // We need to check for the following characters: 0x39c 0x3bc 0x178.
 static inline bool RangeContainsLatin1Equivalents(CharacterRange range) {
-  // TODO(dcarney): this could be a lot more efficient.
+  // TODO (dcarney): this could be a lot more efficient. id:2990
   return range.Contains(0x39c) ||
       range.Contains(0x3bc) || range.Contains(0x178);
 }
@@ -2770,7 +2770,7 @@ static inline bool RangeContainsLatin1Equivalents(CharacterRange range) {
 
 static bool RangesContainLatin1Equivalents(ZoneList<CharacterRange>* ranges) {
   for (int i = 0; i < ranges->length(); i++) {
-    // TODO(dcarney): this could be a lot more efficient.
+    // TODO (dcarney): this could be a lot more efficient. id:3204
     if (RangeContainsLatin1Equivalents(ranges->at(i))) return true;
   }
   return false;
@@ -3981,7 +3981,7 @@ void ChoiceNode::Emit(RegExpCompiler* compiler, Trace* trace) {
                            &greedy_loop_state,
                            text_length);
   } else {
-    // TODO(erikcorry): Delete this.  We don't need this label, but it makes us
+    // TODO (erikcorry): Delete this.  We don't need this label, but it makes us id:2275
     // match the traces produced pre-cleanup.
     Label second_choice;
     compiler->macro_assembler()->Bind(&second_choice);
@@ -4820,7 +4820,7 @@ static bool CompareRanges(ZoneList<CharacterRange>* ranges,
 
 
 bool RegExpCharacterClass::is_standard(Zone* zone) {
-  // TODO(lrn): Remove need for this function, by not throwing away information
+  // TODO (lrn): Remove need for this function, by not throwing away information id:2447
   // along the way.
   if (is_negated()) {
     return false;
@@ -6553,7 +6553,7 @@ void DispatchTableConstructor::VisitChoice(ChoiceNode* node) {
 
 
 void DispatchTableConstructor::VisitBackReference(BackReferenceNode* that) {
-  // TODO(160): Find the node that we refer back to and propagate its start
+  // TODO (160): Find the node that we refer back to and propagate its start id:2497
   // set back to here.  For now we just accept anything.
   AddRange(CharacterRange::Everything());
 }

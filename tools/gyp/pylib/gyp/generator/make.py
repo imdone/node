@@ -15,7 +15,7 @@
 # that you're not relying on a variable value to last beween different
 # .mk files.
 #
-# TODOs:
+# TODO s: id:3436
 #
 # Global settings and utility functions are currently stuffed in the
 # toplevel Makefile.  It may make sense to generate some .mk files on
@@ -288,7 +288,7 @@ AR.target ?= $(AR)
 # C++ apps need to be linked with g++.
 LINK ?= $(CXX.target)
 
-# TODO(evan): move all cross-compilation logic to gyp-time so we don't need
+# TODO (evan): move all cross-compilation logic to gyp-time so we don't need id:3739
 # to replicate this environment fallback in make as well.
 CC.host ?= %(CC.host)s
 CFLAGS.host ?= $(CPPFLAGS_host) $(CFLAGS_host)
@@ -629,7 +629,7 @@ def QuoteSpaces(s, quote=r'\ '):
   return s.replace(' ', quote)
 
 
-# TODO: Avoid code duplication with _ValidateSourcesForMSVSProject in msvs.py.
+# TODO: Avoid code duplication with _ValidateSourcesForMSVSProject in msvs.py. id:4101
 def _ValidateSourcesForOSX(spec, all_sources):
   """Makes sure if duplicate basenames are not specified in the source list.
 
@@ -920,7 +920,7 @@ $(obj).$(TOOLSET)/$(TARGET)/%%.o: $(obj)/%%%s FORCE_DO_CMD
       # actions run on the host, so they should in theory only use host
       # libraries, but until everything is made cross-compile safe, also use
       # target libraries.
-      # TODO(piman): when everything is cross-compile safe, remove lib.target
+      # TODO (piman): when everything is cross-compile safe, remove lib.target id:4031
       self.WriteLn('cmd_%s = LD_LIBRARY_PATH=$(builddir)/lib.host:'
                    '$(builddir)/lib.target:$$LD_LIBRARY_PATH; '
                    'export LD_LIBRARY_PATH; '
@@ -1005,7 +1005,7 @@ $(obj).$(TOOLSET)/$(TARGET)/%%.o: $(obj)/%%%s FORCE_DO_CMD
         actions = ['$(call do_cmd,%s_%d)' % (name, count)]
 
         if name == 'resources_grit':
-          # HACK: This is ugly.  Grit intentionally doesn't touch the
+          # HACK: This is ugly.  Grit intentionally doesn't touch the id:3271
           # timestamp of its output file when the file doesn't change,
           # which is fine in hash-based dependency systems like scons
           # and forge, but not kosher in the make world.  After some
@@ -1061,7 +1061,7 @@ $(obj).$(TOOLSET)/$(TARGET)/%%.o: $(obj)/%%%s FORCE_DO_CMD
         # rules run on the host, so they should in theory only use host
         # libraries, but until everything is made cross-compile safe, also use
         # target libraries.
-        # TODO(piman): when everything is cross-compile safe, remove lib.target
+        # TODO (piman): when everything is cross-compile safe, remove lib.target id:3439
         self.WriteLn(
             "cmd_%(name)s_%(count)d = LD_LIBRARY_PATH="
               "$(builddir)/lib.host:$(builddir)/lib.target:$$LD_LIBRARY_PATH; "
@@ -1420,7 +1420,7 @@ $(obj).$(TOOLSET)/$(TARGET)/%%.o: $(obj)/%%%s FORCE_DO_CMD
         if dep in target_link_deps:
           link_deps.append(target_link_deps[dep])
       deps.extend(link_deps)
-      # TODO: It seems we need to transitively link in libraries (e.g. -lfoo)?
+      # TODO: It seems we need to transitively link in libraries (e.g. -lfoo)? id:3742
       # This hack makes it work:
       # link_deps.extend(spec.get('libraries', []))
     return (gyp.common.uniquer(deps), gyp.common.uniquer(link_deps))
@@ -1736,7 +1736,7 @@ $(obj).$(TOOLSET)/$(TARGET)/%%.o: $(obj)/%%%s FORCE_DO_CMD
 
     if order_only:
       # Order only rule: Just write a simple rule.
-      # TODO(evanm): just make order_only a list of deps instead of this hack.
+      # TODO (evanm): just make order_only a list of deps instead of this hack. id:4102
       self.WriteLn('%s: | %s%s' %
                    (' '.join(outputs), ' '.join(inputs), force_append))
     elif len(outputs) == 1:
@@ -1864,7 +1864,7 @@ $(obj).$(TOOLSET)/$(TARGET)/%%.o: $(obj)/%%%s FORCE_DO_CMD
 
   def GetSortedXcodePostbuildEnv(self):
     # CHROMIUM_STRIP_SAVE_FILE is a chromium-specific hack.
-    # TODO(thakis): It would be nice to have some general mechanism instead.
+    # TODO (thakis): It would be nice to have some general mechanism instead. id:4034
     strip_save_file = self.xcode_settings.GetPerTargetSetting(
         'CHROMIUM_STRIP_SAVE_FILE', '')
     # Even if strip_save_file is empty, explicitly write it. Else a postbuild
@@ -1997,7 +1997,7 @@ def GenerateOutput(target_list, target_dicts, data, params):
                                         options.toplevel_dir)
     return base_path, output_file
 
-  # TODO:  search for the first non-'Default' target.  This can go
+  # TODO: search for the first non-'Default' target.  This can go id:3272
   # away when we add verification that all targets have the
   # necessary configurations.
   default_configuration = None
@@ -2107,7 +2107,7 @@ def GenerateOutput(target_list, target_dicts, data, params):
       make_global_settings += 'endif\n'
     else:
       make_global_settings += '%s ?= %s\n' % (key, value)
-  # TODO(ukai): define cmd when only wrapper is specified in
+  # TODO (ukai): define cmd when only wrapper is specified in id:3443
   # make_global_settings.
 
   header_params['make_global_settings'] = make_global_settings

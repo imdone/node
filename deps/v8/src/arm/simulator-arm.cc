@@ -818,7 +818,7 @@ Simulator* Simulator::current(Isolate* isolate) {
 
   Simulator* sim = isolate_data->simulator();
   if (sim == NULL) {
-    // TODO(146): delete the simulator object when a thread/isolate goes away.
+    // TODO (146): delete the simulator object when a thread/isolate goes away. id:1031
     sim = new Simulator(isolate);
     isolate_data->set_simulator(sim);
   }
@@ -5580,7 +5580,7 @@ void Simulator::DecodeSpecialCondition(Instruction* instr) {
         // pld: ignore instruction.
       } else if (instr->SpecialValue() == 0xA && instr->Bits(22, 20) == 7) {
         // dsb, dmb, isb: ignore instruction for now.
-        // TODO(binji): implement
+        // TODO (binji): implement id:991
         // Also refer to the ARMv6 CP15 equivalents in DecodeTypeCP15.
       } else {
         UNIMPLEMENTED();

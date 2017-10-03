@@ -215,7 +215,7 @@ STACK_OF(OPENSSL_BLOCK) *d2i_ASN1_SET(STACK_OF(OPENSSL_BLOCK) **a,
         if (M_ASN1_D2I_end_sequence())
             break;
         /*
-         * XXX: This was called with 4 arguments, incorrectly, it seems if
+         * XXX: This was called with 4 arguments, incorrectly, it seems if id:947
          * ((s=func(NULL,&c.p,c.slen,c.max-c.p)) == NULL)
          */
         if ((s = d2i(NULL, &c.p, c.slen)) == NULL) {

@@ -82,7 +82,7 @@ DictionaryBreakEngine::findBreaks( UText *text,
     }
     else {
         while((current = (int32_t)utext_getNativeIndex(text)) < endPos && fSet.contains(c)) {
-            utext_next32(text);         // TODO:  recast loop for postincrement
+            utext_next32(text);         // TODO: recast loop for postincrement id:58
             c = utext_current32(text);
         }
         rangeStart = start;
@@ -118,7 +118,7 @@ static const int32_t POSSIBLE_WORD_LIST_MAX = 20;
 class PossibleWord {
 private:
     // list of word candidate lengths, in increasing length order
-    // TODO: bytes would be sufficient for word lengths.
+    // TODO: bytes would be sufficient for word lengths. id:31
     int32_t   count;      // Count of candidates
     int32_t   prefix;     // The longest match with a dictionary word
     int32_t   offset;     // Offset in the text of these candidates
@@ -154,7 +154,7 @@ public:
 
 
 int32_t PossibleWord::candidates( UText *text, DictionaryMatcher *dict, int32_t rangeEnd ) {
-    // TODO: If getIndex is too slow, use offset < 0 and add discardAll()
+    // TODO: If getIndex is too slow, use offset < 0 and add discardAll() id:145
     int32_t start = (int32_t)utext_getNativeIndex(text);
     if (start != offset) {
         offset = start;
@@ -348,7 +348,7 @@ foundBest:
                     uc = utext_current32(text);
                     if (fEndWordSet.contains(pc) && fBeginWordSet.contains(uc)) {
                         // Maybe. See if it's in the dictionary.
-                        // NOTE: In the original Apple code, checked that the next
+                        // NOTE: In the original Apple code, checked that the next id:54
                         // two characters after uc were not 0x0E4C THANTHAKHAT before
                         // checking the dictionary. That is just a performance filter,
                         // but it's not clear it's faster than checking the trie.
@@ -581,7 +581,7 @@ foundBest:
                     uc = utext_current32(text);
                     if (fEndWordSet.contains(pc) && fBeginWordSet.contains(uc)) {
                         // Maybe. See if it's in the dictionary.
-                        // TODO: this looks iffy; compare with old code.
+                        // TODO: this looks iffy; compare with old code. id:60
                         int32_t candidates = words[(wordsFound + 1) % LAO_LOOKAHEAD].candidates(text, fDictionary, rangeEnd);
                         utext_setNativeIndex(text, current + cuWordLength + chars);
                         if (candidates > 0) {
@@ -774,7 +774,7 @@ foundBest:
                     uc = utext_current32(text);
                     if (fEndWordSet.contains(pc) && fBeginWordSet.contains(uc)) {
                         // Maybe. See if it's in the dictionary.
-                        // TODO: this looks iffy; compare with old code.
+                        // TODO: this looks iffy; compare with old code. id:61
                         int32_t candidates = words[(wordsFound + 1) % BURMESE_LOOKAHEAD].candidates(text, fDictionary, rangeEnd);
                         utext_setNativeIndex(text, current + cuWordLength + chars);
                         if (candidates > 0) {
@@ -1104,7 +1104,7 @@ static const int32_t kMaxKatakanaGroupLength = 20;
 static const uint32_t maxSnlp = 255;
 
 static inline uint32_t getKatakanaCost(int32_t wordLength){
-    //TODO: fill array with actual values from dictionary!
+    //TODO: fill array with actual values from dictionary! id:34
     static const uint32_t katakanaCost[kMaxKatakanaLength + 1]
                                        = {8192, 984, 408, 240, 204, 252, 300, 372, 480};
     return (wordLength > kMaxKatakanaLength) ? 8192 : katakanaCost[wordLength];

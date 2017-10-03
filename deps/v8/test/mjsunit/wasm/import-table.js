@@ -231,7 +231,7 @@ function testCallBinopVoid(type, func, check) {
 
 
 testCallBinopVoid(kWasmI32);
-// TODO testCallBinopVoid(kWasmI64);
+// TODO testCallBinopVoid(kWasmI64); id:3162
 testCallBinopVoid(kWasmF32);
 testCallBinopVoid(kWasmF64);
 
@@ -297,5 +297,5 @@ function testImportName(name) {
 testImportName("bla");
 testImportName("0");
 testImportName("  a @#$2 324 ");
-// TODO(bradnelson): This should succeed.
+// TODO (bradnelson): This should succeed. id:3516
 // testImportName("");

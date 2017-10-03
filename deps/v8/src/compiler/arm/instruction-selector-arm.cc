@@ -460,7 +460,7 @@ void InstructionSelector::VisitLoad(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedLoad(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:1638
   UNIMPLEMENTED();
 }
 
@@ -551,7 +551,7 @@ void InstructionSelector::VisitStore(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedStore(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:1243
   UNIMPLEMENTED();
 }
 

@@ -169,9 +169,9 @@ sub E_CAST {
     &mov(	$tmp2,		&DWP($S4,"",$tmp4,4));
 
     &$OP1(	$tmp1,		$tmp2);
-    # XXX
+    # XXX id:981
 
     &xor(	$L,		$tmp1);
-    # XXX
+    # XXX id:1033
 }
 

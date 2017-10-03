@@ -27,7 +27,7 @@
 
 // Tests time zone support.
 
-// TODO(littledan): getDefaultTimeZone() is not available from JavaScript
+// TODO (littledan): getDefaultTimeZone() is not available from JavaScript id:3512
 // var df = Intl.DateTimeFormat();
 // assertEquals(getDefaultTimeZone(), df.resolvedOptions().timeZone);
 

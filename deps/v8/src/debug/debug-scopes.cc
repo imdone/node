@@ -535,7 +535,7 @@ void ScopeIterator::MaterializeStackLocals(Handle<JSObject> local_scope,
     if (ScopeInfo::VariableIsSynthetic(*name)) continue;
     Handle<Object> value(register_file->get(scope_info->StackLocalIndex(i)),
                          isolate_);
-    // TODO(yangguo): We convert optimized out values to {undefined} when they
+    // TODO (yangguo): We convert optimized out values to {undefined} when they id:2010
     // are passed to the debugger. Eventually we should handle them somehow.
     if (value->IsTheHole(isolate_) || value->IsOptimizedOut(isolate_)) {
       DCHECK(!value.is_identical_to(isolate_->factory()->stale_register()));
@@ -732,7 +732,7 @@ bool ScopeIterator::SetContextVariableValue(Handle<ScopeInfo> scope_info,
     }
   }
 
-  // TODO(neis): Clean up context "extension" mess.
+  // TODO (neis): Clean up context "extension" mess. id:2056
   if (!context->IsModuleContext() && context->has_extension()) {
     Handle<JSObject> ext(context->extension_object());
     Maybe<bool> maybe = JSReceiver::HasOwnProperty(ext, variable_name);
@@ -880,7 +880,7 @@ void ScopeIterator::CopyContextLocalsToScopeObject(
     // Reflect variables under TDZ as undefined in scope object.
     if (value->IsTheHole(isolate)) continue;
     // This should always succeed.
-    // TODO(verwaest): Use AddDataProperty instead.
+    // TODO (verwaest): Use AddDataProperty instead. id:2023
     JSObject::SetOwnPropertyIgnoreAttributes(scope_object, name, value, NONE)
         .Check();
   }
@@ -909,7 +909,7 @@ void ScopeIterator::CopyModuleVarsToScopeObject(Handle<ScopeInfo> scope_info,
     // Reflect variables under TDZ as undefined in scope object.
     if (value->IsTheHole(isolate)) continue;
     // This should always succeed.
-    // TODO(verwaest): Use AddDataProperty instead.
+    // TODO (verwaest): Use AddDataProperty instead. id:1562
     JSObject::SetOwnPropertyIgnoreAttributes(scope_object, local_name, value,
                                              NONE)
         .Check();

@@ -445,7 +445,7 @@ Response V8Debugger::continueToLocation(
       DCHECK(m_continueToLocationStack);
     }
     continueProgram(targetContextGroupId);
-    // TODO(kozyatinskiy): Return actual line and column number.
+    // TODO (kozyatinskiy): Return actual line and column number. id:2176
     return Response::OK();
   } else {
     return Response::Error("Cannot continue to specified location");
@@ -797,7 +797,7 @@ void V8Debugger::PromiseEventOccurred(v8::debug::PromiseDebugActionType type,
 }
 
 std::shared_ptr<AsyncStackTrace> V8Debugger::currentAsyncParent() {
-  // TODO(kozyatinskiy): implement creation chain as parent without hack.
+  // TODO (kozyatinskiy): implement creation chain as parent without hack. id:1708
   if (!m_currentAsyncCreation.empty() && m_currentAsyncCreation.back()) {
     return m_currentAsyncCreation.back();
   }
@@ -963,7 +963,7 @@ void V8Debugger::setAsyncCallStackDepth(V8DebuggerAgentImpl* agent, int depth) {
   }
 
   if (m_maxAsyncCallStackDepth == maxAsyncCallStackDepth) return;
-  // TODO(dgozman): ideally, this should be per context group.
+  // TODO (dgozman): ideally, this should be per context group. id:3075
   m_maxAsyncCallStackDepth = maxAsyncCallStackDepth;
   if (!maxAsyncCallStackDepth) allAsyncTasksCanceled();
 }
@@ -1050,7 +1050,7 @@ void V8Debugger::asyncTaskStartedForStack(void* task) {
   auto itCreation = m_asyncTaskCreationStacks.find(task);
   if (itCreation != m_asyncTaskCreationStacks.end()) {
     m_currentAsyncCreation.push_back(itCreation->second.lock());
-    // TODO(kozyatinskiy): implement it without hack.
+    // TODO (kozyatinskiy): implement it without hack. id:2091
     if (m_currentAsyncParent.back()) {
       m_currentAsyncCreation.back()->setDescription(
           m_currentAsyncParent.back()->description());
@@ -1193,7 +1193,7 @@ std::shared_ptr<StackFrame> V8Debugger::symbolize(
   }
   if (it != m_framesCache.end() && it->second.lock()) return it->second.lock();
   std::shared_ptr<StackFrame> frame(new StackFrame(v8Frame));
-  // TODO(clemensh): Figure out a way to do this translation only right before
+  // TODO (clemensh): Figure out a way to do this translation only right before id:2227
   // sending the stack trace over wire.
   if (v8Frame->IsWasm()) frame->translate(&m_wasmTranslation);
   if (m_maxAsyncCallStackDepth) {

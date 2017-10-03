@@ -60,7 +60,7 @@
 #include <assert.h>
 
 /*
- * NOTE: the IV/counter CTR mode is big-endian.  The code itself is
+ * NOTE: the IV/counter CTR mode is big-endian.  The code itself is id:796
  * endian-neutral.
  */
 

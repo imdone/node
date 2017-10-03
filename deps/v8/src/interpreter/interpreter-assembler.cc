@@ -149,7 +149,7 @@ void InterpreterAssembler::GotoIfHasContextExtensionUpToDepth(Node* context,
   Goto(&context_search);
   BIND(&context_search);
   {
-    // TODO(leszeks): We only need to do this check if the context had a sloppy
+    // TODO (leszeks): We only need to do this check if the context had a sloppy id:2291
     // eval, we could pass in a context chain bitmask to figure out which
     // contexts actually need to be checked.
 
@@ -1115,7 +1115,7 @@ Node* InterpreterAssembler::DispatchToBytecode(Node* target_bytecode,
 
 Node* InterpreterAssembler::DispatchToBytecodeHandler(Node* handler,
                                                       Node* bytecode_offset) {
-  // TODO(ishell): Add CSA::CodeEntryPoint(code).
+  // TODO (ishell): Add CSA::CodeEntryPoint(code). id:1757
   Node* handler_entry =
       IntPtrAdd(BitcastTaggedToWord(handler),
                 IntPtrConstant(Code::kHeaderSize - kHeapObjectTag));
@@ -1253,7 +1253,7 @@ Node* InterpreterAssembler::TruncateTaggedToWord32WithFeedback(
 }
 
 void InterpreterAssembler::UpdateInterruptBudgetOnReturn() {
-  // TODO(rmcilroy): Investigate whether it is worth supporting self
+  // TODO (rmcilroy): Investigate whether it is worth supporting self id:3097
   // optimization of primitive functions like FullCodegen.
 
   // Update profiling count by the number of bytes between the end of the

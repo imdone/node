@@ -534,7 +534,7 @@ static void U_CALLCONV initDefault()
         return;
     }
 
-    // NOTE:  this code is safely single threaded, being only
+    // NOTE: this code is safely single threaded, being only id:285
     // run via umtx_initOnce().
     //
     // Some of the locale/timezone OS functions may not be thread safe,

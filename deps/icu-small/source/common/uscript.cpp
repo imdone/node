@@ -91,7 +91,7 @@ getCodesFromLocale(const char *locale,
     return 0;
 }
 
-/* TODO: this is a bad API and should be deprecated, ticket #11141 */
+/* TODO: this is a bad API and should be deprecated, ticket #11141  id:138*/
 U_CAPI int32_t  U_EXPORT2
 uscript_getCode(const char* nameOrAbbrOrLocale,
                 UScriptCode* fillIn,

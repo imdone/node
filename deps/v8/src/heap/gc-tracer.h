@@ -376,11 +376,11 @@ class V8_EXPORT_PRIVATE GCTracer {
   void RecordIncrementalMarkingSpeed(size_t bytes, double duration);
 
   // Print one detailed trace line in name=value format.
-  // TODO(ernstm): Move to Heap.
+  // TODO (ernstm): Move to Heap. id:1653
   void PrintNVP() const;
 
   // Print one trace line.
-  // TODO(ernstm): Move to Heap.
+  // TODO (ernstm): Move to Heap. id:3038
   void Print() const;
 
   // Prints a line and also adds it to the heap's ring buffer so that

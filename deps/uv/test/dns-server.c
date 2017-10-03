@@ -306,21 +306,21 @@ static int dns_start(int port) {
 
   r = uv_tcp_init(loop, &server);
   if (r) {
-    /* TODO: Error codes */
+    /* TODO: Error codes  id:1542*/
     fprintf(stderr, "Socket creation error\n");
     return 1;
   }
 
   r = uv_tcp_bind(&server, (const struct sockaddr*) &addr, 0);
   if (r) {
-    /* TODO: Error codes */
+    /* TODO: Error codes  id:1228*/
     fprintf(stderr, "Bind error\n");
     return 1;
   }
 
   r = uv_listen((uv_stream_t*)&server, 128, on_connection);
   if (r) {
-    /* TODO: Error codes */
+    /* TODO: Error codes  id:1322*/
     fprintf(stderr, "Listen error\n");
     return 1;
   }

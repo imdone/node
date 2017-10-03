@@ -26,15 +26,15 @@
 
 U_NAMESPACE_BEGIN
 
-// TODO: Travis Keep: Copied from numfmt.cpp
+// TODO: Travis Keep: Copied from numfmt.cpp id:284
 static int32_t kDoubleIntegerDigits  = 309;
 static int32_t kDoubleFractionDigits = 340;
 
 
-// TODO: Travis Keep: Copied from numfmt.cpp
+// TODO: Travis Keep: Copied from numfmt.cpp id:408
 static int32_t gDefaultMaxIntegerDigits = 2000000000;
 
-// TODO: Travis Keep: This function was copied from format.cpp
+// TODO: Travis Keep: This function was copied from format.cpp id:554
 static void syntaxError(const UnicodeString& pattern,
                          int32_t pos,
                          UParseError& parseError) {
@@ -148,7 +148,7 @@ DecimalFormatPatternParser::applyPatternWithoutExpandAffix(
     parseError.offset = -1;
     parseError.preContext[0] = parseError.postContext[0] = (UChar)0;
 
-    // TODO: Travis Keep: This won't always work.
+    // TODO: Travis Keep: This won't always work. id:245
     UChar nineDigit = (UChar)(fZeroDigit + 9);
     int32_t digitLen = fDigit.length();
     int32_t groupSepLen = fGroupingSeparator.length();
@@ -638,7 +638,7 @@ DecimalFormatPatternParser::applyPatternWithoutExpandAffix(
         out.fNegPrefixPattern.append(kQuote).append(kPatternMinus)
             .append(out.fPosPrefixPattern);
     }
-    // TODO: Deprecate/Remove out.fNegSuffixPattern and 3 other fields.
+    // TODO: Deprecate/Remove out.fNegSuffixPattern and 3 other fields. id:218
     AffixPattern::parseAffixString(
             out.fNegSuffixPattern, out.fNegSuffixAffix, status);
     AffixPattern::parseAffixString(

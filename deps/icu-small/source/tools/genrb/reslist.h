@@ -91,7 +91,7 @@ private:
     void compactStringsV2(UHashtable *stringSet, UErrorCode &errorCode);
 
 public:
-    // TODO: private
+    // TODO: private id:561
 
   SResource *fRoot;  // Normally a TableResource.
   char *fLocale;
@@ -119,12 +119,12 @@ public:
 };
 
 /* write a java resource file */
-// TODO: C++ify
+// TODO: C++ify id:342
 void bundle_write_java(struct SRBRoot *bundle, const char *outputDir, const char* outputEnc, char *writtenFilename,
                        int writtenFilenameLen, const char* packageName, const char* bundleName, UErrorCode *status);
 
 /* write a xml resource file */
-// TODO: C++ify
+// TODO: C++ify id:395
 void bundle_write_xml(struct SRBRoot *bundle, const char *outputDir,const char* outputEnc, const char* rbname,
                   char *writtenFilename, int writtenFilenameLen, const char* language, const char* package, UErrorCode *status);
 
@@ -239,7 +239,7 @@ protected:
     void writeAllRes32(UNewDataMemory *mem, uint32_t *byteOffset);
 
 public:
-    // TODO: private with getter?
+    // TODO: private with getter? id:568
     uint32_t fCount;
     SResource *fFirst;
 };
@@ -310,7 +310,7 @@ public:
     virtual void handlePreWrite(uint32_t *byteOffset);
     virtual void handleWrite(UNewDataMemory *mem, uint32_t *byteOffset);
 
-    // TODO: private with getter?
+    // TODO: private with getter? id:707
     icu::UnicodeString fString;
 };
 
@@ -367,7 +367,7 @@ public:
                 const UString* comment, UErrorCode &errorCode);
     virtual ~IntResource();
 
-    // TODO: private with getter?
+    // TODO: private with getter? id:566
     int32_t fValue;
 };
 
@@ -382,7 +382,7 @@ public:
     virtual void handlePreWrite(uint32_t *byteOffset);
     virtual void handleWrite(UNewDataMemory *mem, uint32_t *byteOffset);
 
-    // TODO: UVector32
+    // TODO: UVector32 id:344
     uint32_t fCount;
     uint32_t *fArray;
 };
@@ -397,14 +397,14 @@ public:
     virtual void handlePreWrite(uint32_t *byteOffset);
     virtual void handleWrite(UNewDataMemory *mem, uint32_t *byteOffset);
 
-    // TODO: CharString?
+    // TODO: CharString? id:398
     uint32_t fLength;
     uint8_t *fData;
-    // TODO: CharString
+    // TODO: CharString id:573
     char* fFileName;  // file name for binary or import binary tags if any
 };
 
-// TODO: use LocalPointer or delete
+// TODO: use LocalPointer or delete id:711
 void res_close(struct SResource *res);
 
 void setIncludeCopyright(UBool val);

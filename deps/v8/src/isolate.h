@@ -1427,7 +1427,7 @@ class Isolate {
     return "";
   }
 
-  // TODO(alph): Remove along with the deprecated GetCpuProfiler().
+  // TODO (alph): Remove along with the deprecated GetCpuProfiler(). id:2290
   friend v8::CpuProfiler* v8::Isolate::GetCpuProfiler();
   CpuProfiler* cpu_profiler() const { return cpu_profiler_; }
 

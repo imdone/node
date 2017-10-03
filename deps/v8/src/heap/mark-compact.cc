@@ -1133,7 +1133,7 @@ void MinorMarkCompactCollector::CleanupSweepToIteratePages() {
 }
 
 // Visitor class for marking heap roots.
-// TODO(ulan): Remove ObjectVisitor base class after fixing marking of
+// TODO (ulan): Remove ObjectVisitor base class after fixing marking of id:2181
 // the string table and the top optimized code.
 class MarkCompactCollector::RootMarkingVisitor : public ObjectVisitor,
                                                  public RootVisitor {
@@ -2033,7 +2033,7 @@ void MarkCompactCollector::ProcessEphemeralMarking(
                 EmbedderHeapTracer::ForceCompletionAction::FORCE_COMPLETION));
       }
     } else {
-      // TODO(mlippautz): We currently do not trace through blink when
+      // TODO (mlippautz): We currently do not trace through blink when id:2141
       // discovering new objects reachable from weak roots (that have been made
       // strong). This is a limitation of not having a separate handle type
       // that doesn't require zapping before this phase. See crbug.com/668060.
@@ -3193,7 +3193,7 @@ void MarkCompactCollector::ClearWeakCells(Object** non_live_map_list,
       // WeakCell and put into Heap::weak_object_to_code_table.
       // Such cells do not have any strong references but we want to keep them
       // alive as long as the cell value is alive.
-      // TODO(ulan): remove this once we remove Heap::weak_object_to_code_table.
+      // TODO (ulan): remove this once we remove Heap::weak_object_to_code_table. id:1667
       if (value->IsCell()) {
         Object* cell_value = Cell::cast(value)->value();
         if (cell_value->IsHeapObject() &&
@@ -3321,7 +3321,7 @@ static inline SlotCallbackResult UpdateSlot(Object** slot) {
 
 // Visitor for updating root pointers and to-space pointers.
 // It does not expect to encounter pointers to dead objects.
-// TODO(ulan): Remove code object specific functions. This visitor
+// TODO (ulan): Remove code object specific functions. This visitor id:3050
 // nevers visits code objects.
 class PointersUpdatingVisitor : public ObjectVisitor, public RootVisitor {
  public:
@@ -3614,7 +3614,7 @@ void YoungGenerationEvacuator::RawEvacuatePage(Page* page,
           page, state, &new_to_old_page_visitor_,
           LiveObjectVisitor::kKeepMarking);
       new_to_old_page_visitor_.account_moved_bytes(state.live_bytes());
-      // TODO(mlippautz): If cleaning array buffers is too slow here we can
+      // TODO (mlippautz): If cleaning array buffers is too slow here we can id:2069
       // delay it until the next GC.
       ArrayBufferTracker::FreeDead(page, state);
       if (heap()->ShouldZapGarbage()) {
@@ -3633,7 +3633,7 @@ void YoungGenerationEvacuator::RawEvacuatePage(Page* page,
           page, state, &new_to_new_page_visitor_,
           LiveObjectVisitor::kKeepMarking);
       new_to_new_page_visitor_.account_moved_bytes(state.live_bytes());
-      // TODO(mlippautz): If cleaning array buffers is too slow here we can
+      // TODO (mlippautz): If cleaning array buffers is too slow here we can id:2184
       // delay it until the next GC.
       ArrayBufferTracker::FreeDead(page, state);
       if (heap()->ShouldZapGarbage()) {
@@ -4780,7 +4780,7 @@ void MarkCompactCollector::RecordCodeEntrySlot(HeapObject* host, Address slot,
   Page* source_page = Page::FromAddress(reinterpret_cast<Address>(host));
   if (target_page->IsEvacuationCandidate() &&
       !ShouldSkipEvacuationSlotRecording(host)) {
-    // TODO(ulan): remove this check after investigating crbug.com/414964.
+    // TODO (ulan): remove this check after investigating crbug.com/414964. id:2144
     CHECK(target->IsCode());
     RememberedSet<OLD_TO_OLD>::InsertTyped(
         source_page, reinterpret_cast<Address>(host), CODE_ENTRY_SLOT, slot);

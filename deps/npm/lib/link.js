@@ -175,7 +175,7 @@ function resultPrinter (pkg, src, dest, rp, cb) {
   var where = dest
   rp = (rp || '').trim()
   src = (src || '').trim()
-  // XXX If --json is set, then look up the data from the package.json
+  // XXX If --json is set, then look up the data from the package.json id:746
   if (npm.config.get('parseable')) {
     return parseableOutput(dest, rp || src, cb)
   }
@@ -185,7 +185,7 @@ function resultPrinter (pkg, src, dest, rp, cb) {
 }
 
 function parseableOutput (dest, rp, cb) {
-  // XXX this should match ls --parseable and install --parseable
+  // XXX this should match ls --parseable and install --parseable id:621
   // look up the data from package.json, format it the same way.
   //
   // link is always effectively 'long', since it doesn't help much to

@@ -444,7 +444,7 @@ void ConstPool::Emit(bool require_jump) {
   //
   // If executed, the header will likely segfault and lr will point to the
   // instruction following the offending blr.
-  // TODO(all): Make the alignment part less fragile. Currently code is
+  // TODO (all): Make the alignment part less fragile. Currently code is id:1623
   // allocated as a byte array so there are no guarantees the alignment will
   // be preserved on compaction. Currently it works as allocation seems to be
   // 64-bit aligned.
@@ -462,7 +462,7 @@ void ConstPool::Emit(bool require_jump) {
   assm_->Align(8);
 
   // Emit constant pool entries.
-  // TODO(all): currently each relocated constant is 64 bits, consider adding
+  // TODO (all): currently each relocated constant is 64 bits, consider adding id:1295
   // support for 32-bit entries.
   EmitEntries();
   assm_->RecordComment("]");

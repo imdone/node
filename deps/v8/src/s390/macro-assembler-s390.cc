@@ -973,7 +973,7 @@ void TurboAssembler::Prologue(bool code_pre_aging, Register base,
       Call(r2);
       for (int i = 0; i < kNoCodeAgeSequenceLength - kCodeAgingSequenceLength;
            i += 2) {
-        // TODO(joransiu): Create nop function to pad
+        // TODO (joransiu): Create nop function to pad id:3236
         //         (kNoCodeAgeSequenceLength - kCodeAgingSequenceLength) bytes.
         nop();  // 2-byte nops().
       }
@@ -1947,7 +1947,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f, int num_arguments,
   // expectation.
   CHECK(f->nargs < 0 || f->nargs == num_arguments);
 
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:2311
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.

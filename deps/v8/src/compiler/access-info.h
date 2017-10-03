@@ -89,7 +89,7 @@ class PropertyAccessInfo final {
   bool IsNotFound() const { return kind() == kNotFound; }
   bool IsDataConstant() const { return kind() == kDataConstant; }
   bool IsDataField() const { return kind() == kDataField; }
-  // TODO(ishell): rename to IsDataConstant() once constant field tracking
+  // TODO (ishell): rename to IsDataConstant() once constant field tracking id:2173
   // is done.
   bool IsDataConstantField() const { return kind() == kDataConstantField; }
   bool IsAccessorConstant() const { return kind() == kAccessorConstant; }

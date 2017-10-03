@@ -237,7 +237,7 @@ TestCoverage(
 %RunMicrotasks();                         // 0250
 `,
 [{"start":0,"end":299,"count":1},
- {"start":1,"end":201,"count":6},  // TODO(jgruber): Invocation count is off.
+ {"start":1,"end":201,"count":6},  // TODO (jgruber): Invocation count is off. id:3407
  {"start":83,"end":153,"count":4},
  {"start":153,"end":201,"count":1}]
 );
@@ -378,7 +378,7 @@ TestCoverage(
  {"start":219,"end":232,"count":0},
  {"start":264,"end":274,"count":0},
  {"start":369,"end":380,"count":0},
- {"start":403,"end":414,"count":0},  // TODO(jgruber): Include `catch` in range.
+ {"start":403,"end":414,"count":0},  // TODO (jgruber): Include `catch` in range. id:3851
  {"start":513,"end":564,"count":0}]
 );
 
@@ -416,7 +416,7 @@ TestCoverage(
  {"start":284,"end":351,"count":0},
  {"start":401,"end":701,"count":1},
  {"start":569,"end":701,"count":0},
- {"start":561,"end":568,"count":0},  // TODO(jgruber): Sorting.
+ {"start":561,"end":568,"count":0},  // TODO (jgruber): Sorting. id:3682
  {"start":751,"end":1051,"count":1},
  {"start":817,"end":830,"count":0},
  {"start":861,"end":1051,"count":0}]

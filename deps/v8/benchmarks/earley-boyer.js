@@ -1720,7 +1720,7 @@ function sc_dynamicWind(before, thunk, after) {
 }
 
 
-// TODO: eval/scheme-report-environment/null-environment/interaction-environment
+// TODO: eval/scheme-report-environment/null-environment/interaction-environment id:949
 
 // LIMITATION: 'load' doesn't exist without files.
 // LIMITATION: transcript-on/transcript-off doesn't exist without files.
@@ -2051,7 +2051,7 @@ function sc_Trampoline(args, maxTailCalls) {
     this.args = args;
     this.MAX_TAIL_CALLs = maxTailCalls;
 }
-// TODO: call/cc stuff
+// TODO: call/cc stuff id:946
 sc_Trampoline.prototype.restart = function() {
     var o = this;
     while (true) {
@@ -2880,7 +2880,7 @@ function sc_toWriteCircleString(o) {
 }
 
 function sc_prepWriteCircle(o, symb, nbPointer) {
-    // TODO sc_Struct
+    // TODO sc_Struct id:1566
     if (o instanceof sc_Pair ||
 	o instanceof sc_Vector) {
 	if (o[symb] !== undefined) {
@@ -3415,7 +3415,7 @@ function sc_string2keyword(o) {
 
 String.prototype.sc_toDisplayString = function() {
     if (this.charAt(0) === sc_SYMBOL_PREFIX)
-	// TODO: care for symbols with spaces (escape-chars symbols).
+	// TODO: care for symbols with spaces (escape-chars symbols). id:1248
 	return this.slice(1);
     else if (this.charAt(0) === sc_KEYWORD_PREFIX)
 	return ":" + this.slice(1);
@@ -3425,7 +3425,7 @@ String.prototype.sc_toDisplayString = function() {
 
 String.prototype.sc_toWriteString = function() {
     if (this.charAt(0) === sc_SYMBOL_PREFIX)
-	// TODO: care for symbols with spaces (escape-chars symbols).
+	// TODO: care for symbols with spaces (escape-chars symbols). id:1338
 	return this.slice(1);
     else if (this.charAt(0) === sc_KEYWORD_PREFIX)
 	return ":" + this.slice(1);

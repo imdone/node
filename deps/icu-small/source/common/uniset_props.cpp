@@ -310,7 +310,7 @@ isPOSIXClose(const UnicodeString &pattern, int32_t pos) {
     return pattern.charAt(pos)==COLON && pattern.charAt(pos+1)==SET_CLOSE;
 }*/
 
-// TODO memory debugging provided inside uniset.cpp
+// TODO memory debugging provided inside uniset.cpp id:195
 // could be made available here but probably obsolete with use of modern
 // memory leak checker tools
 #define _dbgct(me)
@@ -1157,7 +1157,7 @@ UBool UnicodeSet::resemblesPropertyPattern(const UnicodeString& pattern,
  */
 UBool UnicodeSet::resemblesPropertyPattern(RuleCharacterIterator& chars,
                                            int32_t iterOpts) {
-    // NOTE: literal will always be FALSE, because we don't parse escapes.
+    // NOTE: literal will always be FALSE, because we don't parse escapes. id:127
     UBool result = FALSE, literal;
     UErrorCode ec = U_ZERO_ERROR;
     iterOpts &= ~RuleCharacterIterator::PARSE_ESCAPES;

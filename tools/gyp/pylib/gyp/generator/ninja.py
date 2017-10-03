@@ -417,7 +417,7 @@ class NinjaWriter(object):
     # any of its compile steps.
     actions_depends = []
     compile_depends = []
-    # TODO(evan): it is rather confusing which things are lists and which
+    # TODO (evan): it is rather confusing which things are lists and which id:4044
     # are strings.  Fix these.
     if 'dependencies' in spec:
       for dep in spec['dependencies']:
@@ -660,7 +660,7 @@ class NinjaWriter(object):
       rule_name, args = self.WriteNewNinjaRule(
           name, args, description, is_cygwin, env, pool)
 
-      # TODO: if the command references the outputs directly, we should
+      # TODO: if the command references the outputs directly, we should id:3277
       # simplify it to just use $out.
 
       # Rules can potentially make use of some special variables which
@@ -1116,7 +1116,7 @@ class NinjaWriter(object):
       if not self.is_mac_bundle:
         self.AppendPostbuildVariable(extra_bindings, spec, output, output)
 
-      # TODO(yyanagisawa): more work needed to fix:
+      # TODO (yyanagisawa): more work needed to fix: id:3464
       # https://code.google.com/p/gyp/issues/detail?id=411
       if (spec['type'] in ('shared_library', 'loadable_module') and
           not self.is_mac_bundle):
@@ -1318,7 +1318,7 @@ class NinjaWriter(object):
                           for dep in spec.get('dependencies', [])
                           if dep in self.target_outputs)
     if spec['type'] == 'none' or (not link_deps and not extra_link_deps):
-      # TODO(evan): don't call this function for 'none' target types, as
+      # TODO (evan): don't call this function for 'none' target types, as id:3758
       # it doesn't do anything, and we fake out a 'binary' with a stamp file.
       self.target.binary = compile_deps
       self.target.type = 'none'
@@ -1352,12 +1352,12 @@ class NinjaWriter(object):
                                             order_only=compile_deps,
                                             variables=variables)
             inputs.append(output)
-          # TODO: It's not clear if libtool_flags should be passed to the alink
+          # TODO: It's not clear if libtool_flags should be passed to the alink id:4108
           # call that combines single-arch .a files into a fat .a file.
           self.AppendPostbuildVariable(variables, spec,
                                        self.target.binary, self.target.binary)
           self.ninja.build(self.target.binary, 'alink', inputs,
-                           # FIXME: test proving order_only=compile_deps isn't
+                           # FIXME: test proving order_only=compile_deps isn't id:4046
                            # needed.
                            variables=variables)
     else:
@@ -1414,7 +1414,7 @@ class NinjaWriter(object):
     """Returns the variables Xcode would set for postbuild steps."""
     postbuild_settings = {}
     # CHROMIUM_STRIP_SAVE_FILE is a chromium-specific hack.
-    # TODO(thakis): It would be nice to have some general mechanism instead.
+    # TODO (thakis): It would be nice to have some general mechanism instead. id:3278
     strip_save_file = self.xcode_settings.GetPerTargetSetting(
         'CHROMIUM_STRIP_SAVE_FILE')
     if strip_save_file:
@@ -1600,7 +1600,7 @@ class NinjaWriter(object):
       args = [gyp.xcode_emulation.ExpandEnvVars(arg, env) for arg in args]
       description = gyp.xcode_emulation.ExpandEnvVars(description, env)
 
-    # TODO: we shouldn't need to qualify names; we do it because
+    # TODO: we shouldn't need to qualify names; we do it because id:3466
     # currently the ninja rule namespace is global, but it really
     # should be scoped to the subninja.
     rule_name = self.name
@@ -1792,7 +1792,7 @@ def GetDefaultConcurrentLinks():
     except:
       return 1
   else:
-    # TODO(scottmg): Implement this for other platforms.
+    # TODO (scottmg): Implement this for other platforms. id:3761
     return 1
 
 
@@ -2063,7 +2063,7 @@ def GenerateOutputForConfig(target_list, target_dicts, data, params,
       depfile='$out.d',
       deps=deps)
   else:
-    # TODO(scottmg) Separate pdb names is a test to see if it works around
+    # TODO (scottmg) Separate pdb names is a test to see if it works around id:4109
     # http://crbug.com/142362. It seems there's a race between the creation of
     # the .pdb by the precompiled header step for .cc and the compilation of
     # .c files. This should be handled by mspdbsrv, but rarely errors out with
@@ -2347,11 +2347,11 @@ def GenerateOutputForConfig(target_list, target_dicts, data, params,
 
   # short name of targets that were skipped because they didn't contain anything
   # interesting.
-  # NOTE: there may be overlap between this an non_empty_target_names.
+  # NOTE: there may be overlap between this an non_empty_target_names. id:4048
   empty_target_names = set()
 
   # Set of non-empty short target names.
-  # NOTE: there may be overlap between this an empty_target_names.
+  # NOTE: there may be overlap between this an empty_target_names. id:3279
   non_empty_target_names = set()
 
   for qualified_target in target_list:

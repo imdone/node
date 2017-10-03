@@ -51,7 +51,7 @@ const server = http.createServer((req, res) => {
     server.close();
   }));
 
-  // XXX this bind should not be necessary.
+  // XXX this bind should not be necessary. id:3952
   // the write cb behavior in http/net should use an
   // event so that it picks up the domain handling.
   res.write('HELLO\n', b.bind(() => {

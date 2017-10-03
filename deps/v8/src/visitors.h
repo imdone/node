@@ -45,7 +45,7 @@ enum class Root {
 #define DECLARE_ENUM(enum_item, ignore1, ignore2) enum_item,
   ROOT_ID_LIST(DECLARE_ENUM)
 #undef DECLARE_ENUM
-  // TODO(ulan): Merge with the ROOT_ID_LIST.
+  // TODO (ulan): Merge with the ROOT_ID_LIST. id:2332
   kCodeFlusher,
   kPartialSnapshotCache,
   kWeakCollections
@@ -69,7 +69,7 @@ class RootVisitor BASE_EMBEDDED {
   // Intended for serialization/deserialization checking: insert, or
   // check for the presence of, a tag at this position in the stream.
   // Also used for marking up GC roots in heap snapshots.
-  // TODO(ulan): Remove this.
+  // TODO (ulan): Remove this. id:2498
   virtual void Synchronize(VisitorSynchronization::SyncTag tag) {}
 };
 

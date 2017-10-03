@@ -266,8 +266,8 @@ SimpleFilteredSentenceBreakIterator::breakExceptionAt(int32_t n) {
 
     //if(debug2) u_printf(" n@ %d\n", n);
     // Assume a space is following the '.'  (so we handle the case:  "Mr. /Brown")
-    if((uch=utext_previous32(fText.getAlias()))==(UChar32)0x0020) {  // TODO: skip a class of chars here??
-      // TODO only do this the 1st time?
+    if((uch=utext_previous32(fText.getAlias()))==(UChar32)0x0020) {  // TODO: skip a class of chars here?? id:146
+      // TODO only do this the 1st time? id:57
       //if(debug2) u_printf("skipping prev: |%C| \n", (UChar)uch);
     } else {
       //if(debug2) u_printf("not skipping prev: |%C| \n", (UChar)uch);
@@ -601,7 +601,7 @@ SimpleFilteredBreakIteratorBuilder::build(BreakIterator* adoptBreakIterator, UEr
   }
   // first pass - find partials.
   for(int i=0;i<subCount;i++) {
-    int nn = ustrs[i].indexOf(kFULLSTOP); // TODO: non-'.' abbreviations
+    int nn = ustrs[i].indexOf(kFULLSTOP); // TODO: non-'.' abbreviations id:64
     if(nn>-1 && (nn+1)!=ustrs[i].length()) {
       FB_TRACE("partial",&ustrs[i],FALSE,i);
       // is partial.

@@ -139,7 +139,7 @@ static void freeCurrencyFormat(CURRENCYFMTW *fmt)
     }
 }
 
-// TODO: This is copied in both winnmfmt.cpp and windtfmt.cpp, but really should
+// TODO: This is copied in both winnmfmt.cpp and windtfmt.cpp, but really should id:692
 // be factored out into a common helper for both.
 static UErrorCode GetEquivalentWindowsLocaleName(const Locale& locale, UnicodeString** buffer)
 {
@@ -152,7 +152,7 @@ static UErrorCode GetEquivalentWindowsLocaleName(const Locale& locale, UnicodeSt
     if (U_SUCCESS(status))
     {
         // Need it to be UTF-16, not 8-bit
-        // TODO: This seems like a good thing for a helper
+        // TODO: This seems like a good thing for a helper id:491
         wchar_t bcp47Tag[LOCALE_NAME_MAX_LENGTH] = {};
         int32_t i;
         for (i = 0; i < UPRV_LENGTHOF(bcp47Tag); i++)
@@ -187,7 +187,7 @@ static UErrorCode GetEquivalentWindowsLocaleName(const Locale& locale, UnicodeSt
         // name (like ku vs ckb), and it will also not work for alternate sort locale
         // names like "de-DE-u-co-phonebk".
 
-        // TODO: We could add some sort of exception table for cases like ku vs ckb.
+        // TODO: We could add some sort of exception table for cases like ku vs ckb. id:334
 
         int length = ResolveLocaleName(bcp47Tag, windowsLocaleName, UPRV_LENGTHOF(windowsLocaleName));
 

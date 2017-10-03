@@ -572,7 +572,7 @@ IGNITION_HANDLER(LdaNamedProperty, InterpreterAssembler) {
   Node* recv = LoadRegister(register_index);
 
   // Load the name.
-  // TODO(jgruber): Not needed for monomorphic smi handler constant/field case.
+  // TODO (jgruber): Not needed for monomorphic smi handler constant/field case. id:2108
   Node* constant_index = BytecodeOperandIdx(1);
   Node* name = LoadConstantPoolEntry(constant_index);
 
@@ -2114,7 +2114,7 @@ IGNITION_HANDLER(TestEqualStrictNoFeedback, InterpreterAssembler) {
   Node* reg_index = BytecodeOperandReg(0);
   Node* lhs = LoadRegister(reg_index);
   Node* rhs = GetAccumulator();
-  // TODO(5310): This is called only when lhs and rhs are Smis (for ex:
+  // TODO (5310): This is called only when lhs and rhs are Smis (for ex: id:2260
   // try-finally or generators) or strings (only when visiting
   // ClassLiteralProperties). We should be able to optimize this and not perform
   // the full strict equality.
@@ -2626,7 +2626,7 @@ IGNITION_HANDLER(SwitchOnSmiNoFeedback, InterpreterAssembler) {
   Label fall_through(this);
 
   // The accumulator must be a Smi.
-  // TODO(leszeks): Add a bytecode with type feedback that allows other
+  // TODO (leszeks): Add a bytecode with type feedback that allows other id:2294
   // accumulator values.
   CSA_ASSERT(this, TaggedIsSmi(acc));
 
@@ -2736,7 +2736,7 @@ IGNITION_HANDLER(CreateObjectLiteral, InterpreterAssembler) {
     Node* result = CallRuntime(Runtime::kCreateObjectLiteral, context, closure,
                                literal_index, boilerplate_description, flags);
     StoreRegister(result, BytecodeOperandReg(3));
-    // TODO(klaasb) build a single dispatch once the call is inlined
+    // TODO (klaasb) build a single dispatch once the call is inlined id:1857
     Dispatch();
   }
 }
@@ -2864,7 +2864,7 @@ IGNITION_HANDLER(CreateMappedArguments, InterpreterAssembler) {
   Label if_not_duplicate_parameters(this);
 
   // Check if function has duplicate parameters.
-  // TODO(rmcilroy): Remove this check when FastNewSloppyArgumentsStub supports
+  // TODO (rmcilroy): Remove this check when FastNewSloppyArgumentsStub supports id:3099
   // duplicate parameters.
   Node* shared_info =
       LoadObjectField(closure, JSFunction::kSharedFunctionInfoOffset);

@@ -1072,7 +1072,7 @@ class Literal final : public Expression {
   Handle<Object> value() const { return value_->value(); }
   const AstValue* raw_value() const { return value_; }
 
-  // Support for using Literal as a HashMap key. NOTE: Currently, this works
+  // Support for using Literal as a HashMap key. NOTE: Currently, this works id:1359
   // only for string and number literals!
   uint32_t Hash();
   static bool Match(void* literal1, void* literal2);
@@ -2595,7 +2595,7 @@ class FunctionLiteral final : public Expression {
       : public BitField<bool, HasDuplicateParameters::kNext, 1> {};
   class MustUseIgnitionField
       : public BitField<bool, ShouldNotBeUsedOnceHintField::kNext, 1> {};
-  // TODO(6409): Remove when Full-Codegen dies.
+  // TODO (6409): Remove when Full-Codegen dies. id:1535
   class DontSelfOptimize
       : public BitField<bool, MustUseIgnitionField::kNext, 1> {};
   class DontOptimizeReasonField
@@ -2725,7 +2725,7 @@ class NativeFunctionLiteral final : public Expression {
 
   void AssignFeedbackSlots(FeedbackVectorSpec* spec, LanguageMode language_mode,
                            FeedbackSlotCache* cache) {
-    // TODO(mvstanton): The FeedbackSlotCache can be adapted
+    // TODO (mvstanton): The FeedbackSlotCache can be adapted id:1138
     // to always return the same slot for this case.
     literal_feedback_slot_ = spec->AddCreateClosureSlot();
   }

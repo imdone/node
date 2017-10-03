@@ -47,7 +47,7 @@ function TestArrayBufferCreation() {
   assertThrows(function() { new SharedArrayBuffer(-10); }, RangeError);
   assertThrows(function() { new SharedArrayBuffer(-2.567); }, RangeError);
 
-/* TODO[dslomov]: Reenable the test
+/* TODO [dslomov]: Reenable the test id:2739
   assertThrows(function() {
     var ab1 = new SharedArrayBuffer(0xFFFFFFFFFFFF)
   }, RangeError);
@@ -72,7 +72,7 @@ TestByteLengthNotWritable();
 
 // Typed arrays using SharedArrayBuffers
 
-// TODO(binji): how many of these tests are necessary if there are no new
+// TODO (binji): how many of these tests are necessary if there are no new id:2922
 // TypedArray types?
 
 function MakeSharedTypedArray(constr, numElements) {
@@ -89,7 +89,7 @@ function TestTypedArray(constr, elementSize, typicalElement) {
   assertEquals("[object " + constr.name + "]",
       Object.prototype.toString.call(a0));
 
-  // TODO(binji): Should this return false here? It is a view, but it doesn't
+  // TODO (binji): Should this return false here? It is a view, but it doesn't id:3430
   // view a SharedArrayBuffer...
   assertTrue(SharedArrayBuffer.isView(a0));
   assertSame(elementSize, a0.BYTES_PER_ELEMENT);

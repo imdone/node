@@ -101,7 +101,7 @@ class LocalHandler(SocketServer.BaseRequestHandler):
         sio.write("%s\n" % p)
     sio.write("My own jobs: %d, relative performance: %.2f\n" %
               (self.server.daemon.jobs, self.server.daemon.relative_perf))
-    # Low-priority TODO: Return more information. Ideas:
+    # Low-priority TODO: Return more information. Ideas: id:3257
     #   - currently running anything,
     #   - time since last job,
     #   - time since last repository fetch

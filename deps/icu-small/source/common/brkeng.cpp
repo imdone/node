@@ -94,7 +94,7 @@ UnhandledEngine::findBreaks( UText *text,
         }
         else {
             while((int32_t)utext_getNativeIndex(text) < endPos && fHandled[breakType]->contains(c)) {
-                utext_next32(text);            // TODO:  recast loop to work with post-increment operations.
+                utext_next32(text);            // TODO: recast loop to work with post-increment operations. id:50
                 c = utext_current32(text);
             }
         }
@@ -212,7 +212,7 @@ ICULanguageBreakFactory::loadEngineFor(UChar32 c, int32_t breakType) {
                 engine = new CjkBreakEngine(m, kChineseJapanese, status);
                 break;
 #if 0
-            // TODO: Have to get some characters with script=common handled
+            // TODO: Have to get some characters with script=common handled id:48
             // by CjkBreakEngine (e.g. U+309B). Simply subjecting
             // them to CjkBreakEngine does not work. The engine has to
             // special-case them.

@@ -176,7 +176,7 @@ class String : public Name {
   inline bool IsOneByteRepresentationUnderneath();
   inline bool IsTwoByteRepresentationUnderneath();
 
-  // NOTE: this should be considered only a hint.  False negatives are
+  // NOTE: this should be considered only a hint.  False negatives are id:3180
   // possible.
   inline bool HasOnlyOneByteChars();
 

@@ -1537,7 +1537,7 @@ void V8HeapExplorer::ExtractFixedArrayReferences(int entry, FixedArray* array) {
       }
       break;
 
-    // TODO(alph): Add special processing for other types of FixedArrays.
+    // TODO (alph): Add special processing for other types of FixedArrays. id:3198
 
     default:
       for (int i = 0, l = array->length(); i < l; ++i) {
@@ -2506,7 +2506,7 @@ class NullContextScope {
 bool HeapSnapshotGenerator::GenerateSnapshot() {
   v8_heap_explorer_.TagGlobalObjects();
 
-  // TODO(1562) Profiler assumes that any object that is in the heap after
+  // TODO (1562) Profiler assumes that any object that is in the heap after id:2269
   // full GC is reachable from the root when computing dominators.
   // This is not true for weakly reachable objects.
   // As a temporary solution we call GC twice.

@@ -287,12 +287,12 @@ const int kStubMinorKeyBits = kSmiValueSize - kStubMajorKeyBits - 1;
 // mentioned.  Finally, the string is either a STRING_TYPE (if it is a normal
 // string) or a INTERNALIZED_STRING_TYPE (if it is a internalized string).
 //
-// NOTE: The following things are some that depend on the string types having
+// NOTE: The following things are some that depend on the string types having id:3167
 // instance_types that are less than those of all other types:
 // HeapObject::Size, HeapObject::IterateBody, the typeof operator, and
 // Object::IsString.
 //
-// NOTE: Everything following JS_VALUE_TYPE is considered a
+// NOTE: Everything following JS_VALUE_TYPE is considered a id:2229
 // JSObject for GC purposes. The first four entries here have typeof
 // 'object', whereas JS_FUNCTION_TYPE has typeof 'function'.
 #define INSTANCE_TYPE_LIST(V)                                                  \
@@ -926,7 +926,7 @@ enum FixedArraySubInstanceType {
 };
 
 
-// TODO(bmeurer): Remove this in favor of the ComparisonResult below.
+// TODO (bmeurer): Remove this in favor of the ComparisonResult below. id:2366
 enum CompareResult {
   LESS      = -1,
   EQUAL     =  0,
@@ -1960,7 +1960,7 @@ class JSReceiver: public HeapObject {
   // There are four possible value for the properties offset.
   // 1) EmptyFixedArray -- This is the standard placeholder.
   //
-  // 2) TODO(gsathya): Smi -- This is the hash code of the object.
+  // 2) TODO (gsathya): Smi -- This is the hash code of the object. id:2392
   //
   // 3) PropertyArray - This is similar to a FixedArray but stores
   // the hash code of the object in its length field. This is a fast
@@ -2356,7 +2356,7 @@ class JSObject: public JSReceiver {
       GetPropertyAttributesWithFailedAccessCheck(LookupIterator* it);
 
   // Defines an AccessorPair property on the given object.
-  // TODO(mstarzinger): Rename to SetAccessor().
+  // TODO (mstarzinger): Rename to SetAccessor(). id:2928
   static MaybeHandle<Object> DefineAccessor(Handle<JSObject> object,
                                             Handle<Name> name,
                                             Handle<Object> getter,
@@ -4920,7 +4920,7 @@ class Module : public Struct {
   DECL_ACCESSORS(regular_imports, FixedArray)
 
   // The complete export table, mapping an export name to its cell.
-  // TODO(neis): We may want to remove the regular exports from the table.
+  // TODO (neis): We may want to remove the regular exports from the table. id:3169
   DECL_ACCESSORS(exports, ObjectHashTable)
 
   // Hash for this object (a random non-zero Smi).
@@ -5001,7 +5001,7 @@ class Module : public Struct {
 
   DECL_ACCESSORS(exception, Object)
 
-  // TODO(neis): Don't store those in the module object?
+  // TODO (neis): Don't store those in the module object? id:2232
   DECL_INT_ACCESSORS(dfs_index)
   DECL_INT_ACCESSORS(dfs_ancestor_index)
 
@@ -5565,7 +5565,7 @@ class JSMessageObject: public JSObject {
 
 class JSPromise;
 
-// TODO(caitp): Make this a Struct once properties are no longer accessed from
+// TODO (caitp): Make this a Struct once properties are no longer accessed from id:2369
 // JS
 class JSPromiseCapability : public JSObject {
  public:
@@ -6348,7 +6348,7 @@ class JSCollection : public JSObject {
 
 
 // The JSSet describes EcmaScript Harmony sets
-// TODO(marja): When moving JSSet out of objects.h, move JSSetIterator (from
+// TODO (marja): When moving JSSet out of objects.h, move JSSetIterator (from id:2394
 // objects/hash-table.h) into the same file.
 class JSSet : public JSCollection {
  public:
@@ -6367,7 +6367,7 @@ class JSSet : public JSCollection {
 
 
 // The JSMap describes EcmaScript Harmony maps
-// TODO(marja): When moving JSMap out of objects.h, move JSMapIterator (from
+// TODO (marja): When moving JSMap out of objects.h, move JSMapIterator (from id:2931
 // objects/hash-table.h) into the same file.
 class JSMap : public JSCollection {
  public:
@@ -6575,7 +6575,7 @@ class JSArrayBuffer: public JSObject {
   inline bool has_guard_region() const;
   inline void set_has_guard_region(bool value);
 
-  // TODO(gdeepti): This flag is introduced to disable asm.js optimizations in
+  // TODO (gdeepti): This flag is introduced to disable asm.js optimizations in id:3171
   // js-typer-lowering.cc, remove when the asm.js case is fixed.
   inline bool is_wasm_buffer();
   inline void set_is_wasm_buffer(bool value);
@@ -7366,7 +7366,7 @@ class SourcePositionTableWithFrameCache : public Tuple2 {
 
 // Abstract base class for visiting, and optionally modifying, the
 // pointers contained in Objects. Used in GC and serialization/deserialization.
-// TODO(ulan): move to src/visitors.h
+// TODO (ulan): move to src/visitors.h id:2235
 class ObjectVisitor BASE_EMBEDDED {
  public:
   virtual ~ObjectVisitor() {}

@@ -466,7 +466,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition) {
 
 #define ASSEMBLE_IEEE754_BINOP(name)                                           \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:1766*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 2);                                             \
@@ -481,7 +481,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition) {
 
 #define ASSEMBLE_IEEE754_UNOP(name)                                            \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:1634*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 1);                                             \
@@ -1284,7 +1284,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       DCHECK_EQ(LeaveCC, i.OutputSBit());
       break;
     case kArmVmodF64: {
-      // TODO(bmeurer): We should really get rid of this special instruction,
+      // TODO (bmeurer): We should really get rid of this special instruction, id:1240
       // and generate a CallAddress instruction instead.
       FrameScope scope(tasm(), StackFrame::MANUAL);
       __ PrepareCallCFunction(0, 2);
@@ -2718,7 +2718,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleDeoptimizerCall(
                                                    : Deoptimizer::EAGER;
   Address deopt_entry = Deoptimizer::GetDeoptimizationEntry(
       __ isolate(), deoptimization_id, bailout_type);
-  // TODO(turbofan): We should be able to generate better code by sharing the
+  // TODO (turbofan): We should be able to generate better code by sharing the id:2177
   // actual final call site and just bl'ing to it here, similar to what we do
   // in the lithium backend.
   if (deopt_entry == nullptr) return kTooManyDeoptimizationBailouts;
@@ -2965,7 +2965,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(dcarney): loading RPO constants on arm.
+          UNREACHABLE();  // TODO (dcarney): loading RPO constants on arm. id:1567
           break;
       }
       if (destination->IsStackSlot()) __ str(dst, g.ToMemOperand(destination));

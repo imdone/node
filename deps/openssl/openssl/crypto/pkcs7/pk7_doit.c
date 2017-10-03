@@ -881,7 +881,7 @@ int PKCS7_dataFinal(PKCS7 *p7, BIO *bio)
 
     if (!PKCS7_is_detached(p7)) {
         /*
-         * NOTE(emilia): I think we only reach os == NULL here because detached
+         * NOTE (emilia): I think we only reach os == NULL here because detached id:801
          * digested data support is broken.
          */
         if (os == NULL)

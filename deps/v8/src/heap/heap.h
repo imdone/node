@@ -218,7 +218,7 @@ using v8::MemoryPressureLevel;
   V(FixedArray, serialized_global_proxy_sizes, SerializedGlobalProxySizes)     \
   V(TemplateList, message_listeners, MessageListeners)                         \
   /* per-Isolate map for JSPromiseCapability. */                               \
-  /* TODO(caitp): Make this a Struct */                                        \
+  /* TODO (caitp): Make this a Struct  id:2138*/                                        \
   V(Map, js_promise_capability_map, JSPromiseCapabilityMap)                    \
   /* JS Entries */                                                             \
   V(Code, js_entry_code, JsEntryCode)                                          \
@@ -1455,7 +1455,7 @@ class Heap {
   // ArrayBuffer tracking. =====================================================
   // ===========================================================================
 
-  // TODO(gc): API usability: encapsulate mutation of JSArrayBuffer::is_external
+  // TODO (gc): API usability: encapsulate mutation of JSArrayBuffer::is_external id:1665
   // in the registration/unregistration APIs. Consider dropping the "New" from
   // "RegisterNewArrayBuffer" because one can re-register a previously
   // unregistered buffer, too, and the name is confusing.

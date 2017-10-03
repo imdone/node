@@ -67,7 +67,7 @@ server.listen(0, () => {
     assert.strictEqual(Object.keys(agent.sockets).length, 1);
     assert.strictEqual(Object.keys(agent.requests).length, 1);
 
-    // TODO(jasnell): This event does not appear to currently be triggered.
+    // TODO (jasnell): This event does not appear to currently be triggered. id:3650
     // is this handler actually required?
     req2.on('error', (err) => {
       // This is expected in response to our explicit abort call

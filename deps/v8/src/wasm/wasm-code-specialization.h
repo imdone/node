@@ -31,7 +31,7 @@ class CodeSpecialization {
   // Update references to global variables.
   void RelocateGlobals(Address old_start, Address new_start);
   // Update function table size.
-  // TODO(wasm): Prepare this for more than one indirect function table.
+  // TODO (wasm): Prepare this for more than one indirect function table. id:2351
   void PatchTableSize(uint32_t old_size, uint32_t new_size);
   // Update all direct call sites based on the code table in the given instance.
   void RelocateDirectCalls(Handle<WasmInstanceObject> instance);

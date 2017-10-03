@@ -247,7 +247,7 @@ struct RelDateTimeFmtDataSink : public ResourceSink {
                 return UDAT_ABSOLUTE_WEEK;
             case MONTH:
                 return UDAT_ABSOLUTE_MONTH;
-            /* TODO: Add in QUARTER
+            /* TODO: Add in QUARTER id:277
              *  case QUARTER:
              * return UDAT_ABSOLUTE_QUARTER;
              */
@@ -390,7 +390,7 @@ struct RelDateTimeFmtDataSink : public ResourceSink {
                 break;
             case 7:
                 if (uprv_strncmp(keyword, "quarter", length) == 0) {
-                    return QUARTER;  // TODO: Check @provisional
+                    return QUARTER;  // TODO: Check @provisional id:291
                   }
                 break;
             default:
@@ -812,7 +812,7 @@ UnicodeString& RelativeDateTimeFormatter::format(
     const SimpleFormatter* formatter =
         fCache->getRelativeUnitFormatter(fStyle, unit, bFuture, pluralIndex);
     if (formatter == NULL) {
-        // TODO: WARN - look at quantity formatter's action with an error.
+        // TODO: WARN - look at quantity formatter's action with an error. id:337
         status = U_INVALID_FORMAT_ERROR;
         return appendTo;
     }
@@ -827,7 +827,7 @@ UnicodeString& RelativeDateTimeFormatter::formatNumeric(
     if (U_FAILURE(status)) {
         return appendTo;
     }
-    // TODO:
+    // TODO: id:468
     // The full implementation of this depends on CLDR data that is not yet available,
     // see: http://unicode.org/cldr/trac/ticket/9165 Add more relative field data.
     // In the meantime do a quick bring-up by calling the old format method; this
@@ -882,7 +882,7 @@ UnicodeString& RelativeDateTimeFormatter::format(
     if (U_FAILURE(status)) {
         return appendTo;
     }
-    // TODO:
+    // TODO: id:629
     // The full implementation of this depends on CLDR data that is not yet available,
     // see: http://unicode.org/cldr/trac/ticket/9165 Add more relative field data.
     // In the meantime do a quick bring-up by calling the old format method; this

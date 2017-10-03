@@ -512,7 +512,7 @@ TF_BUILTIN(MathTrunc, MathBuiltinsAssembler) {
 
 // ES6 #sec-math.max
 TF_BUILTIN(MathMax, MathBuiltinsAssembler) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:1468
   // arguments are reordered.
   Node* context = Parameter(BuiltinDescriptor::kContext);
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
@@ -521,7 +521,7 @@ TF_BUILTIN(MathMax, MathBuiltinsAssembler) {
 
 // ES6 #sec-math.min
 TF_BUILTIN(MathMin, MathBuiltinsAssembler) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:1683
   // arguments are reordered.
   Node* context = Parameter(BuiltinDescriptor::kContext);
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);

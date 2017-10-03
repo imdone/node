@@ -66,7 +66,7 @@
 #  define EVP_CTRL_AEAD_SET_MAC_KEY       0x17
 # endif
 
-/* FIXME: surely this is available elsewhere? */
+/* FIXME: surely this is available elsewhere?  id:688*/
 # define EVP_RC4_KEY_SIZE                16
 
 typedef struct {

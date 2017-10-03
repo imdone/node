@@ -534,7 +534,7 @@ static int do_name_ex(char_io *io_ch, void *arg, X509_NAME *n,
             int objlen, fld_len;
             if ((fn_opt == XN_FLAG_FN_OID) || (fn_nid == NID_undef)) {
                 OBJ_obj2txt(objtmp, sizeof objtmp, fn, 1);
-                fld_len = 0;    /* XXX: what should this be? */
+                fld_len = 0;    /* XXX: what should this be?  id:1004*/
                 objbuf = objtmp;
             } else {
                 if (fn_opt == XN_FLAG_FN_SN) {
@@ -544,7 +544,7 @@ static int do_name_ex(char_io *io_ch, void *arg, X509_NAME *n,
                     fld_len = FN_WIDTH_LN;
                     objbuf = OBJ_nid2ln(fn_nid);
                 } else {
-                    fld_len = 0; /* XXX: what should this be? */
+                    fld_len = 0; /* XXX: what should this be?  id:648*/
                     objbuf = "";
                 }
             }

@@ -761,7 +761,7 @@ class FunctionAnalyzer {
   }
 
   DECL_VISIT_EXPR(UnaryOperator) {
-    // TODO We are treating all expressions that look like &raw_pointer_var
+    // TODO We are treating all expressions that look like &raw_pointer_var id:3539
     //      as definitions of raw_pointer_var. This should be changed to
     //      recognize less generic pattern:
     //
@@ -1142,7 +1142,7 @@ class FunctionAnalyzer {
 
       return out;
     }
-    // TODO: handle other declarations?
+    // TODO: handle other declarations? id:3990
     return env;
   }
 

@@ -311,7 +311,7 @@ static signed char *compute_wNAF(const BIGNUM *scalar, int w, size_t *ret_len)
 }
 
 /*
- * TODO: table should be optimised for the wNAF-based implementation,
+ * TODO: table should be optimised for the wNAF-based implementation, id:681
  * sometimes smaller windows will give better performance (thus the
  * boundaries should be increased)
  */

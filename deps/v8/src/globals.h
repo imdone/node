@@ -516,7 +516,7 @@ typedef bool (*WeakSlotCallbackWithHeap)(Heap* heap, Object** pointer);
 // -----------------------------------------------------------------------------
 // Miscellaneous
 
-// NOTE: SpaceIterator depends on AllocationSpace enumeration values being
+// NOTE: SpaceIterator depends on AllocationSpace enumeration values being id:1619
 // consecutive.
 // Keep this enum in sync with the ObjectSpace enum in v8.h
 enum AllocationSpace {
@@ -1241,7 +1241,7 @@ inline uint32_t ObjectHash(Address address) {
 // to a more generic type when we combine feedback.
 // kSignedSmall -> kNumber  -> kNumberOrOddball -> kAny
 //          kNonEmptyString -> kString          -> kAny
-// TODO(mythria): Remove kNumber type when crankshaft can handle Oddballs
+// TODO (mythria): Remove kNumber type when crankshaft can handle Oddballs id:3027
 // similar to Numbers. We don't need kNumber feedback for Turbofan. Extra
 // information about Number might reduce few instructions but causes more
 // deopts. We collect Number only because crankshaft does not handle all
@@ -1266,7 +1266,7 @@ class BinaryOperationFeedback {
 // kInternalizedString -> kString   -> kAny
 //                        kSymbol   -> kAny
 //                        kReceiver -> kAny
-// TODO(epertoso): consider unifying this with BinaryOperationFeedback.
+// TODO (epertoso): consider unifying this with BinaryOperationFeedback. id:2050
 class CompareOperationFeedback {
  public:
   enum {

@@ -2239,7 +2239,7 @@ void MacroAssembler::GetLeastBitsFromInt32(Register dst, Register src,
 void TurboAssembler::CallRuntimeDelayed(Zone* zone, Runtime::FunctionId fid,
                                         SaveFPRegsMode save_doubles) {
   const Runtime::Function* f = Runtime::FunctionForId(fid);
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:2440
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -2263,7 +2263,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f, int num_arguments,
   // expectation.
   CHECK(f->nargs < 0 || f->nargs == num_arguments);
 
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:2484
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.

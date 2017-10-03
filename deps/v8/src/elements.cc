@@ -200,7 +200,7 @@ static void CopyDictionaryToObjectElements(
 }
 
 
-// NOTE: this method violates the handlified function signature convention:
+// NOTE: this method violates the handlified function signature convention: id:2066
 // raw pointer parameters in the function that allocates.
 // See ElementsAccessorBase::CopyElements() for details.
 static void CopyDoubleToObjectElements(FixedArrayBase* from_base,
@@ -989,7 +989,7 @@ class ElementsAccessorBase : public ElementsAccessor {
       }
     }
     FixedArrayBase* from = from_holder->elements();
-    // NOTE: the Subclass::CopyElementsImpl() methods
+    // NOTE: the Subclass::CopyElementsImpl() methods id:1577
     // violate the handlified function signature convention:
     // raw pointer parameters in the function that allocates. This is done
     // intentionally to avoid ArrayConcat() builtin performance degradation.
@@ -1907,7 +1907,7 @@ class FastElementsAccessor : public ElementsAccessorBase<Subclass, KindTraits> {
     Isolate* isolate = obj->GetIsolate();
     backing_store->set_the_hole(isolate, entry);
 
-    // TODO(verwaest): Move this out of elements.cc.
+    // TODO (verwaest): Move this out of elements.cc. id:2941
     // If an old space backing store is larger than a certain size and
     // has too few used values, normalize it.
     const int kMinLengthForSparsenessCheck = 64;
@@ -2533,7 +2533,7 @@ class FastSmiOrObjectElementsAccessor
     return backing_store->get(index);
   }
 
-  // NOTE: this method violates the handlified function signature convention:
+  // NOTE: this method violates the handlified function signature convention: id:2025
   // raw pointer parameters in the function that allocates.
   // See ElementsAccessor::CopyElements() for details.
   // This method could actually allocate if copying from double elements to
@@ -2934,7 +2934,7 @@ class TypedElementsAccessor
                                        uint32_t start_from, uint32_t length) {
     DisallowHeapAllocation no_gc;
 
-    // TODO(caitp): return Just(false) here when implementing strict throwing on
+    // TODO (caitp): return Just(false) here when implementing strict throwing on id:2112
     // neutered views.
     if (WasNeutered(*receiver)) {
       return Just(value->IsUndefined(isolate) && length > start_from);

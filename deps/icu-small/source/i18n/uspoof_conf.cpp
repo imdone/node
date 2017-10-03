@@ -49,7 +49,7 @@ U_NAMESPACE_USE
 //
 //     2.  Sort all of the strings encountered by length, since they will need to
 //         be stored in that order in the final string table.
-//         TODO: Sorting these strings by length is no longer needed since the removal of
+//         TODO: Sorting these strings by length is no longer needed since the removal of id:687
 //         the string lengths table.  This logic can be removed to save processing time
 //         when building confusables data.
 //
@@ -234,7 +234,7 @@ void ConfusabledataBuilder::build(const char * confusables, int32_t confusablesL
         "[ \\t]*(?:#.*?)?$"                       // Match any trailing #comment
         "|^([ \\t]*(?:#.*?)?)$"       // OR match empty lines or lines with only a #comment
         "|^(.*?)$", -1, US_INV);      // OR match any line, which catches illegal lines.
-    // TODO: Why are we using the regex C API here? C++ would just take UnicodeString...
+    // TODO: Why are we using the regex C API here? C++ would just take UnicodeString... id:484
     fParseLine = uregex_open(pattern.getBuffer(), pattern.length(), 0, NULL, &status);
 
     // Regular expression for parsing a hex number out of a space-separated list of them.

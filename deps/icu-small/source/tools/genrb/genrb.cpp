@@ -26,7 +26,7 @@
 #include "charstr.h"
 #include "cmemory.h"
 #include "reslist.h"
-#include "ucmndata.h"  /* TODO: for reading the pool bundle */
+#include "ucmndata.h"  /* TODO: for reading the pool bundle  id:338*/
 
 U_NAMESPACE_USE
 
@@ -317,7 +317,7 @@ main(int argc,
         int32_t poolFileSize;
         int32_t indexLength;
         /*
-         * TODO: Consolidate inputDir/filename handling from main() and processFile()
+         * TODO: Consolidate inputDir/filename handling from main() and processFile() id:389
          * into a common function, and use it here as well.
          * Try to create toolutil functions for dealing with dir/filenames and
          * loading ICU data files without udata_open().

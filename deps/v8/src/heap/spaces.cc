@@ -322,7 +322,7 @@ void MemoryAllocator::TearDown() {
 
   // Check that spaces were torn down before MemoryAllocator.
   DCHECK_EQ(size_.Value(), 0u);
-  // TODO(gc) this will be true again when we fix FreeMemory.
+  // TODO (gc) this will be true again when we fix FreeMemory. id:2070
   // DCHECK(size_executable_ == 0);
   capacity_ = 0;
 
@@ -441,7 +441,7 @@ bool MemoryAllocator::CommitMemory(Address base, size_t size,
 
 void MemoryAllocator::FreeMemory(base::VirtualMemory* reservation,
                                  Executability executable) {
-  // TODO(gc) make code_range part of memory allocator?
+  // TODO (gc) make code_range part of memory allocator? id:2188
   // Code which is part of the code-range does not have its own VirtualMemory.
   DCHECK(code_range() == NULL ||
          !code_range()->contains(static_cast<Address>(reservation->address())));
@@ -454,7 +454,7 @@ void MemoryAllocator::FreeMemory(base::VirtualMemory* reservation,
 
 void MemoryAllocator::FreeMemory(Address base, size_t size,
                                  Executability executable) {
-  // TODO(gc) make code_range part of memory allocator?
+  // TODO (gc) make code_range part of memory allocator? id:2147
   if (code_range() != NULL &&
       code_range()->contains(static_cast<Address>(base))) {
     DCHECK(executable == EXECUTABLE);
@@ -2351,7 +2351,7 @@ void SemiSpace::Verify() {
         CHECK(
             !page->IsFlagSet(MemoryChunk::POINTERS_FROM_HERE_ARE_INTERESTING));
       }
-      // TODO(gc): Check that the live_bytes_count_ field matches the
+      // TODO (gc): Check that the live_bytes_count_ field matches the id:1673
       // black marking on the page (if we make it match in new-space).
     }
     CHECK_EQ(page->prev_page()->next_page(), page);

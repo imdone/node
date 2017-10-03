@@ -733,14 +733,14 @@ void AstPrinter::VisitBlock(Block* node) {
 }
 
 
-// TODO(svenpanne) Start with IndentedScope.
+// TODO (svenpanne) Start with IndentedScope. id:1055
 void AstPrinter::VisitVariableDeclaration(VariableDeclaration* node) {
   PrintLiteralWithModeIndented("VARIABLE", node->proxy()->var(),
                                node->proxy()->name());
 }
 
 
-// TODO(svenpanne) Start with IndentedScope.
+// TODO (svenpanne) Start with IndentedScope. id:1739
 void AstPrinter::VisitFunctionDeclaration(FunctionDeclaration* node) {
   PrintIndented("FUNCTION ");
   PrintLiteral(node->proxy()->name(), true);
@@ -988,7 +988,7 @@ void AstPrinter::VisitConditional(Conditional* node) {
 }
 
 
-// TODO(svenpanne) Start with IndentedScope.
+// TODO (svenpanne) Start with IndentedScope. id:1364
 void AstPrinter::VisitLiteral(Literal* node) {
   PrintLiteralIndented("LITERAL", node->value(), true);
 }

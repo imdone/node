@@ -175,7 +175,7 @@ Locale *locale_set_default_internal(const char *id, UErrorCode& status) {
     //   (Different from most other locale APIs, where a null name means use
     //    the current ICU default locale.)
     if (id == NULL) {
-        id = uprv_getDefaultLocaleID();   // This function not thread safe? TODO: verify.
+        id = uprv_getDefaultLocaleID();   // This function not thread safe? TODO: verify. id:38
         canonicalize = TRUE; // always canonicalize host ID
     }
 

@@ -345,7 +345,7 @@ static void EmitCheckForInternalizedStringsOrObjects(
 
   Label object_test, return_equal, return_unequal, undetectable;
   STATIC_ASSERT((kInternalizedTag == 0) && (kStringTag == 0));
-  // TODO(all): reexamine this branch sequence for optimisation wrt branch
+  // TODO (all): reexamine this branch sequence for optimisation wrt branch id:998
   // prediction.
   __ Tbnz(right_type, MaskToBit(kIsNotStringMask), &object_test);
   __ Tbnz(right_type, MaskToBit(kIsNotInternalizedMask), possible_strings);
@@ -808,7 +808,7 @@ bool CEntryStub::NeedsImmovableCode() {
   // when the C++ code returns to the stub because LR holds the return address
   // in AAPCS64. If the stub is moved (perhaps during a GC), we could end up
   // returning to dead code.
-  // TODO(jbramley): Whilst this is the only analysis that makes sense, I can't
+  // TODO (jbramley): Whilst this is the only analysis that makes sense, I can't id:1629
   // find any comment to confirm this, and I don't hit any crashes whatever
   // this function returns. The anaylsis should be properly confirmed.
   return true;
@@ -858,7 +858,7 @@ void CEntryStub::Generate(MacroAssembler* masm) {
   // Calculate argv, argc and the target address, and store them in
   // callee-saved registers so we can retry the call without having to reload
   // these arguments.
-  // TODO(jbramley): If the first call attempt succeeds in the common case (as
+  // TODO (jbramley): If the first call attempt succeeds in the common case (as id:1299
   // it should), then we might be better off putting these parameters directly
   // into their argument registers, rather than using callee-saved registers and
   // preserving them on the stack.
@@ -2211,7 +2211,7 @@ void ProfileEntryHookStub::Generate(MacroAssembler* masm) {
 
   // Save all kCallerSaved registers (including lr), since this can be called
   // from anywhere.
-  // TODO(jbramley): What about FP registers?
+  // TODO (jbramley): What about FP registers? id:1479
   __ PushCPURegList(kCallerSaved);
   DCHECK(kCallerSaved.IncludesAliasOf(lr));
   const int kNumSavedRegs = kCallerSaved.Count();
@@ -2455,7 +2455,7 @@ static void CreateArrayDispatch(MacroAssembler* masm,
     for (int i = 0; i <= last_index; ++i) {
       Label next;
       ElementsKind candidate_kind = GetFastElementsKindFromSequenceIndex(i);
-      // TODO(jbramley): Is this the best way to handle this? Can we make the
+      // TODO (jbramley): Is this the best way to handle this? Can we make the id:1044
       // tail calls conditional, rather than hopping over each one?
       __ CompareAndBranch(kind, candidate_kind, ne, &next);
       T stub(masm->isolate(), candidate_kind);
@@ -2472,7 +2472,7 @@ static void CreateArrayDispatch(MacroAssembler* masm,
 }
 
 
-// TODO(jbramley): If this needs to be a special case, make it a proper template
+// TODO (jbramley): If this needs to be a special case, make it a proper template id:1001
 // specialization, and not a separate function.
 static void CreateArrayDispatchOneArgument(MacroAssembler* masm,
                                            AllocationSiteOverrideMode mode) {
@@ -2801,7 +2801,7 @@ static void CallApiFunctionAndReturn(
   __ Bind(&end_profiler_check);
 
   // Save the callee-save registers we are going to use.
-  // TODO(all): Is this necessary? ARM doesn't do it.
+  // TODO (all): Is this necessary? ARM doesn't do it. id:1632
   STATIC_ASSERT(kCallApiFunctionSpillSpace == 4);
   __ Poke(x19, (spill_offset + 0) * kXRegSize);
   __ Poke(x20, (spill_offset + 1) * kXRegSize);

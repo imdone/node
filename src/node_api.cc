@@ -886,7 +886,7 @@ const char* error_messages[] = {nullptr,
 static inline napi_status napi_clear_last_error(napi_env env) {
   env->last_error.error_code = napi_ok;
 
-  // TODO(boingoing): Should this be a callback?
+  // TODO (boingoing): Should this be a callback? id:4045
   env->last_error.engine_error_code = 0;
   env->last_error.engine_reserved = nullptr;
   return napi_ok;
@@ -1951,7 +1951,7 @@ napi_status napi_get_global(napi_env env, napi_value* result) {
   CHECK_ARG(env, result);
 
   v8::Isolate* isolate = env->isolate;
-  // TODO(ianhall): what if we need the global object from a different
+  // TODO (ianhall): what if we need the global object from a different id:3930
   // context in the same isolate?
   // Should napi_env be the current context rather than the current isolate?
   v8::Local<v8::Context> context = isolate->GetCurrentContext();
@@ -2805,7 +2805,7 @@ napi_status napi_async_init(napi_env env,
   v8::Local<v8::String> v8_resource_name;
   CHECK_TO_STRING(env, context, v8_resource_name, async_resource_name);
 
-  // TODO(jasongin): Consider avoiding allocation here by using
+  // TODO (jasongin): Consider avoiding allocation here by using id:3033
   // a tagged pointer with 2×31 bit fields instead.
   node::async_context* async_context = new node::async_context();
 

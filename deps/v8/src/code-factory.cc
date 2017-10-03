@@ -14,7 +14,7 @@ namespace internal {
 
 namespace {
 
-// TODO(ishell): make it (const Stub& stub) once CodeStub::GetCode() is const.
+// TODO (ishell): make it (const Stub& stub) once CodeStub::GetCode() is const. id:1519
 template <typename Stub>
 Callable make_callable(Stub& stub) {
   typedef typename Stub::Descriptor Descriptor;
@@ -102,14 +102,14 @@ Callable CodeFactory::StoreIC_Uninitialized(Isolate* isolate,
 }
 
 Callable CodeFactory::StoreOwnIC(Isolate* isolate) {
-  // TODO(ishell): Currently we use StoreOwnIC only for storing properties that
+  // TODO (ishell): Currently we use StoreOwnIC only for storing properties that id:1719
   // already exist in the boilerplate therefore we can use StoreIC.
   return Callable(isolate->builtins()->StoreICStrictTrampoline(),
                   StoreDescriptor(isolate));
 }
 
 Callable CodeFactory::StoreOwnICInOptimizedCode(Isolate* isolate) {
-  // TODO(ishell): Currently we use StoreOwnIC only for storing properties that
+  // TODO (ishell): Currently we use StoreOwnIC only for storing properties that id:1499
   // already exist in the boilerplate therefore we can use StoreIC.
   return Callable(isolate->builtins()->StoreICStrict(),
                   StoreWithVectorDescriptor(isolate));
@@ -118,7 +118,7 @@ Callable CodeFactory::StoreOwnICInOptimizedCode(Isolate* isolate) {
 // static
 Callable CodeFactory::StoreGlobalIC(Isolate* isolate,
                                     LanguageMode language_mode) {
-  // TODO(ishell): Use StoreGlobalIC[Strict]Trampoline when it's ready.
+  // TODO (ishell): Use StoreGlobalIC[Strict]Trampoline when it's ready. id:1184
   return Callable(language_mode == STRICT
                       ? isolate->builtins()->StoreICStrictTrampoline()
                       : isolate->builtins()->StoreICTrampoline(),
@@ -128,7 +128,7 @@ Callable CodeFactory::StoreGlobalIC(Isolate* isolate,
 // static
 Callable CodeFactory::StoreGlobalICInOptimizedCode(Isolate* isolate,
                                                    LanguageMode language_mode) {
-  // TODO(ishell): Use StoreGlobalIC[Strict] when it's ready.
+  // TODO (ishell): Use StoreGlobalIC[Strict] when it's ready. id:2130
   return Callable(language_mode == STRICT ? isolate->builtins()->StoreICStrict()
                                           : isolate->builtins()->StoreIC(),
                   StoreWithVectorDescriptor(isolate));

@@ -383,7 +383,7 @@ static void CheckImmediate(uv_check_t* handle) {
 
 static void IdleImmediateDummy(uv_idle_t* handle) {
   // Do nothing. Only for maintaining event loop.
-  // TODO(bnoordhuis) Maybe make libuv accept nullptr idle callbacks.
+  // TODO (bnoordhuis) Maybe make libuv accept nullptr idle callbacks. id:3618
 }
 
 
@@ -894,7 +894,7 @@ Local<Value> ErrnoException(Isolate* isolate,
 
   Local<String> path_string;
   if (path != nullptr) {
-    // FIXME(bnoordhuis) It's questionable to interpret the file path as UTF-8.
+    // FIXME (bnoordhuis) It's questionable to interpret the file path as UTF-8. id:4042
     path_string = String::NewFromUtf8(env->isolate(), path);
   }
 
@@ -1453,7 +1453,7 @@ MaybeLocal<Value> InternalMakeCallback(Environment* env,
     ret = callback->Call(env->context(), recv, argc, argv);
 
     if (ret.IsEmpty()) {
-      // NOTE: For backwards compatibility with public API we return Undefined()
+      // NOTE: For backwards compatibility with public API we return Undefined() id:3925
       // if the top level call threw.
       scope.MarkAsFailed();
       return scope.IsInnerMakeCallback() ? ret : Undefined(env->isolate());
@@ -2623,7 +2623,7 @@ struct DLib {
 // DLOpen is process.dlopen(module, filename, flags).
 // Used to load 'module.node' dynamically shared objects.
 //
-// FIXME(bnoordhuis) Not multi-context ready. TBD how to resolve the conflict
+// FIXME (bnoordhuis) Not multi-context ready. TBD how to resolve the conflict id:3029
 // when two contexts try to load the same shared object. Maybe have a shadow
 // cache that's a plain C list or hash table that's shared across contexts?
 static void DLOpen(const FunctionCallbackInfo<Value>& args) {
@@ -2687,7 +2687,7 @@ static void DLOpen(const FunctionCallbackInfo<Value>& args) {
              "or `npm install`).",
              *filename, mp->nm_version, NODE_MODULE_VERSION);
 
-    // NOTE: `mp` is allocated inside of the shared library's memory, calling
+    // NOTE: `mp` is allocated inside of the shared library's memory, calling id:3304
     // `dlclose` will deallocate it
     dlib.Close();
     env->ThrowError(errmsg);
@@ -2962,7 +2962,7 @@ static void ProcessTitleSetter(Local<Name> property,
                                Local<Value> value,
                                const PropertyCallbackInfo<void>& info) {
   node::Utf8Value title(info.GetIsolate(), value);
-  // TODO(piscisaureus): protect with a lock
+  // TODO (piscisaureus): protect with a lock id:3620
   uv_set_process_title(*title);
 }
 
@@ -3149,7 +3149,7 @@ static Local<Object> GetFeatures(Environment* env) {
 
   obj->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "debug"), debug);
   obj->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "uv"), True(env->isolate()));
-  // TODO(bnoordhuis) ping libuv
+  // TODO (bnoordhuis) ping libuv id:4043
   obj->Set(FIXED_ONE_BYTE_STRING(env->isolate(), "ipv6"), True(env->isolate()));
 
 #ifndef OPENSSL_NO_NEXTPROTONEG
@@ -3543,7 +3543,7 @@ void SetupProcessObject(Environment* env,
     READONLY_PROPERTY(process, "traceDeprecation", True(env->isolate()));
   }
 
-  // TODO(refack): move the following 3 to `node_config`
+  // TODO (refack): move the following 3 to `node_config` id:3928
   // --inspect-brk
   if (debug_options.wait_for_connect()) {
     READONLY_DONT_ENUM_PROPERTY(process,
@@ -3763,7 +3763,7 @@ void LoadEnvironment(Environment* env) {
 }
 
 static void PrintHelp() {
-  // XXX: If you add an option here, please also add it to doc/node.1 and
+  // XXX: If you add an option here, please also add it to doc/node.1 and id:3031
   // doc/api/cli.md
   printf("Usage: node [options] [ -e script | script.js | - ] [arguments]\n"
          "       node inspect script.js [arguments]\n"
@@ -4441,7 +4441,7 @@ void ProcessArgv(int* argc,
   const char** v8_argv;
   ParseArgs(argc, argv, exec_argc, exec_argv, &v8_argc, &v8_argv, is_env);
 
-  // TODO(bnoordhuis) Intercept --prof arguments and start the CPU profiler
+  // TODO (bnoordhuis) Intercept --prof arguments and start the CPU profiler id:3309
   // manually?  That would give us a little more control over its runtime
   // behavior but it could also interfere with the user's intentions in ways
   // we fail to anticipate.  Dillema.

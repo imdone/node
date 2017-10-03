@@ -187,7 +187,7 @@ const struct message requests[] =
   ,.query_string= "page=1"
   ,.fragment= "posts-17408"
   ,.request_path= "/forums/1/topics/2375"
-  /* XXX request url does include fragment? */
+  /* XXX request url does include fragment?  id:23*/
   ,.request_url= "/forums/1/topics/2375?page=1#posts-17408"
   ,.num_headers= 0
   ,.body= ""
@@ -4138,7 +4138,7 @@ main (void)
   test_simple(corrupted_header_name, HPE_INVALID_HEADER_TOKEN);
 
 #if 0
-  // NOTE(Wed Nov 18 11:57:27 CET 2009) this seems okay. we just read body
+  // NOTE (Wed Nov 18 11:57:27 CET 2009) this seems okay. we just read body id:136
   // until EOF.
   //
   // no content-length
@@ -4149,7 +4149,7 @@ main (void)
                                            "HELLO";
   test_simple(bad_get_no_headers_no_body, 0);
 #endif
-  /* TODO sending junk and large headers gets rejected */
+  /* TODO sending junk and large headers gets rejected  id:46*/
 
 
   /* check to make sure our predefined requests are okay */

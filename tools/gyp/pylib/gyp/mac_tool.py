@@ -53,7 +53,7 @@ class MacTool(object):
     extension = os.path.splitext(source)[1].lower()
     if os.path.isdir(source):
       # Copy tree.
-      # TODO(thakis): This copies file attributes like mtime, while the
+      # TODO (thakis): This copies file attributes like mtime, while the id:3485
       # single-file branch below doesn't. This should probably be changed to
       # be consistent with the single-file branch.
       if os.path.exists(dest):

@@ -58,7 +58,7 @@ SafepointEntry SafepointTable::FindEntry(Address pc) const {
   // If pc == kMaxUInt32, then this entry covers all call sites in the function.
   if (len == 1 && GetPcOffset(0) == kMaxUInt32) return GetEntry(0);
   for (unsigned i = 0; i < len; i++) {
-    // TODO(kasperl): Replace the linear search with binary search.
+    // TODO (kasperl): Replace the linear search with binary search. id:2314
     if (GetPcOffset(i) == pc_offset) return GetEntry(i);
   }
   return SafepointEntry();

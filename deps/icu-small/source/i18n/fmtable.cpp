@@ -43,12 +43,12 @@ UOBJECT_DEFINE_RTTI_IMPLEMENTATION(Formattable)
 
 //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 
-// NOTE: As of 3.0, there are limitations to the UObject API.  It does
+// NOTE: As of 3.0, there are limitations to the UObject API.  It does id:234
 // not (yet) support cloning, operator=, nor operator==.  To
 // work around this, I implement some simple inlines here.  Later
 // these can be modified or removed.  [alan]
 
-// NOTE: These inlines assume that all fObjects are in fact instances
+// NOTE: These inlines assume that all fObjects are in fact instances id:315
 // of the Measure class, which is true as of 3.0.  [alan]
 
 // Return TRUE if *a == *b.
@@ -258,7 +258,7 @@ Formattable::operator=(const Formattable& source)
 
         UErrorCode status = U_ZERO_ERROR;
         if (source.fDecimalNum != NULL) {
-          fDecimalNum = new DigitList(*source.fDecimalNum); // TODO: use internal digit list
+          fDecimalNum = new DigitList(*source.fDecimalNum); // TODO: use internal digit list id:429
         }
         if (source.fDecimalStr != NULL) {
             fDecimalStr = new CharString(*source.fDecimalStr, status);
@@ -321,7 +321,7 @@ Formattable::operator==(const Formattable& that) const
         break;
     }
 
-    // TODO:  compare digit lists if numeric.
+    // TODO: compare digit lists if numeric. id:580
     return equal;
 }
 
@@ -428,7 +428,7 @@ Formattable::getLong(UErrorCode& status) const
             status = U_MEMORY_ALLOCATION_ERROR;
             return 0;
         }
-        // TODO Later replace this with instanceof call
+        // TODO Later replace this with instanceof call id:258
         if (instanceOfMeasure(fValue.fObject)) {
             return ((const Measure*) fValue.fObject)->
                 getNumber().getLong(status);
@@ -443,7 +443,7 @@ Formattable::getLong(UErrorCode& status) const
 // -------------------------------------
 // Maximum int that can be represented exactly in a double.  (53 bits)
 //    Larger ints may be rounded to a near-by value as not all are representable.
-// TODO:  move this constant elsewhere, possibly configure it for different
+// TODO: move this constant elsewhere, possibly configure it for different id:237
 //        floating point formats, if any non-standard ones are still in use.
 static const int64_t U_DOUBLE_MAX_EXACT_INT = 9007199254740992LL;
 
@@ -511,7 +511,7 @@ Formattable::getDouble(UErrorCode& status) const
             status = U_MEMORY_ALLOCATION_ERROR;
             return 0;
         }
-        // TODO Later replace this with instanceof call
+        // TODO Later replace this with instanceof call id:316
         if (instanceOfMeasure(fValue.fObject)) {
             return ((const Measure*) fValue.fObject)->
                 getNumber().getDouble(status);
@@ -720,7 +720,7 @@ CharString *Formattable::internalGetCharString(UErrorCode &status) {
         // from parsing, or from the user setting a decimal number, fDecimalNum
         // would already be set.
         //
-        fDecimalNum = new DigitList; // TODO: use internal digit list
+        fDecimalNum = new DigitList; // TODO: use internal digit list id:431
         if (fDecimalNum == NULL) {
           status = U_MEMORY_ALLOCATION_ERROR;
           return NULL;
@@ -808,7 +808,7 @@ Formattable::setDecimalNumber(StringPiece numberString, UErrorCode &status) {
     //    The decNumber library requires nul-terminated input.  StringPiece input
     //    is not guaranteed nul-terminated.  Too bad.
     //    CharString automatically adds the nul.
-    DigitList *dnum = new DigitList(); // TODO: use getInternalDigitList
+    DigitList *dnum = new DigitList(); // TODO: use getInternalDigitList id:583
     if (dnum == NULL) {
         status = U_MEMORY_ALLOCATION_ERROR;
         return;

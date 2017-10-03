@@ -727,7 +727,7 @@ int LoadCentralDirectoryRecord(zip64_internal* pziinit)
     if (zip64local_getLong64(&pziinit->z_filefunc, pziinit->filestream,&offset_central_dir)!=ZIP_OK)
       err=ZIP_ERRNO;
 
-    // TODO..
+    // TODO .. id:3259
     // read the comment from the standard central header.
     size_comment = 0;
   }
@@ -1045,7 +1045,7 @@ int Write_LocalFileHeader(zip64_internal* zi, const char* filename, uInt size_ex
 }
 
 /*
- NOTE.
+ NOTE . id:3593
  When writing RAW the ZIP64 extended information in extrafield_local and extrafield_global needs to be stripped
  before calling this function it can be done with zipRemoveExtraInfoBlock
 

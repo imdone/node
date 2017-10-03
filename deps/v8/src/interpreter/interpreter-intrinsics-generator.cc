@@ -124,7 +124,7 @@ Node* IntrinsicsGenerator::CompareInstanceType(Node* object, int type,
 Node* IntrinsicsGenerator::IsInstanceType(Node* input, int type) {
   InterpreterAssembler::Variable return_value(assembler_,
                                               MachineRepresentation::kTagged);
-  // TODO(ishell): Use Select here.
+  // TODO (ishell): Use Select here. id:2111
   InterpreterAssembler::Label if_not_smi(assembler_), return_true(assembler_),
       return_false(assembler_), end(assembler_);
   Node* arg = __ LoadRegister(input);
@@ -151,8 +151,8 @@ Node* IntrinsicsGenerator::IsInstanceType(Node* input, int type) {
 
 Node* IntrinsicsGenerator::IsJSReceiver(Node* input, Node* arg_count,
                                         Node* context) {
-  // TODO(ishell): Use Select here.
-  // TODO(ishell): Use CSA::IsJSReceiverInstanceType here.
+  // TODO (ishell): Use Select here. id:2261
+  // TODO (ishell): Use CSA::IsJSReceiverInstanceType here. id:2299
   InterpreterAssembler::Variable return_value(assembler_,
                                               MachineRepresentation::kTagged);
   InterpreterAssembler::Label return_true(assembler_), return_false(assembler_),
@@ -218,7 +218,7 @@ Node* IntrinsicsGenerator::IsJSWeakSet(Node* input, Node* arg_count,
 }
 
 Node* IntrinsicsGenerator::IsSmi(Node* input, Node* arg_count, Node* context) {
-  // TODO(ishell): Use SelectBooleanConstant here.
+  // TODO (ishell): Use SelectBooleanConstant here. id:1891
   InterpreterAssembler::Variable return_value(assembler_,
                                               MachineRepresentation::kTagged);
   InterpreterAssembler::Label if_smi(assembler_), if_not_smi(assembler_),

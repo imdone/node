@@ -54,7 +54,7 @@ from testrunner.local import utils
 # build/header_guard: Our guards have the form "V8_FOO_H_", not "SRC_FOO_H_".
 # build/include_what_you_use: Started giving false positives for variables
 #   named "string" and "map" assuming that you needed to include STL headers.
-# TODO(bmeurer): Fix and re-enable readability/check
+# TODO (bmeurer): Fix and re-enable readability/check id:3994
 # http://crrev.com/2199323003 relands.
 
 LINT_RULES = """

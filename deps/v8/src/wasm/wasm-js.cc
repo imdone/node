@@ -690,7 +690,7 @@ void WebAssemblyTableGrow(const v8::FunctionCallbackInfo<v8::Value>& args) {
     receiver->set_functions(*new_array);
   }
 
-  // TODO(gdeepti): use weak links for instances
+  // TODO (gdeepti): use weak links for instances id:2531
   v8::ReturnValue<v8::Value> return_value = args.GetReturnValue();
   return_value.Set(old_size);
 }
@@ -805,7 +805,7 @@ void WebAssemblyMemoryGetBuffer(
   DCHECK(buffer_obj->IsJSArrayBuffer());
   i::Handle<i::JSArrayBuffer> buffer(i::JSArrayBuffer::cast(*buffer_obj));
   if (buffer->is_shared()) {
-    // TODO(gdeepti): More needed here for when cached buffer, and current
+    // TODO (gdeepti): More needed here for when cached buffer, and current id:2648
     // buffer are out of sync, handle that here when bounds checks, and Grow
     // are handled correctly.
     Maybe<bool> result =
@@ -820,7 +820,7 @@ void WebAssemblyMemoryGetBuffer(
 }
 }  // namespace
 
-// TODO(titzer): we use the API to create the function template because the
+// TODO (titzer): we use the API to create the function template because the id:3423
 // internal guts are too ugly to replicate here.
 static i::Handle<i::FunctionTemplateInfo> NewTemplate(i::Isolate* i_isolate,
                                                       FunctionCallback func) {
@@ -850,7 +850,7 @@ Handle<JSFunction> InstallGetter(Isolate* isolate, Handle<JSObject> object,
                                  const char* str, FunctionCallback func) {
   Handle<String> name = v8_str(isolate, str);
   Handle<FunctionTemplateInfo> temp = NewTemplate(isolate, func);
-  // TODO(ishell): shouldn't we set "get "+name as getter's name?
+  // TODO (ishell): shouldn't we set "get "+name as getter's name? id:3264
   Handle<JSFunction> function =
       ApiNatives::InstantiateFunction(temp).ToHandleChecked();
   DCHECK(function->shared()->has_shared_name());

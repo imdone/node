@@ -126,7 +126,7 @@ RUNTIME_FUNCTION(Runtime_DeoptimizeFunction) {
   // If the function is not optimized, just return.
   if (!function->IsOptimized()) return isolate->heap()->undefined_value();
 
-  // TODO(turbofan): Deoptimization from AstGraphBuilder is not supported.
+  // TODO (turbofan): Deoptimization from AstGraphBuilder is not supported. id:2301
   if (function->code()->is_turbofanned() &&
       !function->shared()->HasBytecodeArray()) {
     return isolate->heap()->undefined_value();
@@ -152,7 +152,7 @@ RUNTIME_FUNCTION(Runtime_DeoptimizeNow) {
   // If the function is not optimized, just return.
   if (!function->IsOptimized()) return isolate->heap()->undefined_value();
 
-  // TODO(turbofan): Deoptimization from AstGraphBuilder is not supported.
+  // TODO (turbofan): Deoptimization from AstGraphBuilder is not supported. id:2472
   if (function->code()->is_turbofanned() &&
       !function->shared()->HasBytecodeArray()) {
     return isolate->heap()->undefined_value();
@@ -264,7 +264,7 @@ RUNTIME_FUNCTION(Runtime_OptimizeFunctionOnNextCall) {
                                                             : "non-concurrent");
   }
 
-  // TODO(mvstanton): pass pretenure flag to EnsureLiterals.
+  // TODO (mvstanton): pass pretenure flag to EnsureLiterals. id:2553
   JSFunction::EnsureLiterals(function);
 
   function->MarkForOptimization(concurrency_mode);

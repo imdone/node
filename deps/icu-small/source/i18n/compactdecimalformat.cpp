@@ -586,7 +586,7 @@ struct CmptDecDataSink : public ResourceSink {
         EFormatsTableKey formatsTableKey;
         if (uprv_strcmp(key, gDecimalFormatTag) == 0) {
           formatsTableKey = DECIMAL_FORMAT;
-        // TODO: Enable this statement when currency support is added
+        // TODO: Enable this statement when currency support is added id:537
         // } else if (uprv_strcmp(key, gCurrencyFormat) == 0) {
         //   formatsTableKey = CURRENCY_FORMAT;
         } else {
@@ -604,7 +604,7 @@ struct CmptDecDataSink : public ResourceSink {
             && formatsTableKey == DECIMAL_FORMAT) {
           style = UNUM_SHORT;
           destination = &dataBundle.shortData;
-        // TODO: Enable the following statements when currency support is added
+        // TODO: Enable the following statements when currency support is added id:230
         // } else if (patternsTableKey == PATTERNS_SHORT
         //     && formatsTableKey == CURRENCY_FORMAT) {
         //   style = UNUM_SHORT_CURRENCY; // or whatever the enum gets named
@@ -677,7 +677,7 @@ struct CmptDecDataSink : public ResourceSink {
             // string.  If the divisor from here is different from the one previously
             // stored, it means that the number of zeros in different plural variants
             // differs; throw an exception.
-            // TODO: How should I check for floating-point errors here?
+            // TODO: How should I check for floating-point errors here? id:203
             //       Is there a good reason why "divisor" is double and not long like Java?
             double divisor = calculateDivisor(power10, numZeros);
             if (destination->divisors[log10Value] != 0.0
@@ -751,7 +751,7 @@ static void load(const Locale& inLocale, CDFLocaleData* result, UErrorCode& stat
   if (U_FAILURE(status)) return;
   fillInMissing(&result->shortData);
 
-  // TODO: Enable this statement when currency support is added
+  // TODO: Enable this statement when currency support is added id:275
   // checkForOtherVariants(&result->shortCurrencyData, status);
   // if (U_FAILURE(status)) return;
   // fillInMissing(&result->shortCurrencyData);
@@ -773,7 +773,7 @@ static int32_t populatePrefixSuffix(
   }
 
   // ICU 59 HACK: Ignore negative part of format string, mimicking ICU 58 behavior.
-  // TODO(sffc): Make sure this is fixed during the overhaul port in ICU 60.
+  // TODO (sffc): Make sure this is fixed during the overhaul port in ICU 60. id:399
   int32_t semiPos = formatStr.indexOf(';', 0);
   if (semiPos == -1) {
     semiPos = formatStr.length();

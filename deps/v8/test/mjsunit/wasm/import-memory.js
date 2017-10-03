@@ -326,7 +326,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
 })();
 
 (function TestExportImportedMemoryGrowMultipleInstances() {
-  // TODO(gdeepti):Exported memory objects currently do not take max_size
+  // TODO (gdeepti):Exported memory objects currently do not take max_size id:2894
   // into account so this can grow past the maximum specified in the exported
   // memory object. Assert that growing past maximum for exported objects fails.
   print("TestExportImportedMemoryGrowMultipleInstances");

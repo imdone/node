@@ -352,7 +352,7 @@ MaybeHandle<FixedArray> GetOwnKeysWithElements(Isolate* isolate,
   if (fast_properties) {
     keys = GetFastEnumPropertyKeys(isolate, object);
   } else {
-    // TODO(cbruni): preallocate big enough array to also hold elements.
+    // TODO (cbruni): preallocate big enough array to also hold elements. id:2297
     keys = KeyAccumulator::GetOwnEnumPropertyKeys(isolate, object);
   }
   MaybeHandle<FixedArray> result =
@@ -872,7 +872,7 @@ Maybe<bool> KeyAccumulator::CollectOwnJSProxyKeys(Handle<JSReceiver> receiver,
 
 Maybe<bool> KeyAccumulator::CollectOwnJSProxyTargetKeys(
     Handle<JSProxy> proxy, Handle<JSReceiver> target) {
-  // TODO(cbruni): avoid creating another KeyAccumulator
+  // TODO (cbruni): avoid creating another KeyAccumulator id:2316
   Handle<FixedArray> keys;
   ASSIGN_RETURN_ON_EXCEPTION_VALUE(
       isolate_, keys,

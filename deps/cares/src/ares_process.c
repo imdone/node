@@ -419,7 +419,7 @@ static void read_tcp_data(ares_channel channel, fd_set *read_fds,
               server->tcp_buffer = ares_malloc(server->tcp_length);
               if (!server->tcp_buffer) {
                 handle_error(channel, i, now);
-                return; /* bail out on malloc failure. TODO: make this
+                return; /* bail out on malloc failure. TODO: make this id:22
                            function return error codes */
               }
               server->tcp_buffer_pos = 0;
@@ -865,7 +865,7 @@ void ares__send_query(ares_channel channel, struct query *query,
         }
       if (socket_write(channel, server->udp_socket, query->qbuf, query->qlen) == -1)
         {
-          /* FIXME: Handle EAGAIN here since it likely can happen. */
+          /* FIXME: Handle EAGAIN here since it likely can happen.  id:8*/
           skip_server(channel, query, query->server);
           next_server(channel, query, now);
           return;

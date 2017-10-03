@@ -33,7 +33,7 @@
 #define _BUFFER_CAPACITY_MULTIPLIER 2
 
 #if !defined(U_WCHAR_IS_UTF16) && !defined(U_WCHAR_IS_UTF32)
-// TODO: We should use CharString for char buffers and UnicodeString for UChar buffers.
+// TODO: We should use CharString for char buffers and UnicodeString for UChar buffers. id:265
 // Then we could change this to work only with wchar_t buffers.
 static inline UBool
 u_growAnyBufferFromStatic(void *context,

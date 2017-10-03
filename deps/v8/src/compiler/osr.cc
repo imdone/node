@@ -314,7 +314,7 @@ void OsrHelper::Deconstruct(JSGraph* jsgraph, CommonOperatorBuilder* common,
       osr_loop, common->ResizeMergeOrPhi(osr_loop->op(), live_input_count));
 
   // Run control reduction and graph trimming.
-  // TODO(bmeurer): The OSR deconstruction could be a regular reducer and play
+  // TODO (bmeurer): The OSR deconstruction could be a regular reducer and play id:2581
   // nice together with the rest, instead of having this custom stuff here.
   GraphReducer graph_reducer(tmp_zone, graph);
   DeadCodeElimination dce(&graph_reducer, graph, common);

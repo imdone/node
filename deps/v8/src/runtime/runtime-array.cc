@@ -416,12 +416,12 @@ RUNTIME_FUNCTION(Runtime_NewArray) {
   HandleScope scope(isolate);
   DCHECK_LE(3, args.length());
   int const argc = args.length() - 3;
-  // TODO(bmeurer): Remove this Arguments nonsense.
+  // TODO (bmeurer): Remove this Arguments nonsense. id:2455
   Arguments argv(argc, args.arguments() - 1);
   CONVERT_ARG_HANDLE_CHECKED(JSFunction, constructor, 0);
   CONVERT_ARG_HANDLE_CHECKED(JSReceiver, new_target, argc + 1);
   CONVERT_ARG_HANDLE_CHECKED(HeapObject, type_info, argc + 2);
-  // TODO(bmeurer): Use MaybeHandle to pass around the AllocationSite.
+  // TODO (bmeurer): Use MaybeHandle to pass around the AllocationSite. id:2508
   Handle<AllocationSite> site = type_info->IsAllocationSite()
                                     ? Handle<AllocationSite>::cast(type_info)
                                     : Handle<AllocationSite>::null();

@@ -16,7 +16,7 @@
 
 #if !UCONFIG_NO_FORMATTING
 
-//TODO: put in compilation
+//TODO: put in compilation id:227
 //#define DTITVFMT_DEBUG 1
 
 #include "unicode/calendar.h"
@@ -679,7 +679,7 @@ DateIntervalFormat::initializePattern(UErrorCode& status) {
     // for skeletons with seconds, found is false and we enter this block
     if ( found == false ) {
         // use fallback
-        // TODO: if user asks "m"(minute), but "d"(day) differ
+        // TODO: if user asks "m"(minute), but "d"(day) differ id:312
         if ( timeSkeleton.length() != 0 ) {
             if ( dateSkeleton.length() == 0 ) {
                 // prefix with yMd
@@ -697,10 +697,10 @@ DateIntervalFormat::initializePattern(UErrorCode& status) {
                 setPatternInfo(UCAL_MONTH, NULL, &pattern, fInfo->getDefaultOrder());
                 setPatternInfo(UCAL_YEAR, NULL, &pattern, fInfo->getDefaultOrder());
             } else {
-                // TODO: fall back
+                // TODO: fall back id:419
             }
         } else {
-            // TODO: fall back
+            // TODO: fall back id:569
         }
         return;
     } // end of skeleton not found

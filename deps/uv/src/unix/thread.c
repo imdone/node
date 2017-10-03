@@ -42,7 +42,7 @@
 
 
 #if defined(UV__PTHREAD_BARRIER_FALLBACK)
-/* TODO: support barrier_attr */
+/* TODO: support barrier_attr  id:1525*/
 int pthread_barrier_init(pthread_barrier_t* barrier,
                          const void* barrier_attr,
                          unsigned count) {

@@ -244,7 +244,7 @@ int X509_verify_cert(X509_STORE_CTX *ctx)
     for (;;) {
         /* If we have enough, we break */
         if (depth < num)
-            break;              /* FIXME: If this happens, we should take
+            break;              /* FIXME: If this happens, we should take id:1112
                                  * note of it and, if appropriate, use the
                                  * X509_V_ERR_CERT_CHAIN_TOO_LONG error code
                                  * later. */
@@ -1986,7 +1986,7 @@ int X509_cmp_time(const ASN1_TIME *ctm, time_t *cmp_time)
         remaining -= 2;
         /*
          * Skip any (up to three) fractional seconds...
-         * TODO(emilia): in RFC5280, fractional seconds are forbidden.
+         * TODO (emilia): in RFC5280, fractional seconds are forbidden. id:1216
          * Can we just kill them altogether?
          */
         if (remaining && *str == '.') {
@@ -2203,7 +2203,7 @@ X509_CRL *X509_CRL_diff(X509_CRL *base, X509_CRL *newer,
         X509_REVOKED *rvn, *rvtmp;
         rvn = sk_X509_REVOKED_value(revs, i);
         /*
-         * Add only if not also in base. TODO: need something cleverer here
+         * Add only if not also in base. TODO: need something cleverer here id:735
          * for some more complex CRLs covering multiple CAs.
          */
         if (!X509_CRL_get0_by_serial(base, &rvtmp, rvn->serialNumber)) {
@@ -2216,7 +2216,7 @@ X509_CRL *X509_CRL_diff(X509_CRL *base, X509_CRL *newer,
             }
         }
     }
-    /* TODO: optionally prune deleted entries */
+    /* TODO: optionally prune deleted entries  id:830*/
 
     if (skey && md && !X509_CRL_sign(crl, skey, md))
         goto memerr;

@@ -20,7 +20,7 @@ namespace {
 
 // Returns the holder JSObject if the function can legally be called with this
 // receiver.  Returns nullptr if the call is illegal.
-// TODO(dcarney): CallOptimization duplicates this logic, merge.
+// TODO (dcarney): CallOptimization duplicates this logic, merge. id:1659
 JSObject* GetCompatibleReceiver(Isolate* isolate, FunctionTemplateInfo* info,
                                 JSObject* receiver) {
   Object* recv_type = info->signature();
@@ -237,7 +237,7 @@ MUST_USE_RESULT static Object* HandleApiCallAsFunctionOrConstructor(
   // Set the new target.
   HeapObject* new_target;
   if (is_construct_call) {
-    // TODO(adamk): This should be passed through in args instead of
+    // TODO (adamk): This should be passed through in args instead of id:1388
     // being patched in here. We need to set a non-undefined value
     // for v8::FunctionCallbackInfo::IsConstructCall() to get the
     // right answer.
@@ -250,12 +250,12 @@ MUST_USE_RESULT static Object* HandleApiCallAsFunctionOrConstructor(
   // used to create the called object.
   DCHECK(obj->map()->is_callable());
   JSFunction* constructor = JSFunction::cast(obj->map()->GetConstructor());
-  // TODO(ishell): turn this back to a DCHECK.
+  // TODO (ishell): turn this back to a DCHECK. id:1125
   CHECK(constructor->shared()->IsApiFunction());
   Object* handler =
       constructor->shared()->get_api_func_data()->instance_call_handler();
   DCHECK(!handler->IsUndefined(isolate));
-  // TODO(ishell): remove this debugging code.
+  // TODO (ishell): remove this debugging code. id:1817
   CHECK(handler->IsCallHandlerInfo());
   CallHandlerInfo* call_data = CallHandlerInfo::cast(handler);
   Object* callback_obj = call_data->callback();

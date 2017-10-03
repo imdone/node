@@ -642,7 +642,7 @@ void Fill(const FunctionCallbackInfo<Value>& args) {
                                     nullptr);
     // This check is also needed in case Write() returns that no bytes could
     // be written.
-    // TODO(trevnorris): Should this throw? Because of the string length was
+    // TODO (trevnorris): Should this throw? Because of the string length was id:3311
     // greater than 0 but couldn't be written then the string was invalid.
     if (str_length == 0)
       return;

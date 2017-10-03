@@ -285,7 +285,7 @@ main(int argc, char* argv[]) {
               return 3;
             }
 
-            if (prbom) { /* XXX: Should be done only for UTFs */
+            if (prbom) { /* XXX: Should be done only for UTFs  id:698*/
               u_fputc(0xFEFF, out);
             }
             u_fprintf(out, "// -*- Coding: %s; -*-\n//\n", encoding ? encoding : getEncodingName(ucnv_getDefaultName()));
@@ -431,7 +431,7 @@ static void printOutBundle(UFILE *out, UResourceBundle *resource, int32_t indent
             const UChar* thestr = ures_getString(resource, &len, status);
             UChar *string = quotedString(thestr);
 
-            /* TODO: String truncation */
+            /* TODO: String truncation  id:495*/
             if(opt_truncate && len > truncsize) {
                 char msg[128];
                 printIndent(out, indent);

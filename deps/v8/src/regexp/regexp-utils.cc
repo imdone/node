@@ -129,7 +129,7 @@ Maybe<bool> RegExpUtils::IsRegExp(Isolate* isolate, Handle<Object> object) {
 }
 
 bool RegExpUtils::IsUnmodifiedRegExp(Isolate* isolate, Handle<Object> obj) {
-  // TODO(ishell): Update this check once map changes for constant field
+  // TODO (ishell): Update this check once map changes for constant field id:2453
   // tracking are landing.
 
   if (!obj->IsJSReceiver()) return false;

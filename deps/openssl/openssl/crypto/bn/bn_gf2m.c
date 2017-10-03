@@ -28,7 +28,7 @@
  */
 
 /*
- * NOTE: This file is licensed pursuant to the OpenSSL license below and may
+ * NOTE: This file is licensed pursuant to the OpenSSL license below and may id:977
  * be modified; but after modifications, the above covenant may no longer
  * apply! In such cases, the corresponding paragraph ["In addition, Sun
  * covenants ... causes the infringement."] and this note can be edited out;

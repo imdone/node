@@ -225,7 +225,7 @@ function updateModifiedFlag(conditions, modifiers) {
              * Besides checking for the condition being in the loop, we want to
              * check the function that this modifier is belonging to is called
              * in the loop.
-             * FIXME: This should probably be extracted to a function.
+             * FIXME: This should probably be extracted to a function. id:3973
              */
             const inLoop = condition.isInLoop(modifier) || Boolean(
                 (funcNode = getEncloseFunctionDeclaration(modifier)) &&

@@ -38,7 +38,7 @@
 #include "src/wasm/wasm-opcodes.h"
 #include "src/wasm/wasm-text.h"
 
-// TODO(titzer): pull WASM_64 up to a common header.
+// TODO (titzer): pull WASM_64 up to a common header. id:2905
 #if !V8_TARGET_ARCH_32_BIT || V8_TARGET_ARCH_X64
 #define WASM_64 1
 #else
@@ -851,7 +851,7 @@ Builtins::Name GetBuiltinIdForTrap(bool in_cctest, wasm::TrapReason reason) {
 
 Node* WasmGraphBuilder::TrapIfTrue(wasm::TrapReason reason, Node* cond,
                                    wasm::WasmCodePosition position) {
-  // TODO(wasm): Introduce a testing flag instead of trying to infer it here.
+  // TODO (wasm): Introduce a testing flag instead of trying to infer it here. id:1954
   bool in_cctest =
       !module_ || (module_->instance && module_->instance->context.is_null());
   int32_t trap_id = GetBuiltinIdForTrap(in_cctest, reason);
@@ -864,7 +864,7 @@ Node* WasmGraphBuilder::TrapIfTrue(wasm::TrapReason reason, Node* cond,
 
 Node* WasmGraphBuilder::TrapIfFalse(wasm::TrapReason reason, Node* cond,
                                     wasm::WasmCodePosition position) {
-  // TODO(wasm): Introduce a testing flag instead of trying to infer it here.
+  // TODO (wasm): Introduce a testing flag instead of trying to infer it here. id:2038
   bool in_cctest =
       !module_ || (module_->instance && module_->instance->context.is_null());
   int32_t trap_id = GetBuiltinIdForTrap(in_cctest, reason);
@@ -1637,13 +1637,13 @@ Node* WasmGraphBuilder::BuildCFuncInstruction(ExternalReference ref,
 }
 
 Node* WasmGraphBuilder::BuildF32SConvertI64(Node* input) {
-  // TODO(titzer/bradnelson): Check handlng of asm.js case.
+  // TODO (titzer/bradnelson): Check handlng of asm.js case. id:1886
   return BuildIntToFloatConversionInstruction(
       input, ExternalReference::wasm_int64_to_float32(jsgraph()->isolate()),
       MachineRepresentation::kWord64, MachineType::Float32());
 }
 Node* WasmGraphBuilder::BuildF32UConvertI64(Node* input) {
-  // TODO(titzer/bradnelson): Check handlng of asm.js case.
+  // TODO (titzer/bradnelson): Check handlng of asm.js case. id:1466
   return BuildIntToFloatConversionInstruction(
       input, ExternalReference::wasm_uint64_to_float32(jsgraph()->isolate()),
       MachineRepresentation::kWord64, MachineType::Float32());
@@ -1825,7 +1825,7 @@ Node* WasmGraphBuilder::Throw(Node* input) {
   // This is needed because we can't safely call BuildChangeInt32ToTagged from
   // this method.
   //
-  // TODO(wasm): figure out how to properly pass this to the runtime function.
+  // TODO (wasm): figure out how to properly pass this to the runtime function. id:2908
   Node* upper = BuildChangeInt32ToSmi(
       graph()->NewNode(machine->Word32Shr(), input, Int32Constant(16)));
   Node* lower = BuildChangeInt32ToSmi(
@@ -2274,7 +2274,7 @@ Node* WasmGraphBuilder::CallDirect(uint32_t index, Node** args, Node*** rets,
   DCHECK_NULL(args[0]);
 
   // Add code object as constant.
-  // TODO(wasm): Always use the illegal builtin, except for testing.
+  // TODO (wasm): Always use the illegal builtin, except for testing. id:1957
   Handle<Code> code = module_->instance
                           ? module_->GetFunctionCode(index)
                           : jsgraph()->isolate()->builtins()->Illegal();
@@ -2344,7 +2344,7 @@ Node* WasmGraphBuilder::CallIndirect(uint32_t sig_index, Node** args,
 
 Node* WasmGraphBuilder::BuildI32Rol(Node* left, Node* right) {
   // Implement Rol by Ror since TurboFan does not have Rol opcode.
-  // TODO(weiliang): support Word32Rol opcode in TurboFan.
+  // TODO (weiliang): support Word32Rol opcode in TurboFan. id:2039
   Int32Matcher m(right);
   if (m.HasValue()) {
     return Binop(wasm::kExprI32Ror, left,
@@ -2357,7 +2357,7 @@ Node* WasmGraphBuilder::BuildI32Rol(Node* left, Node* right) {
 
 Node* WasmGraphBuilder::BuildI64Rol(Node* left, Node* right) {
   // Implement Rol by Ror since TurboFan does not have Rol opcode.
-  // TODO(weiliang): support Word64Rol opcode in TurboFan.
+  // TODO (weiliang): support Word64Rol opcode in TurboFan. id:1888
   Int64Matcher m(right);
   if (m.HasValue()) {
     return Binop(wasm::kExprI64Ror, left,
@@ -2880,7 +2880,7 @@ void WasmGraphBuilder::BuildWasmInterpreterEntry(
 
   // The return value is also passed via this buffer:
   DCHECK_GE(wasm::kV8MaxWasmFunctionReturns, sig->return_count());
-  // TODO(wasm): Handle multi-value returns.
+  // TODO (wasm): Handle multi-value returns. id:1471
   DCHECK_EQ(1, wasm::kV8MaxWasmFunctionReturns);
   int return_size_bytes =
       sig->return_count() == 0 ? 0 : 1 << ElementSizeLog2Of(sig->GetReturn(0));
@@ -3015,7 +3015,7 @@ void WasmGraphBuilder::EnsureFunctionTableNodes() {
 }
 
 Node* WasmGraphBuilder::BuildModifyThreadInWasmFlag(bool new_value) {
-  // TODO(eholk): generate code to modify the thread-local storage directly,
+  // TODO (eholk): generate code to modify the thread-local storage directly, id:2910
   // rather than calling the runtime.
   if (!trap_handler::UseTrapHandler()) {
     return *control_;
@@ -3223,7 +3223,7 @@ Node* WasmGraphBuilder::LoadMem(wasm::ValueType type, MachineType memtype,
                               MemBuffer(offset), index, *effect_, *control_);
     }
   } else {
-    // TODO(eholk): Support unaligned loads with trap handlers.
+    // TODO (eholk): Support unaligned loads with trap handlers. id:1960
     DCHECK(!FLAG_wasm_trap_handler || !V8_TRAP_HANDLER_SUPPORTED);
     load = graph()->NewNode(jsgraph()->machine()->UnalignedLoad(memtype),
                             MemBuffer(offset), index, *effect_, *control_);
@@ -3237,7 +3237,7 @@ Node* WasmGraphBuilder::LoadMem(wasm::ValueType type, MachineType memtype,
 
   if (type == wasm::kWasmI64 &&
       ElementSizeLog2Of(memtype.representation()) < 3) {
-    // TODO(titzer): TF zeroes the upper bits of 64-bit loads for subword sizes.
+    // TODO (titzer): TF zeroes the upper bits of 64-bit loads for subword sizes. id:2040
     if (memtype.IsSigned()) {
       // sign extend
       load = graph()->NewNode(jsgraph()->machine()->ChangeInt32ToInt64(), load);
@@ -3280,7 +3280,7 @@ Node* WasmGraphBuilder::StoreMem(MachineType memtype, Node* index,
                            index, val, *effect_, *control_);
     }
   } else {
-    // TODO(eholk): Support unaligned stores with trap handlers.
+    // TODO (eholk): Support unaligned stores with trap handlers. id:1890
     DCHECK(!FLAG_wasm_trap_handler || !V8_TRAP_HANDLER_SUPPORTED);
     UnalignedStoreRepresentation rep(memtype.representation());
     store =
@@ -3294,7 +3294,7 @@ Node* WasmGraphBuilder::StoreMem(MachineType memtype, Node* index,
 }
 
 Node* WasmGraphBuilder::BuildAsmjsLoadMem(MachineType type, Node* index) {
-  // TODO(turbofan): fold bounds checks for constant asm.js loads.
+  // TODO (turbofan): fold bounds checks for constant asm.js loads. id:1474
   // asm.js semantics use CheckedLoad (i.e. OOB reads return 0ish).
   const Operator* op = jsgraph()->machine()->CheckedLoad(type);
   Node* load =
@@ -3305,7 +3305,7 @@ Node* WasmGraphBuilder::BuildAsmjsLoadMem(MachineType type, Node* index) {
 
 Node* WasmGraphBuilder::BuildAsmjsStoreMem(MachineType type, Node* index,
                                            Node* val) {
-  // TODO(turbofan): fold bounds checks for constant asm.js stores.
+  // TODO (turbofan): fold bounds checks for constant asm.js stores. id:2911
   // asm.js semantics use CheckedStore (i.e. ignore OOB writes).
   const Operator* op =
       jsgraph()->machine()->CheckedStore(type.representation());
@@ -4180,7 +4180,7 @@ void WasmCompilationUnit::ExecuteCompilation() {
         info_.get(), jsgraph_, descriptor, source_positions,
         &protected_instructions, module_env_->module->origin()));
     ok_ = job_->ExecuteJob() == CompilationJob::SUCCEEDED;
-    // TODO(bradnelson): Improve histogram handling of size_t.
+    // TODO (bradnelson): Improve histogram handling of size_t. id:1963
     counters()->wasm_compile_function_peak_memory_bytes()->AddSample(
         static_cast<int>(jsgraph_->graph()->zone()->allocation_size()));
 

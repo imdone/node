@@ -122,7 +122,7 @@ static void *(*malloc_locked_ex_func) (size_t, const char *file, int line)
 #endif
 
 /* may be changed as long as 'allow_customize_debug' is set */
-/* XXX use correct function pointer types */
+/* XXX use correct function pointer types  id:1015*/
 #ifdef CRYPTO_MDEBUG
 /* use default functions from mem_dbg.c */
 static void (*malloc_debug_func) (void *, int, const char *, int, int)

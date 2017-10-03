@@ -1658,7 +1658,7 @@ Simulator* Simulator::current(Isolate* isolate) {
 
   Simulator* sim = isolate_data->simulator();
   if (sim == NULL) {
-    // TODO(146): delete the simulator object when a thread/isolate goes away.
+    // TODO (146): delete the simulator object when a thread/isolate goes away. id:2564
     sim = new Simulator(isolate);
     isolate_data->set_simulator(sim);
   }
@@ -9072,7 +9072,7 @@ EVALUATE(XIY) {
 
 EVALUATE(ASI) {
   DCHECK_OPCODE(ASI);
-  // TODO(bcleung): Change all fooInstr->I2Value() to template functions.
+  // TODO (bcleung): Change all fooInstr->I2Value() to template functions. id:3016
   // The below static cast to 8 bit and then to 32 bit is necessary
   // because siyInstr->I2Value() returns a uint8_t, which a direct
   // cast to int32_t could incorrectly interpret.
@@ -9101,7 +9101,7 @@ EVALUATE(ALSI) {
 
 EVALUATE(AGSI) {
   DCHECK_OPCODE(AGSI);
-  // TODO(bcleung): Change all fooInstr->I2Value() to template functions.
+  // TODO (bcleung): Change all fooInstr->I2Value() to template functions. id:3238
   // The below static cast to 8 bit and then to 32 bit is necessary
   // because siyInstr->I2Value() returns a uint8_t, which a direct
   // cast to int32_t could incorrectly interpret.

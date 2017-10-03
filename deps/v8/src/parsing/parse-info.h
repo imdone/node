@@ -43,7 +43,7 @@ class V8_EXPORT_PRIVATE ParseInfo : public CompileJobFinishCallback {
   ParseInfo(Handle<Script> script);
   ParseInfo(Handle<SharedFunctionInfo> shared);
 
-  // TODO(rmcilroy): Remove once Hydrogen no longer needs this.
+  // TODO (rmcilroy): Remove once Hydrogen no longer needs this. id:2240
   ParseInfo(Handle<SharedFunctionInfo> shared, std::shared_ptr<Zone> zone);
 
   ~ParseInfo();
@@ -216,7 +216,7 @@ class V8_EXPORT_PRIVATE ParseInfo : public CompileJobFinishCallback {
   FunctionKind function_kind() const;
 
   //--------------------------------------------------------------------------
-  // TODO(titzer): these should not be part of ParseInfo.
+  // TODO (titzer): these should not be part of ParseInfo. id:2407
   //--------------------------------------------------------------------------
   Handle<SharedFunctionInfo> shared_info() const { return shared_; }
   Handle<Script> script() const { return script_; }
@@ -301,7 +301,7 @@ class V8_EXPORT_PRIVATE ParseInfo : public CompileJobFinishCallback {
   int function_literal_id_;
   int max_function_literal_id_;
 
-  // TODO(titzer): Move handles out of ParseInfo.
+  // TODO (titzer): Move handles out of ParseInfo. id:2404
   Handle<SharedFunctionInfo> shared_;
   Handle<Script> script_;
   MaybeHandle<ScopeInfo> maybe_outer_scope_info_;

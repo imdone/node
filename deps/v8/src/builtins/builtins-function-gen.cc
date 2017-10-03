@@ -12,7 +12,7 @@ namespace internal {
 TF_BUILTIN(FastFunctionPrototypeBind, CodeStubAssembler) {
   Label slow(this);
 
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:1410
   // arguments are reordered.
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
   Node* context = Parameter(BuiltinDescriptor::kContext);

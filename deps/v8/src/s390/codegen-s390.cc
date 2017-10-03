@@ -228,7 +228,7 @@ void Code::PatchPlatformCodeAge(Isolate* isolate, byte* sequence,
     patcher.masm()->Call(r2);
     for (int i = 0; i < kNoCodeAgeSequenceLength - kCodeAgingSequenceLength;
          i += 2) {
-      // TODO(joransiu): Create nop function to pad
+      // TODO (joransiu): Create nop function to pad id:2557
       //       (kNoCodeAgeSequenceLength - kCodeAgingSequenceLength) bytes.
       patcher.masm()->nop();  // 2-byte nops().
     }

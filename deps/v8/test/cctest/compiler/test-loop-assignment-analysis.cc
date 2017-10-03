@@ -32,7 +32,7 @@ struct TestHelper : public HandleAndZoneScope {
   }
 
   void CheckLoopAssignedCount(int expected, const char* var_name) {
-    // TODO(titzer): don't scope analyze every single time.
+    // TODO (titzer): don't scope analyze every single time. id:2573
     ParseInfo parse_info(handle(function->shared()));
     CompilationInfo info(parse_info.zone(), &parse_info, function->GetIsolate(),
                          function);

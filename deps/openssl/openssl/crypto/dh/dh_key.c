@@ -235,7 +235,7 @@ static int compute_key(unsigned char *key, const BIGNUM *pub_key, DH *dh)
         mont = BN_MONT_CTX_set_locked(&dh->method_mont_p,
                                       CRYPTO_LOCK_DH, dh->p, ctx);
         if ((dh->flags & DH_FLAG_NO_EXP_CONSTTIME) == 0) {
-            /* XXX */
+            /* XXX id:776*/
             BN_set_flags(dh->priv_key, BN_FLG_CONSTTIME);
         }
         if (!mont)

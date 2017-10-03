@@ -2368,7 +2368,7 @@ DateFormatSymbols::initializeData(const Locale& locale, const char *type, UError
     resStr = ures_getStringByKey(fResourceBundle, gLocalPatternCharsTag, &len, &status);
     fLocalPatternChars.setTo(TRUE, resStr, len);
     // If the locale data does not include new pattern chars, use the defaults
-    // TODO: Consider making this an error, since this may add conflicting characters.
+    // TODO: Consider making this an error, since this may add conflicting characters. id:565
     if (len < PATTERN_CHARS_LEN) {
         fLocalPatternChars.append(UnicodeString(TRUE, &gPatternChars[len], PATTERN_CHARS_LEN-len));
     }
@@ -2448,7 +2448,7 @@ DateFormatSymbols::initializeData(const Locale& locale, const char *type, UError
             // in most locales.
 
             status = U_USING_FALLBACK_WARNING;
-            //TODO(fabalbon): make sure we are storing las resort data for all fields in here.
+            //TODO (fabalbon): make sure we are storing las resort data for all fields in here. id:251
             initField(&fEras, fErasCount, (const UChar *)gLastResortEras, kEraNum, kEraLen, status);
             initField(&fEraNames, fEraNamesCount, (const UChar *)gLastResortEras, kEraNum, kEraLen, status);
             initField(&fNarrowEras, fNarrowErasCount, (const UChar *)gLastResortEras, kEraNum, kEraLen, status);

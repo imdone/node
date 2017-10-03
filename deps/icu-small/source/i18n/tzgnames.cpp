@@ -678,7 +678,7 @@ TZGNCore::formatGenericNonLocationName(const TimeZone& tz, UTimeZoneGenericNameT
             if (!stdName.isEmpty()) {
                 name.setTo(stdName);
 
-                // TODO: revisit this issue later
+                // TODO: revisit this issue later id:651
                 // In CLDR, a same display name is used for both generic and standard
                 // for some meta zones in some locales.  This looks like a data bugs.
                 // For now, we check if the standard name is different from its generic
@@ -900,7 +900,7 @@ TZGNCore::findBestMatch(const UnicodeString& text, int32_t start, uint32_t types
     UTimeZoneFormatTimeType bestMatchTimeType = UTZFMT_TIME_TYPE_UNKNOWN;
     UnicodeString bestMatchTzID;
     // UBool isLongStandard = FALSE;   // workaround - see the comments below
-    UBool isStandard = FALSE;       // TODO: Temporary hack (on hack) for short standard name/location name conflict (found in zh_Hant), should be removed after CLDR 21m1 integration
+    UBool isStandard = FALSE;       // TODO: Temporary hack (on hack) for short standard name/location name conflict (found in zh_Hant), should be removed after CLDR 21m1 integration id:294
 
     if (tznamesMatches != NULL) {
         UnicodeString mzID;
@@ -922,7 +922,7 @@ TZGNCore::findBestMatch(const UnicodeString& text, int32_t start, uint32_t types
                 case UTZNM_LONG_STANDARD:
                     // isLongStandard = TRUE;
                 case UTZNM_SHORT_STANDARD:  // this one is never used for generic, but just in case
-                    isStandard = TRUE;      // TODO: Remove this later, see the comments above.
+                    isStandard = TRUE;      // TODO: Remove this later, see the comments above. id:306
                     bestMatchTimeType = UTZFMT_TIME_TYPE_STANDARD;
                     break;
                 case UTZNM_LONG_DAYLIGHT:
@@ -946,7 +946,7 @@ TZGNCore::findBestMatch(const UnicodeString& text, int32_t start, uint32_t types
             //timeType = bestMatchTimeType;
             //return bestMatchLen;
 
-            // TODO Some time zone uses a same name for the long standard name
+            // TODO Some time zone uses a same name for the long standard name id:358
             // and the location name. When the match is a long standard name,
             // then we need to check if the name is same with the location name.
             // This is probably a data error or a design bug.
@@ -957,7 +957,7 @@ TZGNCore::findBestMatch(const UnicodeString& text, int32_t start, uint32_t types
                 return bestMatchLen;
             }
 */
-            // TODO The deprecation of commonlyUsed flag introduced the name
+            // TODO The deprecation of commonlyUsed flag introduced the name id:486
             // conflict not only for long standard names, but short standard names too.
             // These short names (found in zh_Hant) should be gone once we clean
             // up CLDR time zone display name data. Once the short name conflict
@@ -980,7 +980,7 @@ TZGNCore::findBestMatch(const UnicodeString& text, int32_t start, uint32_t types
         for (int32_t i = 0; i < localMatches->size(); i++) {
             int32_t len = localMatches->getMatchLength(i);
 
-            // TODO See the above TODO. We use len >= bestMatchLen
+            // TODO See the above TODO. We use len >= bestMatchLen id:654
             // because of the long standard/location name collision
             // problem. If it is also a location name, carrying
             // timeType = UTZFMT_TIME_TYPE_STANDARD will cause a

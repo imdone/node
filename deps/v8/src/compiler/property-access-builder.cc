@@ -174,7 +174,7 @@ Node* PropertyAccessBuilder::TryBuildLoadConstantDataField(
   // Optimize immutable property loads.
   HeapObjectMatcher m(receiver);
   if (m.HasValue() && m.Value()->IsJSObject()) {
-    // TODO(ishell): Use something simpler like
+    // TODO (ishell): Use something simpler like id:1990
     //
     // Handle<Object> value =
     //     JSObject::FastPropertyAt(Handle<JSObject>::cast(m.Value()),
@@ -182,7 +182,7 @@ Node* PropertyAccessBuilder::TryBuildLoadConstantDataField(
     //
     // here, once we have the immutable bit in the access_info.
 
-    // TODO(turbofan): Given that we already have the field_index here, we
+    // TODO (turbofan): Given that we already have the field_index here, we id:1855
     // might be smarter in the future and not rely on the LookupIterator,
     // but for now let's just do what Crankshaft does.
     LookupIterator it(m.Value(), name, LookupIterator::OWN_SKIP_INTERCEPTOR);

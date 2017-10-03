@@ -1535,7 +1535,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f,
   // expectation.
   CHECK(f->nargs < 0 || f->nargs == num_arguments);
 
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:2074
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -1548,7 +1548,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f,
 void TurboAssembler::CallRuntimeDelayed(Zone* zone, Runtime::FunctionId fid,
                                         SaveFPRegsMode save_doubles) {
   const Runtime::Function* f = Runtime::FunctionForId(fid);
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:2195
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -1581,7 +1581,7 @@ void MacroAssembler::TailCallRuntime(Runtime::FunctionId fid) {
   const Runtime::Function* function = Runtime::FunctionForId(fid);
   DCHECK_EQ(1, function->result_size);
   if (function->nargs >= 0) {
-    // TODO(1236192): Most runtime routines don't need the number of
+    // TODO (1236192): Most runtime routines don't need the number of id:2152
     // arguments passed in because it is constant. At some point we
     // should remove this need and make the runtime routine entry code
     // smarter.
@@ -1662,7 +1662,7 @@ void TurboAssembler::PrepareForTailCall(
   } else {
     mov(count_reg, Immediate(callee_args_count.immediate() + 2 +
                              number_of_temp_values_after_return_address));
-    // TODO(ishell): Unroll copying loop for small immediate values.
+    // TODO (ishell): Unroll copying loop for small immediate values. id:1678
   }
 
   // Now copy callee arguments to the caller frame going backwards to avoid

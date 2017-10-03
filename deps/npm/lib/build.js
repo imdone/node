@@ -181,7 +181,7 @@ function linkBins (pkg, folder, parent, gtop, cb) {
       function (er) {
         if (er) return cb(er)
         // bins should always be executable.
-        // XXX skip chmod on windows?
+        // XXX skip chmod on windows? id:428
         var src = path.resolve(folder, pkg.bin[b])
         fs.chmod(src, npm.modes.exec, function (er) {
           if (er && er.code === 'ENOENT' && npm.config.get('ignore-scripts')) {

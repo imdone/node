@@ -2216,7 +2216,7 @@ static const struct {
 
 /* IPSec curves */
 /*
- * NOTE: The of curves over a extension field of non prime degree is not
+ * NOTE: The of curves over a extension field of non prime degree is not id:679
  * recommended (Weil-descent). As the group order is not a prime this curve
  * is not suitable for ECDSA.
  */
@@ -2251,7 +2251,7 @@ static const struct {
 };
 
 /*
- * NOTE: The of curves over a extension field of non prime degree is not
+ * NOTE: The of curves over a extension field of non prime degree is not id:778
  * recommended (Weil-descent). As the group order is not a prime this curve
  * is not suitable for ECDSA.
  */

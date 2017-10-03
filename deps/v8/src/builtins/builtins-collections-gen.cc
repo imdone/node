@@ -122,7 +122,7 @@ Node* CollectionsBuiltinsAssembler::AllocateOrderedHashTable() {
              IntPtrLessThanOrEqual(
                  length_intptr, IntPtrConstant(FixedArray::kMaxRegularLength)));
   Heap::RootListIndex map_index = Heap::kOrderedHashTableMapRootIndex;
-  // TODO(gsathya): Directly store correct in AllocateFixedArray,
+  // TODO (gsathya): Directly store correct in AllocateFixedArray, id:1135
   // instead of overwriting here.
   StoreMapNoWriteBarrier(table, map_index);
 
@@ -235,7 +235,7 @@ TF_BUILTIN(MapConstructor, CollectionsBuiltinsAssembler) {
   GotoIf(Word32Or(IsUndefined(iterable), IsNull(iterable)), &exit);
 
   Label if_notcallable(this);
-  // TODO(gsathya): Add fast path for unmodified maps.
+  // TODO (gsathya): Add fast path for unmodified maps. id:1833
   Node* const adder = GetProperty(context, var_result.value(),
                                   isolate()->factory()->set_string());
   GotoIf(TaggedIsSmi(adder), &if_notcallable);
@@ -355,7 +355,7 @@ TF_BUILTIN(SetConstructor, CollectionsBuiltinsAssembler) {
   GotoIf(Word32Or(IsUndefined(iterable), IsNull(iterable)), &exit);
 
   Label if_notcallable(this);
-  // TODO(gsathya): Add fast path for unmodified maps.
+  // TODO (gsathya): Add fast path for unmodified maps. id:1462
   Node* const adder = GetProperty(context, var_result.value(),
                                   isolate()->factory()->add_string());
   GotoIf(TaggedIsSmi(adder), &if_notcallable);

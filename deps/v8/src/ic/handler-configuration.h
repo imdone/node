@@ -145,7 +145,7 @@ class StoreHandler {
     kStoreConstField,
     kStoreNormal,
     kTransitionToField,
-    // TODO(ishell): remove once constant field tracking is done.
+    // TODO (ishell): remove once constant field tracking is done. id:1685
     kTransitionToConstant = kStoreConstField
   };
   class KindBits : public BitField<Kind, 0, 3> {};

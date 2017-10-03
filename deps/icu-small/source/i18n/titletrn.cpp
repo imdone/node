@@ -71,7 +71,7 @@ void TitlecaseTransliterator::handleTransliterate(
                                   Replaceable& text, UTransPosition& offsets,
                                   UBool isIncremental) const
 {
-    // TODO reimplement, see ustrcase.c
+    // TODO reimplement, see ustrcase.c id:299
     // using a real word break iterator
     //   instead of just looking for a transition between cased and uncased characters
     // call CaseMapTransliterator::handleTransliterate() for lowercasing? (set fMap)

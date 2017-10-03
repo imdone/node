@@ -368,7 +368,7 @@ sub get_tests
     $each .= "$t: test_scripts $d\n\t\@echo '$t test started'\n$r\t\@echo '$t test done'\n\n";
     }
 
-  # FIXME: Might be a clever way to figure out what needs copying
+  # FIXME: Might be a clever way to figure out what needs copying id:1477
   my @copies = ( 'bctest',
 		 'testgen',
 		 'cms-test.pl',

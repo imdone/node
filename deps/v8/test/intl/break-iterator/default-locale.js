@@ -43,6 +43,6 @@ assertEquals(options.locale, %GetDefaultICULocale());
 var iteratorNone = new Intl.v8BreakIterator();
 assertEquals(options.locale, iteratorNone.resolvedOptions().locale);
 
-// TODO(cira): remove support for {} to mean empty list.
+// TODO (cira): remove support for {} to mean empty list. id:2668
 var iteratorBraket = new Intl.v8BreakIterator({});
 assertEquals(options.locale, iteratorBraket.resolvedOptions().locale);

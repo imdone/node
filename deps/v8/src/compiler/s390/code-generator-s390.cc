@@ -634,7 +634,7 @@ static inline int AssembleUnaryOp(Instruction* instr, _R _r, _M _m, _I _i) {
 
 #define ASSEMBLE_IEEE754_UNOP(name)                                            \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:1916*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 1, kScratchReg);                                \
@@ -647,7 +647,7 @@ static inline int AssembleUnaryOp(Instruction* instr, _R _r, _M _m, _I _i) {
 
 #define ASSEMBLE_IEEE754_BINOP(name)                                           \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:1998*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 2, kScratchReg);                                \
@@ -1307,7 +1307,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       }
       break;
     case kArchTruncateDoubleToI:
-      // TODO(mbrandy): move slow call to stub out of line.
+      // TODO (mbrandy): move slow call to stub out of line. id:1861
       __ TruncateDoubleToIDelayed(zone(), i.OutputRegister(),
                                   i.InputDoubleRegister(0));
       break;
@@ -1348,7 +1348,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kS390_Abs32:
-      // TODO(john.yan): zero-ext
+      // TODO (john.yan): zero-ext id:1415
       __ lpr(i.OutputRegister(0), i.InputRegister(0));
       break;
     case kS390_Abs64:
@@ -1529,7 +1529,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
                 Operand(64 - i.InputInt32(1)));
       }
       break;
-    // TODO(john.yan): clean up kS390_RotLeftAnd...
+    // TODO (john.yan): clean up kS390_RotLeftAnd... id:2871
     case kS390_RotLeftAndClear64:
       if (CpuFeatures::IsSupported(GENERAL_INSTR_EXT)) {
         int shiftAmount = i.InputInt32(1);
@@ -2556,7 +2556,7 @@ void CodeGenerator::AssembleArchBoolean(Instruction* instr,
     __ bunordered(&done);
   }
 
-  // TODO(john.yan): use load imm high on condition here
+  // TODO (john.yan): use load imm high on condition here id:1918
   __ LoadImmP(reg, Operand::Zero());
   __ LoadImmP(kScratchReg, Operand(1));
   // locr is sufficient since reg's upper 32 is guarrantee to be 0
@@ -2601,7 +2601,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleDeoptimizerCall(
                                                    : Deoptimizer::EAGER;
   Address deopt_entry = Deoptimizer::GetDeoptimizationEntry(
       __ isolate(), deoptimization_id, bailout_type);
-  // TODO(turbofan): We should be able to generate better code by sharing the
+  // TODO (turbofan): We should be able to generate better code by sharing the id:2001
   // actual final call site and just bl'ing to it here, similar to what we do
   // in the lithium backend.
   if (deopt_entry == nullptr) return kTooManyDeoptimizationBailouts;
@@ -2648,7 +2648,7 @@ void CodeGenerator::AssembleConstructFrame() {
       }
     } else {
       StackFrame::Type type = info()->GetOutputStackFrameType();
-      // TODO(mbrandy): Detect cases where ip is the entrypoint (for
+      // TODO (mbrandy): Detect cases where ip is the entrypoint (for id:1862
       // efficient intialization of the constant pool pointer register).
       __ StubPrologue(type);
     }
@@ -2807,7 +2807,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(dcarney): loading RPO constants on S390.
+          UNREACHABLE();  // TODO (dcarney): loading RPO constants on S390. id:1419
           break;
       }
       if (destination->IsStackSlot()) {
@@ -2927,7 +2927,7 @@ void CodeGenerator::AssembleSwap(InstructionOperand* source,
     DoubleRegister temp_1 = d0;
     MemOperand src = g.ToMemOperand(source);
     MemOperand dst = g.ToMemOperand(destination);
-    // TODO(joransiu): MVC opportunity
+    // TODO (joransiu): MVC opportunity id:2872
     __ LoadDouble(temp_0, src);
     __ LoadDouble(temp_1, dst);
     __ StoreDouble(temp_0, dst);

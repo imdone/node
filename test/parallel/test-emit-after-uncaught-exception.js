@@ -33,7 +33,7 @@ setImmediate(common.mustCall(() => {
 
   throw new Error('bye');
 
-  // TODO(trevnorris): This test shows that the after() hooks are always called
+  // TODO (trevnorris): This test shows that the after() hooks are always called id:3130
   // correctly, but it doesn't solve where the emitDestroy() is missed because
   // of the uncaught exception. Simple solution is to always call emitDestroy()
   // before the emitAfter(), but how to codify this?

@@ -26,7 +26,7 @@
 #include "ucbuf.h"
 
 /* The types of tokens which may be returned by getNextToken.
-   NOTE: Keep these in sync with tokenNames in parse.c */
+   NOTE: Keep these in sync with tokenNames in parse.c  id:340*/
 enum ETokenType
 {
     TOK_STRING,          /* A string token, such as "MonthNames" */
