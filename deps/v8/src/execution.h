@@ -218,7 +218,7 @@ class V8_EXPORT_PRIVATE StackGuard final {
     int interrupt_flags_;
   };
 
-  // TODO(isolates): Technically this could be calculated directly from a
+  // TODO (isolates): Technically this could be calculated directly from a id:2964
   //                 pointer to StackGuard.
   Isolate* isolate_;
   ThreadLocal thread_local_;

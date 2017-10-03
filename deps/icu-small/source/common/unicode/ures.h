@@ -335,7 +335,7 @@ ures_getLocaleByType(const UResourceBundle* resourceBundle,
 /**
  * Same as ures_open() but uses the fill-in parameter instead of allocating
  * a bundle, if r!=NULL.
- * TODO need to revisit usefulness of this function
+ * TODO need to revisit usefulness of this function id:123
  *      and usage model for fillIn parameters without knowing sizeof(UResourceBundle)
  * @param r The resourcebundle to open
  * @param packageName   The packageName and locale together point to an ICU udata object,

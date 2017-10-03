@@ -252,7 +252,7 @@ Node* JSInliner::CreateArtificialFrameState(Node* node, Node* outer_frame_state,
 
 namespace {
 
-// TODO(bmeurer): Unify this with the witness helper functions in the
+// TODO (bmeurer): Unify this with the witness helper functions in the id:1323
 // js-builtin-reducer.cc once we have a better understanding of the
 // map tracking we want to do, and eventually changed the CheckMaps
 // operator to carry map constants on the operator instead of inputs.
@@ -300,7 +300,7 @@ bool NeedsConvertReceiver(Node* receiver, Node* effect) {
   }
 }
 
-// TODO(mstarzinger,verwaest): Move this predicate onto SharedFunctionInfo?
+// TODO (mstarzinger,verwaest): Move this predicate onto SharedFunctionInfo? id:2517
 bool NeedsImplicitReceiver(Handle<SharedFunctionInfo> shared_info) {
   DisallowHeapAllocation no_gc;
   Isolate* const isolate = shared_info->GetIsolate();
@@ -341,7 +341,7 @@ bool JSInliner::DetermineCallTarget(
     // prevents cross context leaks, where we could inline functions from a
     // different context and hold on to that context (and closure) from the code
     // object.
-    // TODO(turbofan): We might want to revisit this restriction later when we
+    // TODO (turbofan): We might want to revisit this restriction later when we id:1795
     // have a need for this, and we know how to model different native contexts
     // in the same graph in a compositional way.
     if (function->context()->native_context() !=
@@ -363,7 +363,7 @@ bool JSInliner::DetermineCallTarget(
     // Disallow inlining in case the instantiation site was never run and hence
     // the vector cell does not contain a valid feedback vector for the call
     // target.
-    // TODO(turbofan): We might consider to eagerly create the feedback vector
+    // TODO (turbofan): We might consider to eagerly create the feedback vector id:1923
     // in such a case (in {DetermineCallContext} below) eventually.
     FeedbackSlot slot = p.feedback().slot();
     Handle<Cell> cell(Cell::cast(p.feedback().vector()->Get(slot)));
@@ -475,7 +475,7 @@ Reduction JSInliner::ReduceJSCall(Node* node) {
     return NoChange();
   }
 
-  // TODO(turbofan): TranslatedState::GetAdaptedArguments() currently relies on
+  // TODO (turbofan): TranslatedState::GetAdaptedArguments() currently relies on id:1751
   // not inlining recursive functions. We might want to relax that at some
   // point.
   for (Node* frame_state = call.frame_state();

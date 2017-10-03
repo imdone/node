@@ -210,7 +210,7 @@ ucnv_cbFromUWriteSub (UConverterFromUnicodeArgs *args,
     }
     else if(converter->subChar1!=0 && (uint16_t)converter->invalidUCharBuffer[0]<=(uint16_t)0xffu) {
         /*
-        TODO: Is this untestable because the MBCS converter has a writeSub function to call
+        TODO: Is this untestable because the MBCS converter has a writeSub function to call id:106
         and the other converters don't use subChar1?
         */
         ucnv_cbFromUWriteBytes(args,

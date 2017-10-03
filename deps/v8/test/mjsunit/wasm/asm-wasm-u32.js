@@ -199,7 +199,7 @@ var funcs = [
   u32_sub,
   u32_div,
   u32_mod,
-// TODO(titzer): u32_mul crashes turbofan in asm.js mode
+// TODO (titzer): u32_mul crashes turbofan in asm.js mode id:2939
   u32_and,
   u32_or,
   u32_xor,
@@ -214,9 +214,9 @@ var funcs = [
   u32_gteq,
   u32_neg,
   u32_invert,
-  // TODO(titzer): u32_min
-  // TODO(titzer): u32_max
-  // TODO(titzer): u32_abs
+  // TODO (titzer): u32_min id:3448
+  // TODO (titzer): u32_max id:3888
+  // TODO (titzer): u32_abs id:3728
 ];
 
 (function () {

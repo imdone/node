@@ -219,7 +219,7 @@ PluralRules::internalForLocale(const Locale& locale, UPluralType type, UErrorCod
         return NULL;
     }
     UnicodeString locRule = newObj->getRuleFromResource(locale, type, status);
-    // TODO: which errors, if any, should be returned?
+    // TODO: which errors, if any, should be returned? id:268
     if (locRule.length() == 0) {
         // Locales with no specific rules (all numbers have the "other" category
         //   will return a U_MISSING_RESOURCE_ERROR at this point. This is not
@@ -229,7 +229,7 @@ PluralRules::internalForLocale(const Locale& locale, UPluralType type, UErrorCod
     }
     PluralRuleParser parser;
     parser.parse(locRule, newObj, status);
-        //  TODO: should rule parse errors be returned, or
+        //  TODO: should rule parse errors be returned, or id:246
         //        should we silently use default rules?
         //        Original impl used default rules.
         //        Ask the question to ICU Core.
@@ -329,7 +329,7 @@ getSamplesFromString(const UnicodeString &samples, double *dest,
     int32_t sampleStartIdx = 0;
     int32_t sampleEndIdx = 0;
 
-    //std::string ss;  // TODO: debugging.
+    //std::string ss;  // TODO: debugging. id:325
     // std::cout << "PluralRules::getSamples(), samples = \"" << samples.toUTF8String(ss) << "\"\n";
     for (sampleCount = 0; sampleCount < destCapacity && sampleStartIdx < samples.length(); ) {
         sampleEndIdx = samples.indexOf(COMMA, sampleStartIdx);
@@ -559,7 +559,7 @@ PluralRuleParser::parse(const UnicodeString& ruleData, PluralRules *prules, UErr
             }
             break;
         case tComma:
-            // TODO: rule syntax checking is inadequate, can happen with badly formed rules.
+            // TODO: rule syntax checking is inadequate, can happen with badly formed rules. id:447
             //       Catch cases like "n mod 10, is 1" here instead.
             if (curAndConstraint == NULL || curAndConstraint->rangeList == NULL) {
                 status = U_UNEXPECTED_TOKEN;
@@ -1175,7 +1175,7 @@ PluralRuleParser::checkSyntax(UErrorCode &status)
         {
             status = U_UNEXPECTED_TOKEN;
         }
-        // TODO: a comma following a number that is not part of a range will be allowed.
+        // TODO: a comma following a number that is not part of a range will be allowed. id:599
         //       It's not the only case of this sort of thing. Parser needs a re-write.
         break;
     case tAt:
@@ -1416,7 +1416,7 @@ FixedDecimal::FixedDecimal(const VisibleDigits &digits) {
 
 FixedDecimal::FixedDecimal(double n, int32_t v, int64_t f) {
     init(n, v, f);
-    // check values. TODO make into unit test.
+    // check values. TODO make into unit test. id:270
     //
     //            long visiblePower = (int) Math.pow(10, v);
     //            if (decimalDigits > visiblePower) {
@@ -1569,7 +1569,7 @@ int32_t FixedDecimal::decimals(double n) {
 // Get the fraction digits of a double, represented as an integer.
 //    v is the number of visible fraction digits in the displayed form of the number.
 //       Example: n = 1001.234, v = 6, result = 234000
-//    TODO: need to think through how this is used in the plural rule context.
+//    TODO: need to think through how this is used in the plural rule context. id:248
 //          This function can easily encounter integer overflow,
 //          and can easily return noise digits when the precision of a double is exceeded.
 

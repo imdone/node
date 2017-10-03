@@ -84,7 +84,7 @@ static const ResFile kNoPoolBundle;
  * for use in non-error cases when no resource is to be added to the bundle.
  * (NULL is used in error cases.)
  */
-static SResource kNoResource;  // TODO: const
+static SResource kNoResource;  // TODO: const id:392
 
 static UDataInfo dataInfo= {
     sizeof(UDataInfo),
@@ -136,7 +136,7 @@ void setUsePoolBundle(UBool use) {
     gUsePoolBundle = use;
 }
 
-// TODO: return const pointer, or find another way to express "none"
+// TODO: return const pointer, or find another way to express "none" id:564
 struct SResource* res_none() {
     return &kNoResource;
 }
@@ -173,7 +173,7 @@ ContainerResource::~ContainerResource() {
 
 TableResource::~TableResource() {}
 
-// TODO: clarify that containers adopt new items, even in error cases; use LocalPointer
+// TODO: clarify that containers adopt new items, even in error cases; use LocalPointer id:704
 void TableResource::add(SResource *res, int linenumber, UErrorCode &errorCode) {
     if (U_FAILURE(errorCode) || res == NULL || res == &kNoResource) {
         return;

@@ -464,7 +464,7 @@ void RBBITableBuilder::calcChainedFollowPos(RBBINode *tree) {
 
         // Line Break Specific hack:  If this node's val correspond to the $CM char class,
         //                            don't chain from it.
-        // TODO:  Add rule syntax for this behavior, get specifics out of here and
+        // TODO: Add rule syntax for this behavior, get specifics out of here and id:94
         //        into the rule file.
         if (fRB->fLBCMNoChain) {
             UChar32 c = this->fRB->fSetBuilder->getFirstChar(endNode->fVal);
@@ -754,7 +754,7 @@ void     RBBITableBuilder::flagAcceptingStates() {
                 if (sd->fAccepting==-1 && endMarker->fVal != 0) {
                     // Both lookahead and non-lookahead accepting for this state.
                     // Favor the look-ahead.  Expedient for line break.
-                    // TODO:  need a more elegant resolution for conflicting rules.
+                    // TODO: need a more elegant resolution for conflicting rules. id:95
                     sd->fAccepting = endMarker->fVal;
                 }
                 // implicit else:
@@ -763,8 +763,8 @@ void     RBBITableBuilder::flagAcceptingStates() {
                 // If the end marker node is from a look-ahead rule, set
                 //   the fLookAhead field or this state also.
                 if (endMarker->fLookAheadEnd) {
-                    // TODO:  don't change value if already set?
-                    // TODO:  allow for more than one active look-ahead rule in engine.
+                    // TODO: don't change value if already set? id:96
+                    // TODO: allow for more than one active look-ahead rule in engine. id:166
                     //        Make value here an index to a side array in engine?
                     sd->fLookAhead = sd->fAccepting;
                 }

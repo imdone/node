@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
         printf("pad1 - ok\n");
 
     EVP_DigestInit_ex(&c, EVP_mdc2(), NULL);
-    /* FIXME: use a ctl function? */
+    /* FIXME: use a ctl function?  id:1167*/
     ((MDC2_CTX *)c.md_data)->pad_type = 2;
     EVP_DigestUpdate(&c, (unsigned char *)text, strlen(text));
     EVP_DigestFinal_ex(&c, &(md[0]), NULL);

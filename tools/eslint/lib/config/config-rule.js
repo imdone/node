@@ -283,7 +283,7 @@ function generateConfigsFromSchema(schema) {
                     break;
                 }
 
-            // TODO (IanVS): support oneOf
+            // TODO (IanVS): support oneOf id:4082
             } else {
 
                 // If we don't know how to fill in this option, don't fill in any of the following options.

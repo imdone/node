@@ -2394,7 +2394,7 @@ TEST(DebugStepKeyedLoadLoop) {
   SetDebugEventListener(env->GetIsolate(), DebugEventStep);
 
   // Create a function for testing stepping of keyed load. The statement 'y=1'
-  // is there to have more than one breakable statement in the loop, TODO(315).
+  // is there to have more than one breakable statement in the loop, TODO (315). id:3374
   v8::Local<v8::Function> foo = CompileFunction(
       &env,
       "function foo(a) {\n"
@@ -2445,7 +2445,7 @@ TEST(DebugStepKeyedStoreLoop) {
   SetDebugEventListener(env->GetIsolate(), DebugEventStep);
 
   // Create a function for testing stepping of keyed store. The statement 'y=1'
-  // is there to have more than one breakable statement in the loop, TODO(315).
+  // is there to have more than one breakable statement in the loop, TODO (315). id:2430
   v8::Local<v8::Function> foo = CompileFunction(
       &env,
       "function foo(a) {\n"
@@ -5743,7 +5743,7 @@ static void DebugEventBreakWithOptimizedStack(
         // function is optimized the value will be undefined, otherwise
         // the value will be '1 - i'.
         //
-        // TODO(3141533): We should be able to get the real value for
+        // TODO (3141533): We should be able to get the real value for id:2624
         // optimized frames.
         result = frame_argument_value->Call(context, exec_state, argc, argv)
                      .ToLocalChecked();
@@ -5760,7 +5760,7 @@ static void DebugEventBreakWithOptimizedStack(
         // is optimized the value will be undefined, otherwise it will
         // be 42.
         //
-        // TODO(3141533): We should be able to get the real value for
+        // TODO (3141533): We should be able to get the real value for id:2745
         // optimized frames.
         result = frame_local_value->Call(context, exec_state, argc, argv)
                      .ToLocalChecked();
@@ -6541,7 +6541,7 @@ TEST(BuiltinsExceptionPrediction) {
   v8::HandleScope handle_scope(isolate);
   v8::Context::New(isolate);
 
-  // TODO(gsathya): Fix catch prediction for the following.
+  // TODO (gsathya): Fix catch prediction for the following. id:3655
   std::set<int> whitelist(
       {i::Builtins::kPromiseThenFinally, i::Builtins::kPromiseCatchFinally});
 

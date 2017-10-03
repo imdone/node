@@ -66,7 +66,7 @@
                          l|=((unsigned long)(*((c)++)))<<16L, \
                          l|=((unsigned long)(*((c)++)))<<24L)
 
-/* NOTE - c is not incremented as per c2l */
+/* NOTE - c is not incremented as per c2l  id:955*/
 # undef c2ln
 # define c2ln(c,l1,l2,n) { \
                         c+=n; \
@@ -89,7 +89,7 @@
                          *((c)++)=(unsigned char)(((l)>>16L)&0xff), \
                          *((c)++)=(unsigned char)(((l)>>24L)&0xff))
 
-/* NOTE - c is not incremented as per l2c */
+/* NOTE - c is not incremented as per l2c  id:1010*/
 # undef l2cn
 # define l2cn(l1,l2,c,n) { \
                         c+=n; \
@@ -105,7 +105,7 @@
                                 } \
                         }
 
-/* NOTE - c is not incremented as per n2l */
+/* NOTE - c is not incremented as per n2l  id:652*/
 # define n2ln(c,l1,l2,n) { \
                         c+=n; \
                         l1=l2=0; \
@@ -121,7 +121,7 @@
                                 } \
                         }
 
-/* NOTE - c is not incremented as per l2n */
+/* NOTE - c is not incremented as per l2n  id:610*/
 # define l2nn(l1,l2,c,n) { \
                         c+=n; \
                         switch (n) { \

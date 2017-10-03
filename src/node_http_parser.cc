@@ -134,7 +134,7 @@ struct StringPtr {
       str_ = str;
     } else if (on_heap_ || str_ + size_ != str) {
       // Non-consecutive input, make a copy on the heap.
-      // TODO(bnoordhuis) Use slab allocation, O(n) allocs is bad.
+      // TODO (bnoordhuis) Use slab allocation, O(n) allocs is bad. id:3636
       char* s = new char[size_ + size];
       memcpy(s, str_, size_);
       memcpy(s + size_, str, size);
@@ -652,7 +652,7 @@ class Parser : public AsyncWrap {
 
     Local<Integer> nparsed_obj = Integer::New(env()->isolate(), nparsed);
     // If there was a parse error in one of the callbacks
-    // TODO(bnoordhuis) What if there is an error on EOF?
+    // TODO (bnoordhuis) What if there is an error on EOF? id:4054
     if (!parser_.upgrade && nparsed != len) {
       enum http_errno err = HTTP_PARSER_ERRNO(&parser_);
 

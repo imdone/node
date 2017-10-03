@@ -1437,7 +1437,7 @@ function rng_get_byte() {
     rng_pptr = 0;
     //rng_pool = null;
   }
-  // TODO: allow reseeding after first request
+  // TODO: allow reseeding after first request id:1245
   return rng_state.next();
 }
 
@@ -1629,7 +1629,7 @@ function RSADoPrivate(x) {
   if(this.p == null || this.q == null)
     return x.modPow(this.d, this.n);
 
-  // TODO: re-calculate any missing CRT params
+  // TODO: re-calculate any missing CRT params id:1336
   var xp = x.mod(this.p).modPow(this.dmp1, this.p);
   var xq = x.mod(this.q).modPow(this.dmq1, this.q);
 

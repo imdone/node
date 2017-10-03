@@ -272,7 +272,7 @@ uv_handle_type uv_guess_handle(uv_file file) {
     return UV_FILE;
 
   if (S_ISCHR(s.st_mode))
-    return UV_FILE;  /* XXX UV_NAMED_PIPE? */
+    return UV_FILE;  /* XXX UV_NAMED_PIPE?  id:1208*/
 
   if (S_ISFIFO(s.st_mode))
     return UV_NAMED_PIPE;

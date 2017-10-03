@@ -384,7 +384,7 @@ writeCCode(const char *filename, const char *destdir, const char *optName, const
 
 #if U_PLATFORM == U_PF_OS400
     /*
-    TODO: Fix this once the compiler implements this feature. Keep in sync with udatamem.c
+    TODO: Fix this once the compiler implements this feature. Keep in sync with udatamem.c id:578
 
     This is here because this platform can't currently put
     const data into the read-only pages of an object or
@@ -748,7 +748,7 @@ getArchitecture(uint16_t *pCPU, uint16_t *pBits, UBool *pIsBigEndian, const char
         fprintf(stderr, "genccode: currently only same-endianness ELF formats are supported\n");
         exit(U_UNSUPPORTED_ERROR);
     }
-    /* TODO: Support byte swapping */
+    /* TODO: Support byte swapping  id:714*/
 
     *pCPU=buffer.header32.e_machine;
 #elif U_PLATFORM_HAS_WIN32_API
@@ -756,7 +756,7 @@ getArchitecture(uint16_t *pCPU, uint16_t *pBits, UBool *pIsBigEndian, const char
         fprintf(stderr, "genccode: match-arch file %s is too short\n", filename);
         exit(U_UNSUPPORTED_ERROR);
     }
-    /* TODO: Use buffer.header.  Keep aliasing legal.  */
+    /* TODO: Use buffer.header.  Keep aliasing legal.   id:574*/
     pHeader=(const IMAGE_FILE_HEADER *)buffer.bytes;
     *pCPU=pHeader->Machine;
     /*

@@ -73,7 +73,7 @@ void NodeBIO::AssignEnvironment(Environment* env) {
 int NodeBIO::New(BIO* bio) {
   bio->ptr = new NodeBIO();
 
-  // XXX Why am I doing it?!
+  // XXX Why am I doing it?! id:3938
   bio->shutdown = 1;
   bio->init = 1;
   bio->num = -1;

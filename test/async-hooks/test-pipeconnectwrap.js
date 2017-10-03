@@ -81,7 +81,7 @@ function onexit() {
   hooks.disable();
   hooks.sanityCheck('PIPEWRAP');
   hooks.sanityCheck('PIPECONNECTWRAP');
-  // TODO(thlorenz) why have some of those 'before' and 'after' called twice
+  // TODO (thlorenz) why have some of those 'before' and 'after' called twice id:3948
   checkInvocations(pipe1, { init: 1, before: 1, after: 1, destroy: 1 },
                    'pipe1, process exiting');
   checkInvocations(pipe2, { init: 1, before: 2, after: 2, destroy: 1 },

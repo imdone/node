@@ -244,7 +244,7 @@ void U_CALLCONV Region::loadRegionData(UErrorCode &status) {
                 return;
             }
             UnicodeString currentRegion;
-            //currentRegion.remove();   TODO: was already 0 length?
+            //currentRegion.remove();   TODO: was already 0 length? id:624
             for (int32_t i = 0 ; i < aliasTo.length() ; i++ ) {
                 if ( aliasTo.charAt(i) != 0x0020 ) {
                     currentRegion.append(aliasTo.charAt(i));

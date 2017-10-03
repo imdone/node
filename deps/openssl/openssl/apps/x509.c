@@ -1121,7 +1121,7 @@ static int x509_certify(X509_STORE *ctx, char *CAfile, const EVP_MD *digest,
 /*      if (!X509_STORE_add_cert(ctx,x)) goto end;*/
 
     /*
-     * NOTE: this certificate can/should be self signed, unless it was a
+     * NOTE: this certificate can/should be self signed, unless it was a id:1002
      * certificate request in which case it is not.
      */
     X509_STORE_CTX_set_cert(&xsc, x);

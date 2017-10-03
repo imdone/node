@@ -563,7 +563,7 @@ udat_toPattern(    const   UDateFormat     *fmt,
     return res.extract(result, resultLength, *status);
 }
 
-// TODO: should this take an UErrorCode?
+// TODO: should this take an UErrorCode? id:300
 // A: Yes. Of course.
 U_CAPI void U_EXPORT2
 udat_applyPattern(  UDateFormat     *format,
@@ -735,7 +735,7 @@ udat_getSymbols(const   UDateFormat     *fmt,
     return 0;
 }
 
-// TODO: also needs an errorCode.
+// TODO: also needs an errorCode. id:309
 U_CAPI int32_t U_EXPORT2
 udat_countSymbols(    const    UDateFormat                *fmt,
             UDateFormatSymbolType    type)

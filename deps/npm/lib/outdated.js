@@ -223,7 +223,7 @@ function outdated_ (args, path, tree, parentHas, depth, cb) {
   // dev deps then…
   // (All the save checking here is because this gets called from npm-update currently
   // and that requires this logic around dev deps.)
-  // FIXME: Refactor npm update to not be in terms of outdated.
+  // FIXME: Refactor npm update to not be in terms of outdated. id:361
   var dev = npm.config.get('dev') || /^dev(elopment)?$/.test(npm.config.get('also'))
   var prod = npm.config.get('production') || /^prod(uction)?$/.test(npm.config.get('only'))
   if ((dev || !prod) &&

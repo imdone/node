@@ -98,7 +98,7 @@ class ModuleDescriptor : public ZoneObject {
     // GetCellIndexKind(cell_index) == kInvalid.
     int cell_index;
 
-    // TODO(neis): Remove local_name component?
+    // TODO (neis): Remove local_name component? id:1538
     explicit Entry(Scanner::Location loc)
         : location(loc),
           export_name(nullptr),
@@ -188,7 +188,7 @@ class ModuleDescriptor : public ZoneObject {
                                  Handle<ModuleInfo> module_info);
 
  private:
-  // TODO(neis): Use STL datastructure instead of ZoneList?
+  // TODO (neis): Use STL datastructure instead of ZoneList? id:1142
   ZoneMap<const AstRawString*, ModuleRequest> module_requests_;
   ZoneList<const Entry*> special_exports_;
   ZoneList<const Entry*> namespace_imports_;

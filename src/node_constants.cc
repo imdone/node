@@ -1014,7 +1014,7 @@ void DefineOpenSSLConstants(Local<Object> target) {
 #endif
 
 #if HAVE_OPENSSL
-  // NOTE: These are not defines
+  // NOTE: These are not defines id:3624
   NODE_DEFINE_CONSTANT(target, POINT_CONVERSION_COMPRESSED);
 
   NODE_DEFINE_CONSTANT(target, POINT_CONVERSION_UNCOMPRESSED);

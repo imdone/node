@@ -793,7 +793,7 @@ void fs__unlink(uv_fs_t* req) {
 
 
 void fs__mkdir(uv_fs_t* req) {
-  /* TODO: use req->mode. */
+  /* TODO: use req->mode.  id:1211*/
   int result = _wmkdir(req->file.pathw);
   SET_REQ_RESULT(req, result);
 }
@@ -1201,7 +1201,7 @@ INLINE static int fs__stat_handle(HANDLE handle, uv_stat_t* statbuf) {
 INLINE static void fs__stat_prepare_path(WCHAR* pathw) {
   size_t len = wcslen(pathw);
 
-  /* TODO: ignore namespaced paths. */
+  /* TODO: ignore namespaced paths.  id:1311*/
   if (len > 1 && pathw[len - 2] != L':' &&
       (pathw[len - 1] == L'\\' || pathw[len - 1] == L'/')) {
     pathw[len - 1] = '\0';

@@ -169,7 +169,7 @@ static void zkp_hash(BIGNUM *h, const BIGNUM *zkpg, const JPAKE_STEP_PART *p,
     SHA_CTX sha;
 
     /*
-     * XXX: hash should not allow moving of the boundaries - Java code
+     * XXX: hash should not allow moving of the boundaries - Java code id:1068
      * is flawed in this respect. Length encoding seems simplest.
      */
     SHA1_Init(&sha);
@@ -195,7 +195,7 @@ static void generate_zkp(JPAKE_STEP_PART *p, const BIGNUM *x,
 
    /*-
     * r in [0,q)
-    * XXX: Java chooses r in [0, 2^160) - i.e. distribution not uniform
+    * XXX: Java chooses r in [0, 2^160) - i.e. distribution not uniform id:697
     */
     BN_rand_range(r, ctx->p.q);
     /* g^r */

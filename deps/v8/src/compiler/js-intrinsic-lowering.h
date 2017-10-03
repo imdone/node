@@ -67,20 +67,20 @@ class V8_EXPORT_PRIVATE JSIntrinsicLowering final
   Reduction ReduceCall(Node* node);
   Reduction ReduceGetSuperConstructor(Node* node);
 
-  // TODO(turbofan): typedarray.js support; drop once TypedArrays are
+  // TODO (turbofan): typedarray.js support; drop once TypedArrays are id:2519
   // converted to proper CodeStubAssembler based builtins.
   Reduction ReduceArrayBufferViewField(Node* node, FieldAccess const& access);
   Reduction ReduceArrayBufferViewWasNeutered(Node* node);
   Reduction ReduceMaxSmi(Node* node);
   Reduction ReduceTypedArrayMaxSizeInHeap(Node* node);
 
-  // TODO(turbofan): collection.js support; drop once Maps and Sets are
+  // TODO (turbofan): collection.js support; drop once Maps and Sets are id:1800
   // converted to proper CodeStubAssembler based builtins.
   Reduction ReduceJSCollectionGetTable(Node* node);
   Reduction ReduceStringGetRawHashField(Node* node);
   Reduction ReduceTheHole(Node* node);
 
-  // TODO(turbofan): JavaScript builtins support; drop once all uses of
+  // TODO (turbofan): JavaScript builtins support; drop once all uses of id:1925
   // %_ClassOf in JavaScript builtins are eliminated.
   Reduction ReduceClassOf(Node* node);
 

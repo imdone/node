@@ -27,7 +27,7 @@ function createObj(source, add = '') {
 
 function main(conf) {
   const size = +conf.size;
-  // TODO: Fix this "hack"
+  // TODO: Fix this "hack" id:0
   const n = (+conf.n) / size;
   var i;
 

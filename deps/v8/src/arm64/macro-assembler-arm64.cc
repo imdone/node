@@ -148,7 +148,7 @@ void TurboAssembler::Mov(const Register& rd, uint64_t imm) {
   DCHECK(is_uint32(imm) || is_int32(imm) || rd.Is64Bits());
   DCHECK(!rd.IsZero());
 
-  // TODO(all) extend to support more immediates.
+  // TODO (all) extend to support more immediates. id:1315
   //
   // Immediates on Aarch64 can be produced using an initial value, and zero to
   // three move keep operations.
@@ -432,7 +432,7 @@ void TurboAssembler::Movi(const VRegister& vd, uint64_t imm, Shift shift,
 }
 
 void TurboAssembler::Movi(const VRegister& vd, uint64_t hi, uint64_t lo) {
-  // TODO(all): Move 128-bit values in a more efficient way.
+  // TODO (all): Move 128-bit values in a more efficient way. id:1500
   DCHECK(vd.Is128Bits());
   UseScratchRegisterScope temps(this);
   Movi(vd.V2D(), lo);
@@ -750,7 +750,7 @@ void TurboAssembler::LoadStorePairMacro(const CPURegister& rt,
                                         const CPURegister& rt2,
                                         const MemOperand& addr,
                                         LoadStorePairOp op) {
-  // TODO(all): Should we support register offset for load-store-pair?
+  // TODO (all): Should we support register offset for load-store-pair? id:1062
   DCHECK(!addr.IsRegisterOffset());
 
   int64_t offset = addr.offset();
@@ -1492,7 +1492,7 @@ void TurboAssembler::AssertStackConsistency() {
 
 void TurboAssembler::AssertCspAligned() {
   if (emit_debug_code() && use_real_aborts()) {
-    // TODO(titzer): use a real assert for alignment check?
+    // TODO (titzer): use a real assert for alignment check? id:1024
     UseScratchRegisterScope scope(this);
     Register temp = scope.AcquireX();
     ldr(temp, MemOperand(csp));
@@ -1535,7 +1535,7 @@ void TurboAssembler::CanonicalizeNaN(const VRegister& dst,
 
 void TurboAssembler::LoadRoot(CPURegister destination,
                               Heap::RootListIndex index) {
-  // TODO(jbramley): Most root values are constants, and can be synthesized
+  // TODO (jbramley): Most root values are constants, and can be synthesized id:1641
   // without a load. Refer to the ARM back end for details.
   Ldr(destination, MemOperand(root, index << kPointerSizeLog2));
 }
@@ -1786,7 +1786,7 @@ void MacroAssembler::TailCallStub(CodeStub* stub) {
 void TurboAssembler::CallRuntimeDelayed(Zone* zone, Runtime::FunctionId fid,
                                         SaveFPRegsMode save_doubles) {
   const Runtime::Function* f = Runtime::FunctionForId(fid);
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:1318
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -1835,7 +1835,7 @@ void MacroAssembler::TailCallRuntime(Runtime::FunctionId fid) {
   const Runtime::Function* function = Runtime::FunctionForId(fid);
   DCHECK_EQ(1, function->result_size);
   if (function->nargs >= 0) {
-    // TODO(1236192): Most runtime routines don't need the number of
+    // TODO (1236192): Most runtime routines don't need the number of id:1505
     // arguments passed in because it is constant. At some point we
     // should remove this need and make the runtime routine entry code
     // smarter.
@@ -4146,7 +4146,7 @@ void MacroAssembler::Printf(const char * format,
 }
 
 void TurboAssembler::EmitFrameSetupForCodeAgePatching() {
-  // TODO(jbramley): Other architectures use the internal memcpy to copy the
+  // TODO (jbramley): Other architectures use the internal memcpy to copy the id:1065
   // sequence. If this is a performance bottleneck, we should consider caching
   // the sequence and copying it in the same way.
   InstructionAccurateScope scope(this,

@@ -644,7 +644,7 @@ UMatchDegree UnicodeSet::matches(const Replaceable& text,
             // might separate forward and backward loops later
             // for now they are combined
 
-            // TODO Improve efficiency of this, at least in the forward
+            // TODO Improve efficiency of this, at least in the forward id:129
             // direction, if not in both.  In the forward direction we
             // can assume the strings are sorted.
 

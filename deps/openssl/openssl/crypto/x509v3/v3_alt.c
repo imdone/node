@@ -607,7 +607,7 @@ static int do_dirname(GENERAL_NAME *gen, char *value, X509V3_CTX *ctx)
         ERR_add_error_data(2, "section=", value);
         goto err;
     }
-    /* FIXME: should allow other character types... */
+    /* FIXME: should allow other character types...  id:1115*/
     ret = X509V3_NAME_from_section(nm, sk, MBSTRING_ASC);
     if (!ret)
         goto err;

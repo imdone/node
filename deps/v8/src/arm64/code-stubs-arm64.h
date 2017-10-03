@@ -185,7 +185,7 @@ class RecordWriteStub: public PlatformCodeStub {
     // If we have to call into C then we need to save and restore all caller-
     // saved registers that were not already preserved.
     void SaveCallerSaveRegisters(MacroAssembler* masm, SaveFPRegsMode mode) {
-      // TODO(all): This can be very expensive, and it is likely that not every
+      // TODO (all): This can be very expensive, and it is likely that not every id:1302
       // register will need to be preserved. Can we improve this?
       masm->PushCPURegList(saved_regs_);
       if (mode == kSaveFPRegs) {
@@ -194,7 +194,7 @@ class RecordWriteStub: public PlatformCodeStub {
     }
 
     void RestoreCallerSaveRegisters(MacroAssembler*masm, SaveFPRegsMode mode) {
-      // TODO(all): This can be very expensive, and it is likely that not every
+      // TODO (all): This can be very expensive, and it is likely that not every id:1483
       // register will need to be preserved. Can we improve this?
       if (mode == kSaveFPRegs) {
         masm->PopCPURegList(saved_fp_regs_);
@@ -217,7 +217,7 @@ class RecordWriteStub: public PlatformCodeStub {
     CPURegList saved_regs_;
     CPURegList saved_fp_regs_;
 
-    // TODO(all): We should consider moving this somewhere else.
+    // TODO (all): We should consider moving this somewhere else. id:1048
     static CPURegList GetValidRegistersForAllocation() {
       // The list of valid registers for allocation is defined as all the
       // registers without those with a special meaning.

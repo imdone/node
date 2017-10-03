@@ -176,14 +176,14 @@ class Platform {
    * The definition of "foreground" is opaque to V8.
    */
   virtual void CallIdleOnForegroundThread(Isolate* isolate, IdleTask* task) {
-    // TODO(ulan): Make this function abstract after V8 roll in Chromium.
+    // TODO (ulan): Make this function abstract after V8 roll in Chromium. id:950
   }
 
   /**
    * Returns true if idle tasks are enabled for the given |isolate|.
    */
   virtual bool IdleTasksEnabled(Isolate* isolate) {
-    // TODO(ulan): Make this function abstract after V8 roll in Chromium.
+    // TODO (ulan): Make this function abstract after V8 roll in Chromium. id:1573
     return false;
   }
 

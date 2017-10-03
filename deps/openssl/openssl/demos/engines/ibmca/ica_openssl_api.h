@@ -62,7 +62,7 @@ typedef unsigned char ICA_KEY_RSA_CRT_REC[MAX_RSACRT_SIZE];
  *------------------------------------------------*/
 
 /*-
- * NOTE:  All the fields in the ICA_KEY_RSA_MODEXPO structure
+ * NOTE: All the fields in the ICA_KEY_RSA_MODEXPO structure id:1117
  *        (lengths, offsets, exponents, modulus, etc.) are
  *        stored in big-endian format
  */
@@ -86,7 +86,7 @@ typedef struct _ICA_KEY_RSA_MODEXPO {
 # define SZ_HEADER_MODEXPO (sizeof(ICA_KEY_RSA_MODEXPO) - sizeof(ICA_KEY_RSA_MODEXPO_REC))
 
 /*-
- * NOTE:  All the fields in the ICA_KEY_RSA_CRT structure
+ * NOTE: All the fields in the ICA_KEY_RSA_CRT structure id:1222
  *        (lengths, offsets, exponents, modulus, etc.) are
  *        stored in big-endian format
  */

@@ -173,7 +173,7 @@ struct FPURegister {
 
   inline static int NumRegisters();
 
-  // TODO(plind): Warning, inconsistent numbering here. kNumFPURegisters refers
+  // TODO (plind): Warning, inconsistent numbering here. kNumFPURegisters refers id:1958
   // to number of 32-bit FPU regs, but kNumAllocatableRegisters refers to
   // number of Double regs (64-bit regs, or FPU-reg-pairs).
 
@@ -2264,7 +2264,7 @@ class Assembler : public AssemblerBase {
   // dummy heap object handle that we emitted during code assembly with the
   // actual heap object handle.
  protected:
-  // TODO(neis): Make private if its use can be moved out of TurboAssembler.
+  // TODO (neis): Make private if its use can be moved out of TurboAssembler. id:3115
   void RequestHeapObject(HeapObjectRequest request);
 
  private:

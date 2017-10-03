@@ -50,7 +50,7 @@ async function Basic() {
     Debugger();
   }
 }
-// TODO(kozyatinskiy): this stack trace is suspicious.
+// TODO (kozyatinskiy): this stack trace is suspicious. id:2770
 async function UncaughtReject() {
   async function loop() {
     for await (let x of [Reject(new Error("boop"))]) {
@@ -59,7 +59,7 @@ async function UncaughtReject() {
   }
   return loop().catch(Debugger);
 }
-// TODO(kozyatinskiy): this stack trace is suspicious.
+// TODO (kozyatinskiy): this stack trace is suspicious. id:3697
 async function UncaughtThrow() {
   async function loop() {
     for await (let x of [Throw(new Error("boop"))]) {
@@ -88,7 +88,7 @@ async function CaughtThrow() {
     Debugger(e);
   }
 }
-// TODO(kozyatinskiy): this stack trace is suspicious.
+// TODO (kozyatinskiy): this stack trace is suspicious. id:3497
 async function UncaughtRejectOnBreak() {
   async function loop() {
     for await (let x of RejectOnReturn(["0", "1"])) {
@@ -97,7 +97,7 @@ async function UncaughtRejectOnBreak() {
   }
   return loop().catch(Debugger);
 }
-// TODO(kozyatinskiy): this stack trace is suspicious.
+// TODO (kozyatinskiy): this stack trace is suspicious. id:2466
 async function UncaughtThrowOnBreak() {
   async function loop() {
     for await (let x of ThrowOnReturn(["0", "1"])) {
@@ -106,7 +106,7 @@ async function UncaughtThrowOnBreak() {
   }
   return loop().catch(Debugger);
 }
-// TODO(kozyatinskiy): this stack trace is suspicious.
+// TODO (kozyatinskiy): this stack trace is suspicious. id:2664
 async function CaughtRejectOnBreak() {
   try {
     for await (let x of RejectOnReturn(["0", "1"])) {

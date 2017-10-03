@@ -335,7 +335,7 @@ PreparsedUCD::parseProperty(UniProps &props, const char *field, UnicodeSet &newV
     } else if(prop<UCHAR_INT_LIMIT) {
         int32_t value=pnames->getPropertyValueEnum(prop, v);
         if(value==UCHAR_INVALID_CODE && prop==UCHAR_CANONICAL_COMBINING_CLASS) {
-            // TODO: Make getPropertyValueEnum(UCHAR_CANONICAL_COMBINING_CLASS, v) work.
+            // TODO: Make getPropertyValueEnum(UCHAR_CANONICAL_COMBINING_CLASS, v) work. id:581
             char *end;
             unsigned long ccc=uprv_strtoul(v, &end, 10);
             if(v<end && *end==0 && ccc<=254) {

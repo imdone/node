@@ -445,7 +445,7 @@ static long ssl_ctrl(BIO *b, int cmd, long num, void *ptr)
         break;
     case BIO_CTRL_SET_CALLBACK:
         {
-#if 0                           /* FIXME: Should this be used? -- Richard
+#if 0                           /* FIXME: Should this be used? -- Richard id:856
                                  * Levitte */
             SSLerr(SSL_F_SSL_CTRL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
             ret = -1;
@@ -481,7 +481,7 @@ static long ssl_callback_ctrl(BIO *b, int cmd, bio_info_cb *fp)
     case BIO_CTRL_SET_CALLBACK:
         {
             /*
-             * FIXME: setting this via a completely different prototype seems
+             * FIXME: setting this via a completely different prototype seems id:1458
              * like a crap idea
              */
             SSL_set_info_callback(ssl, (void (*)(const SSL *, int, int))fp);

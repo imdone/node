@@ -270,7 +270,7 @@ Handle<Object> Context::Lookup(Handle<String> name, ContextLookupFlags flags,
         // as new.target may be resolved as DYNAMIC_LOCAL due to bug v8:5405 ,
         // skipping them here serves as a workaround until a more thorough
         // fix can be applied.
-        // TODO(v8:5405): Replace this check with a DCHECK when resolution of
+        // TODO (v8:5405): Replace this check with a DCHECK when resolution of id:2918
         // of synthetic variables does not go through this code path.
         if (ScopeInfo::VariableIsSynthetic(*name)) {
           maybe = Just(ABSENT);

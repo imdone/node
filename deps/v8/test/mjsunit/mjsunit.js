@@ -342,7 +342,7 @@ var failWithMessage;
   }
 
   assertSame = function assertSame(expected, found, name_opt) {
-    // TODO(mstarzinger): We should think about using Harmony's egal operator
+    // TODO (mstarzinger): We should think about using Harmony's egal operator id:3718
     // or the function equivalent Object.is() here.
     if (found === expected) {
       if (expected !== 0 || (1 / expected) === (1 / found)) return;

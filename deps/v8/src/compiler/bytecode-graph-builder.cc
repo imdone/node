@@ -361,7 +361,7 @@ void BytecodeGraphBuilder::Environment::PrepareForLoopExit(
                                          GetEffectDependency(), loop_exit);
   UpdateEffectDependency(effect_rename);
 
-  // TODO(jarin) We should also rename context here. However, unconditional
+  // TODO (jarin) We should also rename context here. However, unconditional id:1794
   // renaming confuses global object and native context specialization.
   // We should only rename if the context is assigned in the loop.
 
@@ -1285,7 +1285,7 @@ void BytecodeGraphBuilder::VisitCreateArrayLiteral() {
   // data to converge. So, we disable allocation site mementos in optimized
   // code. We can revisit this when we have data to the contrary.
   literal_flags |= ArrayLiteral::kDisableMementos;
-  // TODO(mstarzinger): Thread through number of elements. The below number is
+  // TODO (mstarzinger): Thread through number of elements. The below number is id:1657
   // only an estimate and does not match {ArrayLiteral::values::length}.
   int number_of_elements = constant_elements->constant_values()->length();
   Node* literal = NewNode(
@@ -1303,7 +1303,7 @@ void BytecodeGraphBuilder::VisitCreateObjectLiteral() {
   int bytecode_flags = bytecode_iterator().GetFlagOperand(2);
   int literal_flags =
       interpreter::CreateObjectLiteralFlags::FlagsBits::decode(bytecode_flags);
-  // TODO(mstarzinger): Thread through number of properties. The below number is
+  // TODO (mstarzinger): Thread through number of properties. The below number is id:1260
   // only an estimate and does not match {ObjectLiteral::properties_count}.
   int number_of_properties = constant_properties->size();
   Node* literal = NewNode(
@@ -2001,7 +2001,7 @@ void BytecodeGraphBuilder::VisitTestGreaterThanOrEqual() {
 }
 
 void BytecodeGraphBuilder::VisitTestEqualStrictNoFeedback() {
-  // TODO(5310): Currently this is used with both Smi operands and with
+  // TODO (5310): Currently this is used with both Smi operands and with id:2202
   // string operands. We pass string operands for static property check in
   // VisitClassLiteralProperties. This should be changed, so we only use this
   // for Smi operations and lower it to SpeculativeNumberEqual[kSignedSmall]
@@ -2463,7 +2463,7 @@ void BytecodeGraphBuilder::MergeIntoSuccessorEnvironment(int target_offset) {
     // Append merge nodes to the environment. We may merge here with another
     // environment. So add a place holder for merge nodes. We may add redundant
     // but will be eliminated in a later pass.
-    // TODO(mstarzinger): Be smarter about this!
+    // TODO (mstarzinger): Be smarter about this! id:1591
     NewMerge();
     merge_environment = environment();
   } else {
@@ -2656,7 +2656,7 @@ Node* BytecodeGraphBuilder::TryBuildSimplifiedCall(const Operator* op,
                                                    Node* const* args,
                                                    int arg_count,
                                                    FeedbackSlot slot) {
-  // TODO(mstarzinger,6112): This is a workaround for OSR loop entries being
+  // TODO (mstarzinger,6112): This is a workaround for OSR loop entries being id:1797
   // pruned from the graph by a soft-deopt. It can happen that a CallIC that
   // control-dominates the OSR entry is still in "uninitialized" state.
   if (!osr_ast_id_.IsNone()) return nullptr;
@@ -2675,7 +2675,7 @@ Node* BytecodeGraphBuilder::TryBuildSimplifiedConstruct(const Operator* op,
                                                         Node* const* args,
                                                         int arg_count,
                                                         FeedbackSlot slot) {
-  // TODO(mstarzinger,6112): This is a workaround for OSR loop entries being
+  // TODO (mstarzinger,6112): This is a workaround for OSR loop entries being id:1661
   // pruned from the graph by a soft-deopt. It can happen that a CallIC that
   // control-dominates the OSR entry is still in "uninitialized" state.
   if (!osr_ast_id_.IsNone()) return nullptr;
@@ -2693,7 +2693,7 @@ Node* BytecodeGraphBuilder::TryBuildSimplifiedConstruct(const Operator* op,
 Node* BytecodeGraphBuilder::TryBuildSimplifiedLoadNamed(const Operator* op,
                                                         Node* receiver,
                                                         FeedbackSlot slot) {
-  // TODO(mstarzinger,6112): This is a workaround for OSR loop entries being
+  // TODO (mstarzinger,6112): This is a workaround for OSR loop entries being id:1262
   // pruned from the graph by a soft-deopt. It can happen that a LoadIC that
   // control-dominates the OSR entry is still in "uninitialized" state.
   if (bytecode_analysis()->HasOSREntryPoint()) return nullptr;
@@ -2712,7 +2712,7 @@ Node* BytecodeGraphBuilder::TryBuildSimplifiedLoadKeyed(const Operator* op,
                                                         Node* receiver,
                                                         Node* key,
                                                         FeedbackSlot slot) {
-  // TODO(mstarzinger,6112): This is a workaround for OSR loop entries being
+  // TODO (mstarzinger,6112): This is a workaround for OSR loop entries being id:2204
   // pruned from the graph by a soft-deopt. It can happen that a LoadIC that
   // control-dominates the OSR entry is still in "uninitialized" state.
   if (bytecode_analysis()->HasOSREntryPoint()) return nullptr;
@@ -2731,7 +2731,7 @@ Node* BytecodeGraphBuilder::TryBuildSimplifiedStoreNamed(const Operator* op,
                                                          Node* receiver,
                                                          Node* value,
                                                          FeedbackSlot slot) {
-  // TODO(mstarzinger,6112): This is a workaround for OSR loop entries being
+  // TODO (mstarzinger,6112): This is a workaround for OSR loop entries being id:1594
   // pruned from the graph by a soft-deopt. It can happen that a LoadIC that
   // control-dominates the OSR entry is still in "uninitialized" state.
   if (bytecode_analysis()->HasOSREntryPoint()) return nullptr;
@@ -2750,7 +2750,7 @@ Node* BytecodeGraphBuilder::TryBuildSimplifiedStoreKeyed(const Operator* op,
                                                          Node* receiver,
                                                          Node* key, Node* value,
                                                          FeedbackSlot slot) {
-  // TODO(mstarzinger,6112): This is a workaround for OSR loop entries being
+  // TODO (mstarzinger,6112): This is a workaround for OSR loop entries being id:1824
   // pruned from the graph by a soft-deopt. It can happen that a LoadIC that
   // control-dominates the OSR entry is still in "uninitialized" state.
   if (bytecode_analysis()->HasOSREntryPoint()) return nullptr;

@@ -305,7 +305,7 @@ struct SpoofDataHeader {
     int32_t       fCFUKeys;               // byte offset to Keys table (from SpoofDataHeader *)
     int32_t       fCFUKeysSize;           // number of entries in keys table  (32 bits each)
 
-    // TODO: change name to fCFUValues, for consistency.
+    // TODO: change name to fCFUValues, for consistency. id:546
     int32_t       fCFUStringIndex;        // byte offset to String Indexes table
     int32_t       fCFUStringIndexSize;    // number of entries in String Indexes table (16 bits each)
                                           //     (number of entries must be same as in Keys table

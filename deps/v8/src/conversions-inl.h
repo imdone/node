@@ -69,7 +69,7 @@ inline unsigned int FastD2UI(double x) {
 
 
 inline float DoubleToFloat32(double x) {
-  // TODO(yangguo): This static_cast is implementation-defined behaviour in C++,
+  // TODO (yangguo): This static_cast is implementation-defined behaviour in C++, id:1978
   // so we may need to do the conversion manually instead to match the spec.
   volatile float f = static_cast<float>(x);
   return f;
@@ -487,7 +487,7 @@ double InternalStringToInt(UnicodeCache* unicode_cache,
   int lim_a = 'a' + (radix - 10);
   int lim_A = 'A' + (radix - 10);
 
-  // NOTE: The code for computing the value may seem a bit complex at
+  // NOTE: The code for computing the value may seem a bit complex at id:2052
   // first glance. It is structured to use 32-bit multiply-and-add
   // loops as long as possible to avoid loosing precision.
 

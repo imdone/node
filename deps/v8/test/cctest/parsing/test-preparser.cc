@@ -113,7 +113,7 @@ TEST(PreParserScopeAnalysis) {
        // The default constructor is scope 0 inside the class.
        {0, 1}},
 
-      // FIXME(marja): Generators and async functions
+      // FIXME (marja): Generators and async functions id:2725
   };
 
   struct Inner {
@@ -534,7 +534,7 @@ TEST(PreParserScopeAnalysis) {
        SKIP_STRICT_FUNCTION, false},
 
       // Hoisted sloppy block function shadowing a parameter.
-      // FIXME(marja): why is maybe_assigned inaccurate?
+      // FIXME (marja): why is maybe_assigned inaccurate? id:3645
       {"var1, var2", "for (;;) { function var1() { } }", DONT_SKIP, false},
 
       // Eval in default parameter.

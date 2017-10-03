@@ -825,7 +825,7 @@ Type* Typer::Visitor::TypeFinishRegion(Node* node) { return Operand(node, 0); }
 
 
 Type* Typer::Visitor::TypeFrameState(Node* node) {
-  // TODO(rossberg): Ideally FrameState wouldn't have a value output.
+  // TODO (rossberg): Ideally FrameState wouldn't have a value output. id:1935
   return Type::Internal();
 }
 
@@ -1612,7 +1612,7 @@ Type* Typer::Visitor::TypeJSCallForwardVarargs(Node* node) {
 }
 
 Type* Typer::Visitor::TypeJSCall(Node* node) {
-  // TODO(bmeurer): We could infer better types if we wouldn't ignore the
+  // TODO (bmeurer): We could infer better types if we wouldn't ignore the id:2015
   // argument types for the JSCallTyper above.
   return TypeUnaryOp(node, JSCallTyper);
 }
@@ -1658,7 +1658,7 @@ Type* Typer::Visitor::TypeJSCallRuntime(Node* node) {
     default:
       break;
   }
-  // TODO(turbofan): This should be Type::NonInternal(), but unfortunately we
+  // TODO (turbofan): This should be Type::NonInternal(), but unfortunately we id:1874
   // have a few weird runtime calls that return the hole or even FixedArrays;
   // change this once those weird runtime calls have been removed.
   return Type::Any();

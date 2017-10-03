@@ -81,7 +81,7 @@ Object* ThrowRuntimeError(Isolate* isolate, int message_id, int byte_offset,
   // converge in one singe block which calls this runtime function.
   // We hence pass the byte offset explicitely, and patch it into the top-most
   // frame (a wasm frame) on the collected stack trace.
-  // TODO(wasm): This implementation is temporary, see bug #5007:
+  // TODO (wasm): This implementation is temporary, see bug #5007: id:3233
   // https://bugs.chromium.org/p/v8/issues/detail?id=5007
   Handle<JSObject> error = Handle<JSObject>::cast(error_obj);
   Handle<Object> stack_trace_obj = JSReceiver::GetDataProperty(

@@ -168,7 +168,7 @@ bool IsFastLiteral(Handle<JSObject> boilerplate, int max_depth,
     }
   }
 
-  // TODO(turbofan): Do we want to support out-of-object properties?
+  // TODO (turbofan): Do we want to support out-of-object properties? id:2510
   if (!(boilerplate->HasFastProperties() &&
         boilerplate->property_array()->length() == 0)) {
     return false;
@@ -301,11 +301,11 @@ Reduction JSCreateLowering::ReduceJSCreateArguments(Node* node) {
   if (outer_state->opcode() != IrOpcode::kFrameState) {
     switch (type) {
       case CreateArgumentsType::kMappedArguments: {
-        // TODO(bmeurer): Make deoptimization mandatory for the various
+        // TODO (bmeurer): Make deoptimization mandatory for the various id:1787
         // arguments objects, so that we always have a shared_info here.
         Handle<SharedFunctionInfo> shared_info;
         if (state_info.shared_info().ToHandle(&shared_info)) {
-          // TODO(mstarzinger): Duplicate parameters are not handled yet.
+          // TODO (mstarzinger): Duplicate parameters are not handled yet. id:1919
           if (shared_info->has_duplicate_parameters()) return NoChange();
           // If there is no aliasing, the arguments object elements are not
           // special in any way, we can just return an unmapped backing store.
@@ -451,7 +451,7 @@ Reduction JSCreateLowering::ReduceJSCreateArguments(Node* node) {
       Node* const callee = NodeProperties::GetValueInput(node, 0);
       Node* const context = NodeProperties::GetContextInput(node);
       Node* effect = NodeProperties::GetEffectInput(node);
-      // TODO(mstarzinger): Duplicate parameters are not handled yet.
+      // TODO (mstarzinger): Duplicate parameters are not handled yet. id:1744
       if (shared->has_duplicate_parameters()) return NoChange();
       // Choose the correct frame state and frame state info depending on
       // whether there conceptually is an arguments adaptor frame in the call
@@ -792,7 +792,7 @@ Reduction JSCreateLowering::ReduceJSCreateArray(Node* node) {
   Node* target = NodeProperties::GetValueInput(node, 0);
   Node* new_target = NodeProperties::GetValueInput(node, 1);
 
-  // TODO(bmeurer): Optimize the subclassing case.
+  // TODO (bmeurer): Optimize the subclassing case. id:1320
   if (target != new_target) return NoChange();
 
   // Check if we have a feedback {site} on the {node}.

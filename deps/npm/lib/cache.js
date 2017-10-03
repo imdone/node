@@ -28,7 +28,7 @@ cache.completion = function (opts, cb) {
     return cb(null, ['add', 'clean'])
   }
 
-  // TODO - eventually...
+  // TODO - eventually... id:601
   switch (argv[2]) {
     case 'clean':
     case 'add':
@@ -69,7 +69,7 @@ function clean (args) {
   if (!npm.config.get('force')) {
     return BB.reject(new Error("As of npm@5, the npm cache self-heals from corruption issues and data extracted from the cache is guaranteed to be valid. If you want to make sure everything is consistent, use 'npm cache verify' instead.\n\nIf you're sure you want to delete the entire cache, rerun this command with --force."))
   }
-  // TODO - remove specific packages or package versions
+  // TODO - remove specific packages or package versions id:740
   return rm(cachePath)
 }
 

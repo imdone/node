@@ -543,7 +543,7 @@ V8DebuggerAgentImpl::resolveBreakpoint(const String16& breakpointId,
                                        const String16& hint) {
   v8::HandleScope handles(m_isolate);
   DCHECK(enabled());
-  // FIXME: remove these checks once crbug.com/520702 is resolved.
+  // FIXME: remove these checks once crbug.com/520702 is resolved. id:3074
   CHECK(!breakpointId.isEmpty());
   CHECK(!breakpoint.script_id.isEmpty());
   ScriptsMap::iterator scriptIterator = m_scripts.find(breakpoint.script_id);
@@ -612,7 +612,7 @@ Response V8DebuggerAgentImpl::setScriptSource(
     return Response::Error("No script with given id found");
   }
   if (it->second->isModule()) {
-    // TODO(kozyatinskiy): LiveEdit should support ES6 module
+    // TODO (kozyatinskiy): LiveEdit should support ES6 module id:2089
     return Response::Error("Editing module's script is not supported.");
   }
 
@@ -773,7 +773,7 @@ Response V8DebuggerAgentImpl::setPauseOnExceptions(
 }
 
 void V8DebuggerAgentImpl::setPauseOnExceptionsImpl(int pauseState) {
-  // TODO(dgozman): this changes the global state and forces all context groups
+  // TODO (dgozman): this changes the global state and forces all context groups id:2224
   // to pause. We should make this flag be per-context-group.
   m_debugger->setPauseOnExceptionsState(
       static_cast<v8::debug::ExceptionBreakState>(pauseState));

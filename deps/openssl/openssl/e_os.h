@@ -740,7 +740,7 @@ extern int sys_nerr;
 #  define getpid taskIdSelf
 
 /*
- * NOTE: these are implemented by helpers in database app! if the database is
+ * NOTE: these are implemented by helpers in database app! if the database is id:1124
  * not linked, we need to implement them elswhere
  */
 struct hostent *gethostbyname(const char *name);

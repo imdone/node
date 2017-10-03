@@ -200,7 +200,7 @@ bool VirtualMemory::ReleaseRegion(void* base, size_t size) {
 
 
 bool VirtualMemory::HasLazyCommits() {
-  // TODO(alph): implement for the platform.
+  // TODO (alph): implement for the platform. id:1437
   return false;
 }
 

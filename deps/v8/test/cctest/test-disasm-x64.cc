@@ -203,7 +203,7 @@ TEST(DisasmX64) {
   __ incq(Operand(rbx, rcx, times_4, 10000));
   __ pushq(Operand(rbx, rcx, times_4, 10000));
   __ popq(Operand(rbx, rcx, times_4, 10000));
-  // TODO(mstarzinger): The following is protected.
+  // TODO (mstarzinger): The following is protected. id:3379
   // __ jmp(Operand(rbx, rcx, times_4, 10000));
 
   __ leaq(rdx, Operand(rbx, rcx, times_4, 10000));
@@ -281,7 +281,7 @@ TEST(DisasmX64) {
   __ call(&L2);
   __ nop();
   __ bind(&L2);
-  // TODO(mstarzinger): The following is protected.
+  // TODO (mstarzinger): The following is protected. id:2433
   // __ call(Operand(rbx, rcx, times_4, 10000));
   __ nop();
   Handle<Code> ic = isolate->builtins()->LoadIC();
@@ -290,7 +290,7 @@ TEST(DisasmX64) {
   __ nop();
 
   __ jmp(&L1);
-  // TODO(mstarzinger): The following is protected.
+  // TODO (mstarzinger): The following is protected. id:2628
   // __ jmp(Operand(rbx, rcx, times_4, 10000));
   __ jmp(ic, RelocInfo::CODE_TARGET);
   __ nop();

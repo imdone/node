@@ -381,16 +381,16 @@ _dopr(char **sbuffer,
                             value, 16, min, max, flags | DP_F_NUM))
                     return 0;
                 break;
-            case 'n':          /* XXX */
+            case 'n':          /* XXX id:1095*/
                 if (cflags == DP_C_SHORT) {
                     short int *num;
                     num = va_arg(args, short int *);
                     *num = currlen;
-                } else if (cflags == DP_C_LONG) { /* XXX */
+                } else if (cflags == DP_C_LONG) { /* XXX id:958*/
                     long int *num;
                     num = va_arg(args, long int *);
                     *num = (long int)currlen;
-                } else if (cflags == DP_C_LLONG) { /* XXX */
+                } else if (cflags == DP_C_LLONG) { /* XXX id:1013*/
                     LLONG *num;
                     num = va_arg(args, LLONG *);
                     *num = (LLONG) currlen;

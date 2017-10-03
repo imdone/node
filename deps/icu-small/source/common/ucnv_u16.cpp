@@ -1498,7 +1498,7 @@ static const UConverterImpl _UTF16Impl = {
     _UTF16PEFromUnicodeWithOffsets,
     _UTF16GetNextUChar,
 
-    NULL, /* ### TODO implement getStarters for all Unicode encodings?! */
+    NULL, /* ### TODO implement getStarters for all Unicode encodings?!  id:172*/
     _UTF16GetName,
     NULL,
     NULL,
@@ -1543,7 +1543,7 @@ static const UConverterImpl _UTF16v2Impl = {
     _UTF16BEFromUnicodeWithOffsets,
     _UTF16GetNextUChar,
 
-    NULL, /* ### TODO implement getStarters for all Unicode encodings?! */
+    NULL, /* ### TODO implement getStarters for all Unicode encodings?!  id:173*/
     _UTF16GetName,
     NULL,
     NULL,

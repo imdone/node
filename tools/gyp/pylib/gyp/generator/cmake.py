@@ -103,7 +103,7 @@ def NormjoinPathForceCMakeSource(base_path, rel_path):
     return rel_path
   if any([rel_path.startswith(var) for var in FULL_PATH_VARS]):
     return rel_path
-  # TODO: do we need to check base_path for absolute variables as well?
+  # TODO: do we need to check base_path for absolute variables as well? id:4099
   return os.path.join('${CMAKE_CURRENT_LIST_DIR}',
                       os.path.normpath(os.path.join(base_path, rel_path)))
 
@@ -612,7 +612,7 @@ def WriteTarget(namer, qualified_target, target_dicts, build_dir, config_to_use,
                 options, generator_flags, all_qualified_targets, flavor,
                 output):
   # The make generator does this always.
-  # TODO: It would be nice to be able to tell CMake all dependencies.
+  # TODO: It would be nice to be able to tell CMake all dependencies. id:4027
   circular_libs = generator_flags.get('circular', True)
 
   if not generator_flags.get('standalone', False):
@@ -955,7 +955,7 @@ def WriteTarget(namer, qualified_target, target_dicts, build_dir, config_to_use,
       SetTargetProperty(output, cmake_target_name, 'COMPILE_FLAGS', flags, ' ')
 
     else:
-      # TODO: This is broken, one cannot generally set properties on files,
+      # TODO: This is broken, one cannot generally set properties on files, id:3269
       # as other targets may require different properties on the same files.
       if s_sources and cflags:
         SetFilesProperty(output, s_sources_name, 'COMPILE_FLAGS', cflags, ' ')
@@ -1150,7 +1150,7 @@ def GenerateOutputForConfig(target_list, target_dicts, data,
   SetVariable(output, 'obj', '${builddir}/obj')
   output.write('\n')
 
-  # TODO: Undocumented/unsupported (the CMake Java generator depends on it).
+  # TODO: Undocumented/unsupported (the CMake Java generator depends on it). id:3432
   # CMake by default names the object resulting from foo.c to be foo.c.o.
   # Gyp traditionally names the object resulting from foo.c foo.o.
   # This should be irrelevant, but some targets extract .o files from .a

@@ -199,7 +199,7 @@ class ReducerTester : public HandleAndZoneScope {
   // swap it to be on the right.
   template <typename T>
   void CheckPutConstantOnRight(volatile T constant) {
-    // TODO(titzer): CHECK(binop->HasProperty(Operator::kCommutative));
+    // TODO (titzer): CHECK(binop->HasProperty(Operator::kCommutative)); id:2673
     Node* p = Parameter();
     Node* k = Constant<T>(constant);
     {
@@ -329,7 +329,7 @@ TEST(ReduceWord32Shl) {
   ReducerTester R;
   R.binop = R.machine.Word32Shl();
 
-  // TODO(titzer): out of range shifts
+  // TODO (titzer): out of range shifts id:3565
   FOR_INT32_INPUTS(i) {
     for (int y = 0; y < 32; y++) {
       int32_t x = *i;
@@ -368,7 +368,7 @@ TEST(ReduceWord32Shr) {
   ReducerTester R;
   R.binop = R.machine.Word32Shr();
 
-  // TODO(titzer): test out of range shifts
+  // TODO (titzer): test out of range shifts id:3322
   FOR_UINT32_INPUTS(i) {
     for (uint32_t y = 0; y < 32; y++) {
       uint32_t x = *i;
@@ -407,7 +407,7 @@ TEST(ReduceWord32Sar) {
   ReducerTester R;
   R.binop = R.machine.Word32Sar();
 
-  // TODO(titzer): test out of range shifts
+  // TODO (titzer): test out of range shifts id:2385
   FOR_INT32_INPUTS(i) {
     for (int32_t y = 0; y < 32; y++) {
       int32_t x = *i;
@@ -503,7 +503,7 @@ TEST(ReduceInt32Add) {
   FOR_INT32_INPUTS(pl) {
     FOR_INT32_INPUTS(pr) {
       int32_t x = *pl, y = *pr;
-      R.CheckFoldBinop<int32_t>(x + y, x, y);  // TODO(titzer): signed overflow
+      R.CheckFoldBinop<int32_t>(x + y, x, y);  // TODO (titzer): signed overflow id:2576
     }
   }
 
@@ -587,7 +587,7 @@ TEST(ReduceInt32Mul) {
   FOR_INT32_INPUTS(pl) {
     FOR_INT32_INPUTS(pr) {
       int32_t x = *pl, y = *pr;
-      R.CheckFoldBinop<int32_t>(x * y, x, y);  // TODO(titzer): signed overflow
+      R.CheckFoldBinop<int32_t>(x * y, x, y);  // TODO (titzer): signed overflow id:2675
     }
   }
 
@@ -625,7 +625,7 @@ TEST(ReduceInt32Div) {
   FOR_INT32_INPUTS(pl) {
     FOR_INT32_INPUTS(pr) {
       int32_t x = *pl, y = *pr;
-      if (y == 0) continue;              // TODO(titzer): test / 0
+      if (y == 0) continue;              // TODO (titzer): test / 0 id:3568
       int32_t r = y == -1 ? -x : x / y;  // INT_MIN / -1 may explode in C
       R.CheckFoldBinop<int32_t>(r, x, y);
     }
@@ -639,8 +639,8 @@ TEST(ReduceInt32Div) {
   Node* minus_one = R.Constant<int32_t>(-1);
 
   R.CheckBinop(x, x, one);  // x / 1  => x
-  // TODO(titzer):                          // 0 / x  => 0 if x != 0
-  // TODO(titzer):                          // x / 2^n => x >> n and round
+  // TODO (titzer):                          // 0 / x  => 0 if x != 0 id:3324
+  // TODO (titzer):                          // x / 2^n => x >> n and round id:2387
   R.CheckFoldBinop<int32_t>(0, R.machine.Int32Sub(), x, x,
                             minus_one);  // x / -1  => 0 - x
 }
@@ -653,7 +653,7 @@ TEST(ReduceUint32Div) {
   FOR_UINT32_INPUTS(pl) {
     FOR_UINT32_INPUTS(pr) {
       uint32_t x = *pl, y = *pr;
-      if (y == 0) continue;  // TODO(titzer): test / 0
+      if (y == 0) continue;  // TODO (titzer): test / 0 id:2579
       R.CheckFoldBinop<int32_t>(x / y, x, y);
     }
   }
@@ -665,7 +665,7 @@ TEST(ReduceUint32Div) {
   Node* one = R.Constant<int32_t>(1);
 
   R.CheckBinop(x, x, one);  // x / 1  => x
-  // TODO(titzer):                            // 0 / x  => 0 if x != 0
+  // TODO (titzer):                            // 0 / x  => 0 if x != 0 id:2678
 
   for (uint32_t n = 1; n < 32; ++n) {
     Node* divisor = R.Constant<int32_t>(1u << n);
@@ -682,7 +682,7 @@ TEST(ReduceInt32Mod) {
   FOR_INT32_INPUTS(pl) {
     FOR_INT32_INPUTS(pr) {
       int32_t x = *pl, y = *pr;
-      if (y == 0) continue;             // TODO(titzer): test % 0
+      if (y == 0) continue;             // TODO (titzer): test % 0 id:3571
       int32_t r = y == -1 ? 0 : x % y;  // INT_MIN % -1 may explode in C
       R.CheckFoldBinop<int32_t>(r, x, y);
     }
@@ -695,7 +695,7 @@ TEST(ReduceInt32Mod) {
   Node* one = R.Constant<int32_t>(1);
 
   R.CheckFoldBinop<int32_t>(0, x, one);  // x % 1  => 0
-  // TODO(titzer):                       // x % 2^n => x & 2^n-1 and round
+  // TODO (titzer):                       // x % 2^n => x & 2^n-1 and round id:3326
 }
 
 
@@ -706,7 +706,7 @@ TEST(ReduceUint32Mod) {
   FOR_INT32_INPUTS(pl) {
     FOR_INT32_INPUTS(pr) {
       uint32_t x = *pl, y = *pr;
-      if (y == 0) continue;  // TODO(titzer): test x % 0
+      if (y == 0) continue;  // TODO (titzer): test x % 0 id:2389
       R.CheckFoldBinop<int32_t>(x % y, x, y);
     }
   }
@@ -879,26 +879,26 @@ TEST(ReduceFloat64Sub) {
   R.CheckFoldBinop(std::numeric_limits<double>::quiet_NaN(), x, nan);
 }
 
-// TODO(titzer): test MachineOperatorReducer for Word64And
-// TODO(titzer): test MachineOperatorReducer for Word64Or
-// TODO(titzer): test MachineOperatorReducer for Word64Xor
-// TODO(titzer): test MachineOperatorReducer for Word64Equal
-// TODO(titzer): test MachineOperatorReducer for Word64Not
-// TODO(titzer): test MachineOperatorReducer for Int64Mul
-// TODO(titzer): test MachineOperatorReducer for Int64UMul
-// TODO(titzer): test MachineOperatorReducer for Int64Div
-// TODO(titzer): test MachineOperatorReducer for Uint64Div
-// TODO(titzer): test MachineOperatorReducer for Int64Mod
-// TODO(titzer): test MachineOperatorReducer for Uint64Mod
-// TODO(titzer): test MachineOperatorReducer for Int64Neg
-// TODO(titzer): test MachineOperatorReducer for ChangeInt32ToFloat64
-// TODO(titzer): test MachineOperatorReducer for ChangeFloat64ToInt32
-// TODO(titzer): test MachineOperatorReducer for Float64Compare
-// TODO(titzer): test MachineOperatorReducer for Float64Add
-// TODO(titzer): test MachineOperatorReducer for Float64Sub
-// TODO(titzer): test MachineOperatorReducer for Float64Mul
-// TODO(titzer): test MachineOperatorReducer for Float64Div
-// TODO(titzer): test MachineOperatorReducer for Float64Mod
+// TODO (titzer): test MachineOperatorReducer for Word64And id:2582
+// TODO (titzer): test MachineOperatorReducer for Word64Or id:2681
+// TODO (titzer): test MachineOperatorReducer for Word64Xor id:3574
+// TODO (titzer): test MachineOperatorReducer for Word64Equal id:3329
+// TODO (titzer): test MachineOperatorReducer for Word64Not id:2391
+// TODO (titzer): test MachineOperatorReducer for Int64Mul id:2585
+// TODO (titzer): test MachineOperatorReducer for Int64UMul id:2684
+// TODO (titzer): test MachineOperatorReducer for Int64Div id:3577
+// TODO (titzer): test MachineOperatorReducer for Uint64Div id:3332
+// TODO (titzer): test MachineOperatorReducer for Int64Mod id:2393
+// TODO (titzer): test MachineOperatorReducer for Uint64Mod id:2589
+// TODO (titzer): test MachineOperatorReducer for Int64Neg id:2686
+// TODO (titzer): test MachineOperatorReducer for ChangeInt32ToFloat64 id:3580
+// TODO (titzer): test MachineOperatorReducer for ChangeFloat64ToInt32 id:3334
+// TODO (titzer): test MachineOperatorReducer for Float64Compare id:2395
+// TODO (titzer): test MachineOperatorReducer for Float64Add id:2592
+// TODO (titzer): test MachineOperatorReducer for Float64Sub id:2688
+// TODO (titzer): test MachineOperatorReducer for Float64Mul id:3583
+// TODO (titzer): test MachineOperatorReducer for Float64Div id:3337
+// TODO (titzer): test MachineOperatorReducer for Float64Mod id:2397
 
 }  // namespace compiler
 }  // namespace internal

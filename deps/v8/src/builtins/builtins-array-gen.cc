@@ -258,7 +258,7 @@ class ArrayBuiltinCodeStubAssembler : public CodeStubAssembler {
 
     BIND(&array_double);
     {
-      // TODO(mvstanton): If we use a variable for elements and bind it
+      // TODO (mvstanton): If we use a variable for elements and bind it id:1453
       // appropriately, we can avoid an extra load of elements by binding the
       // value only after a transition from smi to double.
       elements = LoadElements(a());
@@ -358,7 +358,7 @@ class ArrayBuiltinCodeStubAssembler : public CodeStubAssembler {
       ForEachDirection direction = ForEachDirection::kForward) {
     Label non_array(this), array_changes(this, {&k_, &a_, &to_});
 
-    // TODO(danno): Seriously? Do we really need to throw the exact error
+    // TODO (danno): Seriously? Do we really need to throw the exact error id:1662
     // message on null and undefined so that the webkit tests pass?
     Label throw_null_undefined_exception(this, Label::kDeferred);
     GotoIf(WordEqual(receiver(), NullConstant()),
@@ -511,7 +511,7 @@ class ArrayBuiltinCodeStubAssembler : public CodeStubAssembler {
       source_elements_kind_ = ElementsKindForInstanceType(
           static_cast<InstanceType>(instance_types[i]));
       generator(this);
-      // TODO(tebbi): Silently cancelling the loop on buffer detachment is a
+      // TODO (tebbi): Silently cancelling the loop on buffer detachment is a id:1393
       // spec violation. Should go to &throw_detached and throw a TypeError
       // instead.
       VisitAllTypedArrayElements(array_buffer, processor, &done, direction);
@@ -916,7 +916,7 @@ TF_BUILTIN(FastArrayPush, CodeStubAssembler) {
   Label double_transition(this);
   Label runtime(this, Label::kDeferred);
 
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:1128
   // arguments are reordered.
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
   Node* context = Parameter(BuiltinDescriptor::kContext);
@@ -952,7 +952,7 @@ TF_BUILTIN(FastArrayPush, CodeStubAssembler) {
     Node* arg = args.AtIndex(arg_index.value());
     GotoIf(TaggedIsSmi(arg), &default_label);
     Node* length = LoadJSArrayLength(receiver);
-    // TODO(danno): Use the KeyedStoreGeneric stub here when possible,
+    // TODO (danno): Use the KeyedStoreGeneric stub here when possible, id:1820
     // calling into the runtime to do the elements transition is overkill.
     CallRuntime(Runtime::kSetProperty, context, receiver, length, arg,
                 SmiConstant(STRICT));
@@ -998,7 +998,7 @@ TF_BUILTIN(FastArrayPush, CodeStubAssembler) {
     Node* arg = args.AtIndex(arg_index.value());
     GotoIfNumber(arg, &default_label);
     Node* length = LoadJSArrayLength(receiver);
-    // TODO(danno): Use the KeyedStoreGeneric stub here when possible,
+    // TODO (danno): Use the KeyedStoreGeneric stub here when possible, id:1455
     // calling into the runtime to do the elements transition is overkill.
     CallRuntime(Runtime::kSetProperty, context, receiver, length, arg,
                 SmiConstant(STRICT));
@@ -1693,7 +1693,7 @@ TF_BUILTIN(ArrayIsArray, CodeStubAssembler) {
   GotoIf(Word32Equal(instance_type, Int32Constant(JS_ARRAY_TYPE)),
          &return_true);
 
-  // TODO(verwaest): Handle proxies in-place.
+  // TODO (verwaest): Handle proxies in-place. id:1666
   Branch(Word32Equal(instance_type, Int32Constant(JS_PROXY_TYPE)),
          &call_runtime, &return_false);
 

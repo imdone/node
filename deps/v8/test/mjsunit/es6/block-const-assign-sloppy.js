@@ -41,7 +41,7 @@ const decls = [
 
   // Function expression.
   function(use) { return "(function c() { " + use + "; })();"; }, TypeError,
-  // TODO(rossberg): Once we have default parameters, test using 'c' there.
+  // TODO (rossberg): Once we have default parameters, test using 'c' there. id:3855
 
   // Class expression.
   function(use) {

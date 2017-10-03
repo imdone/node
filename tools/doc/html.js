@@ -42,7 +42,7 @@ marked.setOptions({
   renderer: renderer
 });
 
-// TODO(chrisdickinson): never stop vomitting / fix this.
+// TODO (chrisdickinson): never stop vomitting / fix this. id:3969
 const gtocPath = path.resolve(path.join(
   __dirname,
   '..',
@@ -447,7 +447,7 @@ function linkJsTypeDocs(text) {
     }
   }
 
-  //XXX maybe put more stuff here?
+  //XXX maybe put more stuff here? id:3153
   return parts.join('`');
 }
 

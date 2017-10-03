@@ -120,7 +120,7 @@ bool CompilationInfo::is_this_defined() const { return !IsStub(); }
 // Primitive functions are unlikely to be picked up by the stack-walking
 // profiler, so they trigger their own optimization when they're called
 // for the SharedFunctionInfo::kCallsUntilPrimitiveOptimization-th time.
-// TODO(6409) Remove when Full-Codegen dies.
+// TODO (6409) Remove when Full-Codegen dies. id:1745
 bool CompilationInfo::ShouldSelfOptimize() {
   return FLAG_opt && !literal()->dont_self_optimize() &&
          !literal()->dont_optimize() &&

@@ -72,7 +72,7 @@ ASN1_OBJECT *OBJ_dup(const ASN1_OBJECT *o)
     if (o == NULL)
         return (NULL);
     if (!(o->flags & ASN1_OBJECT_FLAG_DYNAMIC))
-        return ((ASN1_OBJECT *)o); /* XXX: ugh! Why? What kind of duplication
+        return ((ASN1_OBJECT *)o); /* XXX: ugh! Why? What kind of duplication id:799
                                     * is this??? */
 
     r = ASN1_OBJECT_new();

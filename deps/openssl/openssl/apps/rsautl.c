@@ -199,7 +199,7 @@ int MAIN(int argc, char **argv)
         goto end;
     }
 
-/* FIXME: seed PRNG only if needed */
+/* FIXME: seed PRNG only if needed  id:944*/
     app_RAND_load_file(NULL, bio_err, 0);
 
     switch (key_type) {

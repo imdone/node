@@ -98,7 +98,7 @@ uint64_t uv_get_free_memory(void) {
 
   if (host_statistics(mach_host_self(), HOST_VM_INFO,
                       (host_info_t)&info, &count) != KERN_SUCCESS) {
-    return -EINVAL;  /* FIXME(bnoordhuis) Translate error. */
+    return -EINVAL;  /* FIXME (bnoordhuis) Translate error.  id:1177*/
   }
 
   return (uint64_t) info.free_count * sysconf(_SC_PAGESIZE);
@@ -191,7 +191,7 @@ int uv_cpu_info(uv_cpu_info_t** cpu_infos, int* count) {
   if (host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &numcpus,
                           (processor_info_array_t*)&info,
                           &msg_type) != KERN_SUCCESS) {
-    return -EINVAL;  /* FIXME(bnoordhuis) Translate error. */
+    return -EINVAL;  /* FIXME (bnoordhuis) Translate error.  id:1280*/
   }
 
   *cpu_infos = uv__malloc(numcpus * sizeof(**cpu_infos));

@@ -180,7 +180,7 @@ public:
     }
 private:
     /*
-     * TODO: Revisit whether it makes sense to track reorderStart.
+     * TODO: Revisit whether it makes sense to track reorderStart. id:153
      * It is set to after the last known character with cc<=1,
      * which stops previousCC() before it reads that character and looks up its cc.
      * previousCC() is normally only called from insert().

@@ -122,7 +122,7 @@ Handle<JSReceiver> LookupIterator::GetRootForNonJSReceiver(
   // the wrapper. Hence we can skip generating the wrapper for all other cases.
   if (index != kMaxUInt32 && receiver->IsString() &&
       index < static_cast<uint32_t>(String::cast(*receiver)->length())) {
-    // TODO(verwaest): Speed this up. Perhaps use a cached wrapper on the native
+    // TODO (verwaest): Speed this up. Perhaps use a cached wrapper on the native id:2318
     // context, ensuring that we don't leak it into JS?
     Handle<JSFunction> constructor = isolate->string_function();
     Handle<JSObject> result = isolate->factory()->NewJSObject(constructor);
@@ -533,7 +533,7 @@ void LookupIterator::TransitionToAccessorPair(Handle<Object> pair,
   PropertyDetails details(kAccessor, attributes, PropertyCellType::kMutable);
 
   if (IsElement()) {
-    // TODO(verwaest): Move code into the element accessor.
+    // TODO (verwaest): Move code into the element accessor. id:1953
     Handle<SeededNumberDictionary> dictionary =
         JSObject::NormalizeElements(receiver);
 

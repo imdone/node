@@ -25,7 +25,7 @@
 #include <string.h>
 #include <errno.h>
 
-/* NOTE: Number should be big enough to trigger this problem */
+/* NOTE: Number should be big enough to trigger this problem  id:943*/
 #if defined(__CYGWIN__) || defined(__MSYS__)
 /* Cygwin crashes or hangs in socket() with too many AF_INET sockets.  */
 static uv_udp_t sockets[1250];

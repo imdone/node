@@ -505,7 +505,7 @@ void MipsDebugger::Debug() {
           next_arg++;
         }
 
-        // TODO(palfia): optimize this.
+        // TODO (palfia): optimize this. id:3117
         if (IsFp64Mode()) {
           int64_t words;
           if (argc == next_arg) {
@@ -1033,7 +1033,7 @@ Simulator* Simulator::current(Isolate* isolate) {
 
   Simulator* sim = isolate_data->simulator();
   if (sim == NULL) {
-    // TODO(146): delete the simulator object when a thread/isolate goes away.
+    // TODO (146): delete the simulator object when a thread/isolate goes away. id:2129
     sim = new Simulator(isolate);
     isolate_data->set_simulator(sim);
   }
@@ -1070,7 +1070,7 @@ void Simulator::set_fpu_register(int fpureg, int64_t value) {
 
 void Simulator::set_fpu_register_word(int fpureg, int32_t value) {
   // Set ONLY lower 32-bits, leaving upper bits untouched.
-  // TODO(plind): big endian issue.
+  // TODO (plind): big endian issue. id:2312
   DCHECK((fpureg >= 0) && (fpureg < kNumFPURegisters));
   int32_t* pword = reinterpret_cast<int32_t*>(&FPUregisters_[fpureg * 2]);
   *pword = value;
@@ -1079,7 +1079,7 @@ void Simulator::set_fpu_register_word(int fpureg, int32_t value) {
 
 void Simulator::set_fpu_register_hi_word(int fpureg, int32_t value) {
   // Set ONLY upper 32-bits, leaving lower bits untouched.
-  // TODO(plind): big endian issue.
+  // TODO (plind): big endian issue. id:2330
   DCHECK((fpureg >= 0) && (fpureg < kNumFPURegisters));
   int32_t* phiword =
       (reinterpret_cast<int32_t*>(&FPUregisters_[fpureg * 2])) + 1;
@@ -1118,7 +1118,7 @@ int32_t Simulator::get_register(int reg) const {
 
 
 double Simulator::get_double_from_register_pair(int reg) {
-  // TODO(plind): bad ABI stuff, refactor or remove.
+  // TODO (plind): bad ABI stuff, refactor or remove. id:1964
   DCHECK((reg >= 0) && (reg < kNumSimuRegisters) && ((reg % 2) == 0));
 
   double dm_val = 0.0;
@@ -1203,7 +1203,7 @@ void Simulator::GetFpArgs(double* x, double* y, int32_t* z) {
     *y = get_fpu_register_double(14);
     *z = get_register(a2);
   } else {
-    // TODO(plind): bad ABI stuff, refactor or remove.
+    // TODO (plind): bad ABI stuff, refactor or remove. id:3119
     // We use a char buffer to get around the strict-aliasing rules which
     // otherwise allow the compiler to optimize away the copy.
     char buffer[sizeof(*x)];
@@ -1847,7 +1847,7 @@ void Simulator::TraceMSARegWr(T* value) {
   }
 }
 
-// TODO(plind): consider making icount_ printing a flag option.
+// TODO (plind): consider making icount_ printing a flag option. id:2179
 void Simulator::TraceMemRd(int32_t addr, int32_t value, TraceType t) {
   if (::v8::internal::FLAG_trace_sim) {
     union {
@@ -4037,7 +4037,7 @@ void Simulator::DecodeTypeRegisterSPECIAL() {
       do_interrupt = rs() != rt();
       break;
     case SYNC:
-      // TODO(palfia): Ignore sync instruction for now.
+      // TODO (palfia): Ignore sync instruction for now. id:2315
       break;
     // Conditional moves.
     case MOVN:

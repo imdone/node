@@ -81,7 +81,7 @@ typedef struct {
 
 DECLARE_ASN1_FUNCTIONS(GOST_KEY_TRANSPORT)
 
-typedef struct {                /* FIXME incomplete */
+typedef struct {                /* FIXME incomplete  id:1220*/
     GOST_KEY_TRANSPORT *gkt;
 } GOST_CLIENT_KEY_EXCHANGE_PARAMS;
 

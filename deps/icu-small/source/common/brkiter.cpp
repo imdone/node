@@ -362,7 +362,7 @@ BreakIterator::createInstance(const Locale& loc, int32_t kind, UErrorCode& statu
     if (hasService()) {
         Locale actualLoc("");
         BreakIterator *result = (BreakIterator*)gService->get(loc, kind, &actualLoc, status);
-        // TODO: The way the service code works in ICU 2.8 is that if
+        // TODO: The way the service code works in ICU 2.8 is that if id:26
         // there is a real registered break iterator, the actualLoc
         // will be populated, but if the handleDefault path is taken
         // (because nothing is registered that can handle the

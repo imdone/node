@@ -520,7 +520,7 @@ class MachineRepresentationChecker {
             CheckValueInputForInt32Op(node, 0);
             break;
           case IrOpcode::kReturn: {
-            // TODO(ishell): enable once the pop count parameter type becomes
+            // TODO (ishell): enable once the pop count parameter type becomes id:1784
             // MachineType::PointerRepresentation(). Currently it's int32 or
             // word-size.
             // CheckValueInputRepresentationIs(

@@ -60,7 +60,7 @@ Results for: {LATIN CAPITAL LETTER A WITH RING ABOVE}{LATIN SMALL LETTER D}{COMB
 
 U_NAMESPACE_BEGIN
 
-// TODO: add boilerplate methods.
+// TODO: add boilerplate methods. id:49
 
 UOBJECT_DEFINE_RTTI_IMPLEMENTATION(CanonicalIterator)
 
@@ -109,7 +109,7 @@ void CanonicalIterator::cleanPieces() {
 }
 
 /**
- *@return gets the source: NOTE: it is the NFD form of source
+ *@return gets the source: NOTE: it is the NFD form of source id:53
  */
 UnicodeString CanonicalIterator::getSource() {
   return source;
@@ -260,7 +260,7 @@ CleanPartialInitialization:
 
 /**
  * Dumb recursive implementation of permutation.
- * TODO: optimize
+ * TODO: optimize id:52
  * @param source the string to find permutations for
  * @return the results in a set.
  */
@@ -358,7 +358,7 @@ UnicodeString* CanonicalIterator::getEquivalents(const UnicodeString &segment, i
 
     // now get all the permutations
     // add only the ones that are canonically equivalent
-    // TODO: optimize by not permuting any class zero.
+    // TODO: optimize by not permuting any class zero. id:28
 
     const UHashElement *ne = NULL;
     int32_t el = UHASH_FIRST;
@@ -383,10 +383,10 @@ UnicodeString* CanonicalIterator::getEquivalents(const UnicodeString &segment, i
             UnicodeString attempt;
             nfd.normalize(possible, attempt, status);
 
-            // TODO: check if operator == is semanticaly the same as attempt.equals(segment)
+            // TODO: check if operator == is semanticaly the same as attempt.equals(segment) id:143
             if (attempt==segment) {
                 //if (PROGRESS) printf("Adding Permutation: %s\n", UToS(Tr(*possible)));
-                // TODO: use the hashtable just to catch duplicates - store strings directly (somehow).
+                // TODO: use the hashtable just to catch duplicates - store strings directly (somehow). id:51
                 result.put(possible, new UnicodeString(possible), status); //add(possible);
             } else {
                 //if (PROGRESS) printf("-Skipping Permutation: %s\n", UToS(Tr(*possible)));
@@ -547,7 +547,7 @@ Hashtable *CanonicalIterator::extract(Hashtable *fillinResult, UChar32 comp, con
             // brute force approach
             temp.append(cp);
 
-            /* TODO: optimize
+            /* TODO: optimize id:56
             // since we know that the classes are monotonically increasing, after zero
             // e.g. 0 5 7 9 0 3
             // we can do an optimization

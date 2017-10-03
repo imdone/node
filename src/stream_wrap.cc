@@ -303,7 +303,7 @@ void StreamWrap::AfterShutdown(uv_shutdown_t* req, int status) {
 }
 
 
-// NOTE: Call to this function could change both `buf`'s and `count`'s
+// NOTE: Call to this function could change both `buf`'s and `count`'s id:4059
 // values, shifting their base and decrementing their length. This is
 // required in order to skip the data that was successfully written via
 // uv_try_write().

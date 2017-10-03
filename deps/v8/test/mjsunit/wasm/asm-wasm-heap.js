@@ -231,6 +231,6 @@ RunAsmJsTest(LoadAt_f64, function(module) {
   checkView(new Float64Array(buffer), load, 3);
 });
 
-// TODO(titzer): constant heap indexes
-// TODO(titzer): heap accesses with offsets and arithmetic
-// TODO(titzer): [i >> K] where K is greater than log(size)
+// TODO (titzer): constant heap indexes id:2936
+// TODO (titzer): heap accesses with offsets and arithmetic id:3442
+// TODO (titzer): [i >> K] where K is greater than log(size) id:3886

@@ -56,7 +56,7 @@ class ClockMath {
      * the modulus remainder.  Unlike the built-in division, this is
      * mathematically well-behaved.  E.g., <code>-1/4</code> => 0 and
      * <code>-1%4</code> => -1, but <code>floorDivide(-1,4)</code> =>
-     * -1 with <code>remainder</code> => 3.  NOTE: If numerator is
+     * -1 with <code>remainder</code> => 3.  NOTE: If numerator is id:317
      * too large, the returned quotient may overflow.
      * @param numerator the numerator
      * @param denominator a divisor which must be != 0

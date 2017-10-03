@@ -20,7 +20,7 @@ var example_bin =
   '#!/usr/bin/env node\n' +
   'true\n'
 
-// NOTE: if this were actually produced on windows it would be \ not / of
+// NOTE: if this were actually produced on windows it would be \ not / of id:595
 // course, buuut, path.resolve doesn't understand \ outside of windows =/
 var do_example_cmd =
   '@IF EXIST "%~dp0\\node.exe" (\n' +

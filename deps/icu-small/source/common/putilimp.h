@@ -67,7 +67,7 @@
  *
  * Do not use ptrdiff_t since it is signed. size_t is unsigned.
  */
-/* TODO: This check fails on some z environments. Filed a ticket #9357 for this. */
+/* TODO: This check fails on some z environments. Filed a ticket #9357 for this.  id:154*/
 #if !defined(__intptr_t_defined) && !defined(UINTPTR_MAX) && (U_PLATFORM != U_PF_OS390)
 typedef size_t uintptr_t;
 #endif
@@ -200,7 +200,7 @@ typedef size_t uintptr_t;
 #elif U_PLATFORM == U_PF_MINGW
     #define U_HAVE_GCC_ATOMICS 0
 #elif U_GCC_MAJOR_MINOR >= 404 || defined(__clang__)
-    /* TODO: Intel icc and IBM xlc on AIX also support gcc atomics.  (Intel originated them.)
+    /* TODO: Intel icc and IBM xlc on AIX also support gcc atomics.  (Intel originated them.) id:82
      *       Add them for these compilers.
      * Note: Clang sets __GNUC__ defines for version 4.2, so misses the 4.4 test here.
      */

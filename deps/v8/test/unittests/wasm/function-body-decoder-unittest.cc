@@ -265,7 +265,7 @@ TEST_F(FunctionBodyDecoderTest, Int32Const_fallthru2) {
 TEST_F(FunctionBodyDecoderTest, Int32Const) {
   const int kInc = 4498211;
   for (int32_t i = kMinInt; i < kMaxInt - kInc; i = i + kInc) {
-    // TODO(binji): expand test for other sized int32s; 1 through 5 bytes.
+    // TODO (binji): expand test for other sized int32s; 1 through 5 bytes. id:3985
     byte code[] = {WASM_I32V(i)};
     EXPECT_VERIFIES_C(i_i, code);
   }
@@ -2233,7 +2233,7 @@ TEST_F(FunctionBodyDecoderTest, Select_TypeCheck) {
 
 TEST_F(FunctionBodyDecoderTest, Throw) {
   EXPERIMENTAL_FLAG_SCOPE(eh);
-  // TODO(kschimpf): Need to fix throw to use declared exception.
+  // TODO (kschimpf): Need to fix throw to use declared exception. id:3854
   EXPECT_FAILURE(v_i, WASM_GET_LOCAL(0), kExprThrow);
 
   EXPECT_FAILURE(i_d, WASM_GET_LOCAL(0), kExprThrow, WASM_I32V(0));
@@ -2242,7 +2242,7 @@ TEST_F(FunctionBodyDecoderTest, Throw) {
 }
 
 TEST_F(FunctionBodyDecoderTest, ThrowUnreachable) {
-  // TODO(titzer): unreachable code after throw should validate.
+  // TODO (titzer): unreachable code after throw should validate. id:2942
   // EXPERIMENTAL_FLAG_SCOPE(eh);
   // EXPECT_VERIFIES(v_i, WASM_GET_LOCAL(0), kExprThrow, kExprSetLocal, 0);
 }
@@ -2253,7 +2253,7 @@ TEST_F(FunctionBodyDecoderTest, ThrowUnreachable) {
 
 TEST_F(FunctionBodyDecoderTest, TryCatch) {
   EXPERIMENTAL_FLAG_SCOPE(eh);
-  // TODO(kschimpf): Need to fix catch to use declared exception.
+  // TODO (kschimpf): Need to fix catch to use declared exception. id:3176
   EXPECT_FAILURE(v_i, WASM_TRY_OP, WASM_CATCH(0), kExprEnd);
 
   // Missing catch.

@@ -405,7 +405,7 @@ ures_enumDependencies(const char *itemName, const UDataInfo *pInfo,
             // check() already printed a complaint.
             return;
         }
-        // TODO: Cache the native version in the Item itself.
+        // TODO: Cache the native version in the Item itself. id:348
         nativePool.setItem(pkg->getItem(index), ures_swap);
         const UDataInfo *poolInfo=nativePool.getDataInfo();
         if(poolInfo->formatVersion[0]<=1) {
@@ -600,7 +600,7 @@ Package::enumDependencies(Item *pItem, void *context, CheckDependency check) {
             }
         case FMT_CNV:
             {
-                // TODO: share/cache swappers
+                // TODO: share/cache swappers id:405
                 UDataSwapper *ds=udata_openSwapper(
                                     (UBool)pInfo->isBigEndian, pInfo->charsetFamily,
                                     U_IS_BIG_ENDIAN, U_CHARSET_FAMILY,

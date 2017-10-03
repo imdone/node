@@ -135,7 +135,7 @@ class V8_EXPORT_PRIVATE WasmInterpreter {
 
     // Stack inspection and modification.
     pc_t GetBreakpointPc();
-    // TODO(clemensh): Make this uint32_t.
+    // TODO (clemensh): Make this uint32_t. id:3263
     int GetFrameCount();
     // The InterpretedFrame is only valid as long as the Thread is paused.
     std::unique_ptr<InterpretedFrame> GetFrame(int index);
@@ -151,7 +151,7 @@ class V8_EXPORT_PRIVATE WasmInterpreter {
     uint64_t NumInterpretedCalls();
 
     // Thread-specific breakpoints.
-    // TODO(wasm): Implement this once we support multiple threads.
+    // TODO (wasm): Implement this once we support multiple threads. id:2364
     // bool SetBreakpoint(const WasmFunction* function, int pc, bool enabled);
     // bool GetBreakpoint(const WasmFunction* function, int pc);
 

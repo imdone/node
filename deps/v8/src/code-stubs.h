@@ -145,7 +145,7 @@ static const int kHasReturnedMinusZeroSentinel = 1;
 class CodeStub : public ZoneObject {
  public:
   enum Major {
-    // TODO(mvstanton): eliminate the NoCache key by getting rid
+    // TODO (mvstanton): eliminate the NoCache key by getting rid id:1221
     //                  of the non-monomorphic-cache.
     NoCache = 0,  // marker for stubs that do custom caching]
 #define DEF_ENUM(name) name,
@@ -996,7 +996,7 @@ class JSEntryStub : public PlatformCodeStub {
   DEFINE_PLATFORM_CODE_STUB(JSEntry, PlatformCodeStub);
 };
 
-// TODO(bmeurer/mvstanton): Turn CallConstructStub into ConstructICStub.
+// TODO (bmeurer/mvstanton): Turn CallConstructStub into ConstructICStub. id:2157
 class CallConstructStub final : public PlatformCodeStub {
  public:
   explicit CallConstructStub(Isolate* isolate) : PlatformCodeStub(isolate) {}

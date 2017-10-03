@@ -32,7 +32,7 @@ class V8_EXPORT_PRIVATE SignatureMap {
   int32_t Find(FunctionSig* sig) const;
 
  private:
-  // TODO(wasm): use a hashmap instead of an ordered map?
+  // TODO (wasm): use a hashmap instead of an ordered map? id:2599
   struct CompareFunctionSigs {
     bool operator()(FunctionSig* a, FunctionSig* b) const;
   };

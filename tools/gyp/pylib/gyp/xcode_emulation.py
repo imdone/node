@@ -529,7 +529,7 @@ class XcodeSettings(object):
   def _AppendPlatformVersionMinFlags(self, lst):
     self._Appendf(lst, 'MACOSX_DEPLOYMENT_TARGET', '-mmacosx-version-min=%s')
     if 'IPHONEOS_DEPLOYMENT_TARGET' in self._Settings():
-      # TODO: Implement this better?
+      # TODO: Implement this better? id:3781
       sdk_path_basename = os.path.basename(self._SdkPath())
       if sdk_path_basename.lower().startswith('iphonesimulator'):
         self._Appendf(lst, 'IPHONEOS_DEPLOYMENT_TARGET',
@@ -568,7 +568,7 @@ class XcodeSettings(object):
         cflags.append('-mdynamic-no-pic')
     else:
       pass
-      # TODO: In this case, it depends on the target. xcode passes
+      # TODO: In this case, it depends on the target. xcode passes id:4116
       # mdynamic-no-pic by default for executable and possibly static lib
       # according to mento
 
@@ -611,13 +611,13 @@ class XcodeSettings(object):
 
     self._AppendPlatformVersionMinFlags(cflags)
 
-    # TODO:
+    # TODO: id:4062
     if self._Test('COPY_PHASE_STRIP', 'YES', default='NO'):
       self._WarnUnimplemented('COPY_PHASE_STRIP')
     self._WarnUnimplemented('GCC_DEBUGGING_SYMBOLS')
     self._WarnUnimplemented('GCC_ENABLE_OBJC_EXCEPTIONS')
 
-    # TODO: This is exported correctly, but assigning to it is not supported.
+    # TODO: This is exported correctly, but assigning to it is not supported. id:3289
     self._WarnUnimplemented('MACH_O_TYPE')
     self._WarnUnimplemented('PRODUCT_TYPE')
 
@@ -627,7 +627,7 @@ class XcodeSettings(object):
       assert self.configname
       archs = self.GetActiveArchs(self.configname)
     if len(archs) != 1:
-      # TODO: Supporting fat binaries will be annoying.
+      # TODO: Supporting fat binaries will be annoying. id:3489
       self._WarnUnimplemented('ARCHS')
       archs = ['i386']
     cflags.append('-arch ' + archs[0])
@@ -702,7 +702,7 @@ class XcodeSettings(object):
     other_ccflags = []
 
     for flag in self._Settings().get('OTHER_CPLUSPLUSFLAGS', ['$(inherited)']):
-      # TODO: More general variable expansion. Missing in many other places too.
+      # TODO: More general variable expansion. Missing in many other places too. id:3783
       if flag in ('$inherited', '$(inherited)', '${inherited}'):
         flag = '$OTHER_CFLAGS'
       if flag in ('$OTHER_CFLAGS', '$(OTHER_CFLAGS)', '${OTHER_CFLAGS}'):
@@ -836,7 +836,7 @@ class XcodeSettings(object):
         ldflag = ldflag[:m.start(1)] + gyp_to_build_path(m.group(1)) + \
                  ldflag[m.end(1):]
     # Required for ffmpeg (no idea why they don't use LIBRARY_SEARCH_PATHS,
-    # TODO(thakis): Update ffmpeg.gyp):
+    # TODO (thakis): Update ffmpeg.gyp): id:4117
     if ldflag.startswith('-L'):
       ldflag = '-L' + gyp_to_build_path(ldflag[len('-L'):])
     return ldflag
@@ -889,7 +889,7 @@ class XcodeSettings(object):
       assert self.configname
       archs = self.GetActiveArchs(self.configname)
     if len(archs) != 1:
-      # TODO: Supporting fat binaries will be annoying.
+      # TODO: Supporting fat binaries will be annoying. id:4064
       self._WarnUnimplemented('ARCHS')
       archs = ['i386']
     ldflags.append('-arch ' + archs[0])
@@ -948,7 +948,7 @@ class XcodeSettings(object):
 
     for libtoolflag in self._Settings().get('OTHER_LDFLAGS', []):
       libtoolflags.append(libtoolflag)
-    # TODO(thakis): ARCHS?
+    # TODO (thakis): ARCHS? id:3291
 
     self.configname = None
     return libtoolflags

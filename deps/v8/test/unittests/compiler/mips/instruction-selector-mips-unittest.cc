@@ -167,7 +167,7 @@ const MachInst2 kAddSubInstructions[] = {
 const MachInst1 kAddSubOneInstructions[] = {
     {&RawMachineAssembler::Int32Neg, "Int32Neg", kMipsSub,
      MachineType::Int32()},
-    // TODO(dusmil): check this ...
+    // TODO (dusmil): check this ... id:3172
     // {&RawMachineAssembler::WordEqual  , "WordEqual"  , kMipsTst,
     // MachineType::Int32()}
 };

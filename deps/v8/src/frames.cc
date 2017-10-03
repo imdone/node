@@ -450,7 +450,7 @@ StackFrame::Type StackFrame::ComputeType(const StackFrameIteratorBase* iterator,
   intptr_t marker = Memory::intptr_at(
       state->fp + CommonFrameConstants::kContextOrFrameTypeOffset);
   if (!iterator->can_access_heap_objects_) {
-    // TODO(titzer): "can_access_heap_objects" is kind of bogus. It really
+    // TODO (titzer): "can_access_heap_objects" is kind of bogus. It really id:2142
     // means that we are being called from the profiler, which can interrupt
     // the VM with a signal at any arbitrary instruction, with essentially
     // anything on the stack. So basically none of these checks are 100%
@@ -481,7 +481,7 @@ StackFrame::Type StackFrame::ComputeType(const StackFrameIteratorBase* iterator,
             return INTERPRETED;
           }
           if (code_obj->is_turbofanned()) {
-            // TODO(bmeurer): We treat frames for BUILTIN Code objects as
+            // TODO (bmeurer): We treat frames for BUILTIN Code objects as id:2079
             // OptimizedFrame for now (all the builtins with JavaScript
             // linkage are actually generated with TurboFan currently, so
             // this is sound).
@@ -1363,7 +1363,7 @@ void OptimizedFrame::Summarize(List<FrameSummary>* frames,
   DCHECK(is_optimized());
 
   // Delegate to JS frame in absence of turbofan deoptimization.
-  // TODO(turbofan): Revisit once we support deoptimization across the board.
+  // TODO (turbofan): Revisit once we support deoptimization across the board. id:1593
   Code* code = LookupCode();
   if (code->kind() == Code::BUILTIN ||
       IsNonDeoptimizingAsmCode(code, function())) {
@@ -1430,7 +1430,7 @@ void OptimizedFrame::Summarize(List<FrameSummary>* frames,
       } else {
         // The receiver is not in a stack slot nor in a literal.  We give up.
         it.Skip(Translation::NumberOfOperandsFor(opcode));
-        // TODO(3029): Materializing a captured object (or duplicated
+        // TODO (3029): Materializing a captured object (or duplicated id:2978
         // object) is hard, we return undefined for now. This breaks the
         // produced stack trace, as constructor frames aren't marked as
         // such anymore.
@@ -1526,7 +1526,7 @@ void OptimizedFrame::GetFunctions(List<SharedFunctionInfo*>* functions) const {
   DCHECK(is_optimized());
 
   // Delegate to JS frame in absence of turbofan deoptimization.
-  // TODO(turbofan): Revisit once we support deoptimization across the board.
+  // TODO (turbofan): Revisit once we support deoptimization across the board. id:2043
   Code* code = LookupCode();
   if (code->kind() == Code::BUILTIN ||
       IsNonDeoptimizingAsmCode(code, function())) {

@@ -42,7 +42,7 @@ function RunTest(name, formals_and_body, args, handler, continuation) {
   run(function () { return fun.apply(null, args) });
   run(function () { return gen.apply(null, args).next().value });
 
-  // TODO(wingo): Uncomment after bug 2838 is fixed.
+  // TODO (wingo): Uncomment after bug 2838 is fixed. id:2661
   // Debug.setListener(null);
 }
 

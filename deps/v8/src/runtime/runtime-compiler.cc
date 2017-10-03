@@ -179,7 +179,7 @@ RUNTIME_FUNCTION(Runtime_NotifyDeoptimized) {
   DCHECK(type == deoptimizer->bailout_type());
   DCHECK_NULL(isolate->context());
 
-  // TODO(turbofan): We currently need the native context to materialize
+  // TODO (turbofan): We currently need the native context to materialize id:2282
   // the arguments object, but only to get to its map.
   isolate->set_context(function->native_context());
 
@@ -215,7 +215,7 @@ RUNTIME_FUNCTION(Runtime_NotifyDeoptimized) {
       function->ClearOptimizedCodeSlot("notify deoptimized");
     }
   } else {
-    // TODO(titzer): we should probably do DeoptimizeCodeList(code)
+    // TODO (titzer): we should probably do DeoptimizeCodeList(code) id:2457
     // unconditionally if the code is not already marked for deoptimization.
     // If there is an index by shared function info, all the better.
     Deoptimizer::DeoptimizeFunction(*function);

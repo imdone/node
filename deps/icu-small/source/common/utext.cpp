@@ -966,7 +966,7 @@ utf8TextAccess(UText *ut, int64_t index, UBool forward) {
             while (ut->c<ix && s8[ut->c]!=0) {
                 ut->c++;
             }
-            //  TODO:  support for null terminated string length > 32 bits.
+            //  TODO: support for null terminated string length > 32 bits. id:182
             if (s8[ut->c] == 0) {
                 // We just found the actual length of the string.
                 //  Trim the requested index back to that.
@@ -1572,7 +1572,7 @@ utf8TextClone(UText *dest, const UText *src, UBool deep, UErrorCode *status)
     // For deep clones, make a copy of the string.
     //  The copied storage is owned by the newly created clone.
     //
-    // TODO:  There is an isssue with using utext_nativeLength().
+    // TODO: There is an isssue with using utext_nativeLength(). id:217
     //        That function is non-const in cases where the input was NUL terminated
     //          and the length has not yet been determined.
     //        This function (clone()) is const.
@@ -1979,7 +1979,7 @@ repTextCopy(UText *ut,
     int32_t limit32     = pinIndex(limit, length);
     int32_t destIndex32 = pinIndex(destIndex, length);
 
-    // TODO:  snap input parameters to code point boundaries.
+    // TODO: snap input parameters to code point boundaries. id:267
 
     if(move) {
         // move: copy to destIndex, then replace original with nothing
@@ -2339,7 +2339,7 @@ utext_openConstUnicodeString(UText *ut, const UnicodeString *s, UErrorCode *stat
 //            context    pointer to UnicodeString
 //            a          length.  -1 if not yet known.
 //
-//         TODO:  support 64 bit lengths.
+//         TODO: support 64 bit lengths. id:514
 //
 //------------------------------------------------------------------------------
 
@@ -2466,7 +2466,7 @@ ucstrTextAccess(UText *ut, int64_t index, UBool  forward) {
         if (chunkLimit == INT32_MAX) {
             // Scanned to the limit of a 32 bit length.
             // Forceably trim the overlength string back so length fits in int32
-            //  TODO:  add support for 64 bit strings.
+            //  TODO: add support for 64 bit strings. id:207
             ut->a = chunkLimit;
             ut->chunkLength = chunkLimit;
             ut->nativeIndexingLimit = chunkLimit;

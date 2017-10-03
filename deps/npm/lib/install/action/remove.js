@@ -77,7 +77,7 @@ function removeDir (pkg, log, next) {
 
   function removeEmptyParents (pkgdir) {
     fs.rmdir(pkgdir, function (er) {
-      // FIXME: Make sure windows does what we want here
+      // FIXME: Make sure windows does what we want here id:619
       if (er && er.code !== 'ENOENT') return next()
       removeEmptyParents(path.resolve(pkgdir, '..'))
     })

@@ -379,7 +379,7 @@ public:
      * returning a const reference to one of the symbol strings.
      * The returned reference becomes invalid when the symbol is changed
      * or when the DecimalFormatSymbols are destroyed.
-     * ### TODO markus 2002oct11: Consider proposing getConstSymbol() to be really public.
+     * ### TODO markus 2002oct11: Consider proposing getConstSymbol() to be really public. id:665
      * Note: moved #ifndef U_HIDE_INTERNAL_API after this, since this is needed for inline in DecimalFormat
      *
      * @param symbol Constant to indicate a number format symbol.

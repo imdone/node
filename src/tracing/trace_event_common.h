@@ -1034,7 +1034,7 @@
 #define TRACE_EVENT_FLAG_NONE (static_cast<unsigned int>(0))
 #define TRACE_EVENT_FLAG_COPY (static_cast<unsigned int>(1 << 0))
 #define TRACE_EVENT_FLAG_HAS_ID (static_cast<unsigned int>(1 << 1))
-// TODO(crbug.com/639003): Free this bit after ID mangling is deprecated.
+// TODO (crbug.com/639003): Free this bit after ID mangling is deprecated. id:3100
 #define TRACE_EVENT_FLAG_MANGLE_ID (static_cast<unsigned int>(1 << 2))
 #define TRACE_EVENT_FLAG_SCOPE_OFFSET (static_cast<unsigned int>(1 << 3))
 #define TRACE_EVENT_FLAG_SCOPE_EXTRA (static_cast<unsigned int>(1 << 4))

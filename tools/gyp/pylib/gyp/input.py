@@ -356,7 +356,7 @@ def ProcessToolsetsInDict(data):
             ProcessToolsetsInDict(condition_dict)
 
 
-# TODO(mark): I don't love this name.  It just means that it's going to load
+# TODO (mark): I don't love this name.  It just means that it's going to load id:3283
 # a build file that contains targets and is expected to provide a targets dict
 # that contains the targets...
 def LoadTargetBuildFile(build_file_path, data, aux_data, variables, includes,
@@ -364,7 +364,7 @@ def LoadTargetBuildFile(build_file_path, data, aux_data, variables, includes,
   # If depth is set, predefine the DEPTH variable to be a relative path from
   # this build file's directory to the directory identified by depth.
   if depth:
-    # TODO(dglazkov) The backslash/forward-slash replacement at the end is a
+    # TODO (dglazkov) The backslash/forward-slash replacement at the end is a id:3481
     # temporary measure. This should really be addressed by keeping all paths
     # in POSIX until actual project generation.
     d = gyp.common.RelativePath(depth, os.path.dirname(build_file_path))
@@ -858,7 +858,7 @@ def ExpandVariables(input, phase, variables, build_file):
       # file lists more than once. The cache key contains the command to be
       # run as well as the directory to run it from, to account for commands
       # that depend on their current directory.
-      # TODO(http://code.google.com/p/gyp/issues/detail?id=111): In theory,
+      # TODO (http://code.google.com/p/gyp/issues/detail?id=111): In theory, id:3772
       # someone could author a set of GYP files where each time the command
       # is invoked it produces different output by design. When the need
       # arises, the syntax should be extended to support no caching off a
@@ -979,7 +979,7 @@ def ExpandVariables(input, phase, variables, build_file):
         # When expanding a list into string context, turn the list items
         # into a string in a way that will work with a subprocess call.
         #
-        # TODO(mark): This isn't completely correct.  This should
+        # TODO (mark): This isn't completely correct.  This should id:4113
         # call a generator-provided function that observes the
         # proper list-to-argument quoting rules on a specific
         # platform instead of just calling the POSIX encoding
@@ -1227,7 +1227,7 @@ def ProcessVariablesAndConditionsInDict(the_dict, phase, variables_in,
       the_dict[key] = expanded
 
   # Variable expansion may have resulted in changes to automatics.  Reload.
-  # TODO(mark): Optimization: only reload if no changes were made.
+  # TODO (mark): Optimization: only reload if no changes were made. id:4057
   variables = variables_in.copy()
   LoadAutomaticVariablesFromDict(variables, the_dict)
   LoadVariablesFromVariablesDict(variables, the_dict, the_dict_key)
@@ -1562,7 +1562,7 @@ class DependencyGraphNode(object):
       # may now belong in in_degree_zeros.
       for node_dependent in sorted(node.dependents, key=ExtractNodeRef):
         is_in_degree_zero = True
-        # TODO: We want to check through the
+        # TODO: We want to check through the id:3285
         # node_dependent.dependencies list but if it's long and we
         # always start at the beginning, then we get O(n^2) behaviour.
         for node_dependent_dependency in (sorted(node_dependent.dependencies,
@@ -1775,7 +1775,7 @@ class DependencyGraphNode(object):
     into this target.
     """
 
-    # TODO(sbaig) Currently, chrome depends on the bug that shared libraries'
+    # TODO (sbaig) Currently, chrome depends on the bug that shared libraries' id:3483
     # link_settings are propagated.  So for now, we will allow it, unless the
     # 'allow_sharedlib_linksettings_propagation' flag is explicitly set to
     # False.  Once chrome is fixed, we can remove this flag.
@@ -2030,7 +2030,7 @@ def MakePathRelative(to_file, fro_file, item):
   if to_file == fro_file or exception_re.match(item):
     return item
   else:
-    # TODO(dglazkov) The backslash/forward-slash replacement at the end is a
+    # TODO (dglazkov) The backslash/forward-slash replacement at the end is a id:3775
     # temporary measure. This should really be addressed by keeping all paths
     # in POSIX until actual project generation.
     ret = os.path.normpath(os.path.join(
@@ -2245,7 +2245,7 @@ def SetUpConfigurations(target, target_dict):
   build_file = gyp.common.BuildFile(target)
 
   # Provide a single configuration by default if none exists.
-  # TODO(mark): Signal an error if default_configurations exists but
+  # TODO (mark): Signal an error if default_configurations exists but id:4114
   # configurations does not.
   if not 'configurations' in target_dict:
     target_dict['configurations'] = {'Default': {}}
@@ -2764,7 +2764,7 @@ def Load(build_files, variables, includes, depth, generator_input_info, check,
   # the |data| dictionary such that the keys to |data| are build file names,
   # and the values are the entire build file contents after "early" or "pre"
   # processing has been done and includes have been resolved.
-  # NOTE: data contains both "target" files (.gyp) and "includes" (.gypi), as
+  # NOTE: data contains both "target" files (.gyp) and "includes" (.gypi), as id:4058
   # well as meta-data (e.g. 'included_files' key). 'target_build_files' keeps
   # track of the keys corresponding to "target" files.
   data = {'target_build_files': set()}
@@ -2895,7 +2895,7 @@ def Load(build_files, variables, includes, depth, generator_input_info, check,
   # Generators might not expect ints.  Turn them into strs.
   TurnIntIntoStrInDict(data)
 
-  # TODO(mark): Return |data| for now because the generator needs a list of
+  # TODO (mark): Return |data| for now because the generator needs a list of id:3286
   # build files that came in.  In the future, maybe it should just accept
   # a list, and not the whole data dict.
   return [flat_list, targets, data]

@@ -162,7 +162,7 @@ struct SingleThreadInitOnceTrait {
 };
 
 
-// TODO(pliard): Handle instances destruction (using global destructors).
+// TODO (pliard): Handle instances destruction (using global destructors). id:1351
 template <typename T, typename AllocationTrait, typename CreateTrait,
           typename InitOnceTrait, typename DestroyTrait  /* not used yet. */>
 struct LazyInstanceImpl {

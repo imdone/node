@@ -493,7 +493,7 @@ void InstallConstant(Isolate* isolate, Handle<JSObject> holder,
 
 void InstallSpeciesGetter(Handle<JSFunction> constructor) {
   Factory* factory = constructor->GetIsolate()->factory();
-  // TODO(adamk): We should be able to share a SharedFunctionInfo
+  // TODO (adamk): We should be able to share a SharedFunctionInfo id:1808
   // between all these JSFunctins.
   SimpleInstallGetter(constructor, factory->symbol_species_string(),
                       factory->species_symbol(), Builtins::kReturnReceiver,
@@ -2849,7 +2849,7 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
     JSObject::AddProperty(prototype, factory->iterator_symbol(), values,
                           DONT_ENUM);
 
-    // TODO(caitp): alphasort accessors/methods
+    // TODO (caitp): alphasort accessors/methods id:1445
     SimpleInstallFunction(prototype, "copyWithin",
                           Builtins::kTypedArrayPrototypeCopyWithin, 2, false);
     SimpleInstallFunction(prototype, "every",
@@ -5278,7 +5278,7 @@ Genesis::Genesis(Isolate* isolate,
   // Configure the hidden prototype chain of the global proxy.
   JSObject::ForceSetPrototype(global_proxy, global_object);
   global_proxy->map()->SetConstructor(*global_constructor);
-  // TODO(dcheng): This is a hack. Why does this need to be manually called
+  // TODO (dcheng): This is a hack. Why does this need to be manually called id:1631
   // here? Line 4812 should have taken care of it?
   global_proxy->map()->set_has_hidden_prototype(true);
 

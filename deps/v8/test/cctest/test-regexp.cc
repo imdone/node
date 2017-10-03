@@ -1865,7 +1865,7 @@ TEST(CharacterRangeMerge) {
   }
 
   // The seven kinds of singleton/non-singleton intersections:
-  //    XXX
+  //    XXX id:2448
   //  Y        - outside before
   //   Y       - outside touching start
   //    Y      - inside touching start

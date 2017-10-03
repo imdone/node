@@ -73,7 +73,7 @@ struct Field {
 #define FIELD_NAME_STR(y,x)  { y, #x, x }
 
 
-// TODO: Currently, this whole functionality goes away with UCONFIG_NO_FORMATTING. Should be split up.
+// TODO: Currently, this whole functionality goes away with UCONFIG_NO_FORMATTING. Should be split up. id:577
 #if !UCONFIG_NO_FORMATTING
 
 // Calendar

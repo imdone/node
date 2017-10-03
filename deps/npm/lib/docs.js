@@ -12,7 +12,7 @@ docs.usage = usage(
   '\nnpm docs .'
 )
 docs.completion = function (opts, cb) {
-  // FIXME: there used to be registry completion here, but it stopped making
+  // FIXME: there used to be registry completion here, but it stopped making id:617
   // sense somewhere around 50,000 packages on the registry
   cb()
 }

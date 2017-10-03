@@ -30,7 +30,7 @@ class SymbolTable;
  */
 class RuleCharacterIterator : public UMemory {
 
-    // TODO: Ideas for later.  (Do not implement if not needed, lest the
+    // TODO: Ideas for later.  (Do not implement if not needed, lest the id:98
     // code coverage numbers go down due to unused methods.)
     // 1. Add a copy constructor, operator==() method.
     // 2. Rather than return DONE, throw an exception if the end

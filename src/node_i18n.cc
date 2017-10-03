@@ -752,13 +752,13 @@ static void ToASCII(const FunctionCallbackInfo<Value>& args) {
 // algorithm that does not take things like emoji into proper
 // consideration.
 //
-// TODO(TimothyGu): Investigate Cc (C0/C1 control codes). Both VTE (used by
+// TODO (TimothyGu): Investigate Cc (C0/C1 control codes). Both VTE (used by id:3940
 // GNOME Terminal) and Konsole don't consider them to be zero-width (see refs
 // below), and when printed in VTE it is Narrow. However GNOME Terminal doesn't
 // allow it to be input. Linux's PTY terminal prints control characters as
 // Narrow rhombi.
 //
-// TODO(TimothyGu): Investigate Hangul jamo characters. Medial vowels and final
+// TODO (TimothyGu): Investigate Hangul jamo characters. Medial vowels and final id:3089
 // consonants are 0-width when combined with initial consonants; otherwise they
 // are technically Wide. But many terminals (including Konsole and
 // VTE/GLib-based) implement all medials and finals as 0-width.

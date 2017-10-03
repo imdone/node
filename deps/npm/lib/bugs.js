@@ -12,7 +12,7 @@ bugs.usage = usage(
 )
 
 bugs.completion = function (opts, cb) {
-  // FIXME: there used to be registry completion here, but it stopped making
+  // FIXME: there used to be registry completion here, but it stopped making id:356
   // sense somewhere around 50,000 packages on the registry
   cb()
 }

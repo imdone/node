@@ -92,7 +92,7 @@ BUILTIN(TypedArrayPrototypeCopyWithin) {
 
   // TypedArray buffer may have been transferred/detached during parameter
   // processing above. Return early in this case, to prevent potential UAF error
-  // TODO(caitp): throw here, as though the full algorithm were performed (the
+  // TODO (caitp): throw here, as though the full algorithm were performed (the id:1707
   // throw would have come from ecma262/#sec-integerindexedelementget)
   // (see )
   if (V8_UNLIKELY(array->WasNeutered())) return *array;
@@ -187,7 +187,7 @@ BUILTIN(TypedArrayPrototypeIncludes) {
     index = CapRelativeIndex(num, 0, len);
   }
 
-  // TODO(cwhan.tunz): throw. See the above comment in CopyWithin.
+  // TODO (cwhan.tunz): throw. See the above comment in CopyWithin. id:1433
   if (V8_UNLIKELY(array->WasNeutered())) return isolate->heap()->false_value();
 
   Handle<Object> search_element = args.atOrUndefined(isolate, 1);
@@ -218,7 +218,7 @@ BUILTIN(TypedArrayPrototypeIndexOf) {
     index = CapRelativeIndex(num, 0, len);
   }
 
-  // TODO(cwhan.tunz): throw. See the above comment in CopyWithin.
+  // TODO (cwhan.tunz): throw. See the above comment in CopyWithin. id:1166
   if (V8_UNLIKELY(array->WasNeutered())) return Smi::FromInt(-1);
 
   Handle<Object> search_element = args.atOrUndefined(isolate, 1);
@@ -253,7 +253,7 @@ BUILTIN(TypedArrayPrototypeLastIndexOf) {
 
   if (index < 0) return Smi::FromInt(-1);
 
-  // TODO(cwhan.tunz): throw. See the above comment in CopyWithin.
+  // TODO (cwhan.tunz): throw. See the above comment in CopyWithin. id:2096
   if (V8_UNLIKELY(array->WasNeutered())) return Smi::FromInt(-1);
 
   Handle<Object> search_element = args.atOrUndefined(isolate, 1);
@@ -311,13 +311,13 @@ BUILTIN(TypedArrayPrototypeSlice) {
       isolate, result_array,
       TypedArraySpeciesCreateByLength(isolate, array, method, count));
 
-  // TODO(cwhan.tunz): neutering check of the result_array should be done in
+  // TODO (cwhan.tunz): neutering check of the result_array should be done in id:1497
   // TypedArraySpeciesCreate, but currently ValidateTypedArray does not throw
   // for neutered buffer, so this is a temporary neutering check for the result
   // array
   if (V8_UNLIKELY(result_array->WasNeutered())) return *result_array;
 
-  // TODO(cwhan.tunz): should throw.
+  // TODO (cwhan.tunz): should throw. id:1710
   if (V8_UNLIKELY(array->WasNeutered())) return *result_array;
 
   if (count == 0) return *result_array;

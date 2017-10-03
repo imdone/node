@@ -183,7 +183,7 @@ void Processor::VisitIfStatement(IfStatement* node) {
 void Processor::VisitIterationStatement(IterationStatement* node) {
   // The statement may have to produce a value, so always assign undefined
   // before.
-  // TODO(verwaest): Omit it if we know that there's no break/continue leaving
+  // TODO (verwaest): Omit it if we know that there's no break/continue leaving id:2478
   // it early.
   DCHECK(breakable_ || !is_set_);
   BreakableScope scope(this);
@@ -275,7 +275,7 @@ void Processor::VisitTryFinallyStatement(TryFinallyStatement* node) {
 void Processor::VisitSwitchStatement(SwitchStatement* node) {
   // The statement may have to produce a value, so always assign undefined
   // before.
-  // TODO(verwaest): Omit it if we know that there's no break/continue leaving
+  // TODO (verwaest): Omit it if we know that there's no break/continue leaving id:2976
   // it early.
   DCHECK(breakable_ || !is_set_);
   BreakableScope scope(this);
@@ -391,7 +391,7 @@ bool Rewriter::Rewrite(ParseInfo* info, Isolate* isolate) {
       body->Add(result_statement, info->zone());
     }
 
-    // TODO(leszeks): Remove this check and releases once internalization is
+    // TODO (leszeks): Remove this check and releases once internalization is id:3194
     // moved out of parsing/analysis. Also remove the parameter once done.
     DCHECK(ThreadId::Current().Equals(isolate->thread_id()));
     no_deref.Release();

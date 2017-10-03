@@ -188,7 +188,7 @@ def translate_exception(exc_info, initial_skip=0):
 
     # if we don't have any exceptions in the frames left, we have to
     # reraise it unchanged.
-    # XXX: can we backup here?  when could this happen?
+    # XXX: can we backup here?  when could this happen? id:3535
     if not frames:
         reraise(exc_info[0], exc_info[1], exc_info[2])
 

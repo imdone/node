@@ -31,7 +31,7 @@ var extend = Object.assign || require('util')._extend
 function runTests () {
   var env = extend({ TAP: 1 }, process.env)
   env.npm = npmExec
-  // TODO: fix tap and / or nyc to handle nested invocations properly
+  // TODO: fix tap and / or nyc to handle nested invocations properly id:996
   env.COVERALLS_REPO_TOKEN = ''
 
   var opts = {

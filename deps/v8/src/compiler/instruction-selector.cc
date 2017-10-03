@@ -363,7 +363,7 @@ void InstructionSelector::MarkAsDefined(Node* node) {
 
 bool InstructionSelector::IsUsed(Node* node) const {
   DCHECK_NOT_NULL(node);
-  // TODO(bmeurer): This is a terrible monster hack, but we have to make sure
+  // TODO (bmeurer): This is a terrible monster hack, but we have to make sure id:1689
   // that the Retain is actually emitted, otherwise the GC will mess up.
   if (node->opcode() == IrOpcode::kRetain) return true;
   if (!node->op()->HasProperty(Operator::kEliminatable)) return true;
@@ -439,7 +439,7 @@ InstructionOperand OperandForDeopt(Isolate* isolate, OperandGenerator* g,
         // says it is a smi. In that case, we return an invalid instruction
         // operand, which will be interpreted as an optimized-out value.
 
-        // TODO(jarin) Ideally, we should turn the current instruction
+        // TODO (jarin) Ideally, we should turn the current instruction id:1290
         // into an abort (we should never execute it).
         return InstructionOperand();
       }
@@ -629,7 +629,7 @@ size_t InstructionSelector::AddInputsToFrameStateDescriptor(
 
 
 // An internal helper class for generating the operands to calls.
-// TODO(bmeurer): Get rid of the CallBuffer business and make
+// TODO (bmeurer): Get rid of the CallBuffer business and make id:2231
 // InstructionSelector::VisitCall platform independent instead.
 struct CallBuffer {
   CallBuffer(Zone* zone, const CallDescriptor* descriptor,
@@ -667,7 +667,7 @@ struct CallBuffer {
 };
 
 
-// TODO(bmeurer): Get rid of the CallBuffer business and make
+// TODO (bmeurer): Get rid of the CallBuffer business and make id:1709
 // InstructionSelector::VisitCall platform independent instead.
 void InstructionSelector::InitializeCallBuffer(Node* call, CallBuffer* buffer,
                                                CallBufferFlags flags,
@@ -2524,7 +2524,7 @@ void InstructionSelector::VisitCall(Node* node, BasicBlock* handler) {
   CallBuffer buffer(zone(), descriptor, frame_state_descriptor);
 
   // Compute InstructionOperands for inputs and outputs.
-  // TODO(turbofan): on some architectures it's probably better to use
+  // TODO (turbofan): on some architectures it's probably better to use id:1871
   // the code object in a register if there are multiple uses of it.
   // Improve constant pool and the heuristics in the register allocator
   // for where to emit constants.
@@ -2754,7 +2754,7 @@ void InstructionSelector::VisitRetain(Node* node) {
 }
 
 bool InstructionSelector::CanProduceSignalingNaN(Node* node) {
-  // TODO(jarin) Improve the heuristic here.
+  // TODO (jarin) Improve the heuristic here. id:1693
   if (node->opcode() == IrOpcode::kFloat64Add ||
       node->opcode() == IrOpcode::kFloat64Sub ||
       node->opcode() == IrOpcode::kFloat64Mul) {

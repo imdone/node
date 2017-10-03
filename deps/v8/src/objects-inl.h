@@ -980,7 +980,7 @@ void HeapObject::set_map(Map* value) {
   }
   set_map_word(MapWord::FromMap(value));
   if (value != nullptr) {
-    // TODO(1600) We are passing NULL as a slot because maps can never be on
+    // TODO (1600) We are passing NULL as a slot because maps can never be on id:2356
     // evacuation candidate.
     value->GetHeap()->incremental_marking()->RecordWrite(this, nullptr, value);
   }
@@ -999,7 +999,7 @@ void HeapObject::synchronized_set_map(Map* value) {
   }
   synchronized_set_map_word(MapWord::FromMap(value));
   if (value != nullptr) {
-    // TODO(1600) We are passing NULL as a slot because maps can never be on
+    // TODO (1600) We are passing NULL as a slot because maps can never be on id:1989
     // evacuation candidate.
     value->GetHeap()->incremental_marking()->RecordWrite(this, nullptr, value);
   }
@@ -1020,7 +1020,7 @@ void HeapObject::set_map_after_allocation(Map* value, WriteBarrierMode mode) {
   set_map_word(MapWord::FromMap(value));
   if (mode != SKIP_WRITE_BARRIER) {
     DCHECK(value != nullptr);
-    // TODO(1600) We are passing NULL as a slot because maps can never be on
+    // TODO (1600) We are passing NULL as a slot because maps can never be on id:3138
     // evacuation candidate.
     value->GetHeap()->incremental_marking()->RecordWrite(this, nullptr, value);
   }
@@ -4164,7 +4164,7 @@ void Map::UpdateDescriptors(DescriptorArray* descriptors,
       set_layout_descriptor(layout_desc);
     }
 #ifdef VERIFY_HEAP
-    // TODO(ishell): remove these checks from VERIFY_HEAP mode.
+    // TODO (ishell): remove these checks from VERIFY_HEAP mode. id:2200
     if (FLAG_verify_heap) {
       CHECK(layout_descriptor()->IsConsistentWithMap(this));
       CHECK(visitor_id() == Map::GetVisitorId(this));
@@ -4186,7 +4186,7 @@ void Map::InitializeDescriptors(DescriptorArray* descriptors,
   if (FLAG_unbox_double_fields) {
     set_layout_descriptor(layout_desc);
 #ifdef VERIFY_HEAP
-    // TODO(ishell): remove these checks from VERIFY_HEAP mode.
+    // TODO (ishell): remove these checks from VERIFY_HEAP mode. id:2338
     if (FLAG_verify_heap) {
       CHECK(layout_descriptor()->IsConsistentWithMap(this));
     }
@@ -4741,7 +4741,7 @@ void JSFunction::ReplaceCode(Code* code) {
   if (!was_optimized && is_optimized) {
     context()->native_context()->AddOptimizedFunction(this);
   } else if (was_optimized && !is_optimized) {
-    // TODO(titzer): linear in the number of optimized functions; fix!
+    // TODO (titzer): linear in the number of optimized functions; fix! id:2359
     context()->native_context()->RemoveOptimizedFunction(this);
   }
 }
@@ -5595,7 +5595,7 @@ NameDictionary* JSReceiver::property_dictionary() const {
   return NameDictionary::cast(raw_properties_or_hash());
 }
 
-// TODO(gsathya): Pass isolate directly to this function and access
+// TODO (gsathya): Pass isolate directly to this function and access id:1991
 // the heap from this.
 PropertyArray* JSReceiver::property_array() const {
   DCHECK(HasFastProperties());
@@ -5609,7 +5609,7 @@ PropertyArray* JSReceiver::property_array() const {
 }
 
 void JSReceiver::SetProperties(HeapObject* properties) {
-  // TODO(gsathya): Update the hash code here.
+  // TODO (gsathya): Update the hash code here. id:3141
   set_raw_properties_or_hash(properties);
 }
 

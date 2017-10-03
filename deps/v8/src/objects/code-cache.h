@@ -56,7 +56,7 @@ class CodeCacheHashTableKey final {
  private:
   Handle<Name> name_;
   Code::Flags flags_;
-  // TODO(jkummerow): We should be able to get by without this.
+  // TODO (jkummerow): We should be able to get by without this. id:2399
   MaybeHandle<Code> code_;
 };
 
@@ -83,7 +83,7 @@ class CodeCacheHashTableShape : public BaseShape<CodeCacheHashTableKey*> {
   static const int kPrefixSize = 0;
   // The both the key (name + flags) and value (code object) can be derived from
   // the fixed array that stores both the name and code.
-  // TODO(verwaest): Don't allocate a fixed array but inline name and code.
+  // TODO (verwaest): Don't allocate a fixed array but inline name and code. id:2396
   // Rewrite IsMatch to get table + index as input rather than just the raw key.
   static const int kEntrySize = 1;
 };

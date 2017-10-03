@@ -433,7 +433,7 @@ void FullCodeGenerator::EmitReturnSequence() {
     __ Mov(current_sp, fp);
     __ Ldp(fp, lr, MemOperand(current_sp, 2 * kXRegSize, PostIndex));
     // Drop the arguments and receiver and return.
-    // TODO(all): This implementation is overkill as it supports 2**31+1
+    // TODO (all): This implementation is overkill as it supports 2**31+1 id:1596
     // arguments, consider how to improve it without creating a security
     // hole.
     __ ldr_pcrel(ip0, (3 * kInstructionSize) >> kLoadLiteralScaleLog2);
@@ -921,7 +921,7 @@ void FullCodeGenerator::VisitForInStatement(ForInStatement* stmt) {
 
   FeedbackSlot slot = stmt->ForInFeedbackSlot();
 
-  // TODO(all): This visitor probably needs better comments and a revisit.
+  // TODO (all): This visitor probably needs better comments and a revisit. id:2982
 
   // Get the object to enumerate over.
   SetExpressionAsStatementPosition(stmt->enumerable());
@@ -1053,7 +1053,7 @@ void FullCodeGenerator::VisitForInStatement(ForInStatement* stmt) {
   // Generate code for going to the next element by incrementing
   // the index (smi) stored on top of the stack.
   __ Bind(loop_statement.continue_label());
-  // TODO(all): We could use a callee saved register to avoid popping.
+  // TODO (all): We could use a callee saved register to avoid popping. id:2044
   __ Pop(x0);
   __ Add(x0, x0, Smi::FromInt(1));
   __ Push(x0);
@@ -1446,7 +1446,7 @@ void FullCodeGenerator::EmitAssignment(Expression* expr, FeedbackSlot slot) {
     case NAMED_PROPERTY: {
       PushOperand(x0);  // Preserve value.
       VisitForAccumulatorValue(prop->obj());
-      // TODO(all): We could introduce a VisitForRegValue(reg, expr) to avoid
+      // TODO (all): We could introduce a VisitForRegValue(reg, expr) to avoid id:2149
       // this copy.
       __ Mov(StoreDescriptor::ReceiverRegister(), x0);
       PopOperand(StoreDescriptor::ValueRegister());  // Restore value.
@@ -1555,7 +1555,7 @@ void FullCodeGenerator::EmitKeyedPropertyAssignment(Assignment* expr) {
   ASM_LOCATION("FullCodeGenerator::EmitKeyedPropertyAssignment");
   // Assignment to a property, using a keyed store IC.
 
-  // TODO(all): Could we pass this in registers rather than on the stack?
+  // TODO (all): Could we pass this in registers rather than on the stack? id:2120
   PopOperands(StoreDescriptor::NameRegister(),
               StoreDescriptor::ReceiverRegister());
   DCHECK(StoreDescriptor::ValueRegister().is(x0));
@@ -2010,7 +2010,7 @@ void FullCodeGenerator::VisitUnaryOperation(UnaryOperation* expr) {
         context()->Plug(test->true_label(), test->false_label());
       } else {
         DCHECK(context()->IsAccumulatorValue() || context()->IsStackValue());
-        // TODO(jbramley): This could be much more efficient using (for
+        // TODO (jbramley): This could be much more efficient using (for id:1599
         // example) the CSEL instruction.
         Label materialize_true, materialize_false, done;
         VisitForControl(expr->expression(),
@@ -2266,7 +2266,7 @@ void FullCodeGenerator::VisitCompareOperation(CompareOperation* expr) {
   Comment cmnt(masm_, "[ CompareOperation");
 
   // Try to generate an optimized comparison with a literal value.
-  // TODO(jbramley): This only checks common values like NaN or undefined.
+  // TODO (jbramley): This only checks common values like NaN or undefined. id:2985
   // Should it also handle ARM64 immediate operands?
   if (TryLiteralCompare(expr)) {
     return;
@@ -2392,7 +2392,7 @@ void FullCodeGenerator::EmitOperandStackDepthCheck() {
   }
 }
 
-// TODO(all): I don't like this method.
+// TODO (all): I don't like this method. id:2046
 // It seems to me that in too many places x0 is used in place of this.
 // Also, this function is not suitable for all places where x0 should be
 // abstracted (eg. when used as an argument). But some places assume that the
@@ -2511,7 +2511,7 @@ BackEdgeTable::BackEdgeState BackEdgeTable::GetBackEdgeState(
     Isolate* isolate,
     Code* unoptimized_code,
     Address pc) {
-  // TODO(jbramley): There should be some extra assertions here (as in the ARM
+  // TODO (jbramley): There should be some extra assertions here (as in the ARM id:2153
   // back-end), but this function is gone in bleeding_edge so it might not
   // matter anyway.
   Instruction* jump_or_nop = Instruction::Cast(pc)->preceding(3);

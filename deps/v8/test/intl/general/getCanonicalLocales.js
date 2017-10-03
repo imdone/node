@@ -6,7 +6,7 @@ var locales = ['en-US', 'fr'];
 var result = Intl.getCanonicalLocales(locales);
 var len = result.length
 
-// TODO(jshin): Remove the following when
+// TODO (jshin): Remove the following when id:2471
 // https://github.com/tc39/test262/issues/745 is resolved and
 // test262 in v8 is updated.
 

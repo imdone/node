@@ -52,7 +52,7 @@ function instantiate(buffer, ffi) {
 })();
 
 (function LocalsTest2() {
-    // TODO(titzer): i64 only works on 64-bit platforms.
+    // TODO (titzer): i64 only works on 64-bit platforms. id:3980
     var types = [
       {locals: {i32_count: 1}, type: kWasmI32},
 //      {locals: {i64_count: 1}, type: kWasmI64},

@@ -121,7 +121,7 @@ public:
 #ifndef U_HIDE_INTERNAL_API
     /**
      * Dumb recursive implementation of permutation.
-     * TODO: optimize
+     * TODO: optimize id:120
      * @param source     the string to find permutations for
      * @param skipZeros  determine if skip zeros
      * @param result     the results in a set.

@@ -211,14 +211,14 @@ static int uv__signal_register_handler(int signum, int oneshot) {
   /* When this function is called, the signal lock must be held. */
   struct sigaction sa;
 
-  /* XXX use a separate signal stack? */
+  /* XXX use a separate signal stack?  id:1291*/
   memset(&sa, 0, sizeof(sa));
   if (sigfillset(&sa.sa_mask))
     abort();
   sa.sa_handler = uv__signal_handler;
   sa.sa_flags = oneshot ? SA_RESETHAND : 0;
 
-  /* XXX save old action so we can restore it later on? */
+  /* XXX save old action so we can restore it later on?  id:902*/
   if (sigaction(signum, &sa, NULL))
     return -errno;
 

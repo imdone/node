@@ -578,7 +578,7 @@ class ModuleDecoder : public Decoder {
         }
         case kExternalMemory: {
           uint32_t index = consume_u32v("memory index");
-          // TODO(titzer): This should become more regular
+          // TODO (titzer): This should become more regular id:2596
           // once we support multiple memories.
           if (!module_->has_memory || index != 0) {
             error("invalid memory index != 0");
@@ -722,7 +722,7 @@ class ModuleDecoder : public Decoder {
   }
 
   void DecodeNameSection() {
-    // TODO(titzer): find a way to report name errors as warnings.
+    // TODO (titzer): find a way to report name errors as warnings. id:3036
     // Use an inner decoder so that errors don't fail the outer decoder.
     Decoder inner(start_, pc_, end_, buffer_offset_);
     // Decode all name subsections.
@@ -1266,7 +1266,7 @@ ModuleResult DecodeWasmModule(Isolate* isolate, const byte* module_start,
   if (module_start > module_end) return ModuleResult::Error("start > end");
   if (size >= kV8MaxWasmModuleSize)
     return ModuleResult::Error("size > maximum module size: %zu", size);
-  // TODO(bradnelson): Improve histogram handling of size_t.
+  // TODO (bradnelson): Improve histogram handling of size_t. id:3254
   auto size_counter = origin == kWasmOrigin
                           ? counters->wasm_wasm_module_size_bytes()
                           : counters->wasm_asm_module_size_bytes();
@@ -1275,8 +1275,8 @@ ModuleResult DecodeWasmModule(Isolate* isolate, const byte* module_start,
   // as the {module}.
   ModuleDecoder decoder(module_start, module_end, origin);
   ModuleResult result = decoder.DecodeModule(isolate, verify_functions);
-  // TODO(bradnelson): Improve histogram handling of size_t.
-  // TODO(titzer): this isn't accurate, since it doesn't count the data
+  // TODO (bradnelson): Improve histogram handling of size_t. id:2348
+  // TODO (titzer): this isn't accurate, since it doesn't count the data id:2513
   // allocated on the C++ heap.
   // https://bugs.chromium.org/p/chromium/issues/detail?id=657320
   if (result.ok()) {

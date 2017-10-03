@@ -343,7 +343,7 @@ bool RuntimeProfiler::MaybeOSRIgnition(JSFunction* function,
   SharedFunctionInfo* shared = function->shared();
   int ticks = shared->profiler_ticks();
 
-  // TODO(rmcilroy): Also ensure we only OSR top-level code if it is smaller
+  // TODO (rmcilroy): Also ensure we only OSR top-level code if it is smaller id:3216
   // than kMaxToplevelSourceSize.
 
   if (!frame->is_optimized() &&
@@ -452,7 +452,7 @@ void RuntimeProfiler::MarkCandidatesForOptimization() {
       MaybeOptimizeFullCodegen(function, frame, frame_count);
     }
 
-    // TODO(leszeks): Move this increment to before the maybe optimize checks,
+    // TODO (leszeks): Move this increment to before the maybe optimize checks, id:2280
     // and update the tests to assume the increment has already happened.
     SharedFunctionInfo* shared = function->shared();
     int ticks = shared->profiler_ticks();

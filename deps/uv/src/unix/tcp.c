@@ -153,7 +153,7 @@ int uv__tcp_connect(uv_connect_t* req,
   assert(handle->type == UV_TCP);
 
   if (handle->connect_req != NULL)
-    return -EALREADY;  /* FIXME(bnoordhuis) -EINVAL or maybe -EBUSY. */
+    return -EALREADY;  /* FIXME (bnoordhuis) -EINVAL or maybe -EBUSY.  id:1523*/
 
   err = maybe_new_socket(handle,
                          addr->sa_family,
@@ -223,7 +223,7 @@ int uv_tcp_getsockname(const uv_tcp_t* handle,
     return handle->delayed_error;
 
   if (uv__stream_fd(handle) < 0)
-    return -EINVAL;  /* FIXME(bnoordhuis) -EBADF */
+    return -EINVAL;  /* FIXME (bnoordhuis) -EBADF  id:1203*/
 
   /* sizeof(socklen_t) != sizeof(int) on some systems. */
   socklen = (socklen_t) *namelen;
@@ -245,7 +245,7 @@ int uv_tcp_getpeername(const uv_tcp_t* handle,
     return handle->delayed_error;
 
   if (uv__stream_fd(handle) < 0)
-    return -EINVAL;  /* FIXME(bnoordhuis) -EBADF */
+    return -EINVAL;  /* FIXME (bnoordhuis) -EBADF  id:1304*/
 
   /* sizeof(socklen_t) != sizeof(int) on some systems. */
   socklen = (socklen_t) *namelen;
@@ -331,7 +331,7 @@ int uv__tcp_keepalive(int fd, int on, unsigned int delay) {
   /* Solaris/SmartOS, if you don't support keep-alive,
    * then don't advertise it in your system headers...
    */
-  /* FIXME(bnoordhuis) That's possibly because sizeof(delay) should be 1. */
+  /* FIXME (bnoordhuis) That's possibly because sizeof(delay) should be 1.  id:917*/
 #if defined(TCP_KEEPALIVE) && !defined(__sun)
   if (on && setsockopt(fd, IPPROTO_TCP, TCP_KEEPALIVE, &delay, sizeof(delay)))
     return -errno;
@@ -373,7 +373,7 @@ int uv_tcp_keepalive(uv_tcp_t* handle, int on, unsigned int delay) {
   else
     handle->flags &= ~UV_TCP_KEEPALIVE;
 
-  /* TODO Store delay if uv__stream_fd(handle) == -1 but don't want to enlarge
+  /* TODO Store delay if uv__stream_fd(handle) == -1 but don't want to enlarge id:915
    *      uv_tcp_t with an int that's almost never used...
    */
 

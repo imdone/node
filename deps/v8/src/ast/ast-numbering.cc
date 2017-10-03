@@ -651,7 +651,7 @@ bool AstNumberingVisitor::Renumber(FunctionLiteral* node) {
   if (disable_fullcodegen_reason_ != kNoReason) {
     node->set_must_use_ignition();
     if (FLAG_trace_opt && FLAG_stress_fullcodegen) {
-      // TODO(leszeks): This is a quick'n'dirty fix to allow the debug name of
+      // TODO (leszeks): This is a quick'n'dirty fix to allow the debug name of id:1134
       // the function to be accessed in the below print. This DCHECK will fail
       // if we move ast numbering off the main thread, but that won't be before
       // we remove FCG, in which case this entire check isn't necessary anyway.

@@ -206,7 +206,7 @@ void StringBuiltinsAssembler::GenerateStringEqual(Node* context, Node* left,
     // Try to unwrap indirect strings, restart the above attempt on success.
     MaybeDerefIndirectStrings(&var_left, lhs_instance_type, &var_right,
                               rhs_instance_type, &restart);
-    // TODO(bmeurer): Add support for two byte string equality checks.
+    // TODO (bmeurer): Add support for two byte string equality checks. id:1698
 
     TailCallRuntime(Runtime::kStringEqual, context, lhs, rhs);
   }
@@ -395,7 +395,7 @@ void StringBuiltinsAssembler::GenerateStringRelationalComparison(
     // Try to unwrap indirect strings, restart the above attempt on success.
     MaybeDerefIndirectStrings(&var_left, lhs_instance_type, &var_right,
                               rhs_instance_type, &restart);
-    // TODO(bmeurer): Add support for two byte string relational comparisons.
+    // TODO (bmeurer): Add support for two byte string relational comparisons. id:1424
     switch (mode) {
       case RelationalComparisonMode::kLessThan:
         TailCallRuntime(Runtime::kStringLessThan, context, lhs, rhs);
@@ -511,7 +511,7 @@ TF_BUILTIN(StringCharCodeAt, CodeStubAssembler) {
   Node* code = StringCharCodeAt(receiver, position, INTPTR_PARAMETERS);
 
   // And return it as TaggedSigned value.
-  // TODO(turbofan): Allow builtins to return values untagged.
+  // TODO (turbofan): Allow builtins to return values untagged. id:1155
   Node* result = SmiFromWord32(code);
   Return(result);
 }
@@ -521,7 +521,7 @@ TF_BUILTIN(StringCharCodeAt, CodeStubAssembler) {
 
 // ES6 #sec-string.fromcharcode
 TF_BUILTIN(StringFromCharCode, CodeStubAssembler) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:2088
   // arguments are reordered.
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
   Node* context = Parameter(BuiltinDescriptor::kContext);
@@ -709,7 +709,7 @@ TF_BUILTIN(StringPrototypeCharCodeAt, CodeStubAssembler) {
 // ES6 String.prototype.concat(...args)
 // ES6 #sec-string.prototype.concat
 TF_BUILTIN(StringPrototypeConcat, CodeStubAssembler) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:1484
   // arguments are reordered.
   CodeStubArguments arguments(
       this, ChangeInt32ToIntPtr(Parameter(BuiltinDescriptor::kArgumentsCount)));
@@ -922,7 +922,7 @@ TF_BUILTIN(StringPrototypeIndexOf, StringBuiltinsAssembler) {
       no_argc_0(this), argc_1(this), no_argc_1(this), argc_2(this),
       fast_path(this), return_minus_1(this);
 
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:1701
   // arguments are reordered.
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
   Node* context = Parameter(BuiltinDescriptor::kContext);
@@ -1108,7 +1108,7 @@ compiler::Node* StringBuiltinsAssembler::GetSubstitution(
   // {replace_string} itself. If it does, then we delegate to
   // String::GetSubstitution, passing in the index of the first '$' to avoid
   // repeated scanning work.
-  // TODO(jgruber): Possibly extend this in the future to handle more complex
+  // TODO (jgruber): Possibly extend this in the future to handle more complex id:1427
   // cases without runtime calls.
 
   Node* const dollar_index = IndexOfDollarChar(context, replace_string);
@@ -1187,15 +1187,15 @@ TF_BUILTIN(StringPrototypeReplace, StringBuiltinsAssembler) {
     // Searching by traversing a cons string tree and replace with cons of
     // slices works only when the replaced string is a single character, being
     // replaced by a simple string and only pays off for long strings.
-    // TODO(jgruber): Reevaluate if this is still beneficial.
-    // TODO(jgruber): TailCallRuntime when it correctly handles adapter frames.
+    // TODO (jgruber): Reevaluate if this is still beneficial. id:1159
+    // TODO (jgruber): TailCallRuntime when it correctly handles adapter frames. id:2090
     Return(CallRuntime(Runtime::kStringReplaceOneCharWithString, context,
                        subject_string, search_string, replace));
 
     BIND(&next);
   }
 
-  // TODO(jgruber): Extend StringIndexOf to handle two-byte strings and
+  // TODO (jgruber): Extend StringIndexOf to handle two-byte strings and id:1489
   // longer substrings - we can handle up to 8 chars (one-byte) / 4 chars
   // (2-byte).
 
@@ -1217,7 +1217,7 @@ TF_BUILTIN(StringPrototypeReplace, StringBuiltinsAssembler) {
     GotoIf(TaggedIsSmi(replace), &return_subject);
     GotoIf(IsCallableMap(LoadMap(replace)), &return_subject);
 
-    // TODO(jgruber): Could introduce ToStringSideeffectsStub which only
+    // TODO (jgruber): Could introduce ToStringSideeffectsStub which only id:1704
     // performs observable parts of ToString.
     ToString_Inline(context, replace);
     Goto(&return_subject);

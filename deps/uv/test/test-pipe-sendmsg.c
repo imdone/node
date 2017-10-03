@@ -34,7 +34,7 @@
 #include <unistd.h>
 
 
-/* NOTE: size should be divisible by 2 */
+/* NOTE: size should be divisible by 2  id:940*/
 static uv_pipe_t incoming[4];
 static unsigned int incoming_count;
 static unsigned int close_called;

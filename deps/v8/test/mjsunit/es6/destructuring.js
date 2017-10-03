@@ -954,7 +954,7 @@
   function f18({a = () => eval("'use strict'; b")}, {b}) { return a() }
   assertEquals(4, f18({a: () => 4}, {b: 5}));
 
-  // TODO(caitp): TDZ for rest parameters is not working yet.
+  // TODO (caitp): TDZ for rest parameters is not working yet. id:3414
   // function f30({x = a}, ...a) { return x[0] }
   // assertThrows(() => f30({}), ReferenceError);
   // assertEquals(4, f30({a: [4]}, 5));

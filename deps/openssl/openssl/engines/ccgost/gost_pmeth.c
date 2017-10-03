@@ -618,7 +618,7 @@ int register_pmeth_gost(int id, EVP_PKEY_METHOD **pmeth, int flags)
 
     EVP_PKEY_meth_set_copy(*pmeth, pkey_gost_copy);
     /*
-     * FIXME derive etc...
+     * FIXME derive etc... id:1129
      */
 
     return 1;

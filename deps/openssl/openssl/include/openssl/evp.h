@@ -167,7 +167,7 @@ struct env_md_st {
     int (*final) (EVP_MD_CTX *ctx, unsigned char *md);
     int (*copy) (EVP_MD_CTX *to, const EVP_MD_CTX *from);
     int (*cleanup) (EVP_MD_CTX *ctx);
-    /* FIXME: prototype these some day */
+    /* FIXME: prototype these some day  id:755*/
     int (*sign) (int type, const unsigned char *m, unsigned int m_length,
                  unsigned char *sigret, unsigned int *siglen, void *key);
     int (*verify) (int type, const unsigned char *m, unsigned int m_length,

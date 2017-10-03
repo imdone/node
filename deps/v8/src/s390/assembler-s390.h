@@ -225,7 +225,7 @@ struct DoubleRegister {
 
 typedef DoubleRegister FloatRegister;
 
-// TODO(john.yan) Define SIMD registers.
+// TODO (john.yan) Define SIMD registers. id:2474
 typedef DoubleRegister Simd128Register;
 
 #define DEFINE_REGISTER(R) \

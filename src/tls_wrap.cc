@@ -143,7 +143,7 @@ void TLSWrap::InitSSL() {
 
   SSL_set_bio(ssl_, enc_in_, enc_out_);
 
-  // NOTE: This could be overridden in SetVerifyMode
+  // NOTE: This could be overridden in SetVerifyMode id:3642
   SSL_set_verify(ssl_, SSL_VERIFY_NONE, crypto::VerifyCallback);
 
 #ifdef SSL_MODE_RELEASE_BUFFERS

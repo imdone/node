@@ -352,7 +352,7 @@ class CompareOutputArrayWriter {
 
 
 // Represents 2 strings as 2 arrays of tokens.
-// TODO(LiveEdit): Currently it's actually an array of charactres.
+// TODO (LiveEdit): Currently it's actually an array of charactres. id:2017
 //     Make array of tokens instead.
 class TokensCompareInput : public Comparator::Input {
  public:
@@ -854,7 +854,7 @@ class DependentFunctionMarker: public OptimizedFunctionVisitor {
 static void DeoptimizeDependentFunctions(SharedFunctionInfo* function_info) {
   DisallowHeapAllocation no_allocation;
   DependentFunctionMarker marker(function_info);
-  // TODO(titzer): need to traverse all optimized code to find OSR code here.
+  // TODO (titzer): need to traverse all optimized code to find OSR code here. id:2064
   Deoptimizer::VisitAllOptimizedFunctions(function_info->GetIsolate(), &marker);
 
   if (marker.found_) {
@@ -997,7 +997,7 @@ static int TranslatePosition(int original_position,
   int position_diff = 0;
   int array_len = GetArrayLength(position_change_array);
   Isolate* isolate = position_change_array->GetIsolate();
-  // TODO(635): binary search may be used here
+  // TODO (635): binary search may be used here id:2034
   for (int i = 0; i < array_len; i += 3) {
     HandleScope scope(isolate);
     Handle<Object> element =

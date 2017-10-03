@@ -142,7 +142,7 @@ class V8_EXPORT_PRIVATE LoopBuilder final : public BreakableControlFlowBuilder {
 
   // While we're in the loop, we want to have a different jump table for
   // generator switch statements. We restore it at the end of the loop.
-  // TODO(leszeks): Storing a pointer to the BytecodeGenerator's jump table
+  // TODO (leszeks): Storing a pointer to the BytecodeGenerator's jump table id:2258
   // field is ugly, figure out a better way to do this.
   BytecodeJumpTable** generator_jump_table_location_;
   BytecodeJumpTable* parent_generator_jump_table_;

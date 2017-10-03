@@ -67,7 +67,7 @@ void ConstantArrayBuilder::ConstantArraySlice::CheckAllElementsAreUnique(
     Isolate* isolate) const {
   std::set<Object*> elements;
   for (const Entry& entry : constants_) {
-    // TODO(leszeks): Ignore jump tables because they have to be contiguous,
+    // TODO (leszeks): Ignore jump tables because they have to be contiguous, id:3096
     // so they can contain duplicates.
     if (entry.IsJumpTableEntry()) continue;
 
@@ -335,7 +335,7 @@ Handle<Object> ConstantArrayBuilder::Entry::ToHandle(Isolate* isolate) const {
     case Tag::kJumpTableSmi:
       return handle(smi_, isolate);
     case Tag::kUninitializedJumpTableSmi:
-      // TODO(leszeks): There's probably a better value we could use here.
+      // TODO (leszeks): There's probably a better value we could use here. id:2106
       return isolate->factory()->the_hole_value();
     case Tag::kRawString:
       return raw_string_->string();

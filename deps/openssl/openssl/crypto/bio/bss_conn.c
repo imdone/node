@@ -531,7 +531,7 @@ static long conn_ctrl(BIO *b, int cmd, long num, void *ptr)
                 BIO_set_conn_hostname(dbio, data->param_hostname);
             BIO_set_nbio(dbio, data->nbio);
             /*
-             * FIXME: the cast of the function seems unlikely to be a good
+             * FIXME: the cast of the function seems unlikely to be a good id:1096
              * idea
              */
             (void)BIO_set_info_callback(dbio,
@@ -540,7 +540,7 @@ static long conn_ctrl(BIO *b, int cmd, long num, void *ptr)
         break;
     case BIO_CTRL_SET_CALLBACK:
         {
-# if 0                          /* FIXME: Should this be used? -- Richard
+# if 0                          /* FIXME: Should this be used? -- Richard id:962
                                  * Levitte */
             BIOerr(BIO_F_CONN_CTRL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
             ret = -1;

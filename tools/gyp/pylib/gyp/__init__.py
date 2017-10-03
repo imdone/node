@@ -321,7 +321,7 @@ def gyp_main(args):
   # currently have some circular relationships on non-Mac platforms, so this
   # option allows the strict behavior to be used on Macs and the lenient
   # behavior to be used elsewhere.
-  # TODO(mark): Remove this option when http://crbug.com/35878 is fixed.
+  # TODO (mark): Remove this option when http://crbug.com/35878 is fixed. id:3704
   parser.add_option('--no-circular-check', dest='circular_check',
                     action='store_false', default=True, regenerate=False,
                     help="don't check for circular relationships between files")
@@ -329,7 +329,7 @@ def gyp_main(args):
   # in a static_library/shared_library project. Visual C++ 2008 generator
   # doesn't support this configuration. Libtool on Mac also generates warnings
   # when duplicate basenames are passed into Make generator on Mac.
-  # TODO(yukawa): Remove this option when these legacy generators are
+  # TODO (yukawa): Remove this option when these legacy generators are id:4097
   # deprecated.
   parser.add_option('--no-duplicate-basename-check',
                     dest='duplicate_basename_check', action='store_false',
@@ -421,7 +421,7 @@ def gyp_main(args):
     raise GypError((usage + '\n\n%s: error: no build_file') %
                    (my_name, my_name))
 
-  # TODO(mark): Chromium-specific hack!
+  # TODO (mark): Chromium-specific hack! id:4023
   # For Chromium, the gyp "depth" variable should always be a relative path
   # to Chromium's top-level "src" directory.  If no depth variable was set
   # on the command line, try to find a "src" directory by looking at the
@@ -513,10 +513,10 @@ def gyp_main(args):
         params, options.check, options.circular_check,
         options.duplicate_basename_check)
 
-    # TODO(mark): Pass |data| for now because the generator needs a list of
+    # TODO (mark): Pass |data| for now because the generator needs a list of id:3235
     # build files that came in.  In the future, maybe it should just accept
     # a list, and not the whole data dict.
-    # NOTE: flat_list is the flattened dependency graph specifying the order
+    # NOTE: flat_list is the flattened dependency graph specifying the order id:3406
     # that targets may be built.  Build systems that operate serially or that
     # need to have dependencies defined before dependents reference them should
     # generate targets in the order specified in flat_list.
@@ -540,7 +540,7 @@ def main(args):
     sys.stderr.write("gyp: %s\n" % e)
     return 1
 
-# NOTE: setuptools generated console_scripts calls function with no arguments
+# NOTE: setuptools generated console_scripts calls function with no arguments id:3707
 def script_main():
   return main(sys.argv[1:])
 

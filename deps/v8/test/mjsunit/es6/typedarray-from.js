@@ -49,7 +49,7 @@ for (var constructor of typedArrayConstructors) {
 
   // Converting from various other types, demonstrating that it can
   // operate on array-like objects as well as iterables.
-  // TODO(littledan): constructors should have similar flexibility.
+  // TODO (littledan): constructors should have similar flexibility. id:2734
   assertArrayLikeEquals(constructor.from(
       { length: 1, 0: 5 }), [5], constructor);
 

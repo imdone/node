@@ -807,11 +807,11 @@ bool IterateElements(Isolate* isolate, Handle<JSReceiver> receiver,
     Handle<Object> val;
     ASSIGN_RETURN_ON_EXCEPTION_VALUE(
         isolate, val, Object::GetLengthFromArrayLike(isolate, receiver), false);
-    // TODO(caitp): Support larger element indexes (up to 2^53-1).
+    // TODO (caitp): Support larger element indexes (up to 2^53-1). id:1396
     if (!val->ToUint32(&length)) {
       length = 0;
     }
-    // TODO(cbruni): handle other element kind as well
+    // TODO (cbruni): handle other element kind as well id:1131
     return IterateElementsSlow(isolate, receiver, length, visitor);
   }
 
@@ -1037,7 +1037,7 @@ Object* Slow_ArrayConcat(BuiltinArguments* args, Handle<Object> species,
                   FixedDoubleArray::cast(array->elements());
               for (uint32_t i = 0; i < length; i++) {
                 if (elements->is_the_hole(i)) {
-                  // TODO(jkummerow/verwaest): We could be a bit more clever
+                  // TODO (jkummerow/verwaest): We could be a bit more clever id:1823
                   // here: Check if there are no elements/getters on the
                   // prototype chain, and if so, allow creation of a holey
                   // result array.
@@ -1142,7 +1142,7 @@ bool IsSimpleArray(Isolate* isolate, Handle<JSArray> obj) {
       map->NumberOfOwnDescriptors() == 1) {
     return true;
   }
-  // TODO(cbruni): slower lookup for array subclasses and support slow
+  // TODO (cbruni): slower lookup for array subclasses and support slow id:1457
   // @@IsConcatSpreadable lookup.
   return false;
 }
@@ -1170,7 +1170,7 @@ MaybeHandle<JSArray> Fast_ArrayConcat(Isolate* isolate,
       if (!HasOnlySimpleReceiverElements(isolate, JSObject::cast(arg))) {
         return MaybeHandle<JSArray>();
       }
-      // TODO(cbruni): support fast concatenation of DICTIONARY_ELEMENTS.
+      // TODO (cbruni): support fast concatenation of DICTIONARY_ELEMENTS. id:1669
       if (!JSObject::cast(arg)->HasFastElements()) {
         return MaybeHandle<JSArray>();
       }

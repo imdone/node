@@ -112,7 +112,7 @@ size_t Heap::NewSpaceAllocationCounter() {
 
 template <>
 bool inline Heap::IsOneByte(Vector<const char> str, int chars) {
-  // TODO(dcarney): incorporate Latin-1 check when Latin-1 is supported?
+  // TODO (dcarney): incorporate Latin-1 check when Latin-1 is supported? id:2060
   return chars == str.length();
 }
 
@@ -668,7 +668,7 @@ void Heap::SetArgumentsAdaptorDeoptPCOffset(int pc_offset) {
 }
 
 void Heap::SetConstructStubCreateDeoptPCOffset(int pc_offset) {
-  // TODO(tebbi): Remove second half of DCHECK once
+  // TODO (tebbi): Remove second half of DCHECK once id:2167
   // FLAG_harmony_restrict_constructor_return is gone.
   DCHECK(construct_stub_create_deopt_pc_offset() == Smi::kZero ||
          construct_stub_create_deopt_pc_offset() == Smi::FromInt(pc_offset));
@@ -676,7 +676,7 @@ void Heap::SetConstructStubCreateDeoptPCOffset(int pc_offset) {
 }
 
 void Heap::SetConstructStubInvokeDeoptPCOffset(int pc_offset) {
-  // TODO(tebbi): Remove second half of DCHECK once
+  // TODO (tebbi): Remove second half of DCHECK once id:2132
   // FLAG_harmony_restrict_constructor_return is gone.
   DCHECK(construct_stub_invoke_deopt_pc_offset() == Smi::kZero ||
          construct_stub_invoke_deopt_pc_offset() == Smi::FromInt(pc_offset));

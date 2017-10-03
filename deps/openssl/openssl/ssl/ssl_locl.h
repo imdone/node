@@ -177,7 +177,7 @@
                          l|=(((unsigned long)(*((c)++)))<<16), \
                          l|=(((unsigned long)(*((c)++)))<<24))
 
-/* NOTE - c is not incremented as per c2l */
+/* NOTE - c is not incremented as per c2l  id:1152*/
 # define c2ln(c,l1,l2,n) { \
                         c+=n; \
                         l1=l2=0; \
@@ -231,7 +231,7 @@
                          l|=((BN_ULLONG)(*((c)++)))<< 8, \
                          l|=((BN_ULLONG)(*((c)++))))
 
-/* NOTE - c is not incremented as per l2c */
+/* NOTE - c is not incremented as per l2c  id:1257*/
 # define l2cn(l1,l2,c,n) { \
                         c+=n; \
                         switch (n) { \

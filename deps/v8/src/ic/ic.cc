@@ -163,7 +163,7 @@ void IC::TraceIC(const char* type, Handle<Object> name, State old_state,
     ic_info.number_of_own_descriptors = map->NumberOfOwnDescriptors();
     ic_info.instance_type = std::to_string(map->instance_type());
   }
-  // TODO(lpy) Add name as key field in ICStats.
+  // TODO (lpy) Add name as key field in ICStats. id:3062
   ICStats::instance()->End();
 }
 
@@ -322,7 +322,7 @@ bool IC::ShouldRecomputeHandler(Handle<String> name) {
   // The current map wasn't handled yet. There's no reason to stay monomorphic,
   // *unless* we're moving from a deprecated map to its replacement, or
   // to a more general elements kind.
-  // TODO(verwaest): Check if the current map is actually what the old map
+  // TODO (verwaest): Check if the current map is actually what the old map id:2080
   // would transition to.
   if (maybe_handler_.is_null()) {
     if (!receiver_map()->IsJSObjectMap()) return false;
@@ -424,7 +424,7 @@ void IC::OnFeedbackChanged(Isolate* isolate, JSFunction* host_function) {
   }
   host_function->shared()->set_profiler_ticks(0);
   isolate->runtime_profiler()->NotifyICChanged();
-  // TODO(2029): When an optimized function is patched, it would
+  // TODO (2029): When an optimized function is patched, it would id:2206
   // be nice to propagate the corresponding type information to its
   // unoptimized version for the benefit of later inlining.
 }
@@ -458,14 +458,14 @@ void IC::PostPatching(Address address, Code* target, Code* old_target) {
     }
   }
 
-  // TODO(leszeks): Normally we would reset profiler ticks here -- but, we don't
+  // TODO (leszeks): Normally we would reset profiler ticks here -- but, we don't id:2161
   // currently have access the the feedback vector from the IC. In practice,
   // this is not an issue, as these ICs are only used by asm.js, which shouldn't
   // have too many IC changes. This inconsistency should go away once these
   // Crankshaft/hydrogen code stubs go away.
 
   isolate->runtime_profiler()->NotifyICChanged();
-  // TODO(2029): When an optimized function is patched, it would
+  // TODO (2029): When an optimized function is patched, it would id:1687
   // be nice to propagate the corresponding type information to its
   // unoptimized version for the benefit of later inlining.
 }
@@ -1225,7 +1225,7 @@ Handle<Object> LoadIC::GetMapIndependentHandler(LookupIterator* lookup) {
         smi_handler = LoadHandler::LoadNormal(isolate());
         if (receiver_is_holder) {
           if (holder->IsJSGlobalObject()) {
-            // TODO(verwaest): This is a workaround for code that leaks the
+            // TODO (verwaest): This is a workaround for code that leaks the id:3064
             // global object.
             TRACE_HANDLER_STATS(isolate(), LoadIC_LoadGlobalDH);
             smi_handler = LoadHandler::LoadGlobal(isolate());
@@ -1413,7 +1413,7 @@ Handle<Object> KeyedLoadIC::LoadElementHandler(Handle<Map> receiver_map) {
   }
   DCHECK(IsFastElementsKind(elements_kind) ||
          IsFixedTypedArrayElementsKind(elements_kind));
-  // TODO(jkummerow): Use IsHoleyOrDictionaryElementsKind(elements_kind).
+  // TODO (jkummerow): Use IsHoleyOrDictionaryElementsKind(elements_kind). id:2081
   bool convert_hole_to_undefined =
       is_js_array && elements_kind == HOLEY_ELEMENTS &&
       *receiver_map == isolate()->get_initial_js_array_map(elements_kind);
@@ -1606,7 +1606,7 @@ MaybeHandle<Object> StoreGlobalIC::Store(Handle<Object> object,
 MaybeHandle<Object> StoreIC::Store(Handle<Object> object, Handle<Name> name,
                                    Handle<Object> value,
                                    JSReceiver::StoreFromKeyed store_mode) {
-  // TODO(verwaest): Let SetProperty do the migration, since storing a property
+  // TODO (verwaest): Let SetProperty do the migration, since storing a property id:2209
   // might deprecate the current map again, if value does not fit.
   if (MigrateDeprecated(object) || object->IsJSProxy()) {
     Handle<Object> result;
@@ -1886,7 +1886,7 @@ Handle<Code> StoreIC::CompileHandler(LookupIterator* lookup) {
         AccessorInfo::IsCompatibleReceiverMap(isolate(), info, receiver_map()));
     TRACE_HANDLER_STATS(isolate(), StoreIC_StoreCallback);
     NamedStoreHandlerCompiler compiler(isolate(), receiver_map(), holder);
-    // TODO(ishell): don't hard-code language mode into the handler because
+    // TODO (ishell): don't hard-code language mode into the handler because id:2163
     // this handler can be re-used through megamorphic stub cache for wrong
     // language mode.
     // Better pass vector/slot to Runtime::kStoreCallbackProperty and
@@ -2119,7 +2119,7 @@ void KeyedStoreIC::StoreElementPolymorphicHandlers(
 
     if (receiver_map->instance_type() < FIRST_JS_RECEIVER_TYPE ||
         receiver_map->DictionaryElementsInPrototypeChainOnly()) {
-      // TODO(mvstanton): Consider embedding store_mode in the state of the slow
+      // TODO (mvstanton): Consider embedding store_mode in the state of the slow id:1690
       // keyed store ic for uniformity.
       TRACE_HANDLER_STATS(isolate(), KeyedStoreIC_SlowStub);
       handler = isolate()->builtins()->KeyedStoreIC_Slow();
@@ -2136,7 +2136,7 @@ void KeyedStoreIC::StoreElementPolymorphicHandlers(
         }
       }
 
-      // TODO(mvstanton): The code below is doing pessimistic elements
+      // TODO (mvstanton): The code below is doing pessimistic elements id:3066
       // transitions. I would like to stop doing that and rely on Allocation
       // Site Tracking to do a better job of ensuring the data types are what
       // they need to be. Not all the elements are in place yet, pessimistic
@@ -2231,7 +2231,7 @@ static KeyedAccessStoreMode GetStoreMode(Handle<JSObject> receiver,
 MaybeHandle<Object> KeyedStoreIC::Store(Handle<Object> object,
                                         Handle<Object> key,
                                         Handle<Object> value) {
-  // TODO(verwaest): Let SetProperty do the migration, since storing a property
+  // TODO (verwaest): Let SetProperty do the migration, since storing a property id:2083
   // might deprecate the current map again, if value does not fit.
   if (MigrateDeprecated(object)) {
     Handle<Object> result;
@@ -2773,7 +2773,7 @@ RUNTIME_FUNCTION(Runtime_StorePropertyWithInterceptor) {
 
 
 RUNTIME_FUNCTION(Runtime_LoadElementWithInterceptor) {
-  // TODO(verwaest): This should probably get the holder and receiver as input.
+  // TODO (verwaest): This should probably get the holder and receiver as input. id:2211
   HandleScope scope(isolate);
   Handle<JSObject> receiver = args.at<JSObject>(0);
   DCHECK(args.smi_at(1) >= 0);

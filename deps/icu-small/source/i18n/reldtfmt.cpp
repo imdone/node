@@ -577,7 +577,7 @@ int32_t RelativeDateFormat::dayDifference(Calendar &cal, UErrorCode &status) {
     if(U_FAILURE(status)) {
         return 0;
     }
-    // TODO: Cache the nowCal to avoid heap allocs? Would be difficult, don't know the calendar type
+    // TODO: Cache the nowCal to avoid heap allocs? Would be difficult, don't know the calendar type id:279
     Calendar *nowCal = cal.clone();
     nowCal->setTime(Calendar::getNow(), status);
 

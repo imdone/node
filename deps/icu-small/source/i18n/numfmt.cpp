@@ -1363,7 +1363,7 @@ NumberFormat::makeInstance(const Locale& desiredLocale,
     LocalPointer<NumberingSystem> ownedNs;
     NumberingSystem *ns = NULL;
     if (NumberingSystem_cache != NULL) {
-        // TODO: Bad hash key usage, see ticket #8504.
+        // TODO: Bad hash key usage, see ticket #8504. id:592
         int32_t hashKey = desiredLocale.hashCode();
 
         Mutex lock(&nscacheMutex);

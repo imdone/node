@@ -277,7 +277,7 @@ sub bn_mul_words
 		 &mov("eax",&DWP($i,$a,"",0)); 	# *a
 		&mul($w);			# *a * w
 		&add("eax",$c);			# L(t)+=c
-		 # XXX
+		 # XXX id:1017
 
 		&adc("edx",0);			# H(t)+=carry
 		 &mov(&DWP($i,$r,"",0),"eax");	# *r= L(t);
@@ -305,7 +305,7 @@ sub bn_mul_words
 		 &mov("eax",&DWP($i*4,$a,"",0));# *a
 		&mul($w);			# *a * w
 		&add("eax",$c);			# L(t)+=c
-		 # XXX
+		 # XXX id:658
 		&adc("edx",0);			# H(t)+=carry
 		 &mov(&DWP($i*4,$r,"",0),"eax");# *r= L(t);
 		&mov($c,"edx");			# c=  H(t);
@@ -374,7 +374,7 @@ sub bn_sqr_words
 		{
 		&comment("Round $i");
 		&mov("eax",&DWP($i,$a,"",0)); 	# *a
-		 # XXX
+		 # XXX id:661
 		&mul("eax");			# *a * *a
 		&mov(&DWP($i*2,$r,"",0),"eax");	#
 		 &mov(&DWP($i*2+4,$r,"",0),"edx");#
@@ -395,7 +395,7 @@ sub bn_sqr_words
 		{
 		&comment("Tail Round $i");
 		&mov("eax",&DWP($i*4,$a,"",0));	# *a
-		 # XXX
+		 # XXX id:1098
 		&mul("eax");			# *a * *a
 		&mov(&DWP($i*8,$r,"",0),"eax");	#
 		 &dec($num) if ($i != 7-1);

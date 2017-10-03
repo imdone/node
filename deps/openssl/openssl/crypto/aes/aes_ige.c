@@ -59,7 +59,7 @@ typedef struct {
     unsigned long data[N_WORDS];
 } aes_block_t;
 
-/* XXX: probably some better way to do this */
+/* XXX: probably some better way to do this  id:645*/
 #if defined(__i386__) || defined(__x86_64__)
 # define UNALIGNED_MEMOPS_ARE_FAST 1
 #else
@@ -225,7 +225,7 @@ void AES_bi_ige_encrypt(const unsigned char *in, unsigned char *out,
 
     if (AES_ENCRYPT == enc) {
         /*
-         * XXX: Do a separate case for when in != out (strictly should check
+         * XXX: Do a separate case for when in != out (strictly should check id:600
          * for overlap, too)
          */
 
@@ -253,7 +253,7 @@ void AES_bi_ige_encrypt(const unsigned char *in, unsigned char *out,
         while (len >= AES_BLOCK_SIZE) {
             out -= AES_BLOCK_SIZE;
             /*
-             * XXX: reduce copies by alternating between buffers
+             * XXX: reduce copies by alternating between buffers id:1092
              */
             memcpy(tmp, out, AES_BLOCK_SIZE);
             for (n = 0; n < AES_BLOCK_SIZE; ++n)

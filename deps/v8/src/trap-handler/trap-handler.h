@@ -21,7 +21,7 @@ namespace v8 {
 namespace internal {
 namespace trap_handler {
 
-// TODO(eholk): Support trap handlers on other platforms.
+// TODO (eholk): Support trap handlers on other platforms. id:2577
 #if V8_TARGET_ARCH_X64 && V8_OS_LINUX && !V8_OS_ANDROID
 #define V8_TRAP_HANDLER_SUPPORTED 1
 #else
@@ -34,7 +34,7 @@ struct ProtectedInstructionData {
 
   // The offset of the landing pad from the start of its code object.
   //
-  // TODO(eholk): Using a single landing pad and store parameters here.
+  // TODO (eholk): Using a single landing pad and store parameters here. id:3021
   intptr_t landing_offset;
 };
 
@@ -55,7 +55,7 @@ void ReleaseHandlerData(int index);
 #if V8_OS_WIN
 #define THREAD_LOCAL __declspec(thread)
 #elif V8_OS_ANDROID
-// TODO(eholk): fix this before enabling for trap handlers for Android.
+// TODO (eholk): fix this before enabling for trap handlers for Android. id:3243
 #define THREAD_LOCAL
 #else
 #define THREAD_LOCAL __thread

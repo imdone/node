@@ -49,12 +49,12 @@ namespace {
 void* TryAllocateBackingStore(Isolate* isolate, size_t size,
                               bool enable_guard_regions, void*& allocation_base,
                               size_t& allocation_length) {
-  // TODO(eholk): Right now enable_guard_regions has no effect on 32-bit
+  // TODO (eholk): Right now enable_guard_regions has no effect on 32-bit id:2534
   // systems. It may be safer to fail instead, given that other code might do
   // things that would be unsafe if they expected guard pages where there
   // weren't any.
   if (enable_guard_regions && kGuardRegionsSupported) {
-    // TODO(eholk): On Windows we want to make sure we don't commit the guard
+    // TODO (eholk): On Windows we want to make sure we don't commit the guard id:2649
     // pages yet.
 
     // We always allocate the largest possible offset into the heap, so the
@@ -240,7 +240,7 @@ Handle<JSArrayBuffer> wasm::NewArrayBuffer(Isolate* isolate, size_t size,
   // line, and we don't want to fail a CHECK then.
   if (size > FLAG_wasm_max_mem_pages * WasmModule::kPageSize ||
       size > kMaxInt) {
-    // TODO(titzer): lift restriction on maximum memory allocated here.
+    // TODO (titzer): lift restriction on maximum memory allocated here. id:3425
     return Handle<JSArrayBuffer>::null();
   }
 
@@ -297,7 +297,7 @@ void wasm::UnpackAndRegisterProtectedInstructions(
       int size = code->CodeSize();
       const int index = RegisterHandlerData(reinterpret_cast<void*>(base), size,
                                             unpacked.size(), &unpacked[0]);
-      // TODO(eholk): if index is negative, fail.
+      // TODO (eholk): if index is negative, fail. id:3266
       DCHECK(index >= 0);
       code->set_trap_handler_index(Smi::FromInt(index));
     }
@@ -384,7 +384,7 @@ void wasm::UpdateDispatchTables(Isolate* isolate,
     Handle<FixedArray> signature_table(
         FixedArray::cast(dispatch_tables->get(i + 3)), isolate);
     if (function) {
-      // TODO(titzer): the signature might need to be copied to avoid
+      // TODO (titzer): the signature might need to be copied to avoid id:2370
       // a dangling pointer in the signature map.
       Handle<WasmInstanceObject> instance(
           WasmInstanceObject::cast(dispatch_tables->get(i)), isolate);
@@ -433,7 +433,7 @@ Handle<Script> wasm::GetScript(Handle<JSObject> instance) {
 }
 
 bool wasm::IsWasmCodegenAllowed(Isolate* isolate, Handle<Context> context) {
-  // TODO(wasm): Once wasm has its own CSP policy, we should introduce a
+  // TODO (wasm): Once wasm has its own CSP policy, we should introduce a id:2537
   // separate callback that includes information about the module about to be
   // compiled. For the time being, pass an empty string as placeholder for the
   // sources.
@@ -773,7 +773,7 @@ MaybeHandle<WasmModuleObject> wasm::SyncCompile(Isolate* isolate,
     return {};
   }
 
-  // TODO(titzer): only make a copy of the bytes if SharedArrayBuffer
+  // TODO (titzer): only make a copy of the bytes if SharedArrayBuffer id:2650
   std::unique_ptr<byte[]> copy(new byte[bytes.length()]);
   memcpy(copy.get(), bytes.start(), bytes.length());
   ModuleWireBytes bytes_copy(copy.get(), copy.get() + bytes.length());
@@ -961,7 +961,7 @@ void LazyCompilationOrchestrator::CompileFunction(
   size_t num_function_tables =
       compiled_module->module()->function_tables.size();
   // Store a vector of handles to be embedded in the generated code.
-  // TODO(clemensh): For concurrent compilation, these will have to live in a
+  // TODO (clemensh): For concurrent compilation, these will have to live in a id:3427
   // DeferredHandleScope.
   std::vector<Handle<FixedArray>> fun_tables(num_function_tables);
   std::vector<Handle<FixedArray>> sig_tables(num_function_tables);
@@ -980,7 +980,7 @@ void LazyCompilationOrchestrator::CompileFunction(
   wasm::FunctionBody body{func->sig, func->code.offset(),
                           module_start + func->code.offset(),
                           module_start + func->code.end_offset()};
-  // TODO(wasm): Refactor this to only get the name if it is really needed for
+  // TODO (wasm): Refactor this to only get the name if it is really needed for id:3268
   // tracing / debugging.
   std::string func_name;
   {
@@ -1000,14 +1000,14 @@ void LazyCompilationOrchestrator::CompileFunction(
   // If there is a pending error, something really went wrong. The module was
   // verified before starting execution with lazy compilation.
   // This might be OOM, but then we cannot continue execution anyway.
-  // TODO(clemensh): According to the spec, we can actually skip validation at
+  // TODO (clemensh): According to the spec, we can actually skip validation at id:2371
   // module creation time, and return a function that always traps here.
   CHECK(!thrower.error());
   Handle<Code> code = maybe_code.ToHandleChecked();
 
   Handle<FixedArray> deopt_data = isolate->factory()->NewFixedArray(2, TENURED);
   Handle<WeakCell> weak_instance = isolate->factory()->NewWeakCell(instance);
-  // TODO(wasm): Introduce constants for the indexes in wasm deopt data.
+  // TODO (wasm): Introduce constants for the indexes in wasm deopt data. id:2540
   deopt_data->set(0, *weak_instance);
   deopt_data->set(1, Smi::FromInt(func_index));
   code->set_deoptimization_data(*deopt_data);
@@ -1073,7 +1073,7 @@ Handle<Code> LazyCompilationOrchestrator::CompileLazy(
       Code* callee =
           Code::GetCodeFromTargetAddress(it.rinfo()->target_address());
       if (callee->builtin_index() != Builtins::kWasmCompileLazy) continue;
-      // TODO(clemensh): Introduce safe_cast<T, bool> which (D)CHECKS
+      // TODO (clemensh): Introduce safe_cast<T, bool> which (D)CHECKS id:2651
       // (depending on the bool) against limits of T and then static_casts.
       size_t offset_l = it.rinfo()->pc() - caller->instruction_start();
       DCHECK_GE(kMaxInt, offset_l);
@@ -1089,7 +1089,7 @@ Handle<Code> LazyCompilationOrchestrator::CompileLazy(
     }
   }
 
-  // TODO(clemensh): compile all functions in non_compiled_functions in
+  // TODO (clemensh): compile all functions in non_compiled_functions in id:3429
   // background, wait for func_to_return_idx.
   CompileFunction(isolate, instance, func_to_return_idx);
 

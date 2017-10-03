@@ -289,7 +289,7 @@ static void (*savsig[NX509_SIG]) (int);
 #ifdef OPENSSL_SYS_VMS
 static struct IOSB iosb;
 static $DESCRIPTOR(terminal, "TT");
-static long tty_orig[3], tty_new[3]; /* XXX Is there any guarantee that this
+static long tty_orig[3], tty_new[3]; /* XXX Is there any guarantee that this id:1213
                                       * will always suffice for the actual
                                       * structures? */
 static long status;
@@ -434,7 +434,7 @@ static int read_string_inner(UI *ui, UI_STRING *uis, int echo, int strip_nl)
 # ifdef OPENSSL_SYS_MSDOS
     if (!echo) {
         noecho_fgets(result, maxsize, tty_in);
-        p = result;             /* FIXME: noecho_fgets doesn't return errors */
+        p = result;             /* FIXME: noecho_fgets doesn't return errors  id:733*/
     } else
         p = fgets(result, maxsize, tty_in);
 # else

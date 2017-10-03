@@ -432,7 +432,7 @@ struct hostent *BIO_gethostbyname(const char *name)
 
         /* else add to cache */
         if (ghbn_cache[lowi].ent != NULL)
-            ghbn_free(ghbn_cache[lowi].ent); /* XXX not thread-safe */
+            ghbn_free(ghbn_cache[lowi].ent); /* XXX not thread-safe  id:655*/
         ghbn_cache[lowi].name[0] = '\0';
 
         if ((ret = ghbn_cache[lowi].ent = ghbn_dup(ret)) == NULL) {

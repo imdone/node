@@ -443,7 +443,7 @@ int ssl3_connect(SSL *s)
              * sent, but no verify packet is sent
              */
             /*
-             * XXX: For now, we do not support client authentication in ECDH
+             * XXX: For now, we do not support client authentication in ECDH id:1461
              * cipher suites with ECDH (rather than ECDSA) certificates. We
              * need to skip the certificate verify message when client's
              * ECDH public key is sent inside the client certificate.
@@ -1838,7 +1838,7 @@ int ssl3_get_key_exchange(SSL *s)
          */
 
         /*
-         * XXX: For now we only support named (not generic) curves and the
+         * XXX: For now we only support named (not generic) curves and the id:1147
          * ECParameters in this case is just three bytes. We also need one
          * byte for the length of the encoded point
          */
@@ -2832,7 +2832,7 @@ int ssl3_send_client_key_exchange(SSL *s)
              */
             if ((alg_k & (SSL_kECDHr | SSL_kECDHe)) && (s->cert != NULL)) {
                 /*-
-                 * XXX: For now, we do not support client
+                 * XXX: For now, we do not support client id:1250
                  * authentication using ECDH certificates.
                  * To add such support, one needs to add
                  * code that checks for appropriate

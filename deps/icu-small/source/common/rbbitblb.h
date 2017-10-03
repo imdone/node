@@ -63,7 +63,7 @@ private:
     void     addRuleRootNodes(UVector *dest, RBBINode *node);
 
     // Set functions for UVector.
-    //   TODO:  make a USet subclass of UVector
+    //   TODO: make a USet subclass of UVector id:167
 
     void     setAdd(UVector *dest, UVector *source);
     UBool    setEquals(UVector *a, UVector *b);

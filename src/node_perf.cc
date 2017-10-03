@@ -65,7 +65,7 @@ void Mark(const FunctionCallbackInfo<Value>& args) {
   auto marks = env->performance_marks();
   (*marks)[*name] = now;
 
-  // TODO(jasnell): Once Tracing API is fully implemented, this should
+  // TODO (jasnell): Once Tracing API is fully implemented, this should id:3321
   // record a trace event also.
 
   Local<Function> fn = env->performance_entry_template();
@@ -110,7 +110,7 @@ void Measure(const FunctionCallbackInfo<Value>& args) {
   if (endTimestamp < startTimestamp)
     endTimestamp = startTimestamp;
 
-  // TODO(jasnell): Once Tracing API is fully implemented, this should
+  // TODO (jasnell): Once Tracing API is fully implemented, this should id:3638
   // record a trace event also.
 
   Local<Function> fn = env->performance_entry_template();

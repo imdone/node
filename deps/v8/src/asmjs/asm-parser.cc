@@ -12,7 +12,7 @@
 #include "src/asmjs/asm-js.h"
 #include "src/asmjs/asm-types.h"
 #include "src/base/optional.h"
-#include "src/objects-inl.h"  // TODO(mstarzinger): Temporary cycle breaker.
+#include "src/objects-inl.h"  // TODO (mstarzinger): Temporary cycle breaker. id:1324
 #include "src/parsing/scanner.h"
 #include "src/wasm/wasm-opcodes.h"
 
@@ -222,7 +222,7 @@ void AsmJsParser::AddGlobalImport(Vector<const char> name, AsmType* type,
                                   ValueType vtype, bool mutable_variable,
                                   VarInfo* info) {
   // Allocate a separate variable for the import.
-  // TODO(mstarzinger): Consider using the imported global directly instead of
+  // TODO (mstarzinger): Consider using the imported global directly instead of id:1512
   // allocating a separate global variable for immutable (i.e. const) imports.
   DeclareGlobal(info, mutable_variable, type, vtype);
 
@@ -754,7 +754,7 @@ void AsmJsParser::ValidateFunction() {
   }
   DCHECK_NOT_NULL(return_type_);
 
-  // TODO(bradnelson): WasmModuleBuilder can't take this in the right order.
+  // TODO (bradnelson): WasmModuleBuilder can't take this in the right order. id:1071
   //                   We should fix that so we can use it instead.
   FunctionSig* sig = ConvertSignature(return_type_, params);
   current_function_builder_->SetSignature(sig);
@@ -779,7 +779,7 @@ void AsmJsParser::ValidateFunction() {
     DCHECK(function_info->kind == VarKind::kFunction);
     function_info->type = function_type;
   } else if (!function_type->IsA(function_info->type)) {
-    // TODO(bradnelson): Should IsExactly be used here?
+    // TODO (bradnelson): Should IsExactly be used here? id:1035
     FAIL("Function definition doesn't match use");
   }
 
@@ -789,7 +789,7 @@ void AsmJsParser::ValidateFunction() {
 
 // 6.4 ValidateFunction
 void AsmJsParser::ValidateFunctionParams(ZoneVector<AsmType*>* params) {
-  // TODO(bradnelson): Do this differently so that the scanner doesn't need to
+  // TODO (bradnelson): Do this differently so that the scanner doesn't need to id:1646
   // have a state transition that needs knowledge of how the scanner works
   // inside.
   scanner_.EnterLocalScope();
@@ -1025,7 +1025,7 @@ void AsmJsParser::Block() {
 // 6.5.2 ExpressionStatement
 void AsmJsParser::ExpressionStatement() {
   if (scanner_.IsGlobal() || scanner_.IsLocal()) {
-    // NOTE: Both global or local identifiers can also be used as labels.
+    // NOTE: Both global or local identifiers can also be used as labels. id:1328
     scanner_.Next();
     if (Peek(':')) {
       scanner_.Rewind();
@@ -1068,7 +1068,7 @@ void AsmJsParser::ReturnStatement() {
   EXPECT_TOKEN(TOK(return));
   // clang-format on
   if (!Peek(';') && !Peek('}')) {
-    // TODO(bradnelson): See if this can be factored out.
+    // TODO (bradnelson): See if this can be factored out. id:1515
     AsmType* ret;
     RECURSE(ret = Expression(return_type_));
     if (ret->IsA(AsmType::Double())) {
@@ -1193,7 +1193,7 @@ void AsmJsParser::ForStatement() {
   scanner_.Seek(increment_position);
   if (!Peek(')')) {
     RECURSE(Expression(nullptr));
-    // NOTE: No explicit drop because below break is an implicit drop.
+    // NOTE: No explicit drop because below break is an implicit drop. id:1076
   }
   current_function_builder_->EmitWithU8(kExprBr, 0);
   scanner_.Seek(end_position);
@@ -1208,7 +1208,7 @@ void AsmJsParser::BreakStatement() {
   EXPECT_TOKEN(TOK(break));
   AsmJsScanner::token_t label_name = kTokenNone;
   if (scanner_.IsGlobal() || scanner_.IsLocal()) {
-    // NOTE: Currently using globals/locals for labels too.
+    // NOTE: Currently using globals/locals for labels too. id:1038
     label_name = Consume();
   }
   int depth = FindBreakLabelDepth(label_name);
@@ -1225,7 +1225,7 @@ void AsmJsParser::ContinueStatement() {
   EXPECT_TOKEN(TOK(continue));
   AsmJsScanner::token_t label_name = kTokenNone;
   if (scanner_.IsGlobal() || scanner_.IsLocal()) {
-    // NOTE: Currently using globals/locals for labels too.
+    // NOTE: Currently using globals/locals for labels too. id:1649
     label_name = Consume();
   }
   int depth = FindContinueLabelDepth(label_name);
@@ -1239,7 +1239,7 @@ void AsmJsParser::ContinueStatement() {
 // 6.5.9 LabelledStatement
 void AsmJsParser::LabelledStatement() {
   DCHECK(scanner_.IsGlobal() || scanner_.IsLocal());
-  // NOTE: Currently using globals/locals for labels too.
+  // NOTE: Currently using globals/locals for labels too. id:1331
   if (pending_label_ != 0) {
     FAIL("Double label unsupported");
   }
@@ -1263,7 +1263,7 @@ void AsmJsParser::SwitchStatement() {
   current_function_builder_->EmitSetLocal(tmp);
   Begin(pending_label_);
   pending_label_ = 0;
-  // TODO(bradnelson): Make less weird.
+  // TODO (bradnelson): Make less weird. id:1518
   CachedVector<int32_t> cases(cached_int_vectors_);
   GatherCases(&cases);
   EXPECT_TOKEN('{');
@@ -1305,7 +1305,7 @@ void AsmJsParser::ValidateCase() {
   if (!CheckForUnsigned(&uvalue)) {
     FAIL("Expected numeric literal");
   }
-  // TODO(bradnelson): Share negation plumbing.
+  // TODO (bradnelson): Share negation plumbing. id:1080
   if ((negate && uvalue > 0x80000000) || (!negate && uvalue > 0x7fffffff)) {
     FAIL("Numeric literal out of range");
   }
@@ -1484,7 +1484,7 @@ AsmType* AsmJsParser::AssignmentExpression() {
     ret = info->type;
     scanner_.Next();
     if (Check('=')) {
-      // NOTE: Before this point, this might have been VarKind::kUnused even in
+      // NOTE: Before this point, this might have been VarKind::kUnused even in id:1041
       // valid code, as it might be a label.
       if (info->kind == VarKind::kUnused) {
         FAILn("Undeclared assignment target");
@@ -1523,7 +1523,7 @@ AsmType* AsmJsParser::UnaryExpression() {
   if (Check('-')) {
     uint32_t uvalue;
     if (CheckForUnsigned(&uvalue)) {
-      // TODO(bradnelson): was supposed to be 0x7fffffff, check errata.
+      // TODO (bradnelson): was supposed to be 0x7fffffff, check errata. id:1652
       if (uvalue <= 0x80000000) {
         current_function_builder_->EmitI32Const(-static_cast<int32_t>(uvalue));
       } else {
@@ -1554,7 +1554,7 @@ AsmType* AsmJsParser::UnaryExpression() {
     call_coercion_position_ = scanner_.Position();
     scanner_.Next();  // Done late for correct position.
     RECURSEn(ret = UnaryExpression());
-    // TODO(bradnelson): Generalize.
+    // TODO (bradnelson): Generalize. id:1334
     if (ret->IsA(AsmType::Signed())) {
       current_function_builder_->Emit(kExprF64SConvertI32);
       ret = AsmType::Double();
@@ -1736,7 +1736,7 @@ AsmType* AsmJsParser::AdditiveExpression() {
         a = AsmType::Intish();
         n = 2;
       } else if (a->IsA(AsmType::Intish()) && b->IsA(AsmType::Intish())) {
-        // TODO(bradnelson): b should really only be Int.
+        // TODO (bradnelson): b should really only be Int. id:1521
         // specialize intish to capture count.
         ++n;
         if (n > (1 << 20)) {
@@ -1760,7 +1760,7 @@ AsmType* AsmJsParser::AdditiveExpression() {
         a = AsmType::Intish();
         n = 2;
       } else if (a->IsA(AsmType::Intish()) && b->IsA(AsmType::Intish())) {
-        // TODO(bradnelson): b should really only be Int.
+        // TODO (bradnelson): b should really only be Int. id:1085
         // specialize intish to capture count.
         ++n;
         if (n > (1 << 20)) {
@@ -1783,7 +1783,7 @@ AsmType* AsmJsParser::ShiftExpression() {
   RECURSEn(a = AdditiveExpression());
   for (;;) {
     switch (scanner_.Token()) {
-// TODO(bradnelson): Implement backtracking to avoid emitting code
+// TODO (bradnelson): Implement backtracking to avoid emitting code id:1043
 // for the x >>> 0 case (similar to what's there for |0).
 #define HANDLE_CASE(op, opcode, name, result)                        \
   case TOK(op): {                                                    \
@@ -1922,10 +1922,10 @@ AsmType* AsmJsParser::BitwiseORExpression() {
     AsmType* b = nullptr;
     // Remember whether the first operand to this OR-expression has requested
     // deferred validation of the |0 annotation.
-    // NOTE: This has to happen here to work recursively.
+    // NOTE: This has to happen here to work recursively. id:1655
     bool requires_zero = call_coercion_deferred_->IsExactly(AsmType::Signed());
     call_coercion_deferred_ = nullptr;
-    // TODO(bradnelson): Make it prettier.
+    // TODO (bradnelson): Make it prettier. id:1337
     bool zero = false;
     size_t old_pos;
     size_t old_code;
@@ -2144,7 +2144,7 @@ AsmType* AsmJsParser::ValidateCall() {
       FAILn("Imported function can't be called as float");
     }
     DCHECK(function_info->import != nullptr);
-    // TODO(bradnelson): Factor out.
+    // TODO (bradnelson): Factor out. id:1524
     uint32_t index;
     auto it = function_info->import->cache.find(sig);
     if (it != function_info->import->cache.end()) {
@@ -2163,7 +2163,7 @@ AsmType* AsmJsParser::ValidateCall() {
     if (!callable) {
       FAILn("Expected callable function");
     }
-    // TODO(bradnelson): Refactor AsmType to not need this.
+    // TODO (bradnelson): Refactor AsmType to not need this. id:1088
     if (callable->CanBeInvokedWith(return_type, param_specific_types)) {
       // Return type ok.
     } else if (callable->CanBeInvokedWith(AsmType::Float(),
@@ -2208,7 +2208,7 @@ AsmType* AsmJsParser::ValidateCall() {
             }
           }
         } else if (param_specific_types[0]->IsA(AsmType::Float())) {
-          // NOTE: Not technically part of the asm.js spec, but Firefox
+          // NOTE: Not technically part of the asm.js spec, but Firefox id:1045
           // accepts it.
           for (size_t i = 1; i < param_specific_types.size(); ++i) {
             if (function_info->kind == VarKind::kMathMin) {
@@ -2330,8 +2330,8 @@ void AsmJsParser::ValidateHeapAccess() {
   EXPECT_TOKEN('[');
   uint32_t offset;
   if (CheckForUnsigned(&offset)) {
-    // TODO(bradnelson): Check more things.
-    // TODO(mstarzinger): Clarify and explain where this limit is coming from,
+    // TODO (bradnelson): Check more things. id:1658
+    // TODO (mstarzinger): Clarify and explain where this limit is coming from, id:1340
     // as it is not mandated by the spec directly.
     if (offset > 0x7fffffff ||
         static_cast<uint64_t>(offset) * static_cast<uint64_t>(size) >
@@ -2341,7 +2341,7 @@ void AsmJsParser::ValidateHeapAccess() {
     if (Check(']')) {
       current_function_builder_->EmitI32Const(
           static_cast<uint32_t>(offset * size));
-      // NOTE: This has to happen here to work recursively.
+      // NOTE: This has to happen here to work recursively. id:1526
       heap_access_type_ = info->type;
       return;
     } else {
@@ -2373,7 +2373,7 @@ void AsmJsParser::ValidateHeapAccess() {
     FAIL("Expected intish index");
   }
   EXPECT_TOKEN(']');
-  // NOTE: This has to happen here to work recursively.
+  // NOTE: This has to happen here to work recursively. id:1126
   heap_access_type_ = info->type;
 }
 
@@ -2386,7 +2386,7 @@ void AsmJsParser::ValidateFloatCoercion() {
   scanner_.Next();
   EXPECT_TOKEN('(');
   call_coercion_ = AsmType::Float();
-  // NOTE: The coercion position to float is not observable from JavaScript,
+  // NOTE: The coercion position to float is not observable from JavaScript, id:1047
   // because imported functions are not allowed to have float return type.
   call_coercion_position_ = scanner_.Position();
   AsmType* ret;

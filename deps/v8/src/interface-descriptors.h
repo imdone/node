@@ -703,7 +703,7 @@ class AllocateHeapNumberDescriptor : public CallInterfaceDescriptor {
 
 class BuiltinDescriptor : public CallInterfaceDescriptor {
  public:
-  // TODO(ishell): Where is kFunction??
+  // TODO (ishell): Where is kFunction?? id:2093
   DEFINE_PARAMETERS(kNewTarget, kArgumentsCount)
   DECLARE_DESCRIPTOR_WITH_CUSTOM_FUNCTION_TYPE(BuiltinDescriptor,
                                                CallInterfaceDescriptor)
@@ -875,7 +875,7 @@ class VarArgFunctionDescriptor : public CallInterfaceDescriptor {
                                                CallInterfaceDescriptor)
 };
 
-// TODO(turbofan): We should probably rename this to GrowFastElementsDescriptor.
+// TODO (turbofan): We should probably rename this to GrowFastElementsDescriptor. id:2233
 class GrowArrayElementsDescriptor : public CallInterfaceDescriptor {
  public:
   DEFINE_PARAMETERS(kObject, kKey)

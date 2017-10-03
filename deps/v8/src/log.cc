@@ -515,7 +515,7 @@ void JitLogger::EndCodePosInfoEvent(AbstractCode* code,
 }
 
 
-// TODO(lpy): Keeping sampling thread inside V8 is a workaround currently,
+// TODO (lpy): Keeping sampling thread inside V8 is a workaround currently, id:2300
 // the reason is to reduce code duplication during migration to sampler library,
 // sampling thread, as well as the sampler, will be moved to D8 eventually.
 class SamplingThread : public base::Thread {

@@ -258,7 +258,7 @@ static int dev_crypto_rc4_init_key(EVP_CIPHER_CTX *ctx,
 
 static const EVP_CIPHER r4_cipher = {
     NID_rc4,
-    1, 16, 0,                   /* FIXME: key should be up to 256 bytes */
+    1, 16, 0,                   /* FIXME: key should be up to 256 bytes  id:1005*/
     EVP_CIPH_VARIABLE_LENGTH,
     dev_crypto_rc4_init_key,
     dev_crypto_cipher,
@@ -308,8 +308,8 @@ static int dev_crypto_cleanup_digest(MD_DATA *md_data)
     return 1;
 }
 
-/* FIXME: if device can do chained MACs, then don't accumulate */
-/* FIXME: move accumulation to the framework */
+/* FIXME: if device can do chained MACs, then don't accumulate  id:1061*/
+/* FIXME: move accumulation to the framework  id:691*/
 static int dev_crypto_md5_init(EVP_MD_CTX *ctx)
 {
     return dev_crypto_init_digest(ctx->md_data, CRYPTO_MD5);
@@ -335,7 +335,7 @@ static int do_digest(int ses, unsigned char *md, const void *data, int len)
                                  * it */
     cryp.len = len;
     cryp.src = (caddr_t) data;
-    cryp.dst = (caddr_t) data;  // FIXME!!!
+    cryp.dst = (caddr_t) data;  // FIXME !!! id:788
     cryp.mac = (caddr_t) md;
 
     if (ioctl(fd, CIOCCRYPT, &cryp) == -1) {
@@ -350,7 +350,7 @@ static int do_digest(int ses, unsigned char *md, const void *data, int len)
             }
             memcpy(dcopy, data, len);
             cryp.src = dcopy;
-            cryp.dst = cryp.src; // FIXME!!!
+            cryp.dst = cryp.src; // FIXME !!! id:1161
 
             if (ioctl(fd, CIOCCRYPT, &cryp) == -1) {
                 err("CIOCCRYPT(MAC2) failed");
@@ -433,7 +433,7 @@ static const EVP_MD md5_md = {
     NID_md5,
     NID_md5WithRSAEncryption,
     MD5_DIGEST_LENGTH,
-    EVP_MD_FLAG_ONESHOT,        // XXX: set according to device info...
+    EVP_MD_FLAG_ONESHOT,        // XXX: set according to device info... id:1009
     dev_crypto_md5_init,
     dev_crypto_md5_update,
     dev_crypto_md5_final,

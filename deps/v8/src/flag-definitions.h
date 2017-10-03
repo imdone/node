@@ -292,7 +292,7 @@ DEFINE_BOOL(type_profile, false, "collect type information")
 DEFINE_BOOL(block_coverage, false, "collect block coverage information")
 DEFINE_BOOL(feedback_normalization, false,
             "feed back normalization to constructors")
-// TODO(jkummerow): This currently adds too much load on the stub cache.
+// TODO (jkummerow): This currently adds too much load on the stub cache. id:2033
 DEFINE_BOOL_READONLY(internalize_on_the_fly, false,
                      "internalize string keys for generic keyed ICs on the fly")
 
@@ -671,7 +671,7 @@ DEFINE_INT(v8_os_page_size, 0, "override OS page size (in KBytes)")
 DEFINE_BOOL(always_compact, false, "Perform compaction on every full GC")
 DEFINE_BOOL(never_compact, false,
             "Never perform compaction on full GC - testing only")
-// TODO(ulan): enable compaction for concurrent marking when it correctly
+// TODO (ulan): enable compaction for concurrent marking when it correctly id:2139
 // records slots to evacuation candidates.
 DEFINE_IMPLICATION(concurrent_marking, never_compact)
 DEFINE_BOOL(compact_code_space, true, "Compact code space on full collections")

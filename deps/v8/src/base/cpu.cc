@@ -158,7 +158,7 @@ int __detect_fp64_mode(void) {
 
 
 int __detect_mips_arch_revision(void) {
-  // TODO(dusmil): Do the specific syscall as soon as it is implemented in mips
+  // TODO (dusmil): Do the specific syscall as soon as it is implemented in mips id:1602
   // kernel.
   uint32_t result = 0;
   __asm__ volatile(

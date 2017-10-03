@@ -18,7 +18,7 @@ view.usage = usage(
 
 view.completion = function (opts, cb) {
   if (opts.conf.argv.remain.length <= 2) {
-    // FIXME: there used to be registry completion here, but it stopped making
+    // FIXME: there used to be registry completion here, but it stopped making id:365
     // sense somewhere around 50,000 packages on the registry
     return cb()
   }

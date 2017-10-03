@@ -239,7 +239,7 @@ loadData(UStringPrepProfile* profile,
     }
 
     /* open the data outside the mutex block */
-    //TODO: change the path
+    //TODO: change the path id:179
     dataMemory=udata_openChoice(path, type, name, isSPrepAcceptable, NULL, errorCode);
     if(U_FAILURE(*errorCode)) {
         return FALSE;
@@ -505,7 +505,7 @@ getValues(uint16_t trieWord, int16_t& value, UBool& isIndex){
     return type;
 }
 
-// TODO: change to writing to UnicodeString not UChar *
+// TODO: change to writing to UnicodeString not UChar * id:214
 static int32_t
 usprep_map(  const UStringPrepProfile* profile,
              const UChar* src, int32_t srcLength,

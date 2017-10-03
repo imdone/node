@@ -77,7 +77,7 @@ class WasmTableObject : public JSObject {
   DECL_CAST(WasmTableObject)
 
   DECL_ACCESSORS(functions, FixedArray)
-  // TODO(titzer): introduce DECL_I64_ACCESSORS macro
+  // TODO (titzer): introduce DECL_I64_ACCESSORS macro id:2374
   DECL_ACCESSORS(maximum_length, Object)
   DECL_ACCESSORS(dispatch_tables, FixedArray)
 
@@ -657,7 +657,7 @@ class WasmDebugInfo : public FixedArray {
                                          int frame_index);
 };
 
-// TODO(titzer): these should be moved to wasm-objects-inl.h
+// TODO (titzer): these should be moved to wasm-objects-inl.h id:2548
 CAST_ACCESSOR(WasmInstanceObject)
 CAST_ACCESSOR(WasmMemoryObject)
 CAST_ACCESSOR(WasmModuleObject)

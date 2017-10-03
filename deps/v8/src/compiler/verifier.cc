@@ -200,7 +200,7 @@ void Verifier::Visitor::Check(Node* node) {
       // Start has no inputs.
       CHECK_EQ(0, input_count);
       // Type is a tuple.
-      // TODO(rossberg): Multiple outputs are currently typed as Internal.
+      // TODO (rossberg): Multiple outputs are currently typed as Internal. id:1876
       CheckTypeIs(node, Type::Internal());
       break;
     case IrOpcode::kEnd:
@@ -364,8 +364,8 @@ void Verifier::Visitor::Check(Node* node) {
       CheckTypeIs(node, Type::Any());
       break;
     }
-    case IrOpcode::kInt32Constant:  // TODO(turbofan): rename Word32Constant?
-    case IrOpcode::kInt64Constant:  // TODO(turbofan): rename Word64Constant?
+    case IrOpcode::kInt32Constant:  // TODO (turbofan): rename Word32Constant? id:1444
+    case IrOpcode::kInt64Constant:  // TODO (turbofan): rename Word64Constant? id:2891
     case IrOpcode::kFloat32Constant:
     case IrOpcode::kFloat64Constant:
     case IrOpcode::kRelocatableInt32Constant:
@@ -407,8 +407,8 @@ void Verifier::Visitor::Check(Node* node) {
       Node* input = NodeProperties::GetValueInput(node, 0);
       CHECK_GT(input->op()->ValueOutputCount(), index);
       // Type can be anything.
-      // TODO(rossberg): Introduce tuple types for this.
-      // TODO(titzer): Convince rossberg not to.
+      // TODO (rossberg): Introduce tuple types for this. id:1939
+      // TODO (titzer): Convince rossberg not to. id:2021
       CheckTypeIs(node, Type::Any());
       break;
     }
@@ -430,7 +430,7 @@ void Verifier::Visitor::Check(Node* node) {
       CHECK_EQ(value_count, control->op()->ControlInputCount());
       CHECK_EQ(input_count, 1 + value_count);
       // Type must be subsumed by all input types.
-      // TODO(rossberg): for now at least, narrowing does not really hold.
+      // TODO (rossberg): for now at least, narrowing does not really hold. id:1878
       /*
       for (int i = 0; i < value_count; ++i) {
         CHECK(type_of(ValueInput(node, i))->Is(type_of(node)));
@@ -475,10 +475,10 @@ void Verifier::Visitor::Check(Node* node) {
       CheckNotTyped(node);
       break;
     case IrOpcode::kBeginRegion:
-      // TODO(rossberg): what are the constraints on these?
+      // TODO (rossberg): what are the constraints on these? id:1446
       break;
     case IrOpcode::kFinishRegion: {
-      // TODO(rossberg): what are the constraints on these?
+      // TODO (rossberg): what are the constraints on these? id:2893
       // Type must be subsumed by input type.
       if (typing == TYPED) {
         Node* val = NodeProperties::GetValueInput(node, 0);
@@ -487,7 +487,7 @@ void Verifier::Visitor::Check(Node* node) {
       break;
     }
     case IrOpcode::kFrameState: {
-      // TODO(jarin): what are the constraints on these?
+      // TODO (jarin): what are the constraints on these? id:1941
       CHECK_EQ(5, value_count);
       CHECK_EQ(0, control_count);
       CHECK_EQ(0, effect_count);
@@ -513,13 +513,13 @@ void Verifier::Visitor::Check(Node* node) {
     case IrOpcode::kArgumentsLengthState:
     case IrOpcode::kObjectState:
     case IrOpcode::kTypedObjectState:
-      // TODO(jarin): what are the constraints on these?
+      // TODO (jarin): what are the constraints on these? id:2024
       break;
     case IrOpcode::kCall:
-      // TODO(rossberg): what are the constraints on these?
+      // TODO (rossberg): what are the constraints on these? id:1880
       break;
     case IrOpcode::kTailCall:
-      // TODO(bmeurer): what are the constraints on these?
+      // TODO (bmeurer): what are the constraints on these? id:1450
       break;
 
     // JavaScript operators
@@ -705,7 +705,7 @@ void Verifier::Visitor::Check(Node* node) {
     case IrOpcode::kJSCreateScriptContext: {
       // Type is Context, and operand is Internal.
       Node* context = NodeProperties::GetContextInput(node);
-      // TODO(bmeurer): This should say CheckTypeIs, but we don't have type
+      // TODO (bmeurer): This should say CheckTypeIs, but we don't have type id:2895
       // OtherInternal on certain contexts, i.e. those from OsrValue inputs.
       CheckTypeMaybe(context, Type::OtherInternal());
       CheckTypeIs(node, Type::OtherInternal());
@@ -730,7 +730,7 @@ void Verifier::Visitor::Check(Node* node) {
       break;
 
     case IrOpcode::kJSForInPrepare: {
-      // TODO(bmeurer): What are the constraints on thse?
+      // TODO (bmeurer): What are the constraints on thse? id:1943
       CheckTypeIs(node, Type::Any());
       break;
     }
@@ -1056,7 +1056,7 @@ void Verifier::Visitor::Check(Node* node) {
 
     case IrOpcode::kChangeTaggedSignedToInt32: {
       // Signed32 /\ Tagged -> Signed32 /\ UntaggedInt32
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:2031
       // Type* from = Type::Intersect(Type::Signed32(), Type::Tagged());
       // Type* to = Type::Intersect(Type::Signed32(), Type::UntaggedInt32());
       // CheckValueInputIs(node, 0, from));
@@ -1065,7 +1065,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kChangeTaggedToInt32: {
       // Signed32 /\ Tagged -> Signed32 /\ UntaggedInt32
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:1882
       // Type* from = Type::Intersect(Type::Signed32(), Type::Tagged());
       // Type* to = Type::Intersect(Type::Signed32(), Type::UntaggedInt32());
       // CheckValueInputIs(node, 0, from));
@@ -1074,7 +1074,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kChangeTaggedToUint32: {
       // Unsigned32 /\ Tagged -> Unsigned32 /\ UntaggedInt32
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:1452
       // Type* from = Type::Intersect(Type::Unsigned32(), Type::Tagged());
       // Type* to =Type::Intersect(Type::Unsigned32(), Type::UntaggedInt32());
       // CheckValueInputIs(node, 0, from));
@@ -1083,7 +1083,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kChangeTaggedToFloat64: {
       // NumberOrUndefined /\ Tagged -> Number /\ UntaggedFloat64
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:2897
       // Type* from = Type::Intersect(Type::Number(), Type::Tagged());
       // Type* to = Type::Intersect(Type::Number(), Type::UntaggedFloat64());
       // CheckValueInputIs(node, 0, from));
@@ -1094,7 +1094,7 @@ void Verifier::Visitor::Check(Node* node) {
       break;
     case IrOpcode::kTruncateTaggedToFloat64: {
       // NumberOrUndefined /\ Tagged -> Number /\ UntaggedFloat64
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:1945
       // Type* from = Type::Intersect(Type::NumberOrUndefined(),
       // Type::Tagged());
       // Type* to = Type::Intersect(Type::Number(), Type::UntaggedFloat64());
@@ -1104,7 +1104,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kChangeInt31ToTaggedSigned: {
       // Signed31 /\ UntaggedInt32 -> Signed31 /\ Tagged
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:2035
       // Type* from =Type::Intersect(Type::Signed31(), Type::UntaggedInt32());
       // Type* to = Type::Intersect(Type::Signed31(), Type::Tagged());
       // CheckValueInputIs(node, 0, from));
@@ -1113,7 +1113,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kChangeInt32ToTagged: {
       // Signed32 /\ UntaggedInt32 -> Signed32 /\ Tagged
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:1883
       // Type* from =Type::Intersect(Type::Signed32(), Type::UntaggedInt32());
       // Type* to = Type::Intersect(Type::Signed32(), Type::Tagged());
       // CheckValueInputIs(node, 0, from));
@@ -1122,7 +1122,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kChangeUint32ToTagged: {
       // Unsigned32 /\ UntaggedInt32 -> Unsigned32 /\ Tagged
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:1456
       // Type* from=Type::Intersect(Type::Unsigned32(),Type::UntaggedInt32());
       // Type* to = Type::Intersect(Type::Unsigned32(), Type::Tagged());
       // CheckValueInputIs(node, 0, from));
@@ -1131,7 +1131,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kChangeFloat64ToTagged: {
       // Number /\ UntaggedFloat64 -> Number /\ Tagged
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:2899
       // Type* from =Type::Intersect(Type::Number(), Type::UntaggedFloat64());
       // Type* to = Type::Intersect(Type::Number(), Type::Tagged());
       // CheckValueInputIs(node, 0, from));
@@ -1142,7 +1142,7 @@ void Verifier::Visitor::Check(Node* node) {
       break;
     case IrOpcode::kChangeTaggedToBit: {
       // Boolean /\ TaggedPtr -> Boolean /\ UntaggedInt1
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:1948
       // Type* from = Type::Intersect(Type::Boolean(), Type::TaggedPtr());
       // Type* to = Type::Intersect(Type::Boolean(), Type::UntaggedInt1());
       // CheckValueInputIs(node, 0, from));
@@ -1151,7 +1151,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kChangeBitToTagged: {
       // Boolean /\ UntaggedInt1 -> Boolean /\ TaggedPtr
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:2036
       // Type* from = Type::Intersect(Type::Boolean(), Type::UntaggedInt1());
       // Type* to = Type::Intersect(Type::Boolean(), Type::TaggedPtr());
       // CheckValueInputIs(node, 0, from));
@@ -1160,7 +1160,7 @@ void Verifier::Visitor::Check(Node* node) {
     }
     case IrOpcode::kTruncateTaggedToWord32: {
       // Number /\ Tagged -> Signed32 /\ UntaggedInt32
-      // TODO(neis): Activate once ChangeRepresentation works in typer.
+      // TODO (neis): Activate once ChangeRepresentation works in typer. id:1884
       // Type* from = Type::Intersect(Type::Number(), Type::Tagged());
       // Type* to = Type::Intersect(Type::Number(), Type::UntaggedInt32());
       // CheckValueInputIs(node, 0, from));
@@ -1256,7 +1256,7 @@ void Verifier::Visitor::Check(Node* node) {
 
     case IrOpcode::kLoadField:
       // Object -> fieldtype
-      // TODO(rossberg): activate once machine ops are typed.
+      // TODO (rossberg): activate once machine ops are typed. id:1459
       // CheckValueInputIs(node, 0, Type::Object());
       // CheckTypeIs(node, FieldAccessOf(node->op()).type));
       break;
@@ -1264,7 +1264,7 @@ void Verifier::Visitor::Check(Node* node) {
       break;
     case IrOpcode::kLoadElement:
       // Object -> elementtype
-      // TODO(rossberg): activate once machine ops are typed.
+      // TODO (rossberg): activate once machine ops are typed. id:2901
       // CheckValueInputIs(node, 0, Type::Object());
       // CheckTypeIs(node, ElementAccessOf(node->op()).type));
       break;
@@ -1272,7 +1272,7 @@ void Verifier::Visitor::Check(Node* node) {
       break;
     case IrOpcode::kStoreField:
       // (Object, fieldtype) -> _|_
-      // TODO(rossberg): activate once machine ops are typed.
+      // TODO (rossberg): activate once machine ops are typed. id:1952
       // CheckValueInputIs(node, 0, Type::Object());
       // CheckValueInputIs(node, 1, FieldAccessOf(node->op()).type));
       CheckNotTyped(node);
@@ -1281,7 +1281,7 @@ void Verifier::Visitor::Check(Node* node) {
       break;
     case IrOpcode::kStoreElement:
       // (Object, elementtype) -> _|_
-      // TODO(rossberg): activate once machine ops are typed.
+      // TODO (rossberg): activate once machine ops are typed. id:2037
       // CheckValueInputIs(node, 0, Type::Object());
       // CheckValueInputIs(node, 1, ElementAccessOf(node->op()).type));
       CheckNotTyped(node);
@@ -1483,7 +1483,7 @@ void Verifier::Visitor::Check(Node* node) {
       MACHINE_SIMD_OP_LIST(SIMD_MACHINE_OP_CASE)
 #undef SIMD_MACHINE_OP_CASE
 
-      // TODO(rossberg): Check.
+      // TODO (rossberg): Check. id:1885
       break;
   }
 }  // NOLINT(readability/fn_size)
@@ -1718,7 +1718,7 @@ void ScheduleVerifier::Run(Schedule* schedule) {
     for (BasicBlock::const_iterator i = (*b)->begin(); i != (*b)->end(); ++i) {
       Node* phi = *i;
       if (phi->opcode() != IrOpcode::kPhi) continue;
-      // TODO(titzer): Nasty special case. Phis from RawMachineAssembler
+      // TODO (titzer): Nasty special case. Phis from RawMachineAssembler id:1463
       // schedules don't have control inputs.
       if (phi->InputCount() > phi->op()->ValueInputCount()) {
         Node* control = NodeProperties::GetControlInput(phi);

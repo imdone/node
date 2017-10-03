@@ -124,7 +124,7 @@ function runScript(script, scriptArgs, inspectHost, inspectPort, childPrint) {
 function createAgentProxy(domain, client) {
   const agent = new EventEmitter();
   agent.then = (...args) => {
-    // TODO: potentially fetch the protocol and pretty-print it here.
+    // TODO: potentially fetch the protocol and pretty-print it here. id:614
     const descriptor = {
       [util.inspect.custom](depth, { stylize }) {
         return stylize(`[Agent ${domain}]`, 'special');

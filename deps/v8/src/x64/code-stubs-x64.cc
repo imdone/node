@@ -2000,7 +2000,7 @@ void RecordWriteStub::InformIncrementalMarker(MacroAssembler* masm) {
   DCHECK(!address.is(arg_reg_1));
   __ Move(address, regs_.address());
   __ Move(arg_reg_1, regs_.object());
-  // TODO(gc) Can we just set address arg2 in the beginning?
+  // TODO (gc) Can we just set address arg2 in the beginning? id:2375
   __ Move(arg_reg_2, address);
   __ LoadAddress(arg_reg_3,
                  ExternalReference::isolate_address(isolate()));

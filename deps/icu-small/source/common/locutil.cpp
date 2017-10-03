@@ -77,7 +77,7 @@ LocaleUtility::canonicalLocaleString(const UnicodeString* id, UnicodeString& res
     // string.  My fix makes the tests pass but is probably
     // structurally incorrect.  See below.  [alan 3.0]
 
-    // TODO: Doug, you might want to revise this...
+    // TODO: Doug, you might want to revise this... id:74
     result = *id;
     int32_t i = 0;
     int32_t end = result.indexOf(AT_SIGN_CHAR);
@@ -120,7 +120,7 @@ LocaleUtility::canonicalLocaleString(const UnicodeString* id, UnicodeString& res
     // better, but because doing a full level 2 canonicalization
     // causes some tests to fail.  [alan 3.0]
 
-    // TODO: Doug, you might want to revisit this...
+    // TODO: Doug, you might want to revisit this... id:72
     result.setToBogus();
     if (id != 0) {
         int32_t buflen = id->length() + 8; // space for NUL

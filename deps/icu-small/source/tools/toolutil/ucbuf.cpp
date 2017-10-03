@@ -530,7 +530,7 @@ ucbuf_open(const char* fileName,const char** cp,UBool showWarning, UBool buffere
 
 
 
-/* TODO: this method will fail if at the
+/* TODO: this method will fail if at the id:720
  * begining of buffer and the uchar to unget
  * is from the previous buffer. Need to implement
  * system to take care of that situation.

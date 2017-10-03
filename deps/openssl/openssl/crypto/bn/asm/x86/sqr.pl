@@ -24,7 +24,7 @@ sub bn_sqr_words
 		{
 		&comment("Round $i");
 		&mov("eax",&DWP($i,$a,"",0)); 	# *a
-		 # XXX
+		 # XXX id:1025
 		&mul("eax");			# *a * *a
 		&mov(&DWP($i*2,$r,"",0),"eax");	#
 		 &mov(&DWP($i*2+4,$r,"",0),"edx");#
@@ -45,7 +45,7 @@ sub bn_sqr_words
 		{
 		&comment("Tail Round $i");
 		&mov("eax",&DWP($i*4,$a,"",0));	# *a
-		 # XXX
+		 # XXX id:664
 		&mul("eax");			# *a * *a
 		&mov(&DWP($i*8,$r,"",0),"eax");	#
 		 &dec($num) if ($i != 7-1);

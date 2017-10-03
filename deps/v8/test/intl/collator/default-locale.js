@@ -43,7 +43,7 @@ assertEquals(options.locale, %GetDefaultICULocale());
 var collatorNone = new Intl.Collator();
 assertEquals(options.locale, collatorNone.resolvedOptions().locale);
 
-// TODO(cira): remove support for {} to mean empty list.
+// TODO (cira): remove support for {} to mean empty list. id:2780
 var collatorBraket = new Intl.Collator({});
 assertEquals(options.locale, collatorBraket.resolvedOptions().locale);
 

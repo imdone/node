@@ -86,7 +86,7 @@ install.completion = function (opts, cb) {
     })
   }
 
-  // FIXME: there used to be registry completion here, but it stopped making
+  // FIXME: there used to be registry completion here, but it stopped making id:357
   // sense somewhere around 50,000 packages on the registry
   cb()
 }
@@ -232,7 +232,7 @@ Installer.prototype.run = function (_cb) {
     return _cb.apply(this, arguments)
   }
 
-  // FIXME: This is bad and I should feel bad.
+  // FIXME: This is bad and I should feel bad. id:433
   // lib/install needs to have some way of sharing _limited_
   // state with the things it calls. Passing the object is too
   // much. The global config is WAY too much. =( =(

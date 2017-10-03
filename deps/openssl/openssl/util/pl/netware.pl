@@ -480,7 +480,7 @@ sub do_link_rule
 
    $ret.="$target: $files $dep_libs\n";
 
-   # NOTE:  When building the test nlms no screen name is given
+   # NOTE: When building the test nlms no screen name is given id:874
    #  which causes the console screen to be used.  By using the console
    #  screen there is no "<press any key to continue>" message which
    #  requires user interaction.  The test script ( do_tests.pl ) needs

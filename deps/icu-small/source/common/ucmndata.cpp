@@ -369,7 +369,7 @@ U_CFUNC void udata_checkCommonData(UDataMemory *udm, UErrorCode *err) {
 }
 
 /*
- * TODO: Add a udata_swapPackageHeader() function that swaps an ICU .dat package
+ * TODO: Add a udata_swapPackageHeader() function that swaps an ICU .dat package id:169
  * header but not its sub-items.
  * This function will be needed for automatic runtime swapping.
  * Sub-items should not be swapped to limit the swapping to the parts of the

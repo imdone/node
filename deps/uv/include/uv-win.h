@@ -252,11 +252,11 @@ typedef union {
     CRITICAL_SECTION num_readers_lock_;
     HANDLE write_semaphore_;
   } state_;
-  /* TODO: remove me in v2.x. */
+  /* TODO: remove me in v2.x.  id:1268*/
   struct {
     SRWLOCK unused_;
   } unused1_;
-  /* TODO: remove me in v2.x. */
+  /* TODO: remove me in v2.x.  id:847*/
   struct {
     uv_mutex_t unused1_;
     uv_mutex_t unused2_;
@@ -347,7 +347,7 @@ RB_HEAD(uv_timer_tree_s, uv_timer_s);
   uv_async_t wq_async;
 
 #define UV_REQ_TYPE_PRIVATE                                                   \
-  /* TODO: remove the req suffix */                                           \
+  /* TODO: remove the req suffix  id:878*/                                           \
   UV_ACCEPT,                                                                  \
   UV_FS_EVENT_REQ,                                                            \
   UV_POLL_REQ,                                                                \
@@ -477,14 +477,14 @@ RB_HEAD(uv_timer_tree_s, uv_timer_s);
     struct { uv_pipe_connection_fields } conn;                                \
   } pipe;
 
-/* TODO: put the parser states in an union - TTY handles are always */
+/* TODO: put the parser states in an union - TTY handles are always  id:1482*/
 /* half-duplex so read-state can safely overlap write-state. */
 #define UV_TTY_PRIVATE_FIELDS                                                 \
   HANDLE handle;                                                              \
   union {                                                                     \
     struct {                                                                  \
       /* Used for readable TTY handles */                                     \
-      /* TODO: remove me in v2.x. */                                          \
+      /* TODO: remove me in v2.x.  id:1168*/                                          \
       HANDLE unused_;                                                         \
       uv_buf_t read_line_buffer;                                              \
       HANDLE read_raw_wait;                                                   \
@@ -595,7 +595,7 @@ RB_HEAD(uv_timer_tree_s, uv_timer_s);
   int flags;                                                                  \
   DWORD sys_errno_;                                                           \
   union {                                                                     \
-    /* TODO: remove me in 0.9. */                                             \
+    /* TODO: remove me in 0.9.  id:1272*/                                             \
     WCHAR* pathw;                                                             \
     int fd;                                                                   \
   } file;                                                                     \

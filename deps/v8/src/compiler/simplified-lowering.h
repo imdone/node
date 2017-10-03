@@ -34,7 +34,7 @@ class SimplifiedLowering final {
                                       RepresentationSelector* selector);
   void DoJSToNumberTruncatesToWord32(Node* node,
                                      RepresentationSelector* selector);
-  // TODO(turbofan): The representation can be removed once the result of the
+  // TODO (turbofan): The representation can be removed once the result of the id:2013
   // representation analysis is stored in the node bounds.
   void DoLoadBuffer(Node* node, MachineRepresentation rep,
                     RepresentationChanger* changer);
@@ -56,7 +56,7 @@ class SimplifiedLowering final {
   SetOncePointer<Node> to_number_code_;
   SetOncePointer<Operator const> to_number_operator_;
 
-  // TODO(danno): SimplifiedLowering shouldn't know anything about the source
+  // TODO (danno): SimplifiedLowering shouldn't know anything about the source id:1872
   // positions table, but must for now since there currently is no other way to
   // pass down source position information to nodes created during
   // lowering. Once this phase becomes a vanilla reducer, it should get source

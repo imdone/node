@@ -137,7 +137,7 @@ Handle<Code> PlatformCodeStub::GenerateCode() {
     isolate()->counters()->code_stubs()->Increment();
 
     // Generate the code for the stub.
-    // TODO(yangguo): remove this once we can serialize IC stubs.
+    // TODO (yangguo): remove this once we can serialize IC stubs. id:2146
     masm.enable_serializer();
     NoCurrentFrameScope scope(&masm);
     Generate(&masm);
@@ -294,13 +294,13 @@ TF_STUB(StringAddStub, CodeStubAssembler) {
 
   if ((flags & STRING_ADD_CHECK_LEFT) != 0) {
     DCHECK((flags & STRING_ADD_CONVERT) != 0);
-    // TODO(danno): The ToString and JSReceiverToPrimitive below could be
+    // TODO (danno): The ToString and JSReceiverToPrimitive below could be id:1534
     // combined to avoid duplicate smi and instance type checks.
     left = ToString(context, JSReceiverToPrimitive(context, left));
   }
   if ((flags & STRING_ADD_CHECK_RIGHT) != 0) {
     DCHECK((flags & STRING_ADD_CONVERT) != 0);
-    // TODO(danno): The ToString and JSReceiverToPrimitive below could be
+    // TODO (danno): The ToString and JSReceiverToPrimitive below could be id:1735
     // combined to avoid duplicate smi and instance type checks.
     right = ToString(context, JSReceiverToPrimitive(context, right));
   }
@@ -426,13 +426,13 @@ TF_STUB(ElementsTransitionAndStoreStub, CodeStubAssembler) {
   }
 }
 
-// TODO(ishell): move to builtins.
+// TODO (ishell): move to builtins. id:1607
 TF_STUB(AllocateHeapNumberStub, CodeStubAssembler) {
   Node* result = AllocateHeapNumber();
   Return(result);
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:1206
 TF_STUB(StringLengthStub, CodeStubAssembler) {
   Node* value = Parameter(Descriptor::kReceiver);
   Node* string = LoadJSValueValue(value);
@@ -457,14 +457,14 @@ TF_STUB(TransitionElementsKindStub, CodeStubAssembler) {
   }
 }
 
-// TODO(ishell): move to builtins.
+// TODO (ishell): move to builtins. id:2148
 TF_STUB(NumberToStringStub, CodeStubAssembler) {
   Node* context = Parameter(Descriptor::kContext);
   Node* argument = Parameter(Descriptor::kArgument);
   Return(NumberToString(context, argument));
 }
 
-// TODO(ishell): move to builtins.
+// TODO (ishell): move to builtins. id:1537
 TF_STUB(SubStringStub, CodeStubAssembler) {
   Node* context = Parameter(Descriptor::kContext);
   Node* string = Parameter(Descriptor::kString);
@@ -474,7 +474,7 @@ TF_STUB(SubStringStub, CodeStubAssembler) {
   Return(SubString(context, string, from, to));
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:1738
 TF_STUB(KeyedLoadSloppyArgumentsStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* key = Parameter(Descriptor::kName);
@@ -495,7 +495,7 @@ TF_STUB(KeyedLoadSloppyArgumentsStub, CodeStubAssembler) {
   }
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:1609
 TF_STUB(KeyedStoreSloppyArgumentsStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* key = Parameter(Descriptor::kName);
@@ -541,7 +541,7 @@ TF_STUB(StoreScriptContextFieldStub, CodeStubAssembler) {
   Return(value);
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:1212
 TF_STUB(StoreInterceptorStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* name = Parameter(Descriptor::kName);
@@ -553,7 +553,7 @@ TF_STUB(StoreInterceptorStub, CodeStubAssembler) {
                   vector, receiver, name);
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:2151
 TF_STUB(LoadIndexedInterceptorStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* key = Parameter(Descriptor::kName);
@@ -575,7 +575,7 @@ void CallICStub::PrintState(std::ostream& os) const {  // NOLINT
   os << convert_mode();
 }
 
-// TODO(ishell): Move to CallICAssembler.
+// TODO (ishell): Move to CallICAssembler. id:1540
 TF_STUB(CallICStub, CodeStubAssembler) {
   Node* context = Parameter(Descriptor::kContext);
   Node* target = Parameter(Descriptor::kTarget);
@@ -583,7 +583,7 @@ TF_STUB(CallICStub, CodeStubAssembler) {
   Node* slot = Parameter(Descriptor::kSlot);
   Node* vector = Parameter(Descriptor::kVector);
 
-  // TODO(bmeurer): The slot should actually be an IntPtr, but TurboFan's
+  // TODO (bmeurer): The slot should actually be an IntPtr, but TurboFan's id:1740
   // SimplifiedLowering cannot deal with IntPtr machine type properly yet.
   slot = ChangeInt32ToIntPtr(slot);
 
@@ -602,7 +602,7 @@ TF_STUB(CallICStub, CodeStubAssembler) {
                 WeakCell::kValueOffset == Symbol::kHashFieldSlot);
 
   // Increment the call count.
-  // TODO(bmeurer): Would it be beneficial to use Int32Add on 64-bit?
+  // TODO (bmeurer): Would it be beneficial to use Int32Add on 64-bit? id:1611
   Comment("increment call count");
   Node* call_count = LoadFixedArrayElement(vector, slot, 1 * kPointerSize);
   Node* new_count = SmiAdd(call_count, SmiConstant(1));
@@ -760,7 +760,7 @@ void AllocateHeapNumberStub::InitializeDescriptor(
 }
 
 
-// TODO(ishell): move to builtins.
+// TODO (ishell): move to builtins. id:1217
 TF_STUB(GetPropertyStub, CodeStubAssembler) {
   Label call_runtime(this, Label::kDeferred), return_undefined(this), end(this);
 
@@ -825,7 +825,7 @@ void CreateWeakCellStub::GenerateAheadOfTime(Isolate* isolate) {
   stub.GetCode();
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:2154
 TF_STUB(StoreSlowElementStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* name = Parameter(Descriptor::kName);
@@ -889,13 +889,13 @@ void ProfileEntryHookStub::EntryHookTrampoline(intptr_t function,
   entry_hook(function, stack_pointer);
 }
 
-// TODO(ishell): move to builtins.
+// TODO (ishell): move to builtins. id:1544
 TF_STUB(CreateAllocationSiteStub, CodeStubAssembler) {
   Return(CreateAllocationSiteInFeedbackVector(Parameter(Descriptor::kVector),
                                               Parameter(Descriptor::kSlot)));
 }
 
-// TODO(ishell): move to builtins.
+// TODO (ishell): move to builtins. id:1743
 TF_STUB(CreateWeakCellStub, CodeStubAssembler) {
   Return(CreateWeakCellInFeedbackVector(Parameter(Descriptor::kVector),
                                         Parameter(Descriptor::kSlot),
@@ -1033,7 +1033,7 @@ TF_STUB(GrowArrayElementsStub, CodeStubAssembler) {
   Return(new_elements);
 
   BIND(&runtime);
-  // TODO(danno): Make this a tail call when the stub is only used from TurboFan
+  // TODO (danno): Make this a tail call when the stub is only used from TurboFan id:1613
   // code. This musn't be a tail call for now, since the caller site in lithium
   // creates a safepoint. This safepoint musn't have a different number of
   // arguments on the stack in the case that a GC happens from the slow-case

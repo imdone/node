@@ -866,7 +866,7 @@ static int serverinfo_process_buffer(const unsigned char *serverinfo,
         /* read 2-byte type field */
         if (serverinfo_length < 2)
             return 0;
-        /* FIXME: check for types we understand explicitly? */
+        /* FIXME: check for types we understand explicitly?  id:838*/
 
         /* Register callbacks for extensions */
         ext_type = (serverinfo[0] << 8) + serverinfo[1];

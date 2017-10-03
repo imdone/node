@@ -255,7 +255,7 @@ TF_BUILTIN(NumberParseFloat, CodeStubAssembler) {
         BIND(&if_inputisnotnumber);
         {
           // Need to convert the {input} to String first.
-          // TODO(bmeurer): This could be more efficient if necessary.
+          // TODO (bmeurer): This could be more efficient if necessary. id:1413
           var_input.Bind(CallBuiltin(Builtins::kToString, context, input));
           Goto(&loop);
         }
@@ -691,7 +691,7 @@ TF_BUILTIN(Divide, NumberBuiltinsAssembler) {
 
   BIND(&do_smi_div);
   {
-    // TODO(jkummerow): Consider just always doing a double division.
+    // TODO (jkummerow): Consider just always doing a double division. id:1143
     Label bailout(this);
     Node* dividend = var_left.value();
     Node* divisor = var_right.value();
@@ -731,7 +731,7 @@ TF_BUILTIN(Divide, NumberBuiltinsAssembler) {
     }
     BIND(&divisor_is_not_minus_one);
 
-    // TODO(epertoso): consider adding a machine instruction that returns
+    // TODO (epertoso): consider adding a machine instruction that returns id:1848
     // both the result and the remainder.
     Node* untagged_result = Int32Div(untagged_dividend, untagged_divisor);
     Node* truncated = Int32Mul(untagged_result, untagged_divisor);

@@ -649,7 +649,7 @@ Handle<HeapObject> UnwrapWasmToJSWrapper(Isolate* isolate,
   }
   // If we did not find a callable object, then there must be a reference to
   // the WasmThrowTypeError runtime function.
-  // TODO(clemensh): Check that this is the case.
+  // TODO (clemensh): Check that this is the case. id:2354
   return Handle<HeapObject>::null();
 }
 
@@ -1050,7 +1050,7 @@ Handle<Object> WasmValueToNumber(Factory* factory, WasmValue val,
     case kWasmF64:
       return factory->NewNumber(val.to<double>());
     default:
-      // TODO(wasm): Implement simd.
+      // TODO (wasm): Implement simd. id:2520
       UNIMPLEMENTED();
       return Handle<Object>::null();
   }
@@ -1063,7 +1063,7 @@ WasmValue ToWebAssemblyValue(Isolate* isolate, Handle<Object> value,
   switch (type) {
     case kWasmI32: {
       MaybeHandle<Object> maybe_i32 = Object::ToInt32(isolate, value);
-      // TODO(clemensh): Handle failure here (unwind).
+      // TODO (clemensh): Handle failure here (unwind). id:2604
       int32_t value;
       CHECK(maybe_i32.ToHandleChecked()->ToInt32(&value));
       return WasmValue(value);
@@ -1073,17 +1073,17 @@ WasmValue ToWebAssemblyValue(Isolate* isolate, Handle<Object> value,
       UNREACHABLE();
     case kWasmF32: {
       MaybeHandle<Object> maybe_number = Object::ToNumber(value);
-      // TODO(clemensh): Handle failure here (unwind).
+      // TODO (clemensh): Handle failure here (unwind). id:3044
       return WasmValue(
           static_cast<float>(maybe_number.ToHandleChecked()->Number()));
     }
     case kWasmF64: {
       MaybeHandle<Object> maybe_number = Object::ToNumber(value);
-      // TODO(clemensh): Handle failure here (unwind).
+      // TODO (clemensh): Handle failure here (unwind). id:3260
       return WasmValue(maybe_number.ToHandleChecked()->Number());
     }
     default:
-      // TODO(wasm): Handle simd.
+      // TODO (wasm): Handle simd. id:2357
       UNIMPLEMENTED();
       return WasmValue();
   }
@@ -1224,7 +1224,7 @@ class ThreadImpl {
   WasmInterpreter::Thread::ExceptionHandlingResult HandleException(
       Isolate* isolate) {
     DCHECK(isolate->has_pending_exception());
-    // TODO(wasm): Add wasm exception handling (would return true).
+    // TODO (wasm): Add wasm exception handling (would return true). id:2524
     USE(isolate->pending_exception());
     TRACE("----- UNWIND -----\n");
     DCHECK_LT(0, activations_.size());
@@ -1824,7 +1824,7 @@ class ThreadImpl {
       result = defval;                                              \
     } else {                                                        \
       byte* addr = instance()->mem_start + index;                   \
-      /* TODO(titzer): alignment for asmjs load mem? */             \
+      /* TODO (titzer): alignment for asmjs load mem?  id:2646*/             \
       result = static_cast<ctype>(*reinterpret_cast<mtype*>(addr)); \
     }                                                               \
     Push(WasmValue(result));                                        \
@@ -1847,7 +1847,7 @@ class ThreadImpl {
     uint32_t index = Pop().to<uint32_t>();                                     \
     if (BoundsCheck<mtype>(instance()->mem_size, 0, index)) {                  \
       byte* addr = instance()->mem_start + index;                              \
-      /* TODO(titzer): alignment for asmjs store mem? */                       \
+      /* TODO (titzer): alignment for asmjs store mem?  id:3415*/                       \
       *(reinterpret_cast<mtype*>(addr)) = static_cast<mtype>(val.to<ctype>()); \
     }                                                                          \
     Push(val);                                                                 \
@@ -2083,7 +2083,7 @@ class ThreadImpl {
       WasmInstanceObject* target_instance =
           WasmInstanceObject::cast(WeakCell::cast(deopt_data->get(0))->value());
       if (target_instance != codemap()->instance()) {
-        // TODO(wasm): Implement calling functions of other instances/modules.
+        // TODO (wasm): Implement calling functions of other instances/modules. id:3262
         UNIMPLEMENTED();
       }
       int target_func_idx = Smi::ToInt(deopt_data->get(1));
@@ -2133,7 +2133,7 @@ class ThreadImpl {
     // Pop arguments off the stack.
     sp_ -= num_args;
     if (signature->return_count() > 0) {
-      // TODO(wasm): Handle multiple returns.
+      // TODO (wasm): Handle multiple returns. id:2360
       DCHECK_EQ(1, signature->return_count());
       Push(ToWebAssemblyValue(isolate, retval, signature->GetReturn()));
     }
@@ -2158,14 +2158,14 @@ class ThreadImpl {
     if (!codemap()->has_instance() ||
         !codemap()->instance()->compiled_module()->has_function_tables()) {
       // No instance. Rely on the information stored in the WasmModule.
-      // TODO(wasm): This is only needed for testing. Refactor testing to use
+      // TODO (wasm): This is only needed for testing. Refactor testing to use id:2528
       // the same paths as production.
       InterpreterCode* code =
           codemap()->GetIndirectCode(table_index, entry_index);
       if (!code) return {ExternalCallResult::INVALID_FUNC};
       if (code->function->sig_index != sig_index) {
         // If not an exact match, we have to do a canonical check.
-        // TODO(titzer): make this faster with some kind of caching?
+        // TODO (titzer): make this faster with some kind of caching? id:2647
         const WasmIndirectFunctionTable* table =
             &module()->function_tables[table_index];
         int function_key = table->map.Find(code->function->sig);
@@ -2189,7 +2189,7 @@ class ThreadImpl {
       // changes to the tables.
 
       // Canonicalize signature index.
-      // TODO(titzer): make this faster with some kind of caching?
+      // TODO (titzer): make this faster with some kind of caching? id:3417
       const WasmIndirectFunctionTable* table =
           &module()->function_tables[table_index];
       FunctionSig* sig = module()->signatures[sig_index];

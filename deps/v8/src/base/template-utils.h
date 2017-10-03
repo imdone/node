@@ -13,7 +13,7 @@ namespace detail {
 // make_array_helper statically iteratively creates the index list 0 .. Size-1.
 // A specialization for the base case (first index is 0) finally constructs the
 // array.
-// TODO(clemensh): Use std::index_sequence once we have C++14 support.
+// TODO (clemensh): Use std::index_sequence once we have C++14 support. id:1805
 template <class Function, std::size_t... Indexes>
 struct make_array_helper;
 

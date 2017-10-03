@@ -838,7 +838,7 @@ static void Generate_CheckStackOverflow(MacroAssembler* masm, Register argc,
   __ LoadRoot(x10, Heap::kRealStackLimitRootIndex);
   // Make x10 the space we have left. The stack might already be overflowed
   // here which will cause x10 to become negative.
-  // TODO(jbramley): Check that the stack usage here is safe.
+  // TODO (jbramley): Check that the stack usage here is safe. id:1448
   __ Sub(x10, jssp, x10);
   // Check if the arguments will overflow the stack.
   if (argc_is_tagged == kArgcIsSmiTagged) {
@@ -1158,7 +1158,7 @@ void Builtins::Generate_InterpreterEntryTrampoline(MacroAssembler* masm) {
   __ Bind(&bytecode_array_loaded);
 
   // Check whether we should continue to use the interpreter.
-  // TODO(rmcilroy) Remove self healing once liveedit only has to deal with
+  // TODO (rmcilroy) Remove self healing once liveedit only has to deal with id:1633
   // Ignition bytecode.
   Label switch_to_different_code_kind;
   __ Ldr(x0, FieldMemOperand(x0, SharedFunctionInfo::kCodeOffset));
@@ -1218,7 +1218,7 @@ void Builtins::Generate_InterpreterEntryTrampoline(MacroAssembler* masm) {
     // register in the register file.
     Label loop_header;
     __ LoadRoot(x10, Heap::kUndefinedValueRootIndex);
-    // TODO(rmcilroy): Ensure we always have an even number of registers to
+    // TODO (rmcilroy): Ensure we always have an even number of registers to id:1385
     // allow stack to be 16 bit aligned (and remove need for jssp).
     __ Lsr(x11, x11, kPointerSizeLog2);
     __ PushMultipleTimes(x10, x11);
@@ -1300,7 +1300,7 @@ static void Generate_InterpreterPushArgs(MacroAssembler* masm,
   Label loop_header, loop_check;
   __ B(&loop_check);
   __ Bind(&loop_header);
-  // TODO(rmcilroy): Push two at a time once we ensure we keep stack aligned.
+  // TODO (rmcilroy): Push two at a time once we ensure we keep stack aligned. id:1122
   __ Ldr(scratch, MemOperand(index, -kPointerSize, PostIndex));
   __ Str(scratch, MemOperand(stack_addr, -kPointerSize, PreIndex));
   __ Bind(&loop_check);
@@ -2161,7 +2161,7 @@ static void LeaveArgumentsAdaptorFrame(MacroAssembler* masm) {
   __ Pop(fp, lr);
 
   // Drop actual parameters and receiver.
-  // TODO(all): This will need to be rounded up to a multiple of two when using
+  // TODO (all): This will need to be rounded up to a multiple of two when using id:1814
   // the CSP, as we will have claimed an even number of slots in total for the
   // parameters.
   __ DropBySMI(x10, kXRegSize);
@@ -2351,7 +2351,7 @@ void Builtins::Generate_CallFunction(MacroAssembler* masm,
       __ Bind(&convert_to_object);
       {
         // Convert receiver using ToObject.
-        // TODO(bmeurer): Inline the allocation here to avoid building the frame
+        // TODO (bmeurer): Inline the allocation here to avoid building the frame id:1451
         // in the fast case? (fall back to AllocateInNewSpace?)
         FrameScope scope(masm, StackFrame::INTERNAL);
         __ SmiTag(x0);

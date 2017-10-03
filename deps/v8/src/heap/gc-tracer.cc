@@ -30,7 +30,7 @@ GCTracer::Scope::Scope(GCTracer* tracer, ScopeId scope)
   // scopes come first.
   STATIC_ASSERT(FIRST_INCREMENTAL_SCOPE == 0);
   start_time_ = tracer_->heap_->MonotonicallyIncreasingTimeInMs();
-  // TODO(cbruni): remove once we fully moved to a trace-based system.
+  // TODO (cbruni): remove once we fully moved to a trace-based system. id:3035
   if (V8_UNLIKELY(FLAG_runtime_stats)) {
     RuntimeCallStats::Enter(
         tracer_->heap_->isolate()->counters()->runtime_call_stats(), &timer_,
@@ -41,7 +41,7 @@ GCTracer::Scope::Scope(GCTracer* tracer, ScopeId scope)
 GCTracer::Scope::~Scope() {
   tracer_->AddScopeSample(
       scope_, tracer_->heap_->MonotonicallyIncreasingTimeInMs() - start_time_);
-  // TODO(cbruni): remove once we fully moved to a trace-based system.
+  // TODO (cbruni): remove once we fully moved to a trace-based system. id:2059
   if (V8_UNLIKELY(FLAG_runtime_stats)) {
     RuntimeCallStats::Leave(
         tracer_->heap_->isolate()->counters()->runtime_call_stats(), &timer_);
@@ -205,7 +205,7 @@ void GCTracer::Start(GarbageCollector collector,
   counters->aggregated_memory_heap_committed()->AddSample(start_time,
                                                           committed_memory);
   counters->aggregated_memory_heap_used()->AddSample(start_time, used_memory);
-  // TODO(cbruni): remove once we fully moved to a trace-based system.
+  // TODO (cbruni): remove once we fully moved to a trace-based system. id:2164
   if (V8_UNLIKELY(FLAG_runtime_stats)) {
     RuntimeCallStats::Enter(heap_->isolate()->counters()->runtime_call_stats(),
                             &timer_, &RuntimeCallStats::GC);
@@ -305,7 +305,7 @@ void GCTracer::Stop(GarbageCollector collector) {
     heap_->PrintShortHeapStatistics();
   }
 
-  // TODO(cbruni): remove once we fully moved to a trace-based system.
+  // TODO (cbruni): remove once we fully moved to a trace-based system. id:2131
   if (V8_UNLIKELY(FLAG_runtime_stats)) {
     RuntimeCallStats::Leave(heap_->isolate()->counters()->runtime_call_stats(),
                             &timer_);

@@ -255,7 +255,7 @@ class BytecodeGenerator::ControlScope::DeferredCommands final {
       case CMD_RETHROW:
         return GetRethrowToken();
       default:
-        // TODO(leszeks): We could also search for entries with the same
+        // TODO (leszeks): We could also search for entries with the same id:2274
         // command and statement.
         return GetNewTokenForCommand(command, statement);
     }
@@ -1009,7 +1009,7 @@ void BytecodeGenerator::VisitIterationHeader(int first_suspend_id,
 
     // We fall through when the generator state is not in the jump table. If we
     // are not resuming, we want to fall through to the loop body.
-    // TODO(leszeks): Only generate this test for debug builds, we can skip it
+    // TODO (leszeks): Only generate this test for debug builds, we can skip it id:1723
     // entirely in release assuming that the generator states is always valid.
     BytecodeLabel not_resuming;
     builder()
@@ -1056,7 +1056,7 @@ void BytecodeGenerator::BuildGeneratorPrologue() {
         .SwitchOnSmiNoFeedback(generator_jump_table_);
   }
   // We fall through when the generator state is not in the jump table.
-  // TODO(leszeks): Only generate this for debug builds.
+  // TODO (leszeks): Only generate this for debug builds. id:3085
   BuildAbort(BailoutReason::kInvalidJumpTableIndex);
 
   // This is a regular call.
@@ -1271,7 +1271,7 @@ void BytecodeGenerator::VisitIfStatement(IfStatement* stmt) {
       Visit(stmt->else_statement());
     }
   } else {
-    // TODO(oth): If then statement is BreakStatement or
+    // TODO (oth): If then statement is BreakStatement or id:2099
     // ContinueStatement we can reduce number of generated
     // jump/jump_ifs here. See BasicLoops test.
     BytecodeLabel end_label;
@@ -1609,7 +1609,7 @@ void BytecodeGenerator::VisitTryCatchStatement(TryCatchStatement* stmt) {
 
   // Preserve the context in a dedicated register, so that it can be restored
   // when the handler is entered by the stack-unwinding machinery.
-  // TODO(mstarzinger): Be smarter about register allocation.
+  // TODO (mstarzinger): Be smarter about register allocation. id:2245
   Register context = register_allocator()->NewRegister();
   builder()->MoveRegister(Register::current_context(), context);
 
@@ -1667,7 +1667,7 @@ void BytecodeGenerator::VisitTryFinallyStatement(TryFinallyStatement* stmt) {
 
   // Preserve the context in a dedicated register, so that it can be restored
   // when the handler is entered by the stack-unwinding machinery.
-  // TODO(mstarzinger): Be smarter about register allocation.
+  // TODO (mstarzinger): Be smarter about register allocation. id:2279
   Register context = register_allocator()->NewRegister();
   builder()->MoveRegister(Register::current_context(), context);
 
@@ -1939,7 +1939,7 @@ void BytecodeGenerator::VisitObjectLiteral(ObjectLiteral* expr) {
     entry = builder()->AllocateDeferredConstantPoolEntry();
     object_literals_.push_back(std::make_pair(expr, entry));
   }
-  // TODO(cbruni): Directly generate runtime call for literals we cannot
+  // TODO (cbruni): Directly generate runtime call for literals we cannot id:1725
   // optimize once the FastCloneShallowObject stub is in sync with the TF
   // optimizations.
   builder()->CreateObjectLiteral(entry, feedback_index(expr->literal_slot()),
@@ -2298,7 +2298,7 @@ void BytecodeGenerator::BuildReturn(int source_position) {
     // function. Note that non-async generators are closed by the
     // generator-resume builtin.
 
-    // TODO(jarin,caitp) Move the async generator closing to the resume
+    // TODO (jarin,caitp) Move the async generator closing to the resume id:3087
     // builtin.
     RegisterAllocationScope register_scope(this);
     Register result = register_allocator()->NewRegister();
@@ -2599,7 +2599,7 @@ void BytecodeGenerator::VisitAssignment(Assignment* expr) {
   FeedbackSlot slot = expr->AssignmentSlot();
   switch (assign_type) {
     case VARIABLE: {
-      // TODO(oth): The BuildVariableAssignment() call is hard to reason about.
+      // TODO (oth): The BuildVariableAssignment() call is hard to reason about. id:2100
       // Is the value in the accumulator safe? Yes, but scary.
       VariableProxy* proxy = expr->target()->AsVariableProxy();
       BuildVariableAssignment(proxy->var(), expr->op(), slot,
@@ -2703,7 +2703,7 @@ void BytecodeGenerator::BuildAbruptResume(Suspend* expr) {
 
   {
     // Resume with throw (switch fallthrough).
-    // TODO(leszeks): Add a debug-only check that the accumulator is
+    // TODO (leszeks): Add a debug-only check that the accumulator is id:2248
     // JSGeneratorObject::kThrow.
     builder()->SetExpressionPosition(expr);
     builder()->LoadAccumulatorWithRegister(input);
@@ -2802,7 +2802,7 @@ void BytecodeGenerator::VisitYield(Yield* expr) {
 //     output.value
 //   }
 void BytecodeGenerator::VisitYieldStar(YieldStar* expr) {
-  // TODO(tebbi): Also desugar async generator yield* in the BytecodeGenerator.
+  // TODO (tebbi): Also desugar async generator yield* in the BytecodeGenerator. id:2281
   DCHECK(!IsAsyncGeneratorFunction(function_kind()));
 
   Register output = register_allocator()->NewRegister();
@@ -2839,7 +2839,7 @@ void BytecodeGenerator::VisitYieldStar(YieldStar* expr) {
             .SwitchOnSmiNoFeedback(switch_jump_table);
 
         // Fallthrough to default case.
-        // TODO(tebbi): Add debug code to check that {resume_mode} really is
+        // TODO (tebbi): Add debug code to check that {resume_mode} really is id:1749
         // {JSGeneratorObject::kNext} in this case.
         STATIC_ASSERT(JSGeneratorObject::kNext == 0);
         {
@@ -3055,7 +3055,7 @@ void BytecodeGenerator::VisitAwait(Await* expr) {
       .JumpIfTrue(ToBooleanMode::kAlreadyBoolean, &resume_next);
 
   // Resume with "throw" completion (rethrow the received value).
-  // TODO(leszeks): Add a debug-only check that the accumulator is
+  // TODO (leszeks): Add a debug-only check that the accumulator is id:3091
   // JSGeneratorObject::kThrow.
   builder()->SetExpressionPosition(expr);
   builder()->LoadAccumulatorWithRegister(input).ReThrow();
@@ -3185,7 +3185,7 @@ void BytecodeGenerator::VisitCall(Call* expr) {
   // exactly one spread, and it is the last argument.
   bool is_spread_call = expr->only_last_arg_is_spread();
 
-  // TODO(petermarshall): We have a lot of call bytecodes that are very similar,
+  // TODO (petermarshall): We have a lot of call bytecodes that are very similar, id:2101
   // see if we can reduce the number by adding a separate argument which
   // specifies the call type (e.g., property, spread, tailcall, etc.).
 
@@ -3204,7 +3204,7 @@ void BytecodeGenerator::VisitCall(Call* expr) {
       if (!is_spread_call) {
         implicit_undefined_receiver = true;
       } else {
-        // TODO(leszeks): There's no special bytecode for tail calls or spread
+        // TODO (leszeks): There's no special bytecode for tail calls or spread id:2251
         // calls with an undefined receiver, so just push undefined ourselves.
         BuildPushUndefinedIntoRegisterList(&args);
       }
@@ -3242,7 +3242,7 @@ void BytecodeGenerator::VisitCall(Call* expr) {
       if (!is_spread_call) {
         implicit_undefined_receiver = true;
       } else {
-        // TODO(leszeks): There's no special bytecode for tail calls or spread
+        // TODO (leszeks): There's no special bytecode for tail calls or spread id:2283
         // calls with an undefined receiver, so just push undefined ourselves.
         BuildPushUndefinedIntoRegisterList(&args);
       }
@@ -3339,11 +3339,11 @@ void BytecodeGenerator::VisitCallSuper(Call* expr) {
   // When a super call contains a spread, a CallSuper AST node is only created
   // if there is exactly one spread, and it is the last argument.
   if (expr->only_last_arg_is_spread()) {
-    // TODO(petermarshall): Collect type on the feedback slot.
+    // TODO (petermarshall): Collect type on the feedback slot. id:1752
     builder()->ConstructWithSpread(constructor, args_regs);
   } else {
     // Call construct.
-    // TODO(turbofan): For now we do gather feedback on super constructor
+    // TODO (turbofan): For now we do gather feedback on super constructor id:3094
     // calls, utilizing the existing machinery to inline the actual call
     // target and the JSCreate for the implicit receiver allocation. This
     // is not an ideal solution for super constructor calls, but it gets
@@ -3365,7 +3365,7 @@ void BytecodeGenerator::VisitCallNew(CallNew* expr) {
   builder()->LoadAccumulatorWithRegister(constructor);
 
   if (expr->only_last_arg_is_spread()) {
-    // TODO(petermarshall): Collect type on the feedback slot.
+    // TODO (petermarshall): Collect type on the feedback slot. id:2103
     builder()->ConstructWithSpread(constructor, args);
   } else {
     builder()->Construct(constructor, args,
@@ -3377,7 +3377,7 @@ void BytecodeGenerator::VisitCallRuntime(CallRuntime* expr) {
   if (expr->is_jsruntime()) {
     RegisterList args = register_allocator()->NewGrowableRegisterList();
     // Allocate a register for the receiver and load it with undefined.
-    // TODO(leszeks): If CallJSRuntime always has an undefined receiver, use the
+    // TODO (leszeks): If CallJSRuntime always has an undefined receiver, use the id:2254
     // same mechanism as CallUndefinedReceiver.
     BuildPushUndefinedIntoRegisterList(&args);
     VisitArguments(expr->arguments(), &args);
@@ -3588,7 +3588,7 @@ void BytecodeGenerator::VisitCountOperation(CountOperation* expr) {
   if (is_postfix) {
     // Convert old value into a number before saving it.
     old_value = register_allocator()->NewRegister();
-    // TODO(ignition): Think about adding proper PostInc/PostDec bytecodes
+    // TODO (ignition): Think about adding proper PostInc/PostDec bytecodes id:2285
     // instead of this ToNumber + Inc/Dec dance.
     builder()
         ->ToNumber(old_value, feedback_index(count_slot))
@@ -3763,7 +3763,7 @@ void BytecodeGenerator::BuildAddExpression(BinaryOperation* expr,
 }
 
 void BytecodeGenerator::VisitArithmeticExpression(BinaryOperation* expr) {
-  // TODO(rmcilroy): Special case "x * 1.0" and "x * -1" which are generated for
+  // TODO (rmcilroy): Special case "x * 1.0" and "x * -1" which are generated for id:1755
   // +x and -x by the parser.
   Expression* subexpr;
   Smi* literal;
@@ -3832,7 +3832,7 @@ void BytecodeGenerator::BuildGetIterator(Expression* iterable,
         obj, feedback_index(async_load_slot));
 
     BytecodeLabel async_iterator_undefined, async_iterator_null, done;
-    // TODO(ignition): Add a single opcode for JumpIfNullOrUndefined
+    // TODO (ignition): Add a single opcode for JumpIfNullOrUndefined id:3095
     builder()->JumpIfUndefined(&async_iterator_undefined);
     builder()->JumpIfNull(&async_iterator_null);
 
@@ -4168,7 +4168,7 @@ void BytecodeGenerator::VisitNewTargetVariable(Variable* variable) {
   BuildVariableAssignment(variable, Token::INIT, FeedbackSlot::Invalid(),
                           HoleCheckMode::kElided);
 
-  // TODO(mstarzinger): The <new.target> register is not set by the deoptimizer
+  // TODO (mstarzinger): The <new.target> register is not set by the deoptimizer id:2104
   // and we need to make sure {BytecodeRegisterOptimizer} flushes its state
   // before a local variable containing the <new.target> is used. Using a label
   // as below flushes the entire pipeline, we should be more specific here.

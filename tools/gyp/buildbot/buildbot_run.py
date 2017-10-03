@@ -124,7 +124,7 @@ def GypBuild():
   else:
     raise Exception('Unknown platform')
   if retcode:
-    # TODO(bradnelson): once the annotator supports a postscript (section for
+    # TODO (bradnelson): once the annotator supports a postscript (section for id:4095
     #     after the build proper that could be used for cumulative failures),
     #     use that instead of this. This isolates the final return value so
     #     that it isn't misattributed to the last stage.

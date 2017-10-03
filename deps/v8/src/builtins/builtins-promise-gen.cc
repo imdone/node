@@ -572,7 +572,7 @@ Node* PromiseBuiltinsAssembler::InternalPerformPromiseThen(
       Node* info = AllocatePromiseReactionJobInfo(
           result, var_on_resolve.value(), deferred_promise, deferred_on_resolve,
           deferred_on_reject, context);
-      // TODO(gsathya): Move this to TF
+      // TODO (gsathya): Move this to TF id:1470
       CallRuntime(Runtime::kEnqueuePromiseReactionJob, context, info);
       Goto(&out);
 
@@ -581,7 +581,7 @@ Node* PromiseBuiltinsAssembler::InternalPerformPromiseThen(
         Node* const has_handler = PromiseHasHandler(promise);
         Label enqueue(this);
 
-        // TODO(gsathya): Fold these runtime calls and move to TF.
+        // TODO (gsathya): Fold these runtime calls and move to TF. id:1686
         GotoIf(has_handler, &enqueue);
         CallRuntime(Runtime::kPromiseRevokeReject, context, promise);
         Goto(&enqueue);
@@ -591,7 +591,7 @@ Node* PromiseBuiltinsAssembler::InternalPerformPromiseThen(
           Node* info = AllocatePromiseReactionJobInfo(
               result, var_on_reject.value(), deferred_promise,
               deferred_on_resolve, deferred_on_reject, context);
-          // TODO(gsathya): Move this to TF
+          // TODO (gsathya): Move this to TF id:1416
           CallRuntime(Runtime::kEnqueuePromiseReactionJob, context, info);
           Goto(&out);
         }
@@ -608,7 +608,7 @@ Node* PromiseBuiltinsAssembler::InternalPerformPromiseThen(
 // We use a fairly coarse granularity for this and simply check whether both
 // the promise itself is unmodified (i.e. its map has not changed) and its
 // prototype is unmodified.
-// TODO(gsathya): Refactor this out to prevent code dupe with builtins-regexp
+// TODO (gsathya): Refactor this out to prevent code dupe with builtins-regexp id:1146
 void PromiseBuiltinsAssembler::BranchIfFastPath(Node* context, Node* promise,
                                                 Label* if_isunmodified,
                                                 Label* if_ismodified) {
@@ -709,7 +709,7 @@ void PromiseBuiltinsAssembler::InternalResolvePromise(Node* context,
     GotoIfNot(SmiEqual(SmiConstant(v8::Promise::kPending), thenable_status),
               &if_isnotpending);
 
-    // TODO(gsathya): Use a marker here instead of the actual then
+    // TODO (gsathya): Use a marker here instead of the actual then id:1853
     // callback, and check for the marker in PromiseResolveThenableJob
     // and perform PromiseThen.
     Node* const then =
@@ -770,7 +770,7 @@ void PromiseBuiltinsAssembler::InternalResolvePromise(Node* context,
 
   BIND(&do_enqueue);
   {
-    // TODO(gsathya): Add fast path for native promises with unmodified
+    // TODO (gsathya): Add fast path for native promises with unmodified id:1473
     // PromiseThen (which don't need these resolving functions, but
     // instead can just call resolve/reject directly).
     Node* resolve = nullptr;
@@ -797,7 +797,7 @@ void PromiseBuiltinsAssembler::InternalResolvePromise(Node* context,
     // 12. Perform EnqueueJob("PromiseJobs",
     // PromiseResolveThenableJob, « promise, resolution, thenAction»).
     BIND(&enqueue);
-    // TODO(gsathya): Move this to TF
+    // TODO (gsathya): Move this to TF id:1692
     CallRuntime(Runtime::kEnqueuePromiseResolveThenableJob, context, info);
     Goto(&out);
   }

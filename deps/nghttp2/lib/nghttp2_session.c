@@ -817,7 +817,7 @@ int nghttp2_session_reprioritize_stream(
 
 int nghttp2_session_add_item(nghttp2_session *session,
                              nghttp2_outbound_item *item) {
-  /* TODO Return error if stream is not found for the frame requiring
+  /* TODO Return error if stream is not found for the frame requiring id:353
      stream presence. */
   int rv = 0;
   nghttp2_stream *stream;
@@ -847,7 +847,7 @@ int nghttp2_session_add_item(nghttp2_session *session,
     /* We push request HEADERS and push response HEADERS to
        dedicated queue because their transmission is affected by
        SETTINGS_MAX_CONCURRENT_STREAMS */
-    /* TODO If 2 HEADERS are submitted for reserved stream, then
+    /* TODO If 2 HEADERS are submitted for reserved stream, then id:417
        both of them are queued into ob_syn, which is not
        desirable. */
     if (frame->headers.cat == NGHTTP2_HCAT_REQUEST ||
@@ -1562,7 +1562,7 @@ static int
 session_predicate_push_response_headers_send(nghttp2_session *session,
                                              nghttp2_stream *stream) {
   int rv;
-  /* TODO Should disallow HEADERS if GOAWAY has already been issued? */
+  /* TODO Should disallow HEADERS if GOAWAY has already been issued?  id:591*/
   rv = session_predicate_for_stream_send(session, stream);
   if (rv != 0) {
     return rv;
@@ -2589,7 +2589,7 @@ static int session_after_frame_sent1(nghttp2_session *session) {
         if (nghttp2_is_fatal(rv)) {
           return rv;
         }
-        /* TODO nghttp2_submit_data() may fail if stream has already
+        /* TODO nghttp2_submit_data() may fail if stream has already id:730
            DATA frame item.  We might have to handle it here. */
       }
       return 0;
@@ -2617,7 +2617,7 @@ static int session_after_frame_sent1(nghttp2_session *session) {
         if (nghttp2_is_fatal(rv)) {
           return rv;
         }
-        /* TODO nghttp2_submit_data() may fail if stream has already
+        /* TODO nghttp2_submit_data() may fail if stream has already id:612
            DATA frame item.  We might have to handle it here. */
       }
       return 0;
@@ -2895,7 +2895,7 @@ static ssize_t nghttp2_session_mem_send_internal(nghttp2_session *session,
 
         DEBUGF("send: frame preparation failed with %s\n",
                nghttp2_strerror(rv));
-        /* TODO If the error comes from compressor, the connection
+        /* TODO If the error comes from compressor, the connection id:354
            must be closed. */
         if (item->frame.hd.type != NGHTTP2_DATA &&
             session->callbacks.on_frame_not_send_callback && is_non_fatal(rv)) {
@@ -3385,7 +3385,7 @@ static int session_call_unpack_extension_callback(nghttp2_session *session) {
  *   Out of memory.
  */
 static int session_handle_frame_size_error(nghttp2_session *session) {
-  /* TODO Currently no callback is called for this error, because we
+  /* TODO Currently no callback is called for this error, because we id:421
      call this callback before reading any payload */
   return nghttp2_session_terminate_session(session, NGHTTP2_FRAME_SIZE_ERROR);
 }
@@ -7055,7 +7055,7 @@ size_t nghttp2_session_get_outbound_queue_size(nghttp2_session *session) {
   return nghttp2_outbound_queue_size(&session->ob_urgent) +
          nghttp2_outbound_queue_size(&session->ob_reg) +
          nghttp2_outbound_queue_size(&session->ob_syn);
-  /* TODO account for item attached to stream */
+  /* TODO account for item attached to stream  id:594*/
 }
 
 int32_t

@@ -117,7 +117,7 @@ static void uv__stream_osx_interrupt_select(uv_stream_t* stream) {
     return;
 
   /* Interrupt select() loop
-   * NOTE: fake_fd and int_fd are socketpair(), thus writing to one will
+   * NOTE: fake_fd and int_fd are socketpair(), thus writing to one will id:1513
    * emit read event on other side
    */
   do
@@ -171,7 +171,7 @@ static void uv__stream_osx_select(void* arg) {
       if (errno == EINTR)
         continue;
 
-      /* XXX: Possible?! */
+      /* XXX: Possible?!  id:1193*/
       abort();
     }
 
@@ -245,7 +245,7 @@ static void uv__stream_osx_select_cb(uv_async_t* handle) {
   if (stream->flags & UV_CLOSING)
     return;
 
-  /* NOTE: It is important to do it here, otherwise `select()` might be called
+  /* NOTE: It is important to do it here, otherwise `select()` might be called id:1294
    * before the actual `uv__read()`, leading to the blocking syscall
    */
   uv_sem_post(&s->async_sem);
@@ -307,7 +307,7 @@ int uv__stream_try_select(uv_stream_t* stream, int* fd) {
 
   /*
    * Create fds for io watcher and to interrupt the select() loop.
-   * NOTE: do it ahead of malloc below to allocate enough space for fd_sets
+   * NOTE: do it ahead of malloc below to allocate enough space for fd_sets id:907
    */
   if (socketpair(AF_UNIX, SOCK_STREAM, 0, fds))
     return -errno;
@@ -404,7 +404,7 @@ int uv__stream_open(uv_stream_t* stream, int fd, int flags) {
     if ((stream->flags & UV_TCP_NODELAY) && uv__tcp_nodelay(fd, 1))
       return -errno;
 
-    /* TODO Use delay the user passed in. */
+    /* TODO Use delay the user passed in.  id:905*/
     if ((stream->flags & UV_TCP_KEEPALIVE) && uv__tcp_keepalive(fd, 1, 60))
       return -errno;
   }
@@ -586,7 +586,7 @@ int uv_accept(uv_stream_t* server, uv_stream_t* client) {
                             server->accepted_fd,
                             UV_STREAM_READABLE | UV_STREAM_WRITABLE);
       if (err) {
-        /* TODO handle error */
+        /* TODO handle error  id:1517*/
         uv__close(server->accepted_fd);
         goto done;
       }
@@ -907,7 +907,7 @@ start:
           /* Then we're done! */
           assert(n == 0);
           uv__write_req_finish(req);
-          /* TODO: start trying to write the next request. */
+          /* TODO: start trying to write the next request.  id:1197*/
           return;
         }
       }
@@ -956,7 +956,7 @@ static void uv__write_callbacks(uv_stream_t* stream) {
       req->bufs = NULL;
     }
 
-    /* NOTE: call callback AFTER freeing the request data. */
+    /* NOTE: call callback AFTER freeing the request data.  id:1298*/
     if (req->cb)
       req->cb(req, req->error);
   }
@@ -1043,7 +1043,7 @@ static int uv__stream_queue_fd(uv_stream_t* stream, int fd) {
 
     /*
      * Allocation failure, report back.
-     * NOTE: if it is fatal - sockets will be closed in uv__stream_close
+     * NOTE: if it is fatal - sockets will be closed in uv__stream_close id:911
      */
     if (queued_fds == NULL)
       return -ENOMEM;
@@ -1129,13 +1129,13 @@ static void uv__read(uv_stream_t* stream) {
   stream->flags &= ~UV_STREAM_READ_PARTIAL;
 
   /* Prevent loop starvation when the data comes in as fast as (or faster than)
-   * we can read it. XXX Need to rearm fd if we switch to edge-triggered I/O.
+   * we can read it. XXX Need to rearm fd if we switch to edge-triggered I/O. id:908
    */
   count = 32;
 
   is_ipc = stream->type == UV_NAMED_PIPE && ((uv_pipe_t*) stream)->ipc;
 
-  /* XXX: Maybe instead of having UV_STREAM_READING we just test if
+  /* XXX: Maybe instead of having UV_STREAM_READING we just test if id:1520
    * tcp->read_cb is NULL or not?
    */
   while (stream->read_cb
@@ -1414,7 +1414,7 @@ int uv_write2(uv_write_t* req,
     if (stream->type != UV_NAMED_PIPE || !((uv_pipe_t*)stream)->ipc)
       return -EINVAL;
 
-    /* XXX We abuse uv_write2() to send over UDP handles to child processes.
+    /* XXX We abuse uv_write2() to send over UDP handles to child processes. id:1199
      * Don't call uv__stream_fd() on those handles, it's a macro that on OS X
      * evaluates to a function that operates on a uv_stream_t with a couple of
      * OS X specific fields. On other Unices it does (handle)->io_watcher.fd,
@@ -1566,8 +1566,8 @@ int uv_read_start(uv_stream_t* stream,
    */
   stream->flags |= UV_STREAM_READING;
 
-  /* TODO: try to do the read inline? */
-  /* TODO: keep track of tcp state. If we've gotten a EOF then we should
+  /* TODO: try to do the read inline?  id:1301*/
+  /* TODO: keep track of tcp state. If we've gotten a EOF then we should id:914
    * not start the IO watcher.
    */
   assert(uv__stream_fd(stream) >= 0);

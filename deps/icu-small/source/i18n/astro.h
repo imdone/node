@@ -480,7 +480,7 @@ public:
   double getSunLongitude();
 
   /**
-   * TODO Make this public when the entire class is package-private.
+   * TODO Make this public when the entire class is package-private. id:191
    */
   /*public*/ void getSunLongitude(double julianDay, double &longitude, double &meanAnomaly);
 
@@ -536,7 +536,7 @@ public:
    * Returns the time (GMT) of sunrise or sunset on the local date to which
    * this calendar is currently set.
    *
-   * NOTE: This method only works well if this object is set to a
+   * NOTE: This method only works well if this object is set to a id:228
    * time near local noon.  Because of variations between the local
    * official time zone and the geographic longitude, the
    * computation can flop over into an adjacent day if this object

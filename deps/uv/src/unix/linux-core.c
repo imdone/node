@@ -237,7 +237,7 @@ void uv__io_poll(uv_loop_t* loop, int timeout) {
     else
       op = UV__EPOLL_CTL_MOD;
 
-    /* XXX Future optimization: do EPOLL_CTL_MOD lazily if we stop watching
+    /* XXX Future optimization: do EPOLL_CTL_MOD lazily if we stop watching id:1504
      * events, skip the syscall and squelch the events after epoll_wait().
      */
     if (uv__epoll_ctl(loop->backend_fd, op, w->fd, &e)) {
@@ -449,7 +449,7 @@ uint64_t uv__hrtime(uv_clocktype_t type) {
    * serviced entirely from the vDSO, whereas CLOCK_MONOTONIC may
    * decide to make a costly system call.
    */
-  /* TODO(bnoordhuis) Use CLOCK_MONOTONIC_COARSE for UV_CLOCK_PRECISE
+  /* TODO (bnoordhuis) Use CLOCK_MONOTONIC_COARSE for UV_CLOCK_PRECISE id:1188
    * when it has microsecond granularity or better (unlikely).
    */
   if (type == UV_CLOCK_FAST && fast_clock_id == -1) {

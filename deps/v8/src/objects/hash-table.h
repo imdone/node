@@ -341,7 +341,7 @@ class ObjectHashSet : public HashTable<ObjectHashSet, ObjectHashSetShape> {
 };
 
 // Non-templatized base class for {OrderedHashTable}s.
-// TODO(hash): Unify this with the HashTableBase above.
+// TODO (hash): Unify this with the HashTableBase above. id:2952
 class OrderedHashTableBase : public FixedArray {
  public:
   static const int kNotFound = -1;

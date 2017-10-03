@@ -682,7 +682,7 @@ int ssl3_write_bytes(SSL *s, int type, const void *buf_, int len)
     if (wb->left != 0) {
         i = ssl3_write_pending(s, type, &buf[tot], s->s3->wpend_tot);
         if (i <= 0) {
-            /* XXX should we ssl3_release_write_buffer if i<0? */
+            /* XXX should we ssl3_release_write_buffer if i<0?  id:764*/
             s->s3->wnum = tot;
             return i;
         }
@@ -833,7 +833,7 @@ int ssl3_write_bytes(SSL *s, int type, const void *buf_, int len)
 
         i = do_ssl3_write(s, type, &(buf[tot]), nw, 0);
         if (i <= 0) {
-            /* XXX should we ssl3_release_write_buffer if i<0? */
+            /* XXX should we ssl3_release_write_buffer if i<0?  id:860*/
             s->s3->wnum = tot;
             return i;
         }

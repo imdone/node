@@ -311,7 +311,7 @@ void Heap::SetGCState(HeapState state) {
   gc_state_ = state;
 }
 
-// TODO(1238405): Combine the infrastructure for --heap-stats and
+// TODO (1238405): Combine the infrastructure for --heap-stats and id:1656
 // --log-gc to avoid the complicated preprocessor and flag testing.
 void Heap::ReportStatisticsBeforeGC() {
 // Heap::ReportHeapStatistics will also log NewSpace statistics when
@@ -392,7 +392,7 @@ void Heap::PrintShortHeapStatistics() {
                total_gc_time_ms_);
 }
 
-// TODO(1238405): Combine the infrastructure for --heap-stats and
+// TODO (1238405): Combine the infrastructure for --heap-stats and id:3043
 // --log-gc to avoid the complicated preprocessor and flag testing.
 void Heap::ReportStatisticsAfterGC() {
 // Similar to the before GC, we use some complicated logic to ensure that
@@ -698,7 +698,7 @@ void Heap::ProcessPretenuringFeedback() {
 
 
 void Heap::DeoptMarkedAllocationSites() {
-  // TODO(hpayer): If iterating over the allocation sites list becomes a
+  // TODO (hpayer): If iterating over the allocation sites list becomes a id:2062
   // performance issue, use a cache data structure in heap instead.
   Object* list_element = allocation_sites_list();
   while (list_element->IsAllocationSite()) {
@@ -2885,7 +2885,7 @@ void Heap::CreateInitialObjects() {
 
   // Finish creating JSPromiseCapabilityMap
   {
-    // TODO(caitp): This initialization can be removed once PromiseCapability
+    // TODO (caitp): This initialization can be removed once PromiseCapability id:2172
     // object is no longer used by builtins implemented in javascript.
     Handle<Map> map = factory->js_promise_capability_map();
     map->set_inobject_properties_or_constructor_function_index(3);
@@ -3299,7 +3299,7 @@ void Heap::RightTrimFixedArray(FixedArrayBase* object, int elements_to_trim) {
   // debug mode which iterates through the heap), but to play safer
   // we still do it.
   // We do not create a filler for objects in large object space.
-  // TODO(hpayer): We should shrink the large object page if the size
+  // TODO (hpayer): We should shrink the large object page if the size id:2133
   // of the object changed significantly.
   if (!lo_space()->Contains(object)) {
     HeapObject* filler =
@@ -3534,7 +3534,7 @@ void Heap::InitializeJSObjectFromMap(JSObject* obj, Object* properties,
                                      Map* map) {
   obj->set_raw_properties_or_hash(properties);
   obj->initialize_elements();
-  // TODO(1240798): Initialize the object's body using valid initial values
+  // TODO (1240798): Initialize the object's body using valid initial values id:1660
   // according to the object's initial map.  For example, if the map's
   // instance type is JS_ARRAY_TYPE, the length field should be initialized
   // to a number (e.g. Smi::kZero) and the elements initialized to a
@@ -3681,7 +3681,7 @@ AllocationResult Heap::CopyJSObject(JSObject* source, AllocationSite* site) {
       PropertyArray* properties = source->property_array();
       PropertyArray* prop = nullptr;
       {
-        // TODO(gsathya): Do not copy hash code.
+        // TODO (gsathya): Do not copy hash code. id:3046
         AllocationResult allocation = CopyPropertyArray(properties);
         if (!allocation.To(&prop)) return allocation;
       }
@@ -3894,7 +3894,7 @@ AllocationResult Heap::CopyAndTenureFixedCOWArray(FixedArray* src) {
   WriteBarrierMode mode = result->GetWriteBarrierMode(no_gc);
   for (int i = 0; i < len; i++) result->set(i, src->get(i), mode);
 
-  // TODO(mvstanton): The map is set twice because of protection against calling
+  // TODO (mvstanton): The map is set twice because of protection against calling id:2065
   // set() on a COW FixedArray. Issue v8:3221 created to track this, and
   // we might then be able to remove this whole method.
   HeapObject::cast(obj)->set_map_after_allocation(fixed_cow_array_map(),
@@ -4272,7 +4272,7 @@ void Heap::ActivateMemoryReducerIfNeeded() {
 }
 
 void Heap::ReduceNewSpaceSize() {
-  // TODO(ulan): Unify this constant with the similar constant in
+  // TODO (ulan): Unify this constant with the similar constant in id:2175
   // GCIdleTimeHandler once the change is merged to 4.5.
   static const size_t kLowAllocationThroughput = 1000;
   const double allocation_throughput =
@@ -4306,7 +4306,7 @@ void Heap::FinalizeIncrementalMarkingIfComplete(
 
 void Heap::RegisterDeserializedObjectsForBlackAllocation(
     Reservation* reservations, List<HeapObject*>* large_objects) {
-  // TODO(hpayer): We do not have to iterate reservations on black objects
+  // TODO (hpayer): We do not have to iterate reservations on black objects id:2135
   // for marking. We just have to execute the special visiting side effect
   // code that adds objects to global data structures, e.g. for array buffers.
 
@@ -5016,7 +5016,7 @@ void Heap::VerifyRememberedSetFor(HeapObject* object) {
     OldToNewSlotVerifyingVisitor visitor(this, &old_to_new, &typed_old_to_new);
     object->IterateBody(&visitor);
   }
-  // TODO(ulan): Add old to old slot set verification once all weak objects
+  // TODO (ulan): Add old to old slot set verification once all weak objects id:1663
   // have their own instance types and slots are recorded for all weal fields.
 }
 #endif
@@ -5205,7 +5205,7 @@ void Heap::IterateStrongRoots(RootVisitor* v, VisitMode mode) {
 }
 
 
-// TODO(1236194): Since the heap size is configurable on the command line
+// TODO (1236194): Since the heap size is configurable on the command line id:3047
 // and through the API, we should gracefully handle the case that the heap
 // size is not big enough to fit all the initial objects.
 bool Heap::ConfigureHeap(size_t max_semi_space_size_in_kb,
@@ -6010,7 +6010,7 @@ void Heap::RemoveGCEpilogueCallback(v8::Isolate::GCCallbackWithData callback,
   UNREACHABLE();
 }
 
-// TODO(ishell): Find a better place for this.
+// TODO (ishell): Find a better place for this. id:2067
 void Heap::AddWeakNewSpaceObjectToCodeDependency(Handle<HeapObject> obj,
                                                  Handle<WeakCell> code) {
   DCHECK(InNewSpace(*obj));
@@ -6022,7 +6022,7 @@ void Heap::AddWeakNewSpaceObjectToCodeDependency(Handle<HeapObject> obj,
   }
 }
 
-// TODO(ishell): Find a better place for this.
+// TODO (ishell): Find a better place for this. id:2178
 void Heap::AddWeakObjectToCodeDependency(Handle<HeapObject> obj,
                                          Handle<DependentCode> dep) {
   DCHECK(!InNewSpace(*obj));

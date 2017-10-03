@@ -19,7 +19,7 @@
  * IN THE SOFTWARE.
  */
 
-/* Tests commented out with XXX are ones that are failing on Linux */
+/* Tests commented out with XXX are ones that are failing on Linux  id:942*/
 
 /*
  * Purpose of this test is to check semantics of starting and stopping

@@ -8,6 +8,6 @@
 using namespace v8::internal::wasm::fuzzer;
 
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
-  // TODO(titzer): Names section requires a preceding function section.
+  // TODO (titzer): Names section requires a preceding function section. id:2663
   return FuzzWasmSection(v8::internal::wasm::kNameSectionCode, data, size);
 }

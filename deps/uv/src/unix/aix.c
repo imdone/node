@@ -631,7 +631,7 @@ static int uv__setup_ahafs(const char* filename, int *fd) {
 
   /* Write out the monitoring specifications.
    * In this case, we are monitoring for a state change event type
-   *    CHANGED=YES
+   *    CHANGED =YES id:1278
    * We will be waiting in select call, rather than a read:
    *    WAIT_TYPE=WAIT_IN_SELECT
    * We only want minimal information for files:
@@ -1001,7 +1001,7 @@ int uv_resident_set_memory(size_t* rss) {
   if (fd == -1)
     return -errno;
 
-  /* FIXME(bnoordhuis) Handle EINTR. */
+  /* FIXME (bnoordhuis) Handle EINTR.  id:857*/
   err = -EINVAL;
   if (read(fd, &psinfo, sizeof(psinfo)) == sizeof(psinfo)) {
     *rss = (size_t)psinfo.pr_rssize * 1024;

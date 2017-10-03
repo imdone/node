@@ -443,7 +443,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition, ArchOpcode op) {
 
 #define ASSEMBLE_IEEE754_UNOP(name)                                            \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:2586*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 1, kScratchReg);                                \
@@ -457,7 +457,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition, ArchOpcode op) {
 
 #define ASSEMBLE_IEEE754_BINOP(name)                                           \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:1901*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 2, kScratchReg);                                \
@@ -630,7 +630,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition, ArchOpcode op) {
   } while (0)
 
 #if V8_TARGET_ARCH_PPC64
-// TODO(mbrandy): fix paths that produce garbage in offset's upper 32-bits.
+// TODO (mbrandy): fix paths that produce garbage in offset's upper 32-bits. id:1980
 #define CleanUInt32(x) __ ClearLeftImm(x, x, Operand(32))
 #else
 #define CleanUInt32(x)
@@ -1116,7 +1116,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       }
       break;
     case kArchTruncateDoubleToI:
-      // TODO(mbrandy): move slow call to stub out of line.
+      // TODO (mbrandy): move slow call to stub out of line. id:1840
       __ TruncateDoubleToIDelayed(zone(), i.OutputRegister(),
                                   i.InputDoubleRegister(0));
       DCHECK_EQ(LeaveRC, i.OutputRCBit());
@@ -1494,7 +1494,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
 #endif
     case kPPC_ModDouble:
-      // TODO(bmeurer): We should really get rid of this special instruction,
+      // TODO (bmeurer): We should really get rid of this special instruction, id:1389
       // and generate a CallAddress instruction instead.
       ASSEMBLE_FLOAT_MODULO();
       break;
@@ -2223,7 +2223,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleDeoptimizerCall(
                                                    : Deoptimizer::EAGER;
   Address deopt_entry = Deoptimizer::GetDeoptimizationEntry(
       __ isolate(), deoptimization_id, bailout_type);
-  // TODO(turbofan): We should be able to generate better code by sharing the
+  // TODO (turbofan): We should be able to generate better code by sharing the id:2588
   // actual final call site and just bl'ing to it here, similar to what we do
   // in the lithium backend.
   if (deopt_entry == nullptr) return kTooManyDeoptimizationBailouts;
@@ -2281,7 +2281,7 @@ void CodeGenerator::AssembleConstructFrame() {
       }
     } else {
       StackFrame::Type type = info()->GetOutputStackFrameType();
-      // TODO(mbrandy): Detect cases where ip is the entrypoint (for
+      // TODO (mbrandy): Detect cases where ip is the entrypoint (for id:1904
       // efficient intialization of the constant pool pointer register).
       __ StubPrologue(type);
     }
@@ -2446,7 +2446,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(dcarney): loading RPO constants on PPC.
+          UNREACHABLE();  // TODO (dcarney): loading RPO constants on PPC. id:1982
           break;
       }
       if (destination->IsStackSlot()) {

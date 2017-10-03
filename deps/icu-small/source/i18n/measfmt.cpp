@@ -96,7 +96,7 @@ static UMeasureFormatWidth getRegularWidth(UMeasureFormatWidth width) {
  * complete sets of unit & per patterns,
  * to correspond to the resource data and its aliases.
  *
- * TODO: Maybe store more sparsely in general, with pointers rather than potentially-empty objects.
+ * TODO: Maybe store more sparsely in general, with pointers rather than potentially-empty objects. id:264
  */
 class MeasureFormatCacheData : public SharedObject {
 public:
@@ -118,7 +118,7 @@ public:
     virtual ~MeasureFormatCacheData();
 
     UBool hasPerFormatter(int32_t width) const {
-        // TODO: Create a more obvious way to test if the per-formatter has been set?
+        // TODO: Create a more obvious way to test if the per-formatter has been set? id:242
         // Use pointers, check for NULL? Or add an isValid() method?
         return perFormatters[width].getArgumentLimit() == 2;
     }
@@ -284,7 +284,7 @@ struct UnitDataSink : public ResourceSink {
         if (U_FAILURE(errorCode)) { return; }
         unitIndex = MeasureUnit::internalGetIndexForTypeAndSubtype(type, key);
         if (unitIndex < 0) {
-            // TODO: How to handle unexpected data?
+            // TODO: How to handle unexpected data? id:321
             // See http://bugs.icu-project.org/trac/ticket/12597
             return;
         }
@@ -298,7 +298,7 @@ struct UnitDataSink : public ResourceSink {
                 consumePattern(key, value, errorCode);
             }
         } else {
-            // TODO: How to handle unexpected data?
+            // TODO: How to handle unexpected data? id:441
             // See http://bugs.icu-project.org/trac/ticket/12597
             return;
         }

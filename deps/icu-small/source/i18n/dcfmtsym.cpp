@@ -387,7 +387,7 @@ DecimalFormatSymbols::initialize(const Locale& loc, UErrorCode& status, UBool us
     }
 
     // Set locale IDs
-    // TODO: Is there a way to do this without depending on the resource bundle instance?
+    // TODO: Is there a way to do this without depending on the resource bundle instance? id:215
     U_LOCALE_BASED(locBased, *this);
     locBased.setLocaleIDs(
         ures_getLocaleByType(

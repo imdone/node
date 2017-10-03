@@ -378,7 +378,7 @@ char* StackGuard::ArchiveStackGuard(char* to) {
   ThreadLocal blank;
 
   // Set the stack limits using the old thread_local_.
-  // TODO(isolates): This was the old semantics of constructing a ThreadLocal
+  // TODO (isolates): This was the old semantics of constructing a ThreadLocal id:1581
   //                 (as the ctor called SetStackLimits, which looked at the
   //                 current thread_local_ from StackGuard)-- but is this
   //                 really what was intended?

@@ -8,10 +8,10 @@
 #include "src/factory.h"
 #include "src/heap/heap.h"
 #include "src/isolate.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2644
 // (disallowed) include: src/factory.h -> src/objects-inl.h
 #include "src/objects-inl.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2761
 // (disallowed) include: src/feedback-vector.h ->
 // src/feedback-vector-inl.h
 #include "src/feedback-vector-inl.h"
@@ -370,7 +370,7 @@ struct Tests {
 
   void MinMax() {
     // If b is regular numeric bitset, then Range(b->Min(), b->Max())->Is(b).
-    // TODO(neis): Need to ignore representation for this to be true.
+    // TODO (neis): Need to ignore representation for this to be true. id:3676
     /*
     for (TypeIterator it = T.types.begin(); it != T.types.end(); ++it) {
       Type* type = *it;

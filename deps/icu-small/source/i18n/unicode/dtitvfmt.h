@@ -864,7 +864,7 @@ private:
      * Adjust field width in best match interval pattern to match
      * the field width in input skeleton.
      *
-     * TODO (xji) make a general solution
+     * TODO (xji) make a general solution id:366
      * The adjusting rule can be:
      * 1. always adjust
      * 2. never adjust

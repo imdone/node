@@ -56,7 +56,7 @@ class LinkageLocation {
   }
 
   static LinkageLocation ForCalleeFrameSlot(int32_t slot, MachineType type) {
-    // TODO(titzer): bailout instead of crashing here.
+    // TODO (titzer): bailout instead of crashing here. id:1777
     DCHECK(slot >= 0 && slot < LinkageLocation::MAX_STACK_SLOT);
     return LinkageLocation(STACK_SLOT, slot, type);
   }
@@ -241,7 +241,7 @@ class V8_EXPORT_PRIVATE CallDescriptor final
 
   // The total number of inputs to this call, which includes the target,
   // receiver, context, etc.
-  // TODO(titzer): this should input the framestate input too.
+  // TODO (titzer): this should input the framestate input too. id:1342
   size_t InputCount() const { return 1 + location_sig_->parameter_count(); }
 
   size_t FrameStateCount() const { return NeedsFrameState() ? 1 : 0; }

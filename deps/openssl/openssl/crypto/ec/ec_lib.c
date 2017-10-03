@@ -515,7 +515,7 @@ int EC_GROUP_cmp(const EC_GROUP *a, const EC_GROUP *b, BN_CTX *ctx)
     }
 
     /*
-     * XXX This approach assumes that the external representation of curves
+     * XXX This approach assumes that the external representation of curves id:994
      * over the same field type is the same.
      */
     if (!a->meth->group_get_curve(a, a1, a2, a3, ctx) ||
@@ -525,7 +525,7 @@ int EC_GROUP_cmp(const EC_GROUP *a, const EC_GROUP *b, BN_CTX *ctx)
     if (r || BN_cmp(a1, b1) || BN_cmp(a2, b2) || BN_cmp(a3, b3))
         r = 1;
 
-    /* XXX EC_POINT_cmp() assumes that the methods are equal */
+    /* XXX EC_POINT_cmp() assumes that the methods are equal  id:1046*/
     if (r || EC_POINT_cmp(a, EC_GROUP_get0_generator(a),
                           EC_GROUP_get0_generator(b), ctx))
         r = 1;

@@ -382,7 +382,7 @@ void Transliterator::_transliterate(Replaceable& text,
     filteredTransliterate(text, index, TRUE, TRUE);
 
 #if 0
-    // TODO
+    // TODO id:301
     // I CAN'T DO what I'm attempting below now that the Kleene star
     // operator is supported.  For example, in the rule
 
@@ -924,7 +924,7 @@ Transliterator::createInstance(const UnicodeString& ID,
     }
 
     UnicodeSet* globalFilter;
-    // TODO add code for parseError...currently unused, but
+    // TODO add code for parseError...currently unused, but id:347
     // later may be used by parsing code...
     if (!TransliteratorIDParser::parseCompoundID(ID, dir, canonID, list, globalFilter)) {
         status = U_INVALID_ID;
@@ -1062,7 +1062,7 @@ Transliterator::createFromRules(const UnicodeString& ID,
         return 0;
     }
 
-    // NOTE: The logic here matches that in TransliteratorRegistry.
+    // NOTE: The logic here matches that in TransliteratorRegistry. id:477
     if (parser.idBlockVector.size() == 0 && parser.dataVector.size() == 0) {
         t = new NullTransliterator();
     }
@@ -1109,7 +1109,7 @@ Transliterator::createFromRules(const UnicodeString& ID,
             }
             if (!parser.dataVector.isEmpty()) {
                 TransliterationRuleData* data = (TransliterationRuleData*)parser.dataVector.orphanElementAt(0);
-                // TODO: Should passNumber be turned into a decimal-string representation (1 -> "1")?
+                // TODO: Should passNumber be turned into a decimal-string representation (1 -> "1")? id:643
                 RuleBasedTransliterator* temprbt = new RuleBasedTransliterator(UnicodeString(CompoundTransliterator::PASS_STRING) + UnicodeString(passNumber++),
                         data, TRUE);
                 // Check if NULL before adding it to transliterators to avoid future usage of NULL pointer.
@@ -1568,7 +1568,7 @@ UBool Transliterator::initializeRegistry(UErrorCode &status) {
     UnicodeNameTransliterator* tempUnicodeTranslit = new UnicodeNameTransliterator();
     NameUnicodeTransliterator* tempNameUnicodeTranslit = new NameUnicodeTransliterator();
 #if !UCONFIG_NO_BREAK_ITERATION
-     // TODO: could or should these transliterators be referenced polymorphically once constructed?
+     // TODO: could or should these transliterators be referenced polymorphically once constructed? id:289
      BreakTransliterator* tempBreakTranslit         = new BreakTransliterator();
 #endif
     // Check for null pointers

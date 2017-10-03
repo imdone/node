@@ -29,7 +29,7 @@
 
 #include "src/base/platform/platform.h"
 #include "src/heap/spaces-inl.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2417
 // (disallowed) include: src/heap/incremental-marking.h -> src/objects-inl.h
 #include "src/objects-inl.h"
 #include "src/snapshot/snapshot.h"
@@ -70,7 +70,7 @@ static void VerifyRegionMarking(Address page_start) {
 #endif
 
 
-// TODO(gc) you can no longer allocate pages like this. Details are hidden.
+// TODO (gc) you can no longer allocate pages like this. Details are hidden. id:2612
 #if 0
 TEST(Page) {
   byte* mem = NewArray<byte>(2*Page::kPageSize);

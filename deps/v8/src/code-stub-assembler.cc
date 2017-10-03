@@ -1247,7 +1247,7 @@ Node* CodeStubAssembler::LoadJSValueValue(Node* object) {
 }
 
 Node* CodeStubAssembler::LoadWeakCellValueUnchecked(Node* weak_cell) {
-  // TODO(ishell): fix callers.
+  // TODO (ishell): fix callers. id:1522
   return LoadObjectField(weak_cell, WeakCell::kValueOffset);
 }
 
@@ -1371,7 +1371,7 @@ Node* CodeStubAssembler::LoadDoubleWithHoleCheck(Node* base, Node* offset,
                                                  Label* if_hole,
                                                  MachineType machine_type) {
   if (if_hole) {
-    // TODO(ishell): Compare only the upper part for the hole once the
+    // TODO (ishell): Compare only the upper part for the hole once the id:1721
     // compiler is able to fold addition of already complex |offset| with
     // |kIeeeDoubleExponentWordOffset| into one addressing mode.
     if (Is64()) {
@@ -2051,11 +2051,11 @@ Node* CodeStubAssembler::AllocateRegExpResult(Node* context, Node* length,
 #endif  // DEBUG
 
   // Allocate the JSRegExpResult.
-  // TODO(jgruber): Fold JSArray and FixedArray allocations, then remove
+  // TODO (jgruber): Fold JSArray and FixedArray allocations, then remove id:1503
   // unneeded store of elements.
   Node* const result = Allocate(JSRegExpResult::kSize);
 
-  // TODO(jgruber): Store map as Heap constant?
+  // TODO (jgruber): Store map as Heap constant? id:1187
   Node* const native_context = LoadNativeContext(context);
   Node* const map =
       LoadContextElement(native_context, Context::REGEXP_RESULT_MAP_INDEX);
@@ -2194,7 +2194,7 @@ void CodeStubAssembler::InitializeJSObjectFromMap(Node* object, Node* map,
 void CodeStubAssembler::InitializeJSObjectBody(Node* object, Node* map,
                                                Node* size, int start_offset) {
   CSA_SLOW_ASSERT(this, IsMap(map));
-  // TODO(cbruni): activate in-object slack tracking machinery.
+  // TODO (cbruni): activate in-object slack tracking machinery. id:2136
   Comment("InitializeJSObjectBody");
   Node* filler = LoadRoot(Heap::kUndefinedValueRootIndex);
   // Calculate the untagged field addresses.
@@ -2410,7 +2410,7 @@ void CodeStubAssembler::FillFixedArrayWithValue(
           // change its value on ia32 (the x87 stack is used to return values
           // and stores to the stack silently clear the signalling bit).
           //
-          // TODO(danno): When we have a Float32/Float64 wrapper class that
+          // TODO (danno): When we have a Float32/Float64 wrapper class that id:1527
           // preserves double bits during manipulation, remove this code/change
           // this to an indexed Float64 store.
           if (Is64()) {
@@ -2542,7 +2542,7 @@ void CodeStubAssembler::CopyFixedArrayElements(
       // change its value on ia32 (the x87 stack is used to return values
       // and stores to the stack silently clear the signalling bit).
       //
-      // TODO(danno): When we have a Float32/Float64 wrapper class that
+      // TODO (danno): When we have a Float32/Float64 wrapper class that id:1724
       // preserves double bits during manipulation, remove this code/change
       // this to an indexed Float64 store.
       if (Is64()) {
@@ -3444,7 +3444,7 @@ Node* CodeStubAssembler::IsPropertyArray(Node* object) {
 // fixed array has HOLEY_ELEMENTS and destination has
 // HOLEY_DOUBLE_ELEMENTS), but we don't have to worry about it when the
 // source array is empty.
-// TODO(jgruber): It might we worth creating an empty_double_array constant to
+// TODO (jgruber): It might we worth creating an empty_double_array constant to id:1507
 // simplify this case.
 Node* CodeStubAssembler::IsFixedArrayWithKindOrEmpty(Node* object,
                                                      ElementsKind kind) {
@@ -3840,7 +3840,7 @@ Node* CodeStubAssembler::SubString(Node* context, Node* string, Node* from,
   Label single_char(this);
   GotoIf(SmiEqual(substr_length, SmiConstant(1)), &single_char);
 
-  // TODO(jgruber): Add an additional case for substring of length == 0?
+  // TODO (jgruber): Add an additional case for substring of length == 0? id:1191
 
   // Deal with different string types: update the index if necessary
   // and extract the underlying string.
@@ -4377,7 +4377,7 @@ Node* CodeStubAssembler::NumberToString(Node* context, Node* argument) {
 
   // Make the hash mask from the length of the number string cache. It
   // contains two elements (number and string) for each cache entry.
-  // TODO(ishell): cleanup mask handling.
+  // TODO (ishell): cleanup mask handling. id:2140
   Node* mask =
       BitcastTaggedToWord(LoadFixedArrayBaseLength(number_string_cache));
   Node* one = IntPtrConstant(1);
@@ -4618,7 +4618,7 @@ Node* CodeStubAssembler::ToUint32(Node* context, Node* input) {
 
   // Early exit for positive smis.
   {
-    // TODO(jgruber): This branch and the recheck below can be removed once we
+    // TODO (jgruber): This branch and the recheck below can be removed once we id:1530
     // have a ToNumber with multiple exits.
     Label next(this, Label::kDeferred);
     Branch(TaggedIsPositiveSmi(input), &out, &next);
@@ -5901,7 +5901,7 @@ void CodeStubAssembler::TryLookupElement(Node* object, Node* map,
 
   Node* elements_kind = LoadMapElementsKind(map);
 
-  // TODO(verwaest): Support other elements kinds as well.
+  // TODO (verwaest): Support other elements kinds as well. id:1729
   Label if_isobjectorsmi(this), if_isdouble(this), if_isdictionary(this),
       if_isfaststringwrapper(this), if_isslowstringwrapper(this), if_oob(this),
       if_typedarray(this);
@@ -6341,7 +6341,7 @@ void CodeStubAssembler::CombineFeedback(Variable* existing_feedback,
 void CodeStubAssembler::CheckForAssociatedProtector(Node* name,
                                                     Label* if_protector) {
   // This list must be kept in sync with LookupIterator::UpdateProtector!
-  // TODO(jkummerow): Would it be faster to have a bit in Symbol::flags()?
+  // TODO (jkummerow): Would it be faster to have a bit in Symbol::flags()? id:1511
   GotoIf(WordEqual(name, LoadRoot(Heap::kconstructor_stringRootIndex)),
          if_protector);
   GotoIf(WordEqual(name, LoadRoot(Heap::kiterator_symbolRootIndex)),
@@ -6652,13 +6652,13 @@ void CodeStubAssembler::EmitElementStore(Node* object, Node* key, Node* value,
                         LoadRoot(Heap::kFixedArrayMapRootIndex)),
            bailout);
   }
-  // TODO(ishell): introduce TryToIntPtrOrSmi() and use OptimalParameterMode().
+  // TODO (ishell): introduce TryToIntPtrOrSmi() and use OptimalParameterMode(). id:1196
   ParameterMode parameter_mode = INTPTR_PARAMETERS;
   key = TryToIntptr(key, bailout);
 
   if (IsFixedTypedArrayElementsKind(elements_kind)) {
     Label done(this);
-    // TODO(ishell): call ToNumber() on value and don't bailout but be careful
+    // TODO (ishell): call ToNumber() on value and don't bailout but be careful id:2143
     // to call it only once if we decide to bailout because of bounds checks.
 
     value = PrepareValueForWriteToTypedArray(value, elements_kind, bailout);
@@ -6666,7 +6666,7 @@ void CodeStubAssembler::EmitElementStore(Node* object, Node* key, Node* value,
     // There must be no allocations between the buffer load and
     // and the actual store to backing store, because GC may decide that
     // the buffer is not alive or move the elements.
-    // TODO(ishell): introduce DisallowHeapAllocationCode scope here.
+    // TODO (ishell): introduce DisallowHeapAllocationCode scope here. id:1532
 
     // Check if buffer has been neutered.
     Node* buffer = LoadObjectField(object, JSArrayBufferView::kBufferOffset);
@@ -6827,7 +6827,7 @@ void CodeStubAssembler::TransitionElementsKind(Node* object, Node* map,
     Label done(this);
     GotoIf(WordEqual(elements, empty_fixed_array), &done);
 
-    // TODO(ishell): Use OptimalParameterMode().
+    // TODO (ishell): Use OptimalParameterMode(). id:1732
     ParameterMode mode = INTPTR_PARAMETERS;
     Node* elements_length = SmiUntag(LoadFixedArrayBaseLength(elements));
     Node* array_length =
@@ -6939,7 +6939,7 @@ Node* CodeStubAssembler::CreateAllocationSiteInFeedbackVector(
       ExternalReference::allocation_sites_list_address(isolate()));
   Node* next_site = LoadBufferObject(site_list, 0);
 
-  // TODO(mvstanton): This is a store to a weak pointer, which we may want to
+  // TODO (mvstanton): This is a store to a weak pointer, which we may want to id:1516
   // mark as such in order to skip the write barrier, once we have a unified
   // system for weakness. For now we decided to keep it like this because having
   // an initial write barrier backed store makes this pointer strong until the
@@ -9317,7 +9317,7 @@ Node* CodeStubAssembler::AllocateJSIteratorResultForEntry(Node* context,
 Node* CodeStubAssembler::TypedArraySpeciesCreateByLength(Node* context,
                                                          Node* originalArray,
                                                          Node* len) {
-  // TODO(tebbi): Install a fast path as well, which avoids the runtime
+  // TODO (tebbi): Install a fast path as well, which avoids the runtime id:1202
   // call.
   return CallRuntime(Runtime::kTypedArraySpeciesCreateByLength, context,
                      originalArray, len);

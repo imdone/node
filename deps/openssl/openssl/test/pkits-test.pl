@@ -535,7 +535,7 @@ my @testlists = (
         "True", "$nist1", "$nist1", 0
     ],
 
-    # TODO: check notice display
+    # TODO: check notice display id:871
     [
         "4.10.12.1",
         "Valid Policy Mapping Test12",
@@ -543,7 +543,7 @@ my @testlists = (
         "True", "$nist1:$nist2", "$nist1", 0
     ],
 
-    # TODO: check notice display
+    # TODO: check notice display id:1472
     [
         "4.10.12.2",
         "Valid Policy Mapping Test12",
@@ -557,7 +557,7 @@ my @testlists = (
         "True", "$nist1", "$nist1", 0
     ],
 
-    # TODO: check notice display
+    # TODO: check notice display id:1160
     [
         "4.10.14",
         "Valid Policy Mapping Test14",

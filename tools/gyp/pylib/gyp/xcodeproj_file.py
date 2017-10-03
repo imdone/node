@@ -832,7 +832,7 @@ class XCObject(object):
       del self._properties[key]
 
   def AppendProperty(self, key, value):
-    # TODO(mark): Support ExtendProperty too (and make this call that)?
+    # TODO (mark): Support ExtendProperty too (and make this call that)? id:3491
 
     # Schema validation.
     if not key in self._schema:
@@ -863,7 +863,7 @@ class XCObject(object):
     set.
     """
 
-    # TODO(mark): A stronger verification mechanism is needed.  Some
+    # TODO (mark): A stronger verification mechanism is needed.  Some id:3787
     # subclasses need to perform validation beyond what the schema can enforce.
     for property, attributes in self._schema.iteritems():
       (is_list, property_type, is_strong, is_required) = attributes[0:4]
@@ -893,7 +893,7 @@ class XCHierarchicalElement(XCObject):
   """Abstract base for PBXGroup and PBXFileReference.  Not represented in a
   project file."""
 
-  # TODO(mark): Do name and path belong here?  Probably so.
+  # TODO (mark): Do name and path belong here?  Probably so. id:4118
   # If path is set and name is not, name may have a default value.  Name will
   # be set to the basename of path, if the basename of path is different from
   # the full value of path.  If path is already just a leaf name, name will
@@ -988,7 +988,7 @@ class XCHierarchicalElement(XCObject):
       hashables.append(self.__class__.__name__ + '.name')
       hashables.append(self._properties['name'])
 
-    # NOTE: This still has the problem that if an absolute path is encountered,
+    # NOTE: This still has the problem that if an absolute path is encountered, id:4068
     # including paths with a sourceTree, they'll still inherit their parents'
     # hashables, even though the paths aren't relative to their parents.  This
     # is not expected to be much of a problem in practice.
@@ -1027,7 +1027,7 @@ class XCHierarchicalElement(XCObject):
     # This function should be used only to compare direct children of the
     # containing PBXProject's mainGroup.  These groups should appear in the
     # listed order.
-    # TODO(mark): "Build" is used by gyp.generator.xcode, perhaps the
+    # TODO (mark): "Build" is used by gyp.generator.xcode, perhaps the id:3293
     # generator should have a way of influencing this list rather than having
     # to hardcode for the generator here.
     order = ['Source', 'Intermediates', 'Projects', 'Frameworks', 'Products',
@@ -1168,7 +1168,7 @@ class PBXGroup(XCHierarchicalElement):
     # which is rare.  The children of the main group ("Source", "Products",
     # etc.) is pretty much the only case where this likely to come up.
     #
-    # TODO(mark): Maybe this should raise an error if more than one child is
+    # TODO (mark): Maybe this should raise an error if more than one child is id:3493
     # present with the same name.
     if not 'children' in self._properties:
       return None
@@ -1470,7 +1470,7 @@ class PBXFileReference(XCFileLikeElement, XCContainerPortal, XCRemoteObject):
     if 'path' in self._properties and \
         not 'lastKnownFileType' in self._properties and \
         not 'explicitFileType' in self._properties:
-      # TODO(mark): This is the replacement for a replacement for a quick hack.
+      # TODO (mark): This is the replacement for a replacement for a quick hack. id:3791
       # It is no longer incredibly sucky, but this list needs to be extended.
       extension_map = {
         'a':           'archive.ar',
@@ -1531,13 +1531,13 @@ class PBXFileReference(XCFileLikeElement, XCContainerPortal, XCRemoteObject):
         basename = posixpath.basename(self._properties['path'])
         (root, ext) = posixpath.splitext(basename)
         # Check the map using a lowercase extension.
-        # TODO(mark): Maybe it should try with the original case first and fall
+        # TODO (mark): Maybe it should try with the original case first and fall id:4119
         # back to lowercase, in case there are any instances where case
         # matters.  There currently aren't.
         if ext != '':
           ext = ext[1:].lower()
 
-        # TODO(mark): "text" is the default value, but "file" is appropriate
+        # TODO (mark): "text" is the default value, but "file" is appropriate id:4070
         # for unrecognized files not containing text.  Xcode seems to choose
         # based on content.
         file_type = extension_map.get(ext, 'text')
@@ -1571,7 +1571,7 @@ class XCBuildConfiguration(XCObject):
     return self._properties['buildSettings'][key]
 
   def SetBuildSetting(self, key, value):
-    # TODO(mark): If a list, copy?
+    # TODO (mark): If a list, copy? id:3295
     self._properties['buildSettings'][key] = value
 
   def AppendBuildSetting(self, key, value):
@@ -1655,7 +1655,7 @@ class XCConfigurationList(XCObject):
     setting, or a ValueError will be raised.
     """
 
-    # TODO(mark): This is wrong for build settings that are lists.  The list
+    # TODO (mark): This is wrong for build settings that are lists.  The list id:3495
     # contents should be compared (and a list copy returned?)
 
     value = None
@@ -1742,7 +1742,7 @@ class XCBuildPhase(XCObject):
       to the corresponding PBXBuildFile children (values).
   """
 
-  # TODO(mark): Some build phase types, like PBXShellScriptBuildPhase, don't
+  # TODO (mark): Some build phase types, like PBXShellScriptBuildPhase, don't id:3794
   # actually have a "files" list.  XCBuildPhase should not have "files" but
   # another abstract subclass of it should provide this, and concrete build
   # phase types that do have "files" lists should be derived from that new
@@ -2284,7 +2284,7 @@ PBXTargetDependency._schema['target'][1] = XCTarget
 class PBXNativeTarget(XCTarget):
   # buildPhases is overridden in the schema to be able to set defaults.
   #
-  # NOTE: Contrary to most objects, it is advisable to set parent when
+  # NOTE: Contrary to most objects, it is advisable to set parent when id:4120
   # constructing PBXNativeTarget.  A parent of an XCTarget must be a PBXProject
   # object.  A parent reference is required for a PBXNativeTarget during
   # construction to be able to set up the target defaults for productReference,
@@ -2418,7 +2418,7 @@ class PBXNativeTarget(XCTarget):
         if force_outdir is not None:
           self.SetBuildSetting('TARGET_BUILD_DIR', force_outdir)
 
-        # TODO(tvl): Remove the below hack.
+        # TODO (tvl): Remove the below hack. id:4072
         #    http://code.google.com/p/gyp/issues/detail?id=122
 
         # Some targets include the prefix in the target_name.  These targets
@@ -2663,7 +2663,7 @@ class PBXProject(XCContainerPortal):
     organized hierarchically (True) or as a single flat list (False).
     """
 
-    # TODO(mark): make this a class variable and bind to self on call?
+    # TODO (mark): make this a class variable and bind to self on call? id:3297
     # Also, this list is nowhere near exhaustive.
     # INTERMEDIATE_DIR and SHARED_INTERMEDIATE_DIR are used by
     # gyp.generator.xcode.  There should probably be some way for that module
@@ -2681,7 +2681,7 @@ class PBXProject(XCContainerPortal):
       group = group_func()
       return (group, hierarchical)
 
-    # TODO(mark): make additional choices based on file extension.
+    # TODO (mark): make additional choices based on file extension. id:3581
 
     return (self.SourceGroup(), True)
 
@@ -2859,7 +2859,7 @@ class PBXProject(XCContainerPortal):
 
   def _SetUpProductReferences(self, other_pbxproject, product_group,
                               project_ref):
-    # TODO(mark): This only adds references to products in other_pbxproject
+    # TODO (mark): This only adds references to products in other_pbxproject id:3798
     # when they don't exist in this pbxproject.  Perhaps it should also
     # remove references from this pbxproject that are no longer present in
     # other_pbxproject.  Perhaps it should update various properties if they
@@ -2878,7 +2878,7 @@ class PBXProject(XCContainerPortal):
               'remoteGlobalIDString': other_fileref,
               'remoteInfo':           target.Name()
             })
-        # TODO(mark): Does sourceTree get copied straight over from the other
+        # TODO (mark): Does sourceTree get copied straight over from the other id:4121
         # project?  Can the other project ever have lastKnownFileType here
         # instead of explicitFileType?  (Use it if so?)  Can path ever be
         # unset?  (I don't think so.)  Can other_fileref have name set, and

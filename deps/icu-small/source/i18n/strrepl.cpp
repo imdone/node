@@ -108,7 +108,7 @@ int32_t StringReplacer::replace(Replaceable& text,
     int32_t outLen;
     int32_t newStart = 0;
 
-    // NOTE: It should be possible to _always_ run the complex
+    // NOTE: It should be possible to _always_ run the complex id:638
     // processing code; just slower.  If not, then there is a bug
     // in the complex processing code.
 

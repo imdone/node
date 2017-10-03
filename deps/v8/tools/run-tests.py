@@ -126,7 +126,7 @@ VARIANT_ALIASES = {
   "dev": VARIANTS,
   # Additional variants, run on all bots.
   "more": MORE_VARIANTS,
-  # TODO(machenbach): Deprecate this after the step is removed on infra side.
+  # TODO (machenbach): Deprecate this after the step is removed on infra side. id:3891
   # Additional variants, run on a subset of bots.
   "extra": [],
 }
@@ -505,7 +505,7 @@ def ProcessOptions(options):
         ('tsan', build_config["is_tsan"])):
       cmd_line_value = getattr(options, param)
       if cmd_line_value not in [None, True, False] and cmd_line_value != value:
-        # TODO(machenbach): This is for string options only. Requires options
+        # TODO (machenbach): This is for string options only. Requires options id:2975
         # to not have default values. We should make this more modular and
         # implement it in our own version of the option parser.
         print "Attempted to set %s to %s, while build is %s." % (
@@ -577,7 +577,7 @@ def ProcessOptions(options):
     # Other options for manipulating variants still apply afterwards.
     VARIANTS = EXHAUSTIVE_VARIANTS
 
-  # TODO(machenbach): Figure out how to test a bigger subset of variants on
+  # TODO (machenbach): Figure out how to test a bigger subset of variants on id:3251
   # msan and tsan.
   if options.msan:
     VARIANTS = ["default"]
@@ -762,7 +762,7 @@ def Execute(arch, mode, args, options, suites):
       # directory.
       shell_dir = os.path.join(BASE_DIR, options.outdir)
     elif options.buildbot:
-      # TODO(machenbach): Get rid of different output folder location on
+      # TODO (machenbach): Get rid of different output folder location on id:3576
       # buildbot. Currently this is capitalized Release and Debug.
       shell_dir = os.path.join(BASE_DIR, options.outdir, mode)
       mode = BuildbotToV8Mode(mode)
@@ -804,8 +804,8 @@ def Execute(arch, mode, args, options, suites):
                         use_perf_data=not options.swarming,
                         sancov_dir=options.sancov_dir)
 
-  # TODO(all): Combine "simulator" and "simulator_run".
-  # TODO(machenbach): In GN we can derive simulator run from
+  # TODO (all): Combine "simulator" and "simulator_run". id:4011
+  # TODO (machenbach): In GN we can derive simulator run from id:3893
   # target_arch != v8_target_arch in the dumped build config.
   simulator_run = not options.dont_skip_simulator_slow_tests and \
       arch in ['arm64', 'arm', 'mipsel', 'mips', 'mips64', 'mips64el', \

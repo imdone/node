@@ -61,7 +61,7 @@ static int run_srp(const char *username, const char *client_pass,
     /* Server random */
     RAND_pseudo_bytes(rand_tmp, sizeof(rand_tmp));
     b = BN_bin2bn(rand_tmp, sizeof(rand_tmp), NULL);
-    /* TODO - check b != 0 */
+    /* TODO - check b != 0  id:1192*/
     showbn("b", b);
 
     /* Server's first message */
@@ -76,7 +76,7 @@ static int run_srp(const char *username, const char *client_pass,
     /* Client random */
     RAND_pseudo_bytes(rand_tmp, sizeof(rand_tmp));
     a = BN_bin2bn(rand_tmp, sizeof(rand_tmp), NULL);
-    /* TODO - check a != 0 */
+    /* TODO - check a != 0  id:1105*/
     showbn("a", a);
 
     /* Client's response */

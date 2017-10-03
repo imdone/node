@@ -327,7 +327,7 @@ const char *JapaneseCalendar::getType() const
 int32_t JapaneseCalendar::getDefaultMonthInYear(int32_t eyear)
 {
     int32_t era = internalGetEra();
-    // TODO do we assume we can trust 'era'?  What if it is denormalized?
+    // TODO do we assume we can trust 'era'?  What if it is denormalized? id:437
 
     int32_t month = 0;
 
@@ -511,7 +511,7 @@ int32_t JapaneseCalendar::getActualMaximum(UCalendarDateFields field, UErrorCode
             return 0; // error case... any value
         }
         if (era == kCurrentEra) {
-            // TODO: Investigate what value should be used here - revisit after 4.0.
+            // TODO: Investigate what value should be used here - revisit after 4.0. id:589
             return handleGetLimit(UCAL_YEAR, UCAL_LIMIT_MAXIMUM);
         } else {
             int32_t nextEraYear = kEraInfo[era + 1].year;

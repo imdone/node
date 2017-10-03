@@ -435,7 +435,7 @@ uspoof_areConfusableUnicodeString(const USpoofChecker *sc,
 
     // We only care about a few of the check flags.  Ignore the others.
     // If no tests relavant to this function have been specified, return an error.
-    // TODO:  is this really the right thing to do?  It's probably an error on the caller's part,
+    // TODO: is this really the right thing to do?  It's probably an error on the caller's part, id:544
     //        but logically we would just return 0 (no error).
     if ((This->fChecks & USPOOF_CONFUSABLE) == 0) {
         *status = U_INVALID_STATE_ERROR;

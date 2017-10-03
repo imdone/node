@@ -160,7 +160,7 @@ class Deserializer : public SerializerDeserializer {
 
   AllocationAlignment next_alignment_;
 
-  // TODO(6593): generalize rehashing, and remove this flag.
+  // TODO (6593): generalize rehashing, and remove this flag. id:2567
   bool can_rehash_;
 
   DISALLOW_COPY_AND_ASSIGN(Deserializer);

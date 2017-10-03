@@ -1017,7 +1017,7 @@ typedef enum UNumberFormatAttribute {
    * @internal technology preview
    */
   UNUM_MINIMUM_GROUPING_DIGITS = 22,
-  /* TODO: test C API when it becomes @draft */
+  /* TODO: test C API when it becomes @draft  id:525*/
 #endif  /* U_HIDE_INTERNAL_API */
 
   /**

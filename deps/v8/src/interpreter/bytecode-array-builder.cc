@@ -75,7 +75,7 @@ Register BytecodeArrayBuilder::Receiver() const {
 }
 
 Register BytecodeArrayBuilder::Local(int index) const {
-  // TODO(marja): Make a DCHECK once crbug.com/706234 is fixed.
+  // TODO (marja): Make a DCHECK once crbug.com/706234 is fixed. id:1718
   CHECK_LT(index, locals_count());
   return Register(index);
 }
@@ -678,7 +678,7 @@ BytecodeArrayBuilder& BytecodeArrayBuilder::LoadGlobal(const AstRawString* name,
   size_t name_index = GetConstantPoolEntry(name);
   // Ensure that typeof mode is in sync with the IC slot kind if the function
   // literal is available (not a unit test case).
-  // TODO(ishell): check only in debug mode.
+  // TODO (ishell): check only in debug mode. id:3081
   if (literal_) {
     FeedbackSlot slot = FeedbackVector::ToSlot(feedback_slot);
     CHECK_EQ(GetTypeofModeFromSlotKind(feedback_vector_spec()->GetKind(slot)),
@@ -828,7 +828,7 @@ BytecodeArrayBuilder& BytecodeArrayBuilder::StoreNamedProperty(
     LanguageMode language_mode) {
   // Ensure that language mode is in sync with the IC slot kind if the function
   // literal is available (not a unit test case).
-  // TODO(ishell): check only in debug mode.
+  // TODO (ishell): check only in debug mode. id:2095
   if (literal_) {
     FeedbackSlot slot = FeedbackVector::ToSlot(feedback_slot);
     CHECK_EQ(GetLanguageModeFromSlotKind(feedback_vector_spec()->GetKind(slot)),
@@ -855,7 +855,7 @@ BytecodeArrayBuilder& BytecodeArrayBuilder::StoreNamedOwnProperty(
   size_t name_index = GetConstantPoolEntry(name);
   // Ensure that the store operation is in sync with the IC slot kind if
   // the function literal is available (not a unit test case).
-  // TODO(ishell): check only in debug mode.
+  // TODO (ishell): check only in debug mode. id:2238
   if (literal_) {
     FeedbackSlot slot = FeedbackVector::ToSlot(feedback_slot);
     CHECK_EQ(FeedbackSlotKind::kStoreOwnNamed,
@@ -870,7 +870,7 @@ BytecodeArrayBuilder& BytecodeArrayBuilder::StoreKeyedProperty(
     LanguageMode language_mode) {
   // Ensure that language mode is in sync with the IC slot kind if the function
   // literal is available (not a unit test case).
-  // TODO(ishell): check only in debug mode.
+  // TODO (ishell): check only in debug mode. id:2272
   if (literal_) {
     FeedbackSlot slot = FeedbackVector::ToSlot(feedback_slot);
     CHECK_EQ(GetLanguageModeFromSlotKind(feedback_vector_spec()->GetKind(slot)),
@@ -1093,7 +1093,7 @@ BytecodeArrayBuilder& BytecodeArrayBuilder::JumpIfNil(BytecodeLabel* label,
                                                       Token::Value op,
                                                       NilValue nil) {
   if (op == Token::EQ) {
-    // TODO(rmcilroy): Implement JumpIfUndetectable.
+    // TODO (rmcilroy): Implement JumpIfUndetectable. id:1720
     return CompareUndetectable().JumpIfTrue(ToBooleanMode::kAlreadyBoolean,
                                             label);
   } else {
@@ -1111,7 +1111,7 @@ BytecodeArrayBuilder& BytecodeArrayBuilder::JumpIfNotNil(BytecodeLabel* label,
                                                          Token::Value op,
                                                          NilValue nil) {
   if (op == Token::EQ) {
-    // TODO(rmcilroy): Implement JumpIfUndetectable.
+    // TODO (rmcilroy): Implement JumpIfUndetectable. id:3083
     return CompareUndetectable().JumpIfFalse(ToBooleanMode::kAlreadyBoolean,
                                              label);
   } else {

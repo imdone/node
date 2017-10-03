@@ -174,14 +174,14 @@ struct FPURegister {
 
   inline static int NumRegisters();
 
-  // TODO(plind): Warning, inconsistent numbering here. kNumFPURegisters refers
+  // TODO (plind): Warning, inconsistent numbering here. kNumFPURegisters refers id:2182
   // to number of 32-bit FPU regs, but kNumAllocatableRegisters refers to
   // number of Double regs (64-bit regs, or FPU-reg-pairs).
 
   bool is_valid() const { return 0 <= reg_code && reg_code < kMaxNumRegisters; }
   bool is(FPURegister reg) const { return reg_code == reg.reg_code; }
   FPURegister low() const {
-    // TODO(plind): Create DCHECK for FR=0 mode. This usage suspect for FR=1.
+    // TODO (plind): Create DCHECK for FR=0 mode. This usage suspect for FR=1. id:2320
     // Find low reg of a Double-reg pair, which is the reg itself.
     DCHECK(reg_code % 2 == 0);  // Specified Double reg must be even.
     FPURegister reg;
@@ -190,7 +190,7 @@ struct FPURegister {
     return reg;
   }
   FPURegister high() const {
-    // TODO(plind): Create DCHECK for FR=0 mode. This usage illegal in FR=1.
+    // TODO (plind): Create DCHECK for FR=0 mode. This usage illegal in FR=1. id:2337
     // Find high reg of a Doubel-reg pair, which is reg + 1.
     DCHECK(reg_code % 2 == 0);  // Specified Double reg must be even.
     FPURegister reg;
@@ -2317,7 +2317,7 @@ class Assembler : public AssemblerBase {
   // dummy heap object handle that we emitted during code assembly with the
   // actual heap object handle.
  protected:
-  // TODO(neis): Make private if its use can be moved out of TurboAssembler.
+  // TODO (neis): Make private if its use can be moved out of TurboAssembler. id:1973
   void RequestHeapObject(HeapObjectRequest request);
 
  private:

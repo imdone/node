@@ -1073,7 +1073,7 @@ class FileInfo(object):
     locations won't see bogus errors.
     """
     fullname = self.FullName()
-    # XXX(bnoordhuis) Expects that cpplint.py lives in the tools/ directory.
+    # XXX (bnoordhuis) Expects that cpplint.py lives in the tools/ directory. id:3139
     toplevel = os.path.abspath(
         os.path.join(os.path.dirname(__file__), '..')).replace('\\', '/')
     prefix = os.path.commonprefix([fullname, toplevel])
@@ -1290,7 +1290,7 @@ def CleanseRawStrings(raw_lines):
 
     lines_without_raw_strings.append(line)
 
-  # TODO(unknown): if delimiter is not None here, we might want to
+  # TODO (unknown): if delimiter is not None here, we might want to id:3343
   # emit a warning for unterminated string.
   return lines_without_raw_strings
 
@@ -2205,7 +2205,7 @@ class _NamespaceInfo(_BlockInfo):
     # lines.  However, do apply checks if there is already an end of
     # namespace comment and it's incorrect.
     #
-    # TODO(unknown): We always want to check end of namespace comments
+    # TODO (unknown): We always want to check end of namespace comments id:3656
     # if a namespace is large, but sometimes we also want to apply the
     # check if a short namespace contained nontrivial things (something
     # other than forward declarations).  There is currently no logic on
@@ -2420,7 +2420,7 @@ class NestingState(object):
         # Restore the stack to how it was before the #if
         self.stack = copy.deepcopy(self.pp_stack[-1].stack_before_if)
       else:
-        # TODO(unknown): unexpected #else, issue warning?
+        # TODO (unknown): unexpected #else, issue warning? id:4073
         pass
     elif Match(r'^\s*#\s*endif\b', line):
       # End of #if or #else blocks.
@@ -2435,10 +2435,10 @@ class NestingState(object):
         # Drop the corresponding #if
         self.pp_stack.pop()
       else:
-        # TODO(unknown): unexpected #endif, issue warning?
+        # TODO (unknown): unexpected #endif, issue warning? id:3960
         pass
 
-  # TODO(unknown): Update() is too long, but we will refactor later.
+  # TODO (unknown): Update() is too long, but we will refactor later. id:3142
   def Update(self, filename, clean_lines, linenum, error):
     """Update nesting state with current line.
 
@@ -2710,7 +2710,7 @@ def CheckForNonStandardConstructs(filename, clean_lines, linenum,
           '>? and <? (max and min) operators are non-standard and deprecated.')
 
   if Search(r'^\s*const\s*string\s*&\s*\w+\s*;', line):
-    # TODO(unknown): Could it be expanded safely to arbitrary references,
+    # TODO (unknown): Could it be expanded safely to arbitrary references, id:3346
     # without triggering too many false positives? The first
     # attempt triggered 5 warnings for mostly benign code in the regtest, hence
     # the restriction.
@@ -2852,7 +2852,7 @@ def CheckSpacingForFunctionCall(filename, clean_lines, linenum, error):
         not Search(r'#\s*define|typedef|using\s+\w+\s*=', fncall) and
         not Search(r'\w\s+\((\w+::)*\*\w+\)\(', fncall) and
         not Search(r'\bcase\s+\(', fncall)):
-      # TODO(unknown): Space after an operator function seem to be a common
+      # TODO (unknown): Space after an operator function seem to be a common id:3658
       # error, silence those for now by restricting them to highest verbosity.
       if Search(r'\boperator_*\b', line):
         error(filename, linenum, 'whitespace/parens', 0,
@@ -2996,7 +2996,7 @@ def CheckComment(line, filename, linenum, next_line_start, error):
         error(filename, linenum, 'whitespace/comments', 2,
               'At least two spaces is best between code and comments')
 
-      # Checks for common mistakes in TODO comments.
+      # Checks for common mistakes in TODO comments. id:4075
       comment = line[commentpos:]
       match = _RE_PATTERN_TODO.match(comment)
       if match:
@@ -3102,7 +3102,7 @@ def CheckSpacing(filename, clean_lines, linenum, nesting_state, error):
     elided = clean_lines.elided
     prev_line = elided[linenum - 1]
     prevbrace = prev_line.rfind('{')
-    # TODO(unknown): Don't complain if line before blank line, and line after,
+    # TODO (unknown): Don't complain if line before blank line, and line after, id:3963
     #                both start with alnums and are indented the same amount.
     #                This ignores whitespace at the start of a namespace block
     #                because those are not usually indented.
@@ -3224,7 +3224,7 @@ def CheckOperatorSpacing(filename, clean_lines, linenum, error):
 
   # It's ok not to have spaces around binary operators like + - * /, but if
   # there's too little whitespace, we get concerned.  It's hard to tell,
-  # though, so we punt on this one for now.  TODO.
+  # though, so we punt on this one for now.  TODO . id:3145
 
   # You should always have whitespace around binary operators.
   #
@@ -3367,7 +3367,7 @@ def CheckCommaSpacing(filename, clean_lines, linenum, error):
 
   # You should always have a space after a semicolon
   # except for few corner cases
-  # TODO(unknown): clarify if 'if (1) { return 1;}' is requires one more
+  # TODO (unknown): clarify if 'if (1) { return 1;}' is requires one more id:3349
   # space after ;
   if Search(r';[^\s};\\)/]', line):
     error(filename, linenum, 'whitespace/semicolon', 3,
@@ -4146,7 +4146,7 @@ def CheckAltTokens(filename, clean_lines, linenum, error):
   # it provides a way to workaround this warning for people who use
   # multi-line comments in preprocessor macros.
   #
-  # TODO(unknown): remove this once cpplint has better support for
+  # TODO (unknown): remove this once cpplint has better support for id:3660
   # multi-line comments.
   if line.find('/*') >= 0 or line.find('*/') >= 0:
     return
@@ -4210,7 +4210,7 @@ def CheckStyle(filename, clean_lines, linenum, file_extension, nesting_state,
 
   # One or three blank spaces at the beginning of the line is weird; it's
   # hard to reconcile that with 2-space indents.
-  # NOTE: here are the conditions rob pike used for his tests.  Mine aren't
+  # NOTE: here are the conditions rob pike used for his tests.  Mine aren't id:4077
   # as sophisticated, but it may be worth becoming so:  RLENGTH==initial_spaces
   # if(RLENGTH > 20) complain = 0;
   # if(match($0, " +(error|private|public|protected):")) complain = 0;
@@ -4489,7 +4489,7 @@ def _GetTextInside(text, start_pattern):
     The extracted text.
     None if either the opening string or ending punctuation could not be found.
   """
-  # TODO(unknown): Audit cpplint.py to see what places could be profitably
+  # TODO (unknown): Audit cpplint.py to see what places could be profitably id:3965
   # rewritten to use _GetTextInside (and use inferior regexp matching today).
 
   # Give opening punctuations to get the matching close-punctuations.
@@ -4597,10 +4597,10 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension,
   CheckPrintf(filename, clean_lines, linenum, error)
 
   if file_extension == 'h':
-    # TODO(unknown): check that 1-arg constructors are explicit.
+    # TODO (unknown): check that 1-arg constructors are explicit. id:3148
     #                How to tell it's a constructor?
     #                (handled in CheckForNonStandardConstructs for now)
-    # TODO(unknown): check that classes declare or disable copy/assign
+    # TODO (unknown): check that classes declare or disable copy/assign id:3351
     #                (level 1 error)
     pass
 
@@ -4617,7 +4617,7 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension,
             'Use int16/int64/etc, rather than the C type %s' % match.group(1))
 
   # Check if some verboten operator overloading is going on
-  # TODO(unknown): catch out-of-line unary operator&:
+  # TODO (unknown): catch out-of-line unary operator&: id:3662
   #   class X {};
   #   int operator&(const X& x) { return 42; }  // unary operator&
   # The trick is it's hard to tell apart from binary operator&:
@@ -4635,7 +4635,7 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension,
   # Check for potential format string bugs like printf(foo).
   # We constrain the pattern not to pick things like DocidForPrintf(foo).
   # Not perfect but it can catch printf(foo.c_str()) and printf(foo->c_str())
-  # TODO(unknown): Catch the following case. Need to change the calling
+  # TODO (unknown): Catch the following case. Need to change the calling id:4079
   # convention of the whole function to process multiple line to handle it.
   #   printf(
   #       boy_this_is_a_really_long_variable_that_cannot_fit_on_the_prev_line);
@@ -4731,8 +4731,8 @@ def CheckGlobalStatic(filename, clean_lines, linenum, error):
   # This is dangerous because the C++ language does not guarantee that
   # globals with constructors are initialized before the first access, and
   # also because globals can be destroyed when some threads are still running.
-  # TODO(unknown): Generalize this to also find static unique_ptr instances.
-  # TODO(unknown): File bugs for clang-tidy to find these.
+  # TODO (unknown): Generalize this to also find static unique_ptr instances. id:3967
+  # TODO (unknown): File bugs for clang-tidy to find these. id:3150
   match = Match(
       r'((?:|static +)(?:|const +))(?::*std::)?string( +const)? +'
       r'([a-zA-Z0-9_:]+)\b(.*)',
@@ -4961,7 +4961,7 @@ def CheckForNonConstReference(filename, clean_lines, linenum,
   #   inside declarators: reference parameter
   # We will exclude the first two cases by checking that we are not inside a
   # function body, including one that was just introduced by a trailing '{'.
-  # TODO(unknown): Doesn't account for 'catch(Exception& e)' [rare].
+  # TODO (unknown): Doesn't account for 'catch(Exception& e)' [rare]. id:3353
   if (nesting_state.previous_stack_top and
       not (isinstance(nesting_state.previous_stack_top, _ClassInfo) or
            isinstance(nesting_state.previous_stack_top, _NamespaceInfo))):
@@ -5444,7 +5444,7 @@ def CheckForIncludeWhatYouUse(filename, clean_lines, include_state, error,
   # If we can't find the header file for a .cc, assume it's because we don't
   # know where to look. In that case we'll give up as we're not sure they
   # didn't include it in the .h file.
-  # TODO(unknown): Do a better job of finding .h files so we are confident that
+  # TODO (unknown): Do a better job of finding .h files so we are confident that id:3664
   # not having the .h file means there isn't one.
   if filename.endswith('.cc') and not header_found:
     return
@@ -5510,7 +5510,7 @@ def CheckRedundantVirtual(filename, clean_lines, linenum, error):
 
   # Look for the next opening parenthesis.  This is the start of the
   # parameter list (possibly on the next line shortly after virtual).
-  # TODO(unknown): doesn't work if there are virtual functions with
+  # TODO (unknown): doesn't work if there are virtual functions with id:4081
   # decltype() or other things that use parentheses, but csearch suggests
   # that this is rare.
   end_col = -1

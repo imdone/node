@@ -30,7 +30,7 @@
 
 function TestWithProxies(test, construct, handler) {
   test(construct, handler, function(h) { return new Proxy({}, h) })
-  // TODO(cbruni): Adapt and enable once we have [[Call]] working.
+  // TODO (cbruni): Adapt and enable once we have [[Call]] working. id:3861
   // test(construct, handler, function(h) {
   //  return Proxy.createFunction(h, function() {})
   // })

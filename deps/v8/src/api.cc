@@ -209,7 +209,7 @@ class InternalEscapableScope : public v8::EscapableHandleScope {
       : v8::EscapableHandleScope(reinterpret_cast<v8::Isolate*>(isolate)) {}
 };
 
-// TODO(jochen): This should be #ifdef DEBUG
+// TODO (jochen): This should be #ifdef DEBUG id:1590
 #ifdef V8_CHECK_MICROTASKS_SCOPES_CONSISTENCY
 void CheckMicrotasksScopesConsistency(i::Isolate* isolate) {
   auto handle_scope_implementer = isolate->handle_scope_implementer();
@@ -226,7 +226,7 @@ class CallDepthScope {
  public:
   explicit CallDepthScope(i::Isolate* isolate, Local<Context> context)
       : isolate_(isolate), context_(context), escaped_(false) {
-    // TODO(dcarney): remove this when blink stops crashing.
+    // TODO (dcarney): remove this when blink stops crashing. id:1273
     DCHECK(!isolate_->external_caught_exception());
     isolate_->handle_scope_implementer()->IncrementCallDepth();
     if (!context.IsEmpty()) {
@@ -249,7 +249,7 @@ class CallDepthScope {
     }
     if (!escaped_) isolate_->handle_scope_implementer()->DecrementCallDepth();
     if (do_callback) isolate_->FireCallCompletedCallback();
-// TODO(jochen): This should be #ifdef DEBUG
+// TODO (jochen): This should be #ifdef DEBUG id:1387
 #ifdef V8_CHECK_MICROTASKS_SCOPES_CONSISTENCY
     if (do_callback) CheckMicrotasksScopesConsistency(isolate_);
 #endif
@@ -406,7 +406,7 @@ void Utils::ReportOOMFailure(const char* location, bool is_heap_oom) {
   i::Isolate* isolate = i::Isolate::Current();
   OOMErrorCallback oom_callback = isolate->oom_behavior();
   if (oom_callback == nullptr) {
-    // TODO(wfh): Remove this fallback once Blink is setting OOM handler. See
+    // TODO (wfh): Remove this fallback once Blink is setting OOM handler. See id:986
     // crbug.com/614440.
     FatalErrorCallback fatal_callback = isolate->exception_behavior();
     if (fatal_callback == nullptr) {
@@ -707,7 +707,7 @@ StartupData SnapshotCreator::CreateBlob(
   // Serialize each context with a new partial serializer.
   i::List<i::SnapshotData*> context_snapshots(num_additional_contexts + 1);
 
-  // TODO(6593): generalize rehashing, and remove this flag.
+  // TODO (6593): generalize rehashing, and remove this flag. id:969
   bool can_be_rehashed = true;
 
   {
@@ -1269,7 +1269,7 @@ void Template::SetAccessorProperty(
     v8::Local<FunctionTemplate> setter,
     v8::PropertyAttribute attribute,
     v8::AccessControl access_control) {
-  // TODO(verwaest): Remove |access_control|.
+  // TODO (verwaest): Remove |access_control|. id:1592
   DCHECK_EQ(v8::DEFAULT, access_control);
   auto templ = Utils::OpenHandle(this);
   auto isolate = templ->GetIsolate();
@@ -4921,7 +4921,7 @@ void Object::SetAccessorProperty(Local<Name> name, Local<Function> getter,
                                  Local<Function> setter,
                                  PropertyAttribute attribute,
                                  AccessControl settings) {
-  // TODO(verwaest): Remove |settings|.
+  // TODO (verwaest): Remove |settings|. id:1276
   DCHECK_EQ(v8::DEFAULT, settings);
   i::Isolate* isolate = Utils::OpenHandle(this)->GetIsolate();
   ENTER_V8_NO_SCRIPT_NO_EXCEPTION(isolate);
@@ -6058,7 +6058,7 @@ int String::WriteUtf8(char* buffer,
       }
       // Recurse once without a capacity limit.
       // This will get into the first branch above.
-      // TODO(dcarney) Check max left rec. in Utf8Length and fall through.
+      // TODO (dcarney) Check max left rec. in Utf8Length and fall through. id:1390
       return WriteUtf8(buffer, -1, nchars_ref, options);
     }
   }
@@ -6549,7 +6549,7 @@ Local<Context> NewContext(
     v8::MaybeLocal<Value> global_object, size_t context_snapshot_index,
     v8::DeserializeInternalFieldsCallback embedder_fields_deserializer) {
   i::Isolate* isolate = reinterpret_cast<i::Isolate*>(external_isolate);
-  // TODO(jkummerow): This is for crbug.com/713699. Remove it if it doesn't
+  // TODO (jkummerow): This is for crbug.com/713699. Remove it if it doesn't id:1011
   // fail.
   // Sanity-check that the isolate is initialized and usable.
   CHECK(isolate->builtins()->Illegal()->IsCode());
@@ -6652,7 +6652,7 @@ v8::Local<v8::Object> Context::Global() {
   i::Handle<i::Context> context = Utils::OpenHandle(this);
   i::Isolate* isolate = context->GetIsolate();
   i::Handle<i::Object> global(context->global_proxy(), isolate);
-  // TODO(dcarney): This should always return the global proxy
+  // TODO (dcarney): This should always return the global proxy id:973
   // but can't presently as calls to GetProtoype will return the wrong result.
   if (i::Handle<i::JSGlobalProxy>::cast(
           global)->IsDetachedFrom(context->global_object())) {
@@ -6854,7 +6854,7 @@ STATIC_ASSERT(v8::String::kMaxLength == i::String::kMaxLength);
 
 }  // anonymous namespace
 
-// TODO(dcarney): throw a context free exception.
+// TODO (dcarney): throw a context free exception. id:1595
 #define NEW_STRING(isolate, class_name, function_name, Char, data, type,   \
                    length)                                                 \
   MaybeLocal<String> result;                                               \
@@ -6946,7 +6946,7 @@ Local<String> v8::String::Concat(Local<String> left, Local<String> right) {
 MaybeLocal<String> v8::String::NewExternalTwoByte(
     Isolate* isolate, v8::String::ExternalStringResource* resource) {
   CHECK(resource && resource->data());
-  // TODO(dcarney): throw a context free exception.
+  // TODO (dcarney): throw a context free exception. id:1279
   if (resource->length() > static_cast<size_t>(i::String::kMaxLength)) {
     return MaybeLocal<String>();
   }
@@ -6976,7 +6976,7 @@ Local<String> v8::String::NewExternal(
 MaybeLocal<String> v8::String::NewExternalOneByte(
     Isolate* isolate, v8::String::ExternalOneByteStringResource* resource) {
   CHECK(resource && resource->data());
-  // TODO(dcarney): throw a context free exception.
+  // TODO (dcarney): throw a context free exception. id:1392
   if (resource->length() > static_cast<size_t>(i::String::kMaxLength)) {
     return MaybeLocal<String>();
   }
@@ -7919,7 +7919,7 @@ Local<ArrayBuffer> v8::ArrayBuffer::New(Isolate* isolate, size_t byte_length) {
   ENTER_V8_NO_SCRIPT_NO_EXCEPTION(i_isolate);
   i::Handle<i::JSArrayBuffer> obj =
       i_isolate->factory()->NewJSArrayBuffer(i::SharedFlag::kNotShared);
-  // TODO(jbroman): It may be useful in the future to provide a MaybeLocal
+  // TODO (jbroman): It may be useful in the future to provide a MaybeLocal id:1016
   // version that throws an exception or otherwise does not crash.
   if (!i::JSArrayBuffer::SetupAllocatingData(obj, i_isolate, byte_length)) {
     i::FatalProcessOutOfMemory("v8::ArrayBuffer::New");
@@ -8119,7 +8119,7 @@ Local<SharedArrayBuffer> v8::SharedArrayBuffer::New(Isolate* isolate,
   ENTER_V8_NO_SCRIPT_NO_EXCEPTION(i_isolate);
   i::Handle<i::JSArrayBuffer> obj =
       i_isolate->factory()->NewJSArrayBuffer(i::SharedFlag::kShared);
-  // TODO(jbroman): It may be useful in the future to provide a MaybeLocal
+  // TODO (jbroman): It may be useful in the future to provide a MaybeLocal id:975
   // version that throws an exception or otherwise does not crash.
   if (!i::JSArrayBuffer::SetupAllocatingData(obj, i_isolate, byte_length, true,
                                              i::SharedFlag::kShared)) {
@@ -8517,7 +8517,7 @@ Isolate* IsolateNewImpl(internal::Isolate* isolate,
   isolate->set_allow_atomics_wait(params.allow_atomics_wait);
 
   SetResourceConstraints(isolate, params.constraints);
-  // TODO(jochen): Once we got rid of Isolate::Current(), we can remove this.
+  // TODO (jochen): Once we got rid of Isolate::Current(), we can remove this. id:1597
   Isolate::Scope isolate_scope(v8_isolate);
   if (params.entry_hook || !i::Snapshot::Initialize(isolate)) {
     base::ElapsedTimer timer;
@@ -9630,7 +9630,7 @@ bool debug::Script::GetPossibleBreakpoints(
 int debug::Script::GetSourceOffset(const debug::Location& location) const {
   i::Handle<i::Script> script = Utils::OpenHandle(this);
   if (script->type() == i::Script::TYPE_WASM) {
-    // TODO(clemensh): Return the proper thing for wasm.
+    // TODO (clemensh): Return the proper thing for wasm. id:1282
     return 0;
   }
 
@@ -9656,7 +9656,7 @@ int debug::Script::GetSourceOffset(const debug::Location& location) const {
 v8::debug::Location debug::Script::GetSourceLocation(int offset) const {
   i::Handle<i::Script> script = Utils::OpenHandle(this);
   if (script->type() == i::Script::TYPE_WASM) {
-    // TODO(clemensh): Return the proper thing for wasm.
+    // TODO (clemensh): Return the proper thing for wasm. id:1395
     return v8::debug::Location();
   }
   i::Script::PositionInfo info;
@@ -9744,7 +9744,7 @@ void debug::GetLoadedScripts(v8::Isolate* v8_isolate,
                              PersistentValueVector<debug::Script>& scripts) {
   i::Isolate* isolate = reinterpret_cast<i::Isolate*>(v8_isolate);
   ENTER_V8_NO_SCRIPT_NO_EXCEPTION(isolate);
-  // TODO(kozyatinskiy): remove this GC once tests are dealt with.
+  // TODO (kozyatinskiy): remove this GC once tests are dealt with. id:1020
   isolate->heap()->CollectAllGarbage(i::Heap::kMakeHeapIterableMask,
                                      i::GarbageCollectionReason::kDebugger);
   {

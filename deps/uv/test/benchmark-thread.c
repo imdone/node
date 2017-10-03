@@ -33,7 +33,7 @@ static volatile int num_threads;
 static void thread_entry(void* arg) {
   ASSERT(arg == (void *) 42);
   num_threads++;
-  /* FIXME write barrier? */
+  /* FIXME write barrier?  id:932*/
 }
 
 

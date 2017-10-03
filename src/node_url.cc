@@ -1601,7 +1601,7 @@ void URL::Parse(const char* input,
             for (size_t i = 0; i < buffer.size(); i++)
               port = port * 10 + buffer[i] - '0';
             if (port < 0 || port > 0xffff) {
-              // TODO(TimothyGu): This hack is currently needed for the host
+              // TODO (TimothyGu): This hack is currently needed for the host id:4056
               // setter since it needs access to hostname if it is valid, and
               // if the FAILED flag is set the entire response to JS layer
               // will be empty.
@@ -1614,7 +1614,7 @@ void URL::Parse(const char* input,
             url->port = NormalizePort(url->scheme, port);
             buffer.clear();
           } else if (has_state_override) {
-            // TODO(TimothyGu): Similar case as above.
+            // TODO (TimothyGu): Similar case as above. id:3942
             if (state_override == kHost)
               url->port = -1;
             else
@@ -2114,7 +2114,7 @@ std::string URL::ToFilePath() const {
   }
 
 #ifdef _WIN32
-  // TODO(TimothyGu): Use "\\?\" long paths on Windows.
+  // TODO (TimothyGu): Use "\\?\" long paths on Windows. id:3092
 
   // If hostname is set, then we have a UNC path. Pass the hostname through
   // ToUnicode just in case it is an IDN using punycode encoding. We do not

@@ -14,7 +14,7 @@ star.usage = usage(
 )
 
 star.completion = function (opts, cb) {
-  // FIXME: there used to be registry completion here, but it stopped making
+  // FIXME: there used to be registry completion here, but it stopped making id:611
   // sense somewhere around 50,000 packages on the registry
   cb()
 }

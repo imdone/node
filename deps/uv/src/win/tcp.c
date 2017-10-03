@@ -135,7 +135,7 @@ static int uv_tcp_set_socket(uv_loop_t* loop,
       return err;
   }
 
-  /* TODO: Use stored delay. */
+  /* TODO: Use stored delay.  id:1313*/
   if (handle->flags & UV_HANDLE_TCP_KEEPALIVE) {
     err = uv__tcp_keepalive(handle, socket, 1, 60);
     if (err)
@@ -326,7 +326,7 @@ static int uv_tcp_try_bind(uv_tcp_t* handle,
 
     on = (flags & UV_TCP_IPV6ONLY) != 0;
 
-    /* TODO: how to handle errors? This may fail if there is no ipv4 stack */
+    /* TODO: how to handle errors? This may fail if there is no ipv4 stack  id:924*/
     /* available, or when run on XP/2003 which have no support for dualstack */
     /* sockets. For now we're silently ignoring the error. */
     setsockopt(handle->socket,
@@ -1261,7 +1261,7 @@ int uv_tcp_keepalive(uv_tcp_t* handle, int enable, unsigned int delay) {
     handle->flags &= ~UV_HANDLE_TCP_KEEPALIVE;
   }
 
-  /* TODO: Store delay if handle->socket isn't created yet. */
+  /* TODO: Store delay if handle->socket isn't created yet.  id:925*/
 
   return 0;
 }

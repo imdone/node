@@ -80,7 +80,7 @@ void UpdateHandlerDataCodePointer(int index, void* base) {
 int RegisterHandlerData(void* base, size_t size,
                         size_t num_protected_instructions,
                         ProtectedInstructionData* protected_instructions) {
-  // TODO(eholk): in debug builds, make sure this data isn't already registered.
+  // TODO (eholk): in debug builds, make sure this data isn't already registered. id:2325
 
   CodeProtectionInfo* data = CreateHandlerData(
       base, size, num_protected_instructions, protected_instructions);
@@ -162,7 +162,7 @@ void ReleaseHandlerData(int index) {
     gCodeObjects[index].next_free = gNextCodeObject + 1;
     gNextCodeObject = index;
   }
-  // TODO(eholk): on debug builds, ensure there are no more copies in
+  // TODO (eholk): on debug builds, ensure there are no more copies in id:2493
   // the list.
   free(data);
 }

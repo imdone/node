@@ -21,7 +21,7 @@ test('break on (uncaught) exceptions', (t) => {
     })
     // making sure it will die by default:
     .then(() => cli.command('c'))
-    // TODO: Remove FATAL ERROR once node doesn't show a FATAL ERROR anymore
+    // TODO: Remove FATAL ERROR once node doesn't show a FATAL ERROR anymore id:598
     .then(() => cli.waitFor(/disconnect|FATAL ERROR/))
 
     // Next run: With `breakOnException` it pauses in both places
@@ -60,7 +60,7 @@ test('break on (uncaught) exceptions', (t) => {
       t.match(cli.output, `break in ${script}:1`);
     })
     .then(() => cli.command('c'))
-    // TODO: Remove FATAL ERROR once node doesn't show a FATAL ERROR anymore
+    // TODO: Remove FATAL ERROR once node doesn't show a FATAL ERROR anymore id:737
     .then(() => cli.waitFor(/disconnect|FATAL ERROR/))
 
     .then(() => cli.quit())

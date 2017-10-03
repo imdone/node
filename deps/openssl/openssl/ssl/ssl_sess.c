@@ -390,7 +390,7 @@ static int def_generate_session_id(const SSL *ssl, unsigned char *id,
         return 1;
     /* else - woops a session_id match */
     /*
-     * XXX We should also check the external cache -- but the probability of
+     * XXX We should also check the external cache -- but the probability of id:866
      * a collision is negligible, and we could not prevent the concurrent
      * creation of sessions with identical IDs since we currently don't have
      * means to atomically check whether a session ID already exists and make

@@ -25,7 +25,7 @@ ExternalReferenceEncoder::ExternalReferenceEncoder(Isolate* isolate) {
     // Ignore duplicate API references.
     if (table->is_api_reference(i) && !map_->Get(addr).IsNothing()) continue;
 #ifndef V8_OS_WIN
-    // TODO(yangguo): On Windows memcpy and memmove can end up at the same
+    // TODO (yangguo): On Windows memcpy and memmove can end up at the same id:2317
     // address due to ICF. See http://crbug.com/726896.
     DCHECK(map_->Get(addr).IsNothing());
 #endif

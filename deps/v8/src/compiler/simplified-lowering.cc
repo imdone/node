@@ -914,7 +914,7 @@ class RepresentationSelector {
       return MachineRepresentation::kFloat64;
     } else if (type->Is(
                    Type::Union(Type::SignedSmall(), Type::NaN(), zone()))) {
-      // TODO(turbofan): For Phis that return either NaN or some Smi, it's
+      // TODO (turbofan): For Phis that return either NaN or some Smi, it's id:1928
       // beneficial to not go all the way to double, unless the uses are
       // double uses. For tagging that just means some potentially expensive
       // allocation code; we might want to do the same for -0 as well?
@@ -1044,7 +1044,7 @@ class RepresentationSelector {
     if (!type->IsInhabited()) {
       return MachineType::None();
     }
-    // TODO(turbofan): Special treatment for ExternalPointer here,
+    // TODO (turbofan): Special treatment for ExternalPointer here, id:2009
     // to avoid incompatible truncations. We really need a story
     // for the JSFunction::entry field.
     if (type->Is(Type::ExternalPointer())) {
@@ -1095,7 +1095,7 @@ class RepresentationSelector {
     // Expression stack/accumulator.
     if (node->InputAt(2)->opcode() == IrOpcode::kStateValues ||
         node->InputAt(2)->opcode() == IrOpcode::kTypedStateValues) {
-      // TODO(turbofan): This should only be produced by AST graph builder.
+      // TODO (turbofan): This should only be produced by AST graph builder. id:1868
       // Remove once we switch to bytecode graph builder exclusively.
       ProcessInput(node, 2, UseInfo::AnyTagged());
     } else {
@@ -1135,7 +1135,7 @@ class RepresentationSelector {
       for (int i = 0; i < node->InputCount(); i++) {
         Node* input = node->InputAt(i);
         Type* input_type = TypeOf(input);
-        // TODO(turbofan): Special treatment for ExternalPointer here,
+        // TODO (turbofan): Special treatment for ExternalPointer here, id:1432
         // to avoid incompatible truncations. We really need a story
         // for the JSFunction::entry field.
         UseInfo use_info = UseInfo::None();
@@ -1307,7 +1307,7 @@ class RepresentationSelector {
       Type* right_feedback_type = TypeOf(node->InputAt(1));
       // Handle the case when no int32 checks on inputs are necessary (but
       // an overflow check is needed on the output).
-      // TODO(jarin) We should not look at the upper bound because the typer
+      // TODO (jarin) We should not look at the upper bound because the typer id:2882
       // could have already baked in some feedback into the upper bound.
       if (BothInputsAre(node, Type::Signed32()) ||
           (BothInputsAre(node, Type::Signed32OrMinusZero()) &&
@@ -1486,7 +1486,7 @@ class RepresentationSelector {
         // here, otherwise the input conversion will fail.
         return VisitLeaf(node, MachineRepresentation::kTagged);
       case IrOpcode::kParameter:
-        // TODO(titzer): use representation from linkage.
+        // TODO (titzer): use representation from linkage. id:1930
         return VisitUnop(node, UseInfo::None(), MachineRepresentation::kTagged);
       case IrOpcode::kInt32Constant:
         return VisitLeaf(node, MachineRepresentation::kWord32);
@@ -1541,7 +1541,7 @@ class RepresentationSelector {
       }
       case IrOpcode::kJSToNumber: {
         VisitInputs(node);
-        // TODO(bmeurer): Optimize somewhat based on input type?
+        // TODO (bmeurer): Optimize somewhat based on input type? id:2011
         if (truncation.IsUsedAsWord32()) {
           SetOutput(node, MachineRepresentation::kWord32);
           if (lower()) lowering->DoJSToNumberTruncatesToWord32(node, this);
@@ -2344,7 +2344,7 @@ class RepresentationSelector {
             NodeProperties::ChangeOp(node, simplified()->SeqStringCharCodeAt());
           }
         } else {
-          // TODO(turbofan): Allow builtins to return untagged values.
+          // TODO (turbofan): Allow builtins to return untagged values. id:1870
           VisitBinop(node, UseInfo::AnyTagged(), UseInfo::TruncatingWord32(),
                      MachineRepresentation::kTaggedSigned);
         }
@@ -2724,7 +2724,7 @@ class RepresentationSelector {
         return;
       }
       case IrOpcode::kObjectIsSmi: {
-        // TODO(turbofan): Optimize based on input representation.
+        // TODO (turbofan): Optimize based on input representation. id:1435
         VisitUnop(node, UseInfo::AnyTagged(), MachineRepresentation::kBit);
         return;
       }
@@ -2809,7 +2809,7 @@ class RepresentationSelector {
           VisitUnop(node, UseInfo::AnyTagged(), MachineRepresentation::kTagged);
           if (lower()) DeferReplacement(node, node->InputAt(0));
         } else {
-          // TODO(turbofan): Add a (Tagged) truncation that identifies hole
+          // TODO (turbofan): Add a (Tagged) truncation that identifies hole id:2884
           // and undefined, i.e. for a[i] === obj cases.
           VisitUnop(node, UseInfo::AnyTagged(), MachineRepresentation::kTagged);
         }
@@ -3022,7 +3022,7 @@ class RepresentationSelector {
     int input_index;
   };
   ZoneStack<NodeState> typing_stack_;  // stack for graph typing.
-  // TODO(danno): RepresentationSelector shouldn't know anything about the
+  // TODO (danno): RepresentationSelector shouldn't know anything about the id:1933
   // source positions table, but must for now since there currently is no other
   // way to pass down source position information to nodes created during
   // lowering. Once this phase becomes a vanilla reducer, it should get source

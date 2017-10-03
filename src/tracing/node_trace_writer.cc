@@ -110,7 +110,7 @@ void NodeTraceWriter::FlushSignalCb(uv_async_t* signal) {
   trace_writer->FlushPrivate();
 }
 
-// TODO(matthewloring): Remove (is it necessary to change the API?
+// TODO (matthewloring): Remove (is it necessary to change the API? id:4061
 // Since because of WriteSuffix it no longer matters whether it's true or false)
 void NodeTraceWriter::Flush() {
   Flush(true);

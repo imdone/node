@@ -96,7 +96,7 @@ struct UCaseMap : public icu::UMemory {
 U_CFUNC int32_t
 ustrcase_getCaseLocale(const char *locale);
 
-// TODO: swap src / dest if approved for new public api
+// TODO: swap src / dest if approved for new public api id:168
 /** Implements UStringCaseMapper. */
 U_CFUNC int32_t U_CALLCONV
 ustrcase_internalToLower(int32_t caseLocale, uint32_t options, UCASEMAP_BREAK_ITERATOR_PARAM

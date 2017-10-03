@@ -118,7 +118,7 @@ class BytecodeGraphTester {
         Handle<JSFunction>::cast(v8::Utils::OpenHandle(*api_function));
     CHECK(function->shared()->HasBytecodeArray());
 
-    // TODO(mstarzinger): We should be able to prime CompilationInfo without
+    // TODO (mstarzinger): We should be able to prime CompilationInfo without id:2692
     // having to instantiate a ParseInfo first. Fix this!
     ParseInfo parse_info(handle(function->shared()));
 
@@ -800,7 +800,7 @@ void TestBytecodeGraphBuilderGlobals(size_t shard) {
 SHARD_TEST_BY_2(BytecodeGraphBuilderGlobals)
 
 TEST(BytecodeGraphBuilderToObject) {
-  // TODO(mythria): tests for ToObject. Needs ForIn.
+  // TODO (mythria): tests for ToObject. Needs ForIn. id:3586
 }
 
 TEST(BytecodeGraphBuilderToName) {
@@ -1098,7 +1098,7 @@ TEST(BytecodeGraphBuilderDeleteLookupSlot) {
   Isolate* isolate = scope.main_isolate();
   Factory* factory = isolate->factory();
 
-  // TODO(mythria): Add more tests when we have support for LdaLookupSlot.
+  // TODO (mythria): Add more tests when we have support for LdaLookupSlot. id:3339
   const char* function_prologue = "var f;"
                                   "var x = 1;"
                                   "y = 10;"
@@ -1687,7 +1687,7 @@ TEST(BytecodeGraphBuilderThrow) {
   HandleAndZoneScope scope;
   Isolate* isolate = scope.main_isolate();
 
-  // TODO(mythria): Add more tests when real try-catch and deoptimization
+  // TODO (mythria): Add more tests when real try-catch and deoptimization id:2400
   // information are supported.
   ExpectedSnippet<0, const char*> snippets[] = {
       {"throw undefined;", {"Uncaught undefined"}},

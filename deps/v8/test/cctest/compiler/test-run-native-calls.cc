@@ -91,7 +91,7 @@ class Float32RegisterPairs : public Pairs {
       : Pairs(
             100,
 #if V8_TARGET_ARCH_ARM
-            // TODO(bbudge) Modify wasm linkage to allow use of all float regs.
+            // TODO (bbudge) Modify wasm linkage to allow use of all float regs. id:2606
             GetRegConfig()->num_allocatable_double_registers() / 2 - 2,
 #else
             GetRegConfig()->num_allocatable_double_registers(),
@@ -137,7 +137,7 @@ struct Allocator {
       if (fp_offset < fp_count) {
         int code = fp_regs[fp_offset++];
 #if V8_TARGET_ARCH_ARM
-        // TODO(bbudge) Modify wasm linkage to allow use of all float regs.
+        // TODO (bbudge) Modify wasm linkage to allow use of all float regs. id:2703
         if (type.representation() == MachineRepresentation::kFloat32) code *= 2;
 #endif
         return LinkageLocation::ForRegister(code, type);
@@ -844,7 +844,7 @@ TEST_INT32_SELECT(63)
 
 TEST(Int64Select_registers) {
   if (GetRegConfig()->num_allocatable_general_registers() < 2) return;
-  if (kPointerSize < 8) return;  // TODO(titzer): int64 on 32-bit platforms
+  if (kPointerSize < 8) return;  // TODO (titzer): int64 on 32-bit platforms id:3592
 
   int rarray[] = {GetRegConfig()->GetAllocatableGeneralCode(0)};
   ArgsBuffer<int64_t>::Sig sig(2);
@@ -1012,7 +1012,7 @@ TEST(Float64StackParamsToStackParams) {
 void MixedParamTest(int start) {
   if (GetRegConfig()->num_double_registers() < 2) return;
 
-// TODO(titzer): mix in 64-bit types on all platforms when supported.
+// TODO (titzer): mix in 64-bit types on all platforms when supported. id:3348
 #if V8_TARGET_ARCH_32_BIT
   static MachineType types[] = {
       MachineType::Int32(),   MachineType::Float32(), MachineType::Float64(),

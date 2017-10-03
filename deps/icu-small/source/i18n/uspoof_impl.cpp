@@ -37,7 +37,7 @@ SpoofImpl::SpoofImpl(SpoofData *data, UErrorCode& status) {
 SpoofImpl::SpoofImpl(UErrorCode& status) {
     construct(status);
 
-    // TODO: Call this method where it is actually needed, instead of in the
+    // TODO: Call this method where it is actually needed, instead of in the id:330
     // constructor, to allow for lazy data loading.  See #12696.
     fSpoofData = SpoofData::getDefault(status);
 }
@@ -46,7 +46,7 @@ SpoofImpl::SpoofImpl() {
     UErrorCode status = U_ZERO_ERROR;
     construct(status);
 
-    // TODO: Call this method where it is actually needed, instead of in the
+    // TODO: Call this method where it is actually needed, instead of in the id:380
     // constructor, to allow for lazy data loading.  See #12696.
     fSpoofData = SpoofData::getDefault(status);
 }

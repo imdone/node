@@ -1130,7 +1130,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       ASSEMBLE_IEEE754_UNOP(log10);
       break;
     case kIeee754Float64Pow: {
-      // TODO(bmeurer): Improve integration of the stub.
+      // TODO (bmeurer): Improve integration of the stub. id:2220
       if (!i.InputDoubleRegister(1).is(xmm2)) {
         __ movaps(xmm2, i.InputDoubleRegister(0));
         __ movaps(xmm1, i.InputDoubleRegister(1));
@@ -1361,14 +1361,14 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       __ sqrtss(i.OutputDoubleRegister(), i.InputOperand(0));
       break;
     case kSSEFloat32Abs: {
-      // TODO(bmeurer): Use 128-bit constants.
+      // TODO (bmeurer): Use 128-bit constants. id:1696
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psrlq(kScratchDoubleReg, 33);
       __ andps(i.OutputDoubleRegister(), kScratchDoubleReg);
       break;
     }
     case kSSEFloat32Neg: {
-      // TODO(bmeurer): Use 128-bit constants.
+      // TODO (bmeurer): Use 128-bit constants. id:1845
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psllq(kScratchDoubleReg, 31);
       __ xorps(i.OutputDoubleRegister(), kScratchDoubleReg);
@@ -1511,7 +1511,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kSSEFloat64Mod: {
-      // TODO(dcarney): alignment is wrong.
+      // TODO (dcarney): alignment is wrong. id:1680
       __ sub(esp, Immediate(kDoubleSize));
       // Move values to st(0) and st(1).
       __ movsd(Operand(esp, 0), i.InputDoubleRegister(1));
@@ -1536,14 +1536,14 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kSSEFloat64Abs: {
-      // TODO(bmeurer): Use 128-bit constants.
+      // TODO (bmeurer): Use 128-bit constants. id:1281
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psrlq(kScratchDoubleReg, 1);
       __ andpd(i.OutputDoubleRegister(), kScratchDoubleReg);
       break;
     }
     case kSSEFloat64Neg: {
-      // TODO(bmeurer): Use 128-bit constants.
+      // TODO (bmeurer): Use 128-bit constants. id:2223
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psllq(kScratchDoubleReg, 63);
       __ xorpd(i.OutputDoubleRegister(), kScratchDoubleReg);
@@ -1684,7 +1684,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat32Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1700
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psrlq(kScratchDoubleReg, 33);
       CpuFeatureScope avx_scope(tasm(), AVX);
@@ -1692,7 +1692,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat32Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1850
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psllq(kScratchDoubleReg, 31);
       CpuFeatureScope avx_scope(tasm(), AVX);
@@ -1700,7 +1700,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat64Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1682
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psrlq(kScratchDoubleReg, 1);
       CpuFeatureScope avx_scope(tasm(), AVX);
@@ -1708,7 +1708,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat64Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1284
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psllq(kScratchDoubleReg, 63);
       CpuFeatureScope avx_scope(tasm(), AVX);
@@ -2659,7 +2659,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
       Operand dst = g.ToOperand(destination);
       __ Move(dst, g.ToImmediate(source));
     } else if (src_constant.type() == Constant::kFloat32) {
-      // TODO(turbofan): Can we do better here?
+      // TODO (turbofan): Can we do better here? id:2226
       uint32_t src = src_constant.ToFloat32AsInt();
       if (destination->IsFPRegister()) {
         XMMRegister dst = g.ToDoubleRegister(destination);

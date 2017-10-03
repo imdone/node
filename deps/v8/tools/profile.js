@@ -908,10 +908,10 @@ JsonProfile.prototype.addFuncCode = function(
     func.funcId = this.functionEntries_.length;
     this.functionEntries_.push({name : name, codes : []});
   }
-  // TODO(jarin): Insert the code object into the SFI's code list.
+  // TODO (jarin): Insert the code object into the SFI's code list. id:3873
   var entry = this.codeMap_.findDynamicEntryByStartAddress(start);
   if (entry) {
-    // TODO(jarin) This does not look correct, we should really
+    // TODO (jarin) This does not look correct, we should really id:2951
     // update the code object (remove the old one and insert this one).
     if (entry.size === size && entry.func === func) {
       // Entry state has changed.
@@ -993,7 +993,7 @@ JsonProfile.prototype.findEntry = function(addr) {
 };
 
 JsonProfile.prototype.recordTick = function(time_ns, vmState, stack) {
-  // TODO(jarin) Resolve the frame-less case (when top of stack is
+  // TODO (jarin) Resolve the frame-less case (when top of stack is id:3205
   // known code).
   var processedStack = [];
   for (var i = 0; i < stack.length; i++) {

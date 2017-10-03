@@ -33,7 +33,7 @@ sub bn_mul_words
 		 &mov("eax",&DWP($i,$a,"",0)); 	# *a
 		&mul($w);			# *a * w
 		&add("eax",$c);			# L(t)+=c
-		 # XXX
+		 # XXX id:1100
 
 		&adc("edx",0);			# H(t)+=carry
 		 &mov(&DWP($i,$r,"",0),"eax");	# *r= L(t);
@@ -61,7 +61,7 @@ sub bn_mul_words
 		 &mov("eax",&DWP($i*4,$a,"",0));# *a
 		&mul($w);			# *a * w
 		&add("eax",$c);			# L(t)+=c
-		 # XXX
+		 # XXX id:972
 		&adc("edx",0);			# H(t)+=carry
 		 &mov(&DWP($i*4,$r,"",0),"eax");# *r= L(t);
 		&mov($c,"edx");			# c=  H(t);

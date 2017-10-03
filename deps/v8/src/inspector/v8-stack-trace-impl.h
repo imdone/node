@@ -120,7 +120,7 @@ class AsyncStackTrace {
   bool isEmpty() const;
 
   void setDescription(const String16& description) {
-    // TODO(kozyatinskiy): implement it without hack.
+    // TODO (kozyatinskiy): implement it without hack. id:2092
     m_description = description;
   }
   const std::vector<std::shared_ptr<StackFrame>>& frames() const {

@@ -129,7 +129,7 @@ void CodeGenerator::AssembleCode() {
       current_block_ = block->rpo_number();
       unwinding_info_writer_.BeginInstructionBlock(tasm()->pc_offset(), block);
       if (FLAG_code_comments) {
-        // TODO(titzer): these code comments are a giant memory leak.
+        // TODO (titzer): these code comments are a giant memory leak. id:1264
         Vector<char> buffer = Vector<char>::New(200);
         char* buffer_start = buffer.start();
 
@@ -164,7 +164,7 @@ void CodeGenerator::AssembleCode() {
         // We need to setup the root register after we assemble the prologue, to
         // avoid clobbering callee saved registers in case of C linkage and
         // using the roots.
-        // TODO(mtrofin): investigate how we can avoid doing this repeatedly.
+        // TODO (mtrofin): investigate how we can avoid doing this repeatedly. id:2207
         if (linkage()->GetIncomingDescriptor()->InitializeRootRegister()) {
           tasm()->InitializeRootRegister();
         }
@@ -368,7 +368,7 @@ void CodeGenerator::GetPushCompatibleMoves(Instruction* instr,
           pushes->clear();
           return;
         }
-        // TODO(danno): Right now, only consider moves from the FIRST gap for
+        // TODO (danno): Right now, only consider moves from the FIRST gap for id:1598
         // pushes. Theoretically, we could extract pushes for both gaps (there
         // are cases where this happens), but the logic for that would also have
         // to check to make sure that non-memory inputs to the pushes from the
@@ -924,7 +924,7 @@ void CodeGenerator::AddTranslationForOperand(Translation* translation,
             literal = DeoptimizationLiteral(isolate()->factory()->true_value());
           }
         } else {
-          // TODO(jarin,bmeurer): We currently pass in raw pointers to the
+          // TODO (jarin,bmeurer): We currently pass in raw pointers to the id:1828
           // JSFunction::entry here. We should really consider fixing this.
           DCHECK(type == MachineType::Int32() ||
                  type == MachineType::Uint32() ||
@@ -943,7 +943,7 @@ void CodeGenerator::AddTranslationForOperand(Translation* translation,
       case Constant::kInt64:
         // When pointers are 8 bytes, we can use int64 constants to represent
         // Smis.
-        // TODO(jarin,bmeurer): We currently pass in raw pointers to the
+        // TODO (jarin,bmeurer): We currently pass in raw pointers to the id:1668
         // JSFunction::entry here. We should really consider fixing this.
         DCHECK(type.representation() == MachineRepresentation::kWord64 ||
                type.representation() == MachineRepresentation::kTagged);

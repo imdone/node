@@ -39,7 +39,7 @@ from testrunner.local import testsuite
 from testrunner.local import utils
 from testrunner.objects import testcase
 
-# TODO(littledan): move the flag mapping into the status file
+# TODO (littledan): move the flag mapping into the status file id:3168
 FEATURE_FLAGS = {
   'object-rest': '--harmony-object-rest-spread',
   'object-spread': '--harmony-object-rest-spread',
@@ -256,7 +256,7 @@ class Test262TestSuite(testsuite.TestSuite):
         # Check for a JS file from the archive if we need to unpack. Some other
         # files from the archive unfortunately exist due to a bug in the
         # isolate_processor.
-        # TODO(machenbach): Migrate this to GN to avoid using the faulty
+        # TODO (machenbach): Migrate this to GN to avoid using the faulty id:3521
         # isolate_processor: http://crbug.com/669910
         not os.path.exists(os.path.join(DATA, 'test', 'harness', 'error.js'))):
       print "Extracting archive..."

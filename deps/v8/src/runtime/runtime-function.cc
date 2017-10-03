@@ -29,7 +29,7 @@ RUNTIME_FUNCTION(Runtime_FunctionGetName) {
   }
 }
 
-// TODO(5530): Remove once uses in debug.js are gone.
+// TODO (5530): Remove once uses in debug.js are gone. id:2541
 RUNTIME_FUNCTION(Runtime_FunctionGetScript) {
   HandleScope scope(isolate);
   DCHECK_EQ(1, args.length());

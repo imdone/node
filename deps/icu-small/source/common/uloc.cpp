@@ -963,7 +963,7 @@ uloc_setKeywordValue(const char* keywordName,
                      char* buffer, int32_t bufferCapacity,
                      UErrorCode* status)
 {
-    /* TODO: sorting. removal. */
+    /* TODO: sorting. removal.  id:119*/
     int32_t keywordNameLen;
     int32_t keywordValueLen;
     int32_t bufLen;
@@ -1265,7 +1265,7 @@ uloc_getCurrentLanguageID(const char* oldID){
  * in the functions for the later ones by
  * setting the *pEnd pointer to where they stopped parsing
  *
- * TODO try to use this in Locale
+ * TODO try to use this in Locale id:116
  */
 U_CFUNC int32_t
 ulocimp_getLanguage(const char *localeID,

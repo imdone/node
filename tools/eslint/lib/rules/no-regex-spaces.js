@@ -56,7 +56,7 @@ module.exports = {
                 });
 
                 /*
-                 * TODO: (platinumazure) Fix message to use rule message
+                 * TODO: (platinumazure) Fix message to use rule message id:3668
                  * substitution when api.report is fixed in lib/eslint.js.
                  */
             }

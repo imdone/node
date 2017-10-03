@@ -43,7 +43,7 @@ static const uint32_t kMaxFunctions = 10;
 
 enum WasmExecutionMode { kExecuteInterpreted, kExecuteCompiled };
 
-// TODO(titzer): check traps more robustly in tests.
+// TODO (titzer): check traps more robustly in tests. id:3689
 // Currently, in tests, we just return 0xdeadbeef from the function in which
 // the trap occurs if the runtime context is not available to throw a JavaScript
 // exception.
@@ -190,7 +190,7 @@ class TestingModule : public ModuleEnv {
 
   uint32_t AddFunction(FunctionSig* sig, Handle<Code> code, const char* name) {
     if (module->functions.size() == 0) {
-      // TODO(titzer): Reserving space here to avoid the underlying WasmFunction
+      // TODO (titzer): Reserving space here to avoid the underlying WasmFunction id:3444
       // structs from moving.
       module_.functions.reserve(kMaxFunctions);
     }
@@ -806,11 +806,11 @@ class WasmRunner : public WasmRunnerBase {
       possible_nondeterminism_ |= thread->PossibleNondeterminism();
       return val.to<ReturnType>();
     } else if (thread->state() == WasmInterpreter::TRAPPED) {
-      // TODO(titzer): return the correct trap code
+      // TODO (titzer): return the correct trap code id:2460
       int64_t result = 0xdeadbeefdeadbeef;
       return static_cast<ReturnType>(result);
     } else {
-      // TODO(titzer): falling off end
+      // TODO (titzer): falling off end id:2660
       return ReturnType{0};
     }
   }

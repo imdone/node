@@ -34,7 +34,7 @@ struct poll_ctx {
   uv_loop_t* loop;
   uv_fs_poll_cb poll_cb;
   uv_timer_t timer_handle;
-  uv_fs_t fs_req; /* TODO(bnoordhuis) mark fs_req internal */
+  uv_fs_t fs_req; /* TODO (bnoordhuis) mark fs_req internal  id:1175*/
   uv_stat_t statbuf;
   char path[1]; /* variable length */
 };

@@ -195,7 +195,7 @@ MaybeHandle<PreParsedScopeData> ProducedPreParsedScopeData::Serialize(
     DCHECK_EQ(data_for_inner_functions_.size(), 0);
     return previously_produced_preparsed_scope_data_;
   }
-  // FIXME(marja): save space by using a byte array and converting
+  // FIXME (marja): save space by using a byte array and converting id:3190
   // function data to bytes.
   size_t length = backing_store_.size();
   if (length == 0) {
@@ -325,7 +325,7 @@ void ProducedPreParsedScopeData::SaveDataForVariable(Variable* var) {
     backing_store_.push_back(name->raw_data()[i]);
   }
 #endif
-  // FIXME(marja): Only 3 bits needed, not a full byte.
+  // FIXME (marja): Only 3 bits needed, not a full byte. id:2262
   byte variable_data = VariableIsUsedField::encode(var->is_used()) |
                        VariableMaybeAssignedField::encode(
                            var->maybe_assigned() == kMaybeAssigned) |

@@ -1049,7 +1049,7 @@ struct OsrDeconstructionPhase {
     data->jsgraph()->GetCachedNodes(&roots);
     trimmer.TrimGraph(roots.begin(), roots.end());
 
-    // TODO(neis): Use data->osr_helper() here once AST graph builder is gone.
+    // TODO (neis): Use data->osr_helper() here once AST graph builder is gone. id:1894
     OsrHelper osr_helper(data->info());
     osr_helper.Deconstruct(data->jsgraph(), data->common(), temp_zone);
   }
@@ -1169,7 +1169,7 @@ struct ConcurrentOptimizationPrepPhase {
     data->jsgraph()->CEntryStubConstant(2);
     data->jsgraph()->CEntryStubConstant(3);
 
-    // TODO(turbofan): Remove this line once the Array constructor code
+    // TODO (turbofan): Remove this line once the Array constructor code id:1975
     // is a proper builtin and no longer a CodeStub.
     data->jsgraph()->ArrayConstructorStubConstant();
 
@@ -1228,7 +1228,7 @@ struct EffectControlLinearizationPhase {
 
   void Run(PipelineData* data, Zone* temp_zone) {
     // The scheduler requires the graphs to be trimmed, so trim now.
-    // TODO(jarin) Remove the trimming once the scheduler can handle untrimmed
+    // TODO (jarin) Remove the trimming once the scheduler can handle untrimmed id:1832
     // graphs.
     GraphTrimmer trimmer(temp_zone, data->graph());
     NodeVector roots(temp_zone);
@@ -1797,12 +1797,12 @@ bool PipelineImpl::OptimizeGraph(Linkage* linkage) {
 
   // Optimize memory access and allocation operations.
   Run<MemoryOptimizationPhase>();
-  // TODO(jarin, rossberg): Remove UNTYPED once machine typing works.
+  // TODO (jarin, rossberg): Remove UNTYPED once machine typing works. id:1383
   RunPrintAndVerify("Memory optimized", true);
 
   // Lower changes that have been inserted before.
   Run<LateOptimizationPhase>();
-  // TODO(jarin, rossberg): Remove UNTYPED once machine typing works.
+  // TODO (jarin, rossberg): Remove UNTYPED once machine typing works. id:2584
   RunPrintAndVerify("Late optimized", true);
 
   data->source_positions()->RemoveDecorator();
@@ -1882,7 +1882,7 @@ Handle<Code> Pipeline::GenerateCodeForTesting(
     Schedule* schedule, SourcePositionTable* source_positions) {
   // Construct a pipeline for scheduling and code generation.
   ZoneStats zone_stats(info->isolate()->allocator());
-  // TODO(wasm): Refactor code generation to check for non-existing source
+  // TODO (wasm): Refactor code generation to check for non-existing source id:1899
   // table, then remove this conditional allocation.
   if (!source_positions)
     source_positions = new (info->zone()) SourcePositionTable(graph);
@@ -1900,7 +1900,7 @@ Handle<Code> Pipeline::GenerateCodeForTesting(
     json_of << "{\"function\":\"" << info->GetDebugName().get()
             << "\", \"source\":\"\",\n\"phases\":[";
   }
-  // TODO(rossberg): Should this really be untyped?
+  // TODO (rossberg): Should this really be untyped? id:1977
   pipeline.RunPrintAndVerify("Machine", true);
 
   return pipeline.ScheduleAndGenerateCode(call_descriptor);
@@ -2027,7 +2027,7 @@ bool PipelineImpl::ScheduleAndSelectInstructions(Linkage* linkage,
     return false;
   }
 
-  // TODO(mtrofin): move this off to the register allocator.
+  // TODO (mtrofin): move this off to the register allocator. id:1837
   bool generate_frame_at_start =
       data_->sequence()->instruction_blocks().front()->must_construct_frame();
   // Optimimize jumps.
@@ -2155,7 +2155,7 @@ void PipelineImpl::AllocateRegisters(const RegisterConfiguration* config,
 
   Run<CommitAssignmentPhase>();
 
-  // TODO(chromium:725559): remove this check once
+  // TODO (chromium:725559): remove this check once id:1386
   // we understand the cause of the bug. We keep just the
   // check at the end of the allocation.
   if (verifier != nullptr) {

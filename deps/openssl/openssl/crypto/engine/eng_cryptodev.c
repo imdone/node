@@ -280,7 +280,7 @@ static int get_asym_dev_crypto(void)
 
 /*
  * Find out what ciphers /dev/crypto will let us have a session for.
- * XXX note, that some of these openssl doesn't deal with yet!
+ * XXX note, that some of these openssl doesn't deal with yet! id:683
  * returning them here is harmless, as long as we return NULL
  * when asked for a handler in the cryptodev_engine_ciphers routine
  */
@@ -319,7 +319,7 @@ static int get_cryptodev_ciphers(const int **cnids)
 # ifdef USE_CRYPTODEV_DIGESTS
 /*
  * Find out what digests /dev/crypto will let us have a session for.
- * XXX note, that some of these openssl doesn't deal with yet!
+ * XXX note, that some of these openssl doesn't deal with yet! id:782
  * returning them here is harmless, as long as we return NULL
  * when asked for a handler in the cryptodev_engine_digests routine
  */
@@ -442,7 +442,7 @@ cryptodev_cipher(EVP_CIPHER_CTX *ctx, unsigned char *out,
 
     if (ioctl(state->d_fd, CIOCCRYPT, &cryp) == -1) {
         /*
-         * XXX need better errror handling this can fail for a number of
+         * XXX need better errror handling this can fail for a number of id:1127
          * different reasons.
          */
         return (0);
@@ -510,7 +510,7 @@ static int cryptodev_cleanup(EVP_CIPHER_CTX *ctx)
         return (0);
 
     /*
-     * XXX if this ioctl fails, someting's wrong. the invoker may have called
+     * XXX if this ioctl fails, someting's wrong. the invoker may have called id:999
      * us with a bogus ctx, or we could have a device that for whatever
      * reason just doesn't want to play ball - it's not clear what's right
      * here - should this be an error? should it just increase a counter,
@@ -1180,7 +1180,7 @@ cryptodev_rsa_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa, BN_CTX *ctx)
     int ret = 1;
 
     if (!rsa->p || !rsa->q || !rsa->dmp1 || !rsa->dmq1 || !rsa->iqmp) {
-        /* XXX 0 means failure?? */
+        /* XXX 0 means failure??  id:1054*/
         return (0);
     }
 

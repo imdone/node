@@ -1487,7 +1487,7 @@ MemoryAllocator::AllocatePage<MemoryAllocator::kPooled, SemiSpace>(
 // Interface for heap object iterator to be implemented by all object space
 // object iterators.
 //
-// NOTE: The space specific object iterators also implements the own next()
+// NOTE: The space specific object iterators also implements the own next() id:3054
 //       method which is used to avoid using virtual functions
 //       iterating a specific space.
 

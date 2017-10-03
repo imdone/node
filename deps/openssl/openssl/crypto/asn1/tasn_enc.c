@@ -240,7 +240,7 @@ int ASN1_item_ex_i2d(ASN1_VALUE **pval, unsigned char **out,
             if (!seqtt)
                 return 0;
             pseqval = asn1_get_field_ptr(pval, seqtt);
-            /* FIXME: check for errors in enhanced version */
+            /* FIXME: check for errors in enhanced version  id:951*/
             asn1_template_ex_i2d(pseqval, out, seqtt, -1, aclass);
         }
         if (ndef == 2)
@@ -277,7 +277,7 @@ static int asn1_template_ex_i2d(ASN1_VALUE **pval, unsigned char **out,
     if (flags & ASN1_TFLG_TAG_MASK) {
         /* Error if argument and template tagging */
         if (tag != -1)
-            /* FIXME: error code here */
+            /* FIXME: error code here  id:1007*/
             return -1;
         /* Get tagging from template */
         ttag = tt->tag;

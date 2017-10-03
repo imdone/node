@@ -768,7 +768,7 @@ const Operator* JSOperatorBuilder::StoreDataPropertyInLiteral(
 }
 
 const Operator* JSOperatorBuilder::ToBoolean(ToBooleanHints hints) {
-  // TODO(turbofan): Cache most important versions of this operator.
+  // TODO (turbofan): Cache most important versions of this operator. id:2526
   return new (zone()) Operator1<ToBooleanHints>(  //--
       IrOpcode::kJSToBoolean, Operator::kPure,    // opcode
       "JSToBoolean",                              // name

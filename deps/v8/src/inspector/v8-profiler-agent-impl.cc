@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "src/base/atomicops.h"
-#include "src/flags.h"  // TODO(jgruber): Remove include and DEPS entry.
+#include "src/flags.h"  // TODO (jgruber): Remove include and DEPS entry. id:1711
 #include "src/inspector/protocol/Protocol.h"
 #include "src/inspector/string-util.h"
 #include "src/inspector/v8-debugger.h"
@@ -284,7 +284,7 @@ Response V8ProfilerAgentImpl::startPreciseCoverage(Maybe<bool> callCount) {
   // coverage data if it exists (at the time of writing, that's the case for
   // each function recompiled after the BlockCount mode has been set); and
   // function-granularity coverage data otherwise.
-  // TODO(jgruber): Implement block binary coverage.
+  // TODO (jgruber): Implement block binary coverage. id:3077
   v8::debug::Coverage::Mode count_mode =
       v8::internal::FLAG_block_coverage ? v8::debug::Coverage::kBlockCount
                                         : v8::debug::Coverage::kPreciseCount;

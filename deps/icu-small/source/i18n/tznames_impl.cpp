@@ -380,7 +380,7 @@ void
 TextTrieMap::search(const UnicodeString &text, int32_t start,
                   TextTrieMapSearchResultHandler *handler, UErrorCode &status) const {
     {
-        // TODO: if locking the mutex for each check proves to be a performance problem,
+        // TODO: if locking the mutex for each check proves to be a performance problem, id:296
         //       add a flag of type atomic_int32_t to class TextTrieMap, and use only
         //       the ICU atomic safe functions for assigning and testing.
         //       Don't test the pointer fLazyContents.
@@ -627,7 +627,7 @@ private:
 
         // Use the persistent ID as the resource key, so we can
         // avoid duplications.
-        // TODO: Is there a more efficient way, like intern() in Java?
+        // TODO: Is there a more efficient way, like intern() in Java? id:307
         void* key = (void*) ZoneMeta::findMetaZoneID(mzID);
         void* value;
         if (uprv_memcmp(names, EMPTY_NAMES, sizeof(EMPTY_NAMES)) == 0) {
@@ -669,7 +669,7 @@ private:
 
         // Use the persistent ID as the resource key, so we can
         // avoid duplications.
-        // TODO: Is there a more efficient way, like intern() in Java?
+        // TODO: Is there a more efficient way, like intern() in Java? id:360
         void* key = (void*) ZoneMeta::findTimeZoneID(tzID);
         void* value = (void*) (new ZNames(names, locationName));
         if (value == NULL) {
@@ -1347,7 +1347,7 @@ TimeZoneNamesImpl::find(const UnicodeString& text, int32_t start, uint32_t types
     TimeZoneNamesImpl* nonConstThis = const_cast<TimeZoneNamesImpl*>(this);
 
     // Synchronize so that data is not loaded multiple times.
-    // TODO: Consider more fine-grained synchronization.
+    // TODO: Consider more fine-grained synchronization. id:498
     {
         Mutex lock(&gDataMutex);
 
@@ -2251,7 +2251,7 @@ TZDBTimeZoneNames::getMetaZoneNames(const UnicodeString& mzID, UErrorCode& statu
                 }
                 // Use the persistent ID as the resource key, so we can
                 // avoid duplications.
-                // TODO: Is there a more efficient way, like intern() in Java?
+                // TODO: Is there a more efficient way, like intern() in Java? id:657
                 void* newKey = (void*) ZoneMeta::findMetaZoneID(mzID);
                 if (newKey != NULL) {
                     uhash_put(gTZDBNamesMap, newKey, cacheVal, &status);

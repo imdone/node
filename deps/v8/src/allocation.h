@@ -27,7 +27,7 @@ class V8_EXPORT_PRIVATE Malloced {
 };
 
 // DEPRECATED
-// TODO(leszeks): Delete this during a quiet period
+// TODO (leszeks): Delete this during a quiet period id:1271
 #define BASE_EMBEDDED
 
 

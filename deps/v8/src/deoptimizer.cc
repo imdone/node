@@ -2053,7 +2053,7 @@ FrameDescription::FrameDescription(uint32_t frame_size, int parameter_count)
       constant_pool_(kZapUint32) {
   // Zap all the registers.
   for (int r = 0; r < Register::kNumRegisters; r++) {
-    // TODO(jbramley): It isn't safe to use kZapUint32 here. If the register
+    // TODO (jbramley): It isn't safe to use kZapUint32 here. If the register id:2022
     // isn't used before the next safepoint, the GC will try to scan it as a
     // tagged value. kZapUint32 looks like a valid tagged pointer, but it isn't.
     SetRegister(r, kZapUint32);
@@ -2466,7 +2466,7 @@ DeoptimizedFrameInfo::DeoptimizedFrameInfo(TranslatedState* state,
   int stack_height = frame_it->height();
   if (frame_it->kind() == TranslatedFrame::kInterpretedFunction) {
     // For interpreter frames, we should not count the accumulator.
-    // TODO(jarin): Clean up the indexing in translated frames.
+    // TODO (jarin): Clean up the indexing in translated frames. id:2109
     stack_height--;
   }
   expression_stack_.resize(static_cast<size_t>(stack_height));

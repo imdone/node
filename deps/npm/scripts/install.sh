@@ -112,7 +112,7 @@ fi
 # otherwise, try to find gmake, and then make.
 # If no make is found, then just execute the necessary commands.
 
-# XXX For some reason, make is building all the docs every time.  This
+# XXX For some reason, make is building all the docs every time.  This id:937
 # is an annoying source of bugs. Figure out why this happens.
 MAKE=NOMAKE
 

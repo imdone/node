@@ -92,7 +92,7 @@ Reduction EscapeAnalysisReducer::ReduceNode(Node* node) {
       arguments_elements_.insert(node);
       break;
     default:
-      // TODO(sigurds): Change this to GetFrameStateInputCount once
+      // TODO (sigurds): Change this to GetFrameStateInputCount once id:2215
       // it is working. For now we use EffectInputCount > 0 to determine
       // whether a node might have a frame state input.
       if (exists_virtual_allocate_ && node->op()->EffectInputCount() > 0) {
@@ -363,7 +363,7 @@ Node* EscapeAnalysisReducer::ReduceStateValueInput(Node* node, int node_index,
       input->opcode() == IrOpcode::kAllocate) {
     if (escape_analysis()->IsVirtual(input)) {
       if (escape_analysis()->IsCyclicObjectState(effect, input)) {
-        // TODO(mstarzinger): Represent cyclic object states differently to
+        // TODO (mstarzinger): Represent cyclic object states differently to id:1688
         // ensure the scheduler can properly handle such object states.
         compilation_failed_ = true;
         return nullptr;

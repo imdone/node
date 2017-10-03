@@ -205,7 +205,7 @@ int OBJ_NAME_add(const char *name, int type, const char *data)
         if ((name_funcs_stack != NULL)
             && (sk_NAME_FUNCS_num(name_funcs_stack) > ret->type)) {
             /*
-             * XXX: I'm not sure I understand why the free function should
+             * XXX: I'm not sure I understand why the free function should id:1170
              * get three arguments... -- Richard Levitte
              */
             sk_NAME_FUNCS_value(name_funcs_stack,
@@ -239,7 +239,7 @@ int OBJ_NAME_remove(const char *name, int type)
         if ((name_funcs_stack != NULL)
             && (sk_NAME_FUNCS_num(name_funcs_stack) > ret->type)) {
             /*
-             * XXX: I'm not sure I understand why the free function should
+             * XXX: I'm not sure I understand why the free function should id:1019
              * get three arguments... -- Richard Levitte
              */
             sk_NAME_FUNCS_value(name_funcs_stack,

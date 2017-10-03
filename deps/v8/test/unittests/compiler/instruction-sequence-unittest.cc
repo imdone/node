@@ -488,7 +488,7 @@ InstructionBlock* InstructionSequenceTest::NewBlock(bool deferred) {
     } else {
       // This is a loop body.
       CHECK_NE(0, loop_data.expected_blocks_);
-      // TODO(dcarney): handle nested loops.
+      // TODO (dcarney): handle nested loops. id:3170
       loop_data.expected_blocks_--;
       loop_header = loop_data.loop_header_;
     }

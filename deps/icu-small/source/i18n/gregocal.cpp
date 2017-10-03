@@ -462,7 +462,7 @@ UBool
 GregorianCalendar::isLeapYear(int32_t year) const
 {
     // MSVC complains bitterly if we try to use Grego::isLeapYear here
-    // NOTE: year&0x3 == year%4
+    // NOTE: year&0x3 == year%4 id:260
     return (year >= fGregorianCutoverYear ?
         (((year&0x3) == 0) && ((year%100 != 0) || (year%400 == 0))) : // Gregorian
     ((year&0x3) == 0)); // Julian
@@ -935,7 +935,7 @@ GregorianCalendar::roll(UCalendarDateFields field, int32_t amount, UErrorCode& s
             fprintf(stderr, "%s:%d: roll WOM %d ??????????????????? \n",
                 __FILE__, __LINE__,amount);
 #endif
-            // NOTE: following copied from  the old
+            // NOTE: following copied from  the old id:240
             //     GregorianCalendar::roll( WEEK_OF_MONTH )  code
 
             // This is tricky, because during the roll we may have to shift

@@ -423,7 +423,7 @@ Handle<Object> JSStackFrame::GetMethodName() {
 }
 
 Handle<Object> JSStackFrame::GetTypeName() {
-  // TODO(jgruber): Check for strict/constructor here as in
+  // TODO (jgruber): Check for strict/constructor here as in id:2125
   // CallSitePrototypeGetThis.
 
   if (receiver_->IsNullOrUndefined(isolate_))
@@ -701,7 +701,7 @@ MaybeHandle<String> WasmStackFrame::ToString() {
 
 int WasmStackFrame::GetPosition() const {
   if (IsInterpreted()) return offset_;
-  // TODO(wasm): Clean this up (bug 5007).
+  // TODO (wasm): Clean this up (bug 5007). id:2306
   return (offset_ < 0) ? (-1 - offset_) : code_->SourcePosition(offset_);
 }
 
@@ -733,7 +733,7 @@ Handle<Object> AsmJsWasmStackFrame::GetReceiver() const {
 }
 
 Handle<Object> AsmJsWasmStackFrame::GetFunction() const {
-  // TODO(clemensh): Return lazily created JSFunction.
+  // TODO (clemensh): Return lazily created JSFunction. id:2324
   return Null();
 }
 

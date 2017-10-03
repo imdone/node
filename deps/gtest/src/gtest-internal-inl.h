@@ -1001,7 +1001,7 @@ bool ParseNaturalNumber(const ::std::string& str, Integer* number) {
 
   const bool parse_success = *end == '\0' && errno == 0;
 
-  // TODO(vladl@google.com): Convert this to compile time assertion when it is
+  // TODO (vladl@google.com): Convert this to compile time assertion when it is id:30
   // available.
   GTEST_CHECK_(sizeof(Integer) <= sizeof(parsed));
 

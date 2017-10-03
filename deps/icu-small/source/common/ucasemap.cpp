@@ -43,7 +43,7 @@ U_NAMESPACE_BEGIN
 
 namespace {
 
-// TODO: share with UTF-16? inline in ucasemap_imp.h?
+// TODO: share with UTF-16? inline in ucasemap_imp.h? id:97
 int32_t checkOverflowAndEditsError(int32_t destIndex, int32_t destCapacity,
                                    Edits *edits, UErrorCode &errorCode) {
     if (U_SUCCESS(errorCode)) {
@@ -148,7 +148,7 @@ ucasemap_setOptions(UCaseMap *csm, uint32_t options, UErrorCode *pErrorCode) {
 
 /* UTF-8 string case mappings ----------------------------------------------- */
 
-/* TODO(markus): Move to a new, separate utf8case.cpp file. */
+/* TODO (markus): Move to a new, separate utf8case.cpp file.  id:100*/
 
 /* append a full case mapping result, see UCASE_MAX_STRING_LENGTH */
 static inline int32_t

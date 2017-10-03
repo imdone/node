@@ -1198,7 +1198,7 @@ TEST(DiscardFunctionBody) {
   const char* discard_sources[] = {
       "(function f() { function g() { var a; } })();",
       "(function f() { function g() { { function h() { } } } })();",
-      /* TODO(conradw): In future it may be possible to apply this optimisation
+      /* TODO (conradw): In future it may be possible to apply this optimisation id:3665
        * to these productions.
       "(function f() { 0, function g() { var a; } })();",
       "(function f() { 0, { g() { var a; } } })();",
@@ -1232,7 +1232,7 @@ TEST(DiscardFunctionBody) {
                 ->AsFunctionDeclaration()
                 ->fun();
     } else {
-      // TODO(conradw): This path won't be hit until the other test cases can be
+      // TODO (conradw): This path won't be hit until the other test cases can be id:3390
       // uncommented.
       UNREACHABLE();
       CHECK_NOT_NULL(inner->body());
@@ -1498,7 +1498,7 @@ TEST(ParserSync) {
     "break",
     "break label",
     "break\nlabel",
-    // TODO(marja): activate once parsing 'return' is merged into ParserBase.
+    // TODO (marja): activate once parsing 'return' is merged into ParserBase. id:2441
     // "return",
     // "return  12",
     // "return\n12",
@@ -3172,7 +3172,7 @@ TEST(SerializationOfMaybeAssignmentFlag) {
   CHECK(var != NULL);
   // Maybe assigned should survive deserialization
   CHECK(var->maybe_assigned() == i::kMaybeAssigned);
-  // TODO(sigurds) Figure out if is_used should survive context serialization.
+  // TODO (sigurds) Figure out if is_used should survive context serialization. id:2636
 }
 
 
@@ -3274,7 +3274,7 @@ TEST(InnerAssignment) {
 
   // We set allow_error_in_inner_function to true in cases where our handling of
   // assigned variables in lazy inner functions is currently overly pessimistic.
-  // FIXME(marja): remove it when no longer needed.
+  // FIXME (marja): remove it when no longer needed. id:2757
   struct {
     const char* source;
     bool assigned;
@@ -3995,7 +3995,7 @@ TEST(AsmFunctionFlag) {
   CHECK(s1->IsAsmFunction() && s1->AsDeclarationScope()->asm_function());
 
   // The asm.js function {f2} should be marked as such.
-  // TODO(5653): If the block surrounding {f2} where to allocate a context we
+  // TODO (5653): If the block surrounding {f2} where to allocate a context we id:3667
   // would actually determine {f2} not to be an asm.js function. That decision
   // is fine but we should be consistent independent of whether a context is
   // allocated for the surrounding block scope!
@@ -4202,7 +4202,7 @@ TEST(ErrorsArrowFunctions) {
     "(bar, arguments) => { 'use strict'; 0 }",
     "(bar, yield) => { 'use strict'; 0 }",
     "(bar, interface) => { 'use strict'; 0 }",
-    // TODO(aperez): Detecting duplicates does not work in PreParser.
+    // TODO (aperez): Detecting duplicates does not work in PreParser. id:3393
     // "(bar, bar) => {}",
 
     // The parameter list is parsed as an expression, but only
@@ -5686,7 +5686,7 @@ TEST(InitializedDeclarationsInSloppyForInError) {
       "for (var i = 1 in {}) {}",
       "for (var i = void 0 in [1, 2, 3]) {}",
       NULL};
-  // TODO(caitp): This should be an error in sloppy mode.
+  // TODO (caitp): This should be an error in sloppy mode. id:2443
   RunParserSyncTest(context_data, data, kSuccess);
 }
 
@@ -6877,7 +6877,7 @@ TEST(ModuleParsingInternals) {
               .find(declarations->AtForTest(12)->proxy()->raw_name())
               ->second;
   CheckEntry(entry, "foob", "foob", nullptr, -1);
-  // TODO(neis): The next lines are terrible. Find a better way.
+  // TODO (neis): The next lines are terrible. Find a better way. id:2638
   auto name_x = declarations->AtForTest(0)->proxy()->raw_name();
   CHECK_EQ(2u, descriptor->regular_exports().count(name_x));
   auto it = descriptor->regular_exports().equal_range(name_x).first;
@@ -8413,7 +8413,7 @@ TEST(LanguageModeDirectivesNonSimpleParameterListErrors) {
       {NULL, NULL}};
 
   const char* data[] = {
-      // TODO(@caitp): support formal parameter initializers
+      // TODO (@caitp): support formal parameter initializers id:2758
       "{}",
       "[]",
       "[{}]",
@@ -8564,7 +8564,7 @@ TEST(EscapedKeywords) {
     "var { f\\u0061lse } = {};",
     "f\\u0061lse = 1;",
 
-    // TODO(caitp): consistent error messages for labeled statements and
+    // TODO (caitp): consistent error messages for labeled statements and id:3669
     // expressions
     "switch (this.a) { c\\u0061se 6: break; }",
     "try { } c\\u0061tch (e) {}",
@@ -8583,7 +8583,7 @@ TEST(EscapedKeywords) {
     "class C { st\\u0061tic get bar() {} }",
     "class C { st\\u0061tic set bar() {} }",
 
-    // TODO(adamk): These should not be errors in sloppy mode.
+    // TODO (adamk): These should not be errors in sloppy mode. id:3396
     "(y\\u0069eld);",
     "var y\\u0069eld = 1;",
     "var { y\\u0069eld } = {};",
@@ -8763,7 +8763,7 @@ TEST(FunctionDeclarationError) {
     "if (true) {} else label: function f() {}",
     "if (true) function* f() { }",
     "label: function* f() { }",
-    // TODO(littledan, v8:4806): Ban duplicate generator declarations in
+    // TODO (littledan, v8:4806): Ban duplicate generator declarations in id:2446
     // a block, maybe by tracking whether a Variable is a generator declaration
     // "{ function* f() {} function* f() {} }",
     // "{ function f() {} function* f() {} }",
@@ -8868,7 +8868,7 @@ TEST(ExponentiationOperatorErrors) {
     "[ x **= 2 ] = [ 2 ]",
     "{ x } **= { x: 2 }",
     "{ x: x **= 2 ] = { x: 2 }",
-    // TODO(caitp): a Call expression as LHS should be an early ReferenceError!
+    // TODO (caitp): a Call expression as LHS should be an early ReferenceError! id:2640
     // "Array() **= 10",
     NULL
   };
@@ -9064,7 +9064,7 @@ TEST(AsyncAwaitErrors) {
 
     "var O = { async method(dupe, dupe) {} }",
 
-    // TODO(caitp): preparser needs to report duplicate parameter errors, too.
+    // TODO (caitp): preparser needs to report duplicate parameter errors, too. id:2759
     // "var f = async(dupe, dupe) => {}",
 
     NULL
@@ -9852,7 +9852,7 @@ TEST(ForAwaitOf) {
 
   RunParserSyncTest(context_data, var_data, kSuccess, NULL, 0, always_flags,
                     arraysize(always_flags));
-  // TODO(marja): PreParser doesn't report early errors.
+  // TODO (marja): PreParser doesn't report early errors. id:3671
   //              (https://bugs.chromium.org/p/v8/issues/detail?id=2728)
   // RunParserSyncTest(context_data2, var_data, kError, NULL, 0, always_flags,
   //                   arraysize(always_flags));
@@ -10039,7 +10039,7 @@ TEST(ForAwaitOfFunctionDeclaration) {
     "for await (x of []) function d() {}; return d;",
     "for await (x of []) function* g() {};",
     "for await (x of []) function* g() {}; return g;",
-    // TODO(caitp): handle async function declarations in ParseScopedStatement.
+    // TODO (caitp): handle async function declarations in ParseScopedStatement. id:3399
     // "for await (x of []) async function a() {};",
     // "for await (x of []) async function a() {}; return a;",
     NULL

@@ -30,7 +30,7 @@ function wasmIsSupported() {
   return (typeof WebAssembly.Module) == 'function';
 }
 function assertErrorMessage(func, type, msg) {
-  // TODO   assertThrows(func, type, msg);
+  // TODO assertThrows(func, type, msg); id:3840
   assertThrows(func, type);
 }
 
@@ -561,7 +561,7 @@ assertTrue(new Table({initial: 1, element: 'anyfunc'}) instanceof Table);
 assertTrue(new Table({initial: 1.5, element: 'anyfunc'}) instanceof Table);
 assertTrue(
     new Table({initial: 1, maximum: 1.5, element: 'anyfunc'}) instanceof Table);
-// TODO:maximum assertTrue(new Table({initial:1, maximum:Math.pow(2,32)-1,
+// TODO: maximum assertTrue(new Table({initial:1, maximum:Math.pow(2,32)-1, id:2896
 // element:"anyfunc"}) instanceof Table);
 
 // 'WebAssembly.Table.prototype' data property
@@ -620,7 +620,7 @@ assertErrorMessage(() => get.call(tbl1, 2), RangeError, /bad Table get index/);
 assertErrorMessage(
     () => get.call(tbl1, 2.5), RangeError, /bad Table get index/);
 assertErrorMessage(() => get.call(tbl1, -1), RangeError, /bad Table get index/);
-// TODO assertErrorMessage(() => get.call(tbl1, Math.pow(2,33)), RangeError,
+// TODO assertErrorMessage(() => get.call(tbl1, Math.pow(2,33)), RangeError, id:3164
 // /bad Table get index/);
 assertErrorMessage(
     () => get.call(tbl1, {valueOf() { throw new Error('hi') }}), Error, 'hi');
@@ -644,7 +644,7 @@ assertErrorMessage(
     () => set.call(tbl1, 2, null), RangeError, /bad Table set index/);
 assertErrorMessage(
     () => set.call(tbl1, -1, null), RangeError, /bad Table set index/);
-// TODO assertErrorMessage(() => set.call(tbl1, Math.pow(2,33), null),
+// TODO assertErrorMessage(() => set.call(tbl1, Math.pow(2,33), null), id:3517
 // RangeError, /bad Table set index/);
 assertErrorMessage(
     () => set.call(tbl1, 0, undefined), TypeError,
@@ -693,7 +693,7 @@ assertErrorMessage(() => tbl.grow(1), Error, /failed to grow table/);
 assertErrorMessage(() => WebAssembly.validate(), TypeError);
 assertErrorMessage(() => WebAssembly.validate('hi'), TypeError);
 assertTrue(WebAssembly.validate(emptyModuleBinary));
-// TODO: other ways for validate to return false.
+// TODO: other ways for validate to return false. id:3979
 assertFalse(WebAssembly.validate(moduleBinaryImporting2Memories));
 assertFalse(WebAssembly.validate(moduleBinaryWithMemSectionAndMemImport));
 
@@ -713,7 +713,7 @@ function assertCompileError(args, err, msg) {
   var error = null;
   assertPromiseResult(compile(...args), unexpectedSuccess, error => {
     assertTrue(error instanceof err);
-    // TODO  assertTrue(Boolean(error.message.match(msg)));
+    // TODO assertTrue(Boolean(error.message.match(msg))); id:3842
   });
 }
 assertCompileError([], TypeError, /requires more than 0 arguments/);
@@ -759,7 +759,7 @@ function assertInstantiateError(args, err, msg) {
   var error = null;
   assertPromiseResult(instantiate(...args), unexpectedSuccess, error => {
     assertTrue(error instanceof err);
-    // TODO assertTrue(Boolean(error.message.match(msg)));
+    // TODO assertTrue(Boolean(error.message.match(msg))); id:2898
   });
 }
 var scratch_memory = new WebAssembly.Memory(new ArrayBuffer(10));

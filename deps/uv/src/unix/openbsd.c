@@ -95,7 +95,7 @@ int uv_exepath(char* buffer, size_t* size) {
   }
 
   if (argsbuf[0] == NULL) {
-    err = -EINVAL;  /* FIXME(bnoordhuis) More appropriate error. */
+    err = -EINVAL;  /* FIXME (bnoordhuis) More appropriate error.  id:1288*/
     goto out;
   }
 

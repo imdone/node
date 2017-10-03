@@ -955,7 +955,7 @@ static int hwcrhk_mod_exp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 
     if (ret < 0) {
         /*
-         * FIXME: When this error is returned, HWCryptoHook is telling us
+         * FIXME: When this error is returned, HWCryptoHook is telling us id:1233
          * that falling back to software computation might be a good thing.
          */
         if (ret == HWCRYPTOHOOK_ERROR_FALLBACK) {
@@ -1022,7 +1022,7 @@ static int hwcrhk_rsa_mod_exp(BIGNUM *r, const BIGNUM *I, RSA *rsa,
 
         if (ret < 0) {
             /*
-             * FIXME: When this error is returned, HWCryptoHook is telling us
+             * FIXME: When this error is returned, HWCryptoHook is telling us id:752
              * that falling back to software computation might be a good
              * thing.
              */
@@ -1068,7 +1068,7 @@ static int hwcrhk_rsa_mod_exp(BIGNUM *r, const BIGNUM *I, RSA *rsa,
 
         if (ret < 0) {
             /*
-             * FIXME: When this error is returned, HWCryptoHook is telling us
+             * FIXME: When this error is returned, HWCryptoHook is telling us id:850
              * that falling back to software computation might be a good
              * thing.
              */
@@ -1145,7 +1145,7 @@ static int hwcrhk_rand_bytes(unsigned char *buf, int num)
     ret = p_hwcrhk_RandomBytes(hwcrhk_context, buf, num, &rmsg);
     if (ret < 0) {
         /*
-         * FIXME: When this error is returned, HWCryptoHook is telling us
+         * FIXME: When this error is returned, HWCryptoHook is telling us id:1447
          * that falling back to software computation might be a good thing.
          */
         if (ret == HWCRYPTOHOOK_ERROR_FALLBACK) {

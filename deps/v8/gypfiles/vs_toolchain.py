@@ -51,7 +51,7 @@ def SetEnvironmentAndGetRuntimeDllDirs():
     if not win_sdk:
       win_sdk = toolchain_data['win8sdk']
     wdk = toolchain_data['wdk']
-    # TODO(scottmg): The order unfortunately matters in these. They should be
+    # TODO (scottmg): The order unfortunately matters in these. They should be id:1252
     # split into separate keys for x86 and x64. (See CopyVsRuntimeDlls call
     # below). http://crbug.com/345992
     vs_runtime_dll_dirs = toolchain_data['runtime_dirs']

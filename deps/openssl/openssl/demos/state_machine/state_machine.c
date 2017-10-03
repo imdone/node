@@ -367,11 +367,11 @@ int main(int argc, char **argv)
             }
             assert(n >= 0);
             ++n;
-            if (n > 0) {        /* FIXME: has to be true now */
+            if (n > 0) {        /* FIXME: has to be true now  id:1225*/
                 int w;
 
                 w = write(1, buf, n);
-                /* FIXME: we should push back any unwritten data */
+                /* FIXME: we should push back any unwritten data  id:744*/
                 assert(w == n);
             }
         }
@@ -386,7 +386,7 @@ int main(int argc, char **argv)
             assert(n > 0);
 
             w = write(nFD, buf, n);
-            /* FIXME: we should push back any unwritten data */
+            /* FIXME: we should push back any unwritten data  id:840*/
             assert(w == n);
         }
 

@@ -66,7 +66,7 @@
 # include <openssl/objects.h>
 # include <openssl/rc4.h>
 
-/* FIXME: surely this is available elsewhere? */
+/* FIXME: surely this is available elsewhere?  id:1058*/
 # define EVP_RC4_KEY_SIZE                16
 
 typedef struct {

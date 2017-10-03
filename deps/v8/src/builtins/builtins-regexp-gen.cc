@@ -50,7 +50,7 @@ void RegExpBuiltinsAssembler::FastStoreLastIndex(Node* regexp, Node* value) {
 void RegExpBuiltinsAssembler::SlowStoreLastIndex(Node* context, Node* regexp,
                                                  Node* value) {
   // Store through runtime.
-  // TODO(ishell): Use SetPropertyStub here once available.
+  // TODO (ishell): Use SetPropertyStub here once available. id:1418
   Node* const name = HeapConstant(isolate()->factory()->lastIndex_string());
   Node* const language_mode = SmiConstant(STRICT);
   CallRuntime(Runtime::kSetProperty, context, regexp, name, value,
@@ -154,7 +154,7 @@ Node* RegExpBuiltinsAssembler::ConstructNewResultFromMatchInfo(
     GotoIf(SmiEqual(names, SmiConstant(0)), &out);
 
     // Allocate a new object to store the named capture properties.
-    // TODO(jgruber): Could be optimized by adding the object map to the heap
+    // TODO (jgruber): Could be optimized by adding the object map to the heap id:1148
     // root list.
 
     Node* const native_context = LoadNativeContext(context);
@@ -563,7 +563,7 @@ Node* RegExpBuiltinsAssembler::RegExpExecInternal(Node* const context,
 
   BIND(&atom);
   {
-    // TODO(jgruber): A call with 4 args stresses register allocation, this
+    // TODO (jgruber): A call with 4 args stresses register allocation, this id:1856
     // should probably just be inlined.
     Node* const result = CallBuiltin(Builtins::kRegExpExecAtom, context, regexp,
                                      string, last_index, match_info);
@@ -808,7 +808,7 @@ void RegExpBuiltinsAssembler::BranchIfFastRegExp(Node* const context,
                                                  Label* const if_ismodified) {
   CSA_ASSERT(this, WordEqual(LoadMap(object), map));
 
-  // TODO(ishell): Update this check once map changes for constant field
+  // TODO (ishell): Update this check once map changes for constant field id:1476
   // tracking are landing.
 
   Node* const native_context = LoadNativeContext(context);
@@ -2005,7 +2005,7 @@ void RegExpBuiltinsAssembler::RegExpPrototypeMatchBody(Node* const context,
 
           BIND(&slow_result);
           {
-            // TODO(ishell): Use GetElement stub once it's available.
+            // TODO (ishell): Use GetElement stub once it's available. id:1695
             Node* const match = GetProperty(context, result, smi_zero);
             var_match.Bind(ToString_Inline(context, match));
             Goto(&if_didmatch);
@@ -2479,7 +2479,7 @@ TF_BUILTIN(RegExpSplit, RegExpBuiltinsAssembler) {
   CSA_ASSERT(this, IsFastRegExp(context, regexp));
   CSA_ASSERT(this, IsString(string));
 
-  // TODO(jgruber): Even if map checks send us to the fast path, we still need
+  // TODO (jgruber): Even if map checks send us to the fast path, we still need id:1422
   // to verify the constructor property and jump to the slow path if it has
   // been changed.
 
@@ -2509,7 +2509,7 @@ TF_BUILTIN(RegExpSplit, RegExpBuiltinsAssembler) {
 
   BIND(&if_limitissmimax);
   {
-    // TODO(jgruber): In this case, we can probably avoid generation of limit
+    // TODO (jgruber): In this case, we can probably avoid generation of limit id:1151
     // checks in Generate_RegExpPrototypeSplitBody.
     var_limit.Bind(SmiConstant(Smi::kMaxValue));
     Goto(&limit_done);
@@ -2741,7 +2741,7 @@ Node* RegExpBuiltinsAssembler::ReplaceGlobalCallableFastPath(
 
                     CSA_ASSERT(this, HasInstanceType(elem, JS_ARRAY_TYPE));
 
-                    // TODO(jgruber): Remove indirection through
+                    // TODO (jgruber): Remove indirection through id:2086
                     // Call->ReflectApply.
                     Callable call_callable = CodeFactory::Call(isolate);
                     Node* const reflect_apply = LoadContextElement(
@@ -2842,7 +2842,7 @@ Node* RegExpBuiltinsAssembler::ReplaceSimpleStringFastPath(
 
       BIND(&if_replaceisempty);
       {
-        // TODO(jgruber): We could skip many of the checks that using SubString
+        // TODO (jgruber): We could skip many of the checks that using SubString id:1481
         // here entails.
 
         Node* const first_part =

@@ -68,7 +68,7 @@ class StringBytes {
 
   // Does the string match the encoding? Quick but non-exhaustive.
   // Example: a HEX string must have a length that's a multiple of two.
-  // FIXME(bnoordhuis) IsMaybeValidString()? Naming things is hard...
+  // FIXME (bnoordhuis) IsMaybeValidString()? Naming things is hard... id:3325
   static bool IsValidString(v8::Local<v8::String> string,
                             enum encoding enc);
 

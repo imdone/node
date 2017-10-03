@@ -231,7 +231,7 @@ static void AssignVectorSlots(Expression* expr, FeedbackVectorSpec* spec,
                               FeedbackSlot* out_slot) {
   Property* property = expr->AsProperty();
   LhsKind assign_type = Property::GetAssignType(property);
-  // TODO(ishell): consider using ICSlotCache for variables here.
+  // TODO (ishell): consider using ICSlotCache for variables here. id:1051
   if (assign_type == VARIABLE &&
       expr->AsVariableProxy()->var()->IsUnallocated()) {
     *out_slot = spec->AddStoreGlobalICSlot(language_mode);
@@ -677,7 +677,7 @@ void ObjectLiteral::BuildConstantProperties(Isolate* isolate) {
 bool ObjectLiteral::IsFastCloningSupported() const {
   // The FastCloneShallowObject builtin doesn't copy elements, and object
   // literals don't support copy-on-write (COW) elements for now.
-  // TODO(mvstanton): make object literals support COW elements.
+  // TODO (mvstanton): make object literals support COW elements. id:1733
   return fast_elements() && is_shallow() &&
          properties_count() <=
              ConstructorBuiltins::kMaximumClonedShallowObjectProperties;

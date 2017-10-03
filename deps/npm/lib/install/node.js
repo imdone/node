@@ -62,7 +62,7 @@ function reset (node, seen) {
   seen.add(node)
   var child = create(node)
 
-  // FIXME: cleaning up after read-package-json's mess =(
+  // FIXME: cleaning up after read-package-json's mess =( id:436
   if (child.package._id === '@') delete child.package._id
 
   child.isTop = false

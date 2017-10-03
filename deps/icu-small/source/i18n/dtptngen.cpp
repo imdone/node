@@ -502,7 +502,7 @@ U_CFUNC void U_CALLCONV DateTimePatternGenerator::loadAllowedHourFormatsData(UEr
     LocalUResourceBundlePointer rb(ures_openDirect(NULL, "supplementalData", &status));
 
     AllowedHourFormatsSink sink;
-    // TODO: Currently in the enumeration each table allocates a new array.
+    // TODO: Currently in the enumeration each table allocates a new array. id:313
     // Try to reduce the number of memory allocations. Consider storing a
     // UVector32 with the concatenation of all of the sub-arrays, put the start index
     // into the hashmap, store 6 single-value sub-arrays right at the beginning of the
@@ -609,7 +609,7 @@ DateTimePatternGenerator::addICUPatterns(const Locale& locale, UErrorCode& statu
             sdf->toPattern(dfPattern);
             addPattern(dfPattern, FALSE, conflictingString, status);
         }
-        // TODO Maybe we should return an error when the date format isn't simple.
+        // TODO Maybe we should return an error when the date format isn't simple. id:423
         delete df;
         if (U_FAILURE(status)) { return; }
 
@@ -618,13 +618,13 @@ DateTimePatternGenerator::addICUPatterns(const Locale& locale, UErrorCode& statu
             sdf->toPattern(dfPattern);
             addPattern(dfPattern, FALSE, conflictingString, status);
 
-            // TODO: C++ and Java are inconsistent (see #12568).
+            // TODO: C++ and Java are inconsistent (see #12568). id:572
             // C++ uses MEDIUM, but Java uses SHORT.
             if ( i==DateFormat::kShort && !dfPattern.isEmpty() ) {
                 consumeShortTimePattern(dfPattern, status);
             }
         }
-        // TODO Maybe we should return an error when the date format isn't simple.
+        // TODO Maybe we should return an error when the date format isn't simple. id:255
         delete df;
         if (U_FAILURE(status)) { return; }
     }
@@ -730,7 +730,7 @@ DateTimePatternGenerator::consumeShortTimePattern(const UnicodeString& shortTime
         }
     }
 
-    // HACK for hh:ss
+    // HACK for hh:ss id:232
     hackTimes(shortTimePattern, status);
 }
 

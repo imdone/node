@@ -43,7 +43,7 @@ UV_UNUSED(static void uv_spinlock_unlock(uv_spinlock_t* spinlock)) {
 }
 
 UV_UNUSED(static int uv_spinlock_trylock(uv_spinlock_t* spinlock)) {
-  /* TODO(bnoordhuis) Maybe change to a ticket lock to guarantee fair queueing.
+  /* TODO (bnoordhuis) Maybe change to a ticket lock to guarantee fair queueing. id:901
    * Not really critical until we have locks that are (frequently) contended
    * for by several threads.
    */

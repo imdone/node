@@ -127,7 +127,7 @@ Atomic64 Acquire_Load(volatile const Atomic64* ptr);
 }  // namespace v8
 
 #if defined(V8_OS_WIN)
-// TODO(hpayer): The MSVC header includes windows.h, which other files end up
+// TODO (hpayer): The MSVC header includes windows.h, which other files end up id:1754
 //               relying on. Fix this as part of crbug.com/559247.
 #include "src/base/atomicops_internals_x86_msvc.h"
 #else

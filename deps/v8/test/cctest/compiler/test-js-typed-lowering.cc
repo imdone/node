@@ -14,7 +14,7 @@
 #include "src/factory.h"
 #include "src/isolate.h"
 #include "src/objects-inl.h"
-// FIXME(mstarzinger, marja): This is weird, but required because of the missing
+// FIXME (mstarzinger, marja): This is weird, but required because of the missing id:2381
 // (disallowed) include: src/feedback-vector.h ->
 // src/feedback-vector-inl.h
 #include "src/feedback-vector-inl.h"
@@ -95,7 +95,7 @@ class JSTypedLoweringTester : public HandleAndZoneScope {
   Node* reduce(Node* node) {
     JSGraph jsgraph(main_isolate(), &graph, &common, &javascript, &simplified,
                     &machine);
-    // TODO(titzer): mock the GraphReducer here for better unit testing.
+    // TODO (titzer): mock the GraphReducer here for better unit testing. id:2570
     GraphReducer graph_reducer(main_zone(), &graph);
     JSTypedLowering reducer(&graph_reducer, &deps, flags, &jsgraph,
                             main_zone());
@@ -225,7 +225,7 @@ static IrOpcode::Value NumberToI32(bool is_signed) {
 }
 
 
-// TODO(turbofan): Lowering of StringAdd is disabled for now.
+// TODO (turbofan): Lowering of StringAdd is disabled for now. id:2671
 #if 0
 TEST(StringBinops) {
   JSTypedLoweringTester R;

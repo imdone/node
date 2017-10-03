@@ -140,7 +140,7 @@ void CallConstructDescriptor::InitializePlatformSpecific(
   // rbx : feedback vector
   // rdx : slot in feedback vector (Smi, for RecordCallTarget)
   // rdi : constructor function
-  // TODO(turbofan): So far we don't gather type feedback and hence skip the
+  // TODO (turbofan): So far we don't gather type feedback and hence skip the id:2552
   // slot parameter, but ArrayConstructStub needs the vector to be undefined.
   Register registers[] = {rax, rdi, rbx};
   data->InitializePlatformSpecific(arraysize(registers), registers);

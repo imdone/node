@@ -64,7 +64,7 @@ UDataMemory_normalizeDataPointer(const void *p) {
     } else {
 #if U_PLATFORM == U_PF_OS400
         /*
-        TODO: Fix this once the compiler implements this feature. Keep in sync with genccode.c
+        TODO: Fix this once the compiler implements this feature. Keep in sync with genccode.c id:183
 
         This is here because this platform can't currently put
         const data into the read-only pages of an object or
@@ -113,7 +113,7 @@ udata_getMemory(UDataMemory *pData) {
  * Get the length of the data item if possible.
  * The length may be up to 15 bytes larger than the actual data.
  *
- * TODO Consider making this function public.
+ * TODO Consider making this function public. id:117
  * It would have to return the actual length in more cases.
  * For example, the length of the last item in a .dat package could be
  * computed from the size of the whole .dat package minus the offset of the

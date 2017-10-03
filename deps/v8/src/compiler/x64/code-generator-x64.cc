@@ -279,7 +279,7 @@ class WasmOutOfLineTrap final : public OutOfLineCode {
         frame_elided_(frame_elided),
         position_(position) {}
 
-  // TODO(eholk): Refactor this method to take the code generator as a
+  // TODO (eholk): Refactor this method to take the code generator as a id:1893
   // parameter.
   void Generate() final {
     __ RecordProtectedInstructionLanding(pc_);
@@ -291,7 +291,7 @@ class WasmOutOfLineTrap final : public OutOfLineCode {
     wasm::TrapReason trap_id = wasm::kTrapMemOutOfBounds;
     int trap_reason = wasm::WasmOpcodes::TrapReasonToMessageId(trap_id);
     __ Push(Smi::FromInt(trap_reason));
-    // TODO(eholk): use AssembleSourcePosition instead of passing in position_
+    // TODO (eholk): use AssembleSourcePosition instead of passing in position_ id:1478
     // as a parameter. See AssembleArchTrap as an example. Consider sharing code
     // with AssembleArchTrap.
     __ Push(Smi::FromInt(position_));
@@ -1063,7 +1063,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       ASSEMBLE_IEEE754_UNOP(log10);
       break;
     case kIeee754Float64Pow: {
-      // TODO(bmeurer): Improve integration of the stub.
+      // TODO (bmeurer): Improve integration of the stub. id:2912
       __ Movsd(xmm2, xmm0);
       __ CallStubDelayed(new (zone())
                              MathPowStub(nullptr, MathPowStub::DOUBLE));
@@ -1269,14 +1269,14 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       __ movaps(i.OutputDoubleRegister(), i.OutputDoubleRegister());
       break;
     case kSSEFloat32Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1965
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psrlq(kScratchDoubleReg, 33);
       __ andps(i.OutputDoubleRegister(), kScratchDoubleReg);
       break;
     }
     case kSSEFloat32Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:2045
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psllq(kScratchDoubleReg, 31);
       __ xorps(i.OutputDoubleRegister(), kScratchDoubleReg);
@@ -1479,14 +1479,14 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kSSEFloat64Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1895
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psrlq(kScratchDoubleReg, 1);
       __ andpd(i.OutputDoubleRegister(), kScratchDoubleReg);
       break;
     }
     case kSSEFloat64Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1480
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psllq(kScratchDoubleReg, 63);
       __ xorpd(i.OutputDoubleRegister(), kScratchDoubleReg);
@@ -1813,7 +1813,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       __ Movapd(i.OutputDoubleRegister(), i.OutputDoubleRegister());
       break;
     case kAVXFloat32Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:2913
       CpuFeatureScope avx_scope(tasm(), AVX);
       __ vpcmpeqd(kScratchDoubleReg, kScratchDoubleReg, kScratchDoubleReg);
       __ vpsrlq(kScratchDoubleReg, kScratchDoubleReg, 33);
@@ -1827,7 +1827,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat32Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1967
       CpuFeatureScope avx_scope(tasm(), AVX);
       __ vpcmpeqd(kScratchDoubleReg, kScratchDoubleReg, kScratchDoubleReg);
       __ vpsllq(kScratchDoubleReg, kScratchDoubleReg, 31);
@@ -1841,7 +1841,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat64Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:2047
       CpuFeatureScope avx_scope(tasm(), AVX);
       __ vpcmpeqd(kScratchDoubleReg, kScratchDoubleReg, kScratchDoubleReg);
       __ vpsrlq(kScratchDoubleReg, kScratchDoubleReg, 1);
@@ -1855,7 +1855,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat64Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:1897
       CpuFeatureScope avx_scope(tasm(), AVX);
       __ vpcmpeqd(kScratchDoubleReg, kScratchDoubleReg, kScratchDoubleReg);
       __ vpsllq(kScratchDoubleReg, kScratchDoubleReg, 63);
@@ -2147,7 +2147,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
         unwinding_info_writer_.MaybeIncreaseBaseOffsetAt(__ pc_offset(),
                                                          kPointerSize);
       } else if (instr->InputAt(0)->IsFPRegister()) {
-        // TODO(titzer): use another machine instruction?
+        // TODO (titzer): use another machine instruction? id:1486
         __ subq(rsp, Immediate(kDoubleSize));
         frame_access_state()->IncreaseSPDelta(kDoubleSize / kPointerSize);
         unwinding_info_writer_.MaybeIncreaseBaseOffsetAt(__ pc_offset(),
@@ -3166,7 +3166,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           if (RelocInfo::IsWasmPtrReference(src.rmode())) {
             __ movq(dst, src.ToInt64(), src.rmode());
           } else {
-            // TODO(dcarney): don't need scratch in this case.
+            // TODO (dcarney): don't need scratch in this case. id:2914
             int32_t value = src.ToInt32();
             if (value == 0) {
               __ xorl(dst, dst);
@@ -3208,14 +3208,14 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(dcarney): load of labels on x64.
+          UNREACHABLE();  // TODO (dcarney): load of labels on x64. id:1970
           break;
       }
       if (destination->IsStackSlot()) {
         __ movq(g.ToOperand(destination), kScratchRegister);
       }
     } else if (src.type() == Constant::kFloat32) {
-      // TODO(turbofan): Can we do better here?
+      // TODO (turbofan): Can we do better here? id:2049
       uint32_t src_const = bit_cast<uint32_t>(src.ToFloat32());
       if (destination->IsFPRegister()) {
         __ Move(g.ToDoubleRegister(destination), src_const);

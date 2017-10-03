@@ -705,7 +705,7 @@ static UEnumeration *selectForMask(const UConverterSelector* sel,
 
   UEnumeration *en = (UEnumeration *)uprv_malloc(sizeof(UEnumeration));
   if (en == NULL) {
-    // TODO(markus): Combine Enumerator and UEnumeration into one struct.
+    // TODO (markus): Combine Enumerator and UEnumeration into one struct. id:107
     uprv_free(mask);
     uprv_free(result);
     *status = U_MEMORY_ALLOCATION_ERROR;

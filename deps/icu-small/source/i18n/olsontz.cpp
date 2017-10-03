@@ -129,8 +129,8 @@ OlsonTimeZone::OlsonTimeZone(const UResourceBundle* top,
         ec = U_ILLEGAL_ARGUMENT_ERROR;
     }
     if (U_SUCCESS(ec)) {
-        // TODO -- clean up -- Doesn't work if res points to an alias
-        //        // TODO remove nonconst casts below when ures_* API is fixed
+        // TODO -- clean up -- Doesn't work if res points to an alias id:323
+        //        // TODO remove nonconst casts below when ures_* API is fixed id:444
         //        setID(ures_getKey((UResourceBundle*) res)); // cast away const
 
         int32_t len;

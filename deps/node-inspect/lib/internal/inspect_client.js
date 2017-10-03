@@ -325,7 +325,7 @@ class Client extends EventEmitter {
     });
 
     const handshakeListener = (res, socket) => {
-      // TODO: we *could* validate res.headers[sec-websocket-accept]
+      // TODO: we *could* validate res.headers[sec-websocket-accept] id:355
       debuglog('websocket upgrade');
 
       this._socket = socket;

@@ -96,7 +96,7 @@ class Snapshot : public AllStatic {
   // ... context 1 snapshot data
 
   static const int kNumberOfContextsOffset = 0;
-  // TODO(yangguo): generalize rehashing, and remove this flag.
+  // TODO (yangguo): generalize rehashing, and remove this flag. id:2569
   static const int kRehashabilityOffset = kNumberOfContextsOffset + kInt32Size;
   static const int kFirstContextOffsetOffset =
       kRehashabilityOffset + kInt32Size;

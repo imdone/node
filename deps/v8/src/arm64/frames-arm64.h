@@ -18,7 +18,7 @@ const RegList kJSCallerSaved = 0x3ffff;
 
 // Number of registers for which space is reserved in safepoints. Must be a
 // multiple of eight.
-// TODO(all): Refine this number.
+// TODO (all): Refine this number. id:1307
 const int kNumSafepointRegisters = 32;
 
 // Define the list of registers actually saved at safepoints.

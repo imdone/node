@@ -29,7 +29,7 @@
 // compiling a function.
 
 // Flags: --stack-size=100
-// NOTE: stack size constant above has been empirically chosen.
+// NOTE: stack size constant above has been empirically chosen. id:3435
 // If the test starts to fail in Genesis, consider increasing this constant.
 
 function test() {

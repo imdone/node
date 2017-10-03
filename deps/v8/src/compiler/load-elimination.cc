@@ -690,7 +690,7 @@ Reduction LoadElimination::ReduceCheckMaps(Node* node) {
   if (state->LookupMaps(object, &object_maps)) {
     if (maps.contains(object_maps)) return Replace(effect);
     state = state->KillMaps(object, zone());
-    // TODO(turbofan): Compute the intersection.
+    // TODO (turbofan): Compute the intersection. id:2535
   }
   state = state->AddMaps(object, maps, zone());
   return UpdateState(node, state);
@@ -913,7 +913,7 @@ Reduction LoadElimination::ReduceLoadElement(Node* node) {
     case MachineRepresentation::kWord32:
     case MachineRepresentation::kWord64:
     case MachineRepresentation::kFloat32:
-      // TODO(turbofan): Add support for doing the truncations.
+      // TODO (turbofan): Add support for doing the truncations. id:1816
       break;
     case MachineRepresentation::kFloat64:
     case MachineRepresentation::kSimd128:
@@ -970,7 +970,7 @@ Reduction LoadElimination::ReduceStoreElement(Node* node) {
     case MachineRepresentation::kWord32:
     case MachineRepresentation::kWord64:
     case MachineRepresentation::kFloat32:
-      // TODO(turbofan): Add support for doing the truncations.
+      // TODO (turbofan): Add support for doing the truncations. id:1936
       break;
     case MachineRepresentation::kFloat64:
     case MachineRepresentation::kSimd128:
@@ -1220,7 +1220,7 @@ int LoadElimination::FieldIndexOf(FieldAccess const& access) {
     case MachineRepresentation::kTaggedSigned:
     case MachineRepresentation::kTaggedPointer:
     case MachineRepresentation::kTagged:
-      // TODO(bmeurer): Check that we never do overlapping load/stores of
+      // TODO (bmeurer): Check that we never do overlapping load/stores of id:1780
       // individual parts of Float64 values.
       break;
   }

@@ -26,7 +26,7 @@
 # performance improves few percents for shorter keys and worsens few
 # percents for longer keys. This is because USIII integer multiplier
 # is >3x faster than USI&II one, which is harder to match [but see
-# TODO list below]. It should also be noted that SPARC64 V features
+# TODO list below]. It should also be noted that SPARC64 V features id:660
 # out-of-order execution, which *might* mean that integer multiplier
 # is pipelined, which in turn *might* be impossible to match... On
 # additional note, SPARC64 V implements FP Multiply-Add instruction,
@@ -40,7 +40,7 @@
 # Failure to meet either condition has no fatal effects, simply
 # doesn't give any performance gain.
 
-# TODO:
+# TODO: id:751
 # - modulo-schedule inner loop for better performance (on in-order
 #   execution core such as UltraSPARC this shall result in further
 #   noticeable(!) improvement);

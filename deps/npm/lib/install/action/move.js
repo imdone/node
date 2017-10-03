@@ -32,7 +32,7 @@ module.exports = function (staging, pkg, log, next) {
 
 function removeEmptyParents (pkgdir, next) {
   fs.rmdir(pkgdir, function (er) {
-    // FIXME: Make sure windows does what we want here
+    // FIXME: Make sure windows does what we want here id:604
     if (er && er.code !== 'ENOENT') return next()
     removeEmptyParents(path.resolve(pkgdir, '..'), next)
   })

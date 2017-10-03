@@ -25,13 +25,13 @@
 using namespace v8::internal;
 
 
-// TODO(ishell): fix this once TransitionToPrototype stops generalizing
+// TODO (ishell): fix this once TransitionToPrototype stops generalizing id:2749
 // all field representations (similar to crbug/448711 where elements kind
 // and observed transitions caused generalization of all fields).
 const bool IS_PROTO_TRANS_ISSUE_FIXED = false;
 
 
-// TODO(ishell): fix this once TransitionToAccessorProperty is able to always
+// TODO (ishell): fix this once TransitionToAccessorProperty is able to always id:3659
 // keep map in fast mode.
 const bool IS_ACCESSOR_FIELD_SUPPORTED = false;
 
@@ -2174,7 +2174,7 @@ TEST(ReconfigurePropertySplitMapTransitionsOverflow) {
 //
 // where "p4A" and "p4B" are exactly the same properties.
 //
-// TODO(ishell): unify this test template with
+// TODO (ishell): unify this test template with id:3382
 // TestReconfigureDataFieldAttribute_GeneralizeField once
 // IS_PROTO_TRANS_ISSUE_FIXED and IS_NON_EQUIVALENT_TRANSITION_SUPPORTED are
 // fixed.
@@ -2286,7 +2286,7 @@ TEST(ElementsKindTransitionFromMapOwningDescriptor) {
       return Map::CopyForPreventExtensions(map, NONE, frozen_symbol,
                                            "CopyForPreventExtensions");
     }
-    // TODO(ishell): remove once IS_PROTO_TRANS_ISSUE_FIXED is removed.
+    // TODO (ishell): remove once IS_PROTO_TRANS_ISSUE_FIXED is removed. id:2435
     bool generalizes_representations() const { return false; }
     bool is_non_equevalent_transition() const { return true; }
   };
@@ -2324,7 +2324,7 @@ TEST(ElementsKindTransitionFromMapNotOwningDescriptor) {
       return Map::CopyForPreventExtensions(map, NONE, frozen_symbol,
                                            "CopyForPreventExtensions");
     }
-    // TODO(ishell): remove once IS_PROTO_TRANS_ISSUE_FIXED is removed.
+    // TODO (ishell): remove once IS_PROTO_TRANS_ISSUE_FIXED is removed. id:2630
     bool generalizes_representations() const { return false; }
     bool is_non_equevalent_transition() const { return true; }
   };
@@ -2357,7 +2357,7 @@ TEST(PrototypeTransitionFromMapOwningDescriptor) {
     Handle<Map> Transition(Handle<Map> map, Expectations& expectations) {
       return Map::TransitionToPrototype(map, prototype_);
     }
-    // TODO(ishell): remove once IS_PROTO_TRANS_ISSUE_FIXED is removed.
+    // TODO (ishell): remove once IS_PROTO_TRANS_ISSUE_FIXED is removed. id:2751
     bool generalizes_representations() const {
       return !IS_PROTO_TRANS_ISSUE_FIXED;
     }
@@ -2403,7 +2403,7 @@ TEST(PrototypeTransitionFromMapNotOwningDescriptor) {
 
       return Map::TransitionToPrototype(map, prototype_);
     }
-    // TODO(ishell): remove once IS_PROTO_TRANS_ISSUE_FIXED is removed.
+    // TODO (ishell): remove once IS_PROTO_TRANS_ISSUE_FIXED is removed. id:3661
     bool generalizes_representations() const {
       return !IS_PROTO_TRANS_ISSUE_FIXED;
     }
@@ -2709,7 +2709,7 @@ TEST(TransitionAccessorConstantToSameAccessorConstant) {
   TestTransitionTo(transition_op, transition_op, checker);
 }
 
-// TODO(ishell): add this test once IS_ACCESSOR_FIELD_SUPPORTED is supported.
+// TODO (ishell): add this test once IS_ACCESSOR_FIELD_SUPPORTED is supported. id:3385
 // TEST(TransitionAccessorConstantToAnotherAccessorConstant)
 
 TEST(HoleyMutableHeapNumber) {

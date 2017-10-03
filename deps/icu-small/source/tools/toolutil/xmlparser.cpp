@@ -77,7 +77,7 @@ UXMLParser::UXMLParser(UErrorCode &status) :
       //  XML Doctype decl  production #28
       //     example   "<!DOCTYPE foo SYSTEM "somewhere" >
       //       or      "<!DOCTYPE foo [internal dtd]>
-      //    TODO:  we don't actually parse the DOCTYPE or internal subsets.
+      //    TODO: we don't actually parse the DOCTYPE or internal subsets. id:585
       //           Some internal dtd subsets could confuse this simple-minded
       //           attempt at skipping over them, specifically, occcurences
       //           of closeing square brackets.  These could appear in comments,
@@ -333,7 +333,7 @@ UXMLParser::parse(const UnicodeString &src, UErrorCode &status) {
     }
 
     UXMLElement   *root = NULL;
-    fPos = 0; // TODO use just a local pos variable and pass it into functions
+    fPos = 0; // TODO use just a local pos variable and pass it into functions id:724
               // where necessary?
 
     // set all matchers to work on the input string
@@ -570,7 +570,7 @@ UXMLParser::scanContent(UErrorCode &status) {
         mNewLineNormalizer.reset(result);
         result = mNewLineNormalizer.replaceAll(fOneLF, status);
 
-        // TODO:  handle CDATA
+        // TODO: handle CDATA id:582
         fPos = mXMLCharData.end(0, status);
     }
 
@@ -610,7 +610,7 @@ UXMLParser::replaceCharRefs(UnicodeString &s, UErrorCode &status) {
             for (i=0; i<hexString.length(); i++) {
                 val = (val << 4) + u_digit(hexString.charAt(i), 16);
             }
-            // TODO:  some verification that the character is valid
+            // TODO: some verification that the character is valid id:352
             replacement.setTo(val);
         } else if (mAmps.start(7, status) != -1) {
             UnicodeString decimalString = mAmps.group(7, status);
@@ -618,11 +618,11 @@ UXMLParser::replaceCharRefs(UnicodeString &s, UErrorCode &status) {
             for (i=0; i<decimalString.length(); i++) {
                 val = val*10 + u_digit(decimalString.charAt(i), 10);
             }
-            // TODO:  some verification that the character is valid
+            // TODO: some verification that the character is valid id:414
             replacement.setTo(val);
         } else {
             // An unrecognized &entity;  Leave it alone.
-            //  TODO:  check that it really looks like an entity, and is not some
+            //  TODO: check that it really looks like an entity, and is not some id:588
             //         random & in the text.
             replacement = mAmps.group((int32_t)0, status);
         }
@@ -634,7 +634,7 @@ UXMLParser::replaceCharRefs(UnicodeString &s, UErrorCode &status) {
 
 void
 UXMLParser::error(const char *message, UErrorCode &status) {
-    // TODO:  something better here...
+    // TODO: something better here... id:727
     const UnicodeString &src=mXMLDecl.input();
     int  line = 0;
     int  ci = 0;

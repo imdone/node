@@ -248,14 +248,14 @@ static int do_handshake(client_ctx *cx) {
   }
 
   if ((methods & S5_AUTH_PASSWD) && can_auth_passwd(cx->sx, cx)) {
-    /* TODO(bnoordhuis) Implement username/password auth. */
+    /* TODO (bnoordhuis) Implement username/password auth.  id:1485*/
   }
 
   conn_write(incoming, "\5\377", 2);  /* No acceptable auth. */
   return s_kill;
 }
 
-/* TODO(bnoordhuis) Implement username/password auth. */
+/* TODO (bnoordhuis) Implement username/password auth.  id:1171*/
 static int do_handshake_auth(client_ctx *cx) {
   UNREACHABLE();
   return do_kill(cx);
@@ -373,7 +373,7 @@ static int do_req_lookup(client_ctx *cx) {
   ASSERT(outgoing->wrstate == c_stop);
 
   if (outgoing->result < 0) {
-    /* TODO(bnoordhuis) Escape control characters in parser->daddr. */
+    /* TODO (bnoordhuis) Escape control characters in parser->daddr.  id:1275*/
     pr_err("lookup error for \"%s\": %s",
            parser->daddr,
            uv_strerror(outgoing->result));
@@ -615,7 +615,7 @@ static void conn_getaddrinfo_done(uv_getaddrinfo_t *req,
   c->result = status;
 
   if (status == 0) {
-    /* FIXME(bnoordhuis) Should try all addresses. */
+    /* FIXME (bnoordhuis) Should try all addresses.  id:853*/
     if (ai->ai_family == AF_INET) {
       c->t.addr4 = *(const struct sockaddr_in *) ai->ai_addr;
     } else if (ai->ai_family == AF_INET6) {

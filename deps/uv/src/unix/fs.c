@@ -391,7 +391,7 @@ static ssize_t uv__fs_scandir(uv_fs_t* req) {
   dents = NULL;
   n = scandir(req->path, &dents, uv__fs_scandir_filter, uv__fs_scandir_sort);
 
-  /* NOTE: We will use nbufs as an index field */
+  /* NOTE: We will use nbufs as an index field  id:861*/
   req->nbufs = 0;
 
   if (n == 0) {
@@ -690,7 +690,7 @@ static ssize_t uv__fs_utime(uv_fs_t* req) {
   struct utimbuf buf;
   buf.actime = req->atime;
   buf.modtime = req->mtime;
-  return utime(req->path, &buf); /* TODO use utimes() where available */
+  return utime(req->path, &buf); /* TODO use utimes() where available  id:891*/
 }
 
 

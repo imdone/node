@@ -200,7 +200,7 @@ Handle<FixedArray> WasmTableObject::AddDispatchTable(
   DCHECK_EQ(0, dispatch_tables->length() % 4);
 
   if (instance.is_null()) return dispatch_tables;
-  // TODO(titzer): use weak cells here to avoid leaking instances.
+  // TODO (titzer): use weak cells here to avoid leaking instances. id:3303
 
   // Grow the dispatch table and add a new entry at the end.
   Handle<FixedArray> new_dispatch_tables =
@@ -267,7 +267,7 @@ Handle<JSArrayBuffer> GrowMemoryBuffer(Isolate* isolate,
     return Handle<JSArrayBuffer>::null();
   }
 
-  // TODO(gdeepti): Change the protection here instead of allocating a new
+  // TODO (gdeepti): Change the protection here instead of allocating a new id:2373
   // buffer before guard regions are turned on, see issue #5886.
   const bool enable_guard_regions = old_buffer.is_null()
                                         ? EnableGuardRegions()
@@ -642,7 +642,7 @@ void WasmSharedModuleData::ReinitializeAfterDeserialization(
     const byte* start =
         reinterpret_cast<const byte*>(module_bytes->GetCharsAddress());
     const byte* end = start + module_bytes->length();
-    // TODO(titzer): remember the module origin in the compiled_module
+    // TODO (titzer): remember the module origin in the compiled_module id:2545
     // For now, we assume serialized modules did not originate from asm.js.
     ModuleResult result =
         SyncDecodeWasmModule(isolate, start, end, false, kWasmOrigin);
@@ -814,7 +814,7 @@ Handle<WasmCompiledModule> WasmCompiledModule::New(
     compiled_module->set_function_tables(
         maybe_empty_function_tables.ToHandleChecked());
   }
-  // TODO(mtrofin): we copy these because the order of finalization isn't
+  // TODO (mtrofin): we copy these because the order of finalization isn't id:2654
   // reliable, and we need these at Reset (which is called at
   // finalization). If the order were reliable, and top-down, we could instead
   // just get them from shared().
@@ -915,7 +915,7 @@ void WasmCompiledModule::Reset(Isolate* isolate,
       }
       bool changed =
           code_specialization.ApplyToWasmCode(code, SKIP_ICACHE_FLUSH);
-      // TODO(wasm): Check if this is faster than passing FLUSH_ICACHE_IF_NEEDED
+      // TODO (wasm): Check if this is faster than passing FLUSH_ICACHE_IF_NEEDED id:3434
       // above.
       if (changed) {
         Assembler::FlushICache(isolate, code->instruction_start(),
@@ -976,7 +976,7 @@ void WasmCompiledModule::SetGlobalsStartAddressFrom(
 MaybeHandle<String> WasmCompiledModule::ExtractUtf8StringFromModuleBytes(
     Isolate* isolate, Handle<WasmCompiledModule> compiled_module,
     WireBytesRef ref) {
-  // TODO(wasm): cache strings from modules if it's a performance win.
+  // TODO (wasm): cache strings from modules if it's a performance win. id:3306
   Handle<SeqOneByteString> module_bytes(compiled_module->module_bytes(),
                                         isolate);
   DCHECK_GE(module_bytes->length(), ref.end_offset());

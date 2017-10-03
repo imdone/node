@@ -1362,7 +1362,7 @@ UBool RegexCompile::doParseActions(int32_t action)
         //       5.   LD_SP
         //       6.   ...
         //
-        //  Note:  TODO:  This is pretty inefficient.  A mass of saved state is built up
+        //  Note:  TODO: This is pretty inefficient.  A mass of saved state is built up id:457
         //                then unconditionally discarded.  Perhaps introduce a new opcode.  Ticket 6056
         //
         {
@@ -1392,7 +1392,7 @@ UBool RegexCompile::doParseActions(int32_t action)
         //       4.   JMP          2
         //       5.   LD_SP        loc
         //       6    ...
-        // TODO:  do something to cut back the state stack each time through the loop.
+        // TODO: do something to cut back the state stack each time through the loop. id:618
         {
             // Reserve two slots at the top of the block.
             int32_t   topLoc = blockTopLoc(TRUE);
@@ -1560,7 +1560,7 @@ UBool RegexCompile::doParseActions(int32_t action)
     case doSetBackslash_d:
         {
             UnicodeSet *set = (UnicodeSet *)fSetStack.peek();
-            // TODO - make a static set, ticket 6058.
+            // TODO - make a static set, ticket 6058. id:274
             addCategory(set, U_GC_ND_MASK, *fStatus);
             break;
         }
@@ -1569,7 +1569,7 @@ UBool RegexCompile::doParseActions(int32_t action)
         {
             UnicodeSet *set = (UnicodeSet *)fSetStack.peek();
             UnicodeSet digits;
-            // TODO - make a static set, ticket 6058.
+            // TODO - make a static set, ticket 6058. id:254
             digits.applyIntPropertyValue(UCHAR_GENERAL_CATEGORY_MASK, U_GC_ND_MASK, *fStatus);
             digits.complement();
             set->addAll(digits);
@@ -1929,7 +1929,7 @@ void    RegexCompile::fixLiterals(UBool split) {
         if (fModeFlags & UREGEX_CASE_INSENSITIVE) {
             appendOp(URX_STRING_I, fRXPat->fLiteralText.length());
         } else {
-            // TODO here:  add optimization to split case sensitive strings of length two
+            // TODO here:  add optimization to split case sensitive strings of length two id:333
             //             into two single char ops, for efficiency.
             appendOp(URX_STRING, fRXPat->fLiteralText.length());
         }
@@ -3328,7 +3328,7 @@ int32_t   RegexCompile::minMatchLength(int32_t start, int32_t end) {
         case URX_STRING_I:
             {
                 loc++;
-                // TODO: with full case folding, matching input text may be shorter than
+                // TODO: with full case folding, matching input text may be shorter than id:460
                 //       the string we have here.  More smarts could put some bounds on it.
                 //       Assume a min length of one for now.  A min length of zero causes
                 //        optimization failures for a pattern like "string"+
@@ -3377,7 +3377,7 @@ int32_t   RegexCompile::minMatchLength(int32_t start, int32_t end) {
                 // Look-around.  Scan forward until the matching look-ahead end,
                 //   without processing the look-around block.  This is overly pessimistic for look-ahead,
                 //   it assumes that the look-ahead match might be zero-length.
-                //   TODO:  Positive lookahead could recursively do the block, then continue
+                //   TODO: Positive lookahead could recursively do the block, then continue id:620
                 //          with the longer of the block or the value coming in.  Ticket 6060
                 int32_t  depth = (opType == URX_LA_START? 2: 1);;
                 for (;;) {
@@ -3609,7 +3609,7 @@ int32_t   RegexCompile::maxMatchLength(int32_t start, int32_t end) {
             }
 
         case URX_STRING_I:
-            // TODO:  This code assumes that any user string that matches will be no longer
+            // TODO: This code assumes that any user string that matches will be no longer id:276
             //        than our compiled string, with case insensitive matching.
             //        Our compiled string has been case-folded already.
             //
@@ -4058,7 +4058,7 @@ void RegexCompile::nextChar(RegexPatternChar &c) {
                         }
                     }
                 }
-                // TODO:  check what Java & Perl do with non-ASCII white spaces.  Ticket 6061.
+                // TODO: check what Java & Perl do with non-ASCII white spaces.  Ticket 6061. id:288
                 if (PatternProps::isWhiteSpace(c.fChar) == FALSE) {
                     break;
                 }
@@ -4292,7 +4292,7 @@ UnicodeSet *RegexCompile::scanPosixProp() {
     U_ASSERT(fC.fChar == chColon);
 
     // Save the scanner state.
-    // TODO:  move this into the scanner, with the state encapsulated in some way.  Ticket 6062
+    // TODO: move this into the scanner, with the state encapsulated in some way.  Ticket 6062 id:335
     int64_t     savedScanIndex        = fScanIndex;
     int64_t     savedNextIndex        = UTEXT_GETNATIVEINDEX(fRXPat->fPattern);
     UBool       savedQuoteMode        = fQuoteMode;
@@ -4598,7 +4598,7 @@ void RegexCompile::setEval(int32_t nextOp) {
                 rightOperand->complement();
                 break;
             case setCaseClose:
-                // TODO: need a simple close function.  Ticket 6065
+                // TODO: need a simple close function.  Ticket 6065 id:464
                 rightOperand->closeOver(USET_CASE_INSENSITIVE);
                 rightOperand->removeAllStrings();
                 break;

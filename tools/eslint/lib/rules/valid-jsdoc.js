@@ -359,7 +359,7 @@ module.exports = {
 
                         const name = param.name;
 
-                        // TODO(nzakas): Figure out logical things to do with destructured, default, rest params
+                        // TODO (nzakas): Figure out logical things to do with destructured, default, rest params id:3362
                         if (param.type === "Identifier") {
                             if (jsdocParams[i] && (name !== jsdocParams[i])) {
                                 context.report({ node: jsdocNode, message: "Expected JSDoc for '{{name}}' but found '{{jsdocName}}'.", data: {

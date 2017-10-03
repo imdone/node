@@ -94,7 +94,7 @@ assert.strictEqual(typeof performance.timeOrigin, 'number');
     assert.strictEqual(entry.name, 'foo');
     assert.strictEqual(entry.entryType, 'measure');
     assert.strictEqual(entry.startTime, markA.startTime);
-    // TODO(jasnell): This comparison is too imprecise on some systems
+    // TODO (jasnell): This comparison is too imprecise on some systems id:4069
     //assert.strictEqual(entry.duration.toPrecision(3),
     //                   (markB.startTime - markA.startTime).toPrecision(3));
   });

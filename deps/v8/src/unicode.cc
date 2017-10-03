@@ -413,7 +413,7 @@ bool Utf8::ValidateEncoding(const byte* bytes, size_t length) {
 }
 
 // Uppercase:            point.category == 'Lu'
-// TODO(jshin): Check if it's ok to exclude Other_Uppercase characters.
+// TODO (jshin): Check if it's ok to exclude Other_Uppercase characters. id:2328
 #ifdef V8_INTL_SUPPORT
 bool Uppercase::Is(uchar c) { return static_cast<bool>(u_isupper(c)); }
 #else

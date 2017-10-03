@@ -212,7 +212,7 @@ int can_access(const server_ctx *sx,
   uint32_t c;
   uint32_t d;
 
-  /* TODO(bnoordhuis) Implement proper access checks.  For now, just reject
+  /* TODO (bnoordhuis) Implement proper access checks.  For now, just reject id:1490
    * traffic to localhost.
    */
   if (addr->sa_family == AF_INET) {

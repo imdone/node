@@ -135,7 +135,7 @@ class Pool():
             yield MaybeResult.create_heartbeat()
         self.count -= 1
         if result.exception:
-          # TODO(machenbach): Handle a few known types of internal errors
+          # TODO (machenbach): Handle a few known types of internal errors id:3584
           # gracefully, e.g. missing test files.
           internal_error = True
           continue

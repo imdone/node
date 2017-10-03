@@ -234,7 +234,7 @@ class Arm64OperandConverter final : public InstructionOperandConverter {
       case Constant::kHeapObject:
         return Operand(constant.ToHeapObject());
       case Constant::kRpoNumber:
-        UNREACHABLE();  // TODO(dcarney): RPO immediates on arm64.
+        UNREACHABLE();  // TODO (dcarney): RPO immediates on arm64. id:2180
         break;
     }
     UNREACHABLE();
@@ -679,7 +679,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
         __ Call(target);
       }
       RecordCallPosition(instr);
-      // TODO(titzer): this is ugly. JSSP should be a caller-save register
+      // TODO (titzer): this is ugly. JSSP should be a caller-save register id:1570
       // in this case, but it is not possible to express in the register
       // allocator.
       CallDescriptor::Flags flags(MiscField::decode(opcode));
@@ -740,7 +740,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       __ Ldr(x10, FieldMemOperand(func, JSFunction::kCodeEntryOffset));
       __ Call(x10);
       RecordCallPosition(instr);
-      // TODO(titzer): this is ugly. JSSP should be a caller-save register
+      // TODO (titzer): this is ugly. JSSP should be a caller-save register id:1773
       // in this case, but it is not possible to express in the register
       // allocator.
       CallDescriptor::Flags flags(MiscField::decode(opcode));
@@ -1234,14 +1234,14 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       int count = RoundUp(i.InputInt32(0), 2);
       Register prev = __ StackPointer();
       if (prev.Is(jssp)) {
-        // TODO(titzer): make this a macro-assembler method.
+        // TODO (titzer): make this a macro-assembler method. id:1640
         // Align the CSP and store the previous JSSP on the stack. We do not
         // need to modify the SP delta here, as we will continue to access the
         // frame via JSSP.
         UseScratchRegisterScope scope(tasm());
         Register tmp = scope.AcquireX();
 
-        // TODO(arm64): Storing JSSP on the stack is redundant when calling a C
+        // TODO (arm64): Storing JSSP on the stack is redundant when calling a C id:1247
         // function, as JSSP is callee-saved (we still need to do this when
         // calling a code object that uses the CSP as the stack pointer). See
         // the code generation for kArchCallCodeObject vs. kArchCallCFunction
@@ -1404,12 +1404,12 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
               i.InputDoubleRegister(1));
       break;
     case kArm64Float64Mod: {
-      // TODO(dcarney): implement directly. See note in lithium-codegen-arm64.cc
+      // TODO (dcarney): implement directly. See note in lithium-codegen-arm64.cc id:2183
       FrameScope scope(tasm(), StackFrame::MANUAL);
       DCHECK(d0.is(i.InputDoubleRegister(0)));
       DCHECK(d1.is(i.InputDoubleRegister(1)));
       DCHECK(d0.is(i.OutputDoubleRegister()));
-      // TODO(dcarney): make sure this saves all relevant registers.
+      // TODO (dcarney): make sure this saves all relevant registers. id:1572
       __ CallCFunction(
           ExternalReference::mod_two_doubles_operation(__ isolate()), 0, 2);
       break;
@@ -1543,12 +1543,12 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       __ Fmov(i.OutputRegister32(), i.InputFloat32Register(0));
       break;
     case kArm64Float64ExtractHighWord32:
-      // TODO(arm64): This should use MOV (to general) when NEON is supported.
+      // TODO (arm64): This should use MOV (to general) when NEON is supported. id:1776
       __ Fmov(i.OutputRegister(), i.InputFloat64Register(0));
       __ Lsr(i.OutputRegister(), i.OutputRegister(), 32);
       break;
     case kArm64Float64InsertLowWord32: {
-      // TODO(arm64): This should use MOV (from general) when NEON is supported.
+      // TODO (arm64): This should use MOV (from general) when NEON is supported. id:1642
       UseScratchRegisterScope scope(tasm());
       Register tmp = scope.AcquireX();
       __ Fmov(tmp, i.InputFloat64Register(0));
@@ -1557,7 +1557,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kArm64Float64InsertHighWord32: {
-      // TODO(arm64): This should use MOV (from general) when NEON is supported.
+      // TODO (arm64): This should use MOV (from general) when NEON is supported. id:1249
       UseScratchRegisterScope scope(tasm());
       Register tmp = scope.AcquireX();
       __ Fmov(tmp.W(), i.InputFloat32Register(0));
@@ -2519,7 +2519,7 @@ void CodeGenerator::AssembleConstructFrame() {
     __ PushCPURegList(saves_fp);
   }
   // Save registers.
-  // TODO(palfia): TF save list is not in sync with
+  // TODO (palfia): TF save list is not in sync with id:2186
   // CPURegList::GetCalleeSaved(): x30 is missing.
   // DCHECK(saves.list() == CPURegList::GetCalleeSaved().list());
   CPURegList saves = CPURegList(CPURegister::kRegister, kXRegSizeInBits,

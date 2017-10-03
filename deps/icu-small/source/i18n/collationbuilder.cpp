@@ -1197,7 +1197,7 @@ CollationBuilder::addTailComposites(const UnicodeString &nfdPrefix, const Unicod
         // a contraction mapping for ae.
         // Thus, if there is no ae contraction, then the ae^ mapping is ignored
         // while fetching the newCEs for ae_^.
-        // TODO: Try to detect this effectively.
+        // TODO: Try to detect this effectively. id:394
         // (Alternatively, print a warning when prefix contractions are missing.)
 
         // We do not need an explicit mapping for the NFD strings.
@@ -1533,7 +1533,7 @@ CollationBuilder::makeTailoredCEs(UErrorCode &errorCode) {
                                 rootElements.getPrimaryAfter(p, pIndex, isCompressible);
                             primaries.initForPrimary(isCompressible);
                             if(!primaries.allocWeights(p, pLimit, pCount)) {
-                                errorCode = U_BUFFER_OVERFLOW_ERROR;  // TODO: introduce a more specific UErrorCode?
+                                errorCode = U_BUFFER_OVERFLOW_ERROR;  // TODO: introduce a more specific UErrorCode? id:533
                                 errorReason = "primary tailoring gap too small";
                                 return;
                             }

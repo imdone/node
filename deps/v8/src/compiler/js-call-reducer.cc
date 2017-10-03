@@ -41,7 +41,7 @@ Reduction JSCallReducer::Reduce(Node* node) {
 }
 
 void JSCallReducer::Finalize() {
-  // TODO(turbofan): This is not the best solution; ideally we would be able
+  // TODO (turbofan): This is not the best solution; ideally we would be able id:2250
   // to teach the GraphReducer about arbitrary dependencies between different
   // nodes, even if they don't show up in the use list of the other node.
   std::set<Node*> const waitlist = std::move(waitlist_);
@@ -79,7 +79,7 @@ Reduction JSCallReducer::ReduceArrayConstructor(Node* node) {
   size_t const arity = p.arity() - 2;
   NodeProperties::ReplaceValueInput(node, target, 0);
   NodeProperties::ReplaceValueInput(node, target, 1);
-  // TODO(bmeurer): We might need to propagate the tail call mode to
+  // TODO (bmeurer): We might need to propagate the tail call mode to id:1774
   // the JSCreateArray operator, because an Array call in tail call
   // position must always properly consume the parent stack frame.
   NodeProperties::ChangeOp(node, javascript()->CreateArray(arity, site));
@@ -318,7 +318,7 @@ Reduction JSCallReducer::ReduceFunctionPrototypeHasInstance(Node* node) {
   Node* effect = NodeProperties::GetEffectInput(node);
   Node* control = NodeProperties::GetControlInput(node);
 
-  // TODO(turbofan): If JSOrdinaryToInstance raises an exception, the
+  // TODO (turbofan): If JSOrdinaryToInstance raises an exception, the id:1912
   // stack trace doesn't contain the @@hasInstance call; we have the
   // corresponding bug in the baseline case. Some massaging of the frame
   // state would be necessary here.
@@ -519,13 +519,13 @@ Reduction JSCallReducer::ReduceArrayForEach(Handle<JSFunction> function,
   if (receiver_maps.size() != 1) return NoChange();
   Handle<Map> receiver_map(receiver_maps[0]);
   ElementsKind kind = receiver_map->elements_kind();
-  // TODO(danno): Handle double packed elements
+  // TODO (danno): Handle double packed elements id:1734
   if (!IsFastElementsKind(kind) || IsDoubleElementsKind(kind) ||
       !CanInlineArrayIteratingBuiltin(receiver_map)) {
     return NoChange();
   }
 
-  // TODO(danno): forEach can throw. Hook up exceptional edges.
+  // TODO (danno): forEach can throw. Hook up exceptional edges. id:1312
   if (NodeProperties::IsExceptionalCall(node)) return NoChange();
 
   // Install code dependencies on the {receiver} prototype maps and the
@@ -677,13 +677,13 @@ Reduction JSCallReducer::ReduceArrayMap(Handle<JSFunction> function,
   if (receiver_maps.size() != 1) return NoChange();
   Handle<Map> receiver_map(receiver_maps[0]);
   ElementsKind kind = receiver_map->elements_kind();
-  // TODO(danno): Handle holey Smi and Object fast elements kinds and double
+  // TODO (danno): Handle holey Smi and Object fast elements kinds and double id:2252
   // packed.
   if (!IsFastPackedElementsKind(kind) || IsDoubleElementsKind(kind)) {
     return NoChange();
   }
 
-  // TODO(danno): map can throw. Hook up exceptional edges.
+  // TODO (danno): map can throw. Hook up exceptional edges. id:1779
   if (NodeProperties::IsExceptionalCall(node)) return NoChange();
 
   // We want the input to be a generic Array.
@@ -879,7 +879,7 @@ Reduction JSCallReducer::ReduceCallApiFunction(
 
   // CallApiCallbackStub's register arguments: code, target, call data, holder,
   // function address.
-  // TODO(turbofan): Consider introducing a JSCallApiCallback operator for
+  // TODO (turbofan): Consider introducing a JSCallApiCallback operator for id:1915
   // this and lower it during JSGenericLowering, and unify this with the
   // JSNativeContextSpecialization::InlineApiCall method a bit.
   Handle<CallHandlerInfo> call_handler_info(
@@ -1018,7 +1018,7 @@ Reduction JSCallReducer::ReduceCallOrConstructWithArrayLikeOrSpread(
   if (type == CreateArgumentsType::kMappedArguments) {
     // Mapped arguments (sloppy mode) that are aliased can only be handled
     // here if there's no side-effect between the {node} and the {arg_array}.
-    // TODO(turbofan): Further relax this constraint.
+    // TODO (turbofan): Further relax this constraint. id:1737
     if (formal_parameter_count != 0) {
       Node* effect = NodeProperties::GetEffectInput(node);
       while (effect != arguments_list) {
@@ -1225,7 +1225,7 @@ Reduction JSCallReducer::ReduceJSCall(Node* node) {
     }
 
     // Don't mess with other {node}s that have a constant {target}.
-    // TODO(bmeurer): Also support proxies here.
+    // TODO (bmeurer): Also support proxies here. id:1314
     return NoChange();
   }
 
@@ -1295,7 +1295,7 @@ Reduction JSCallReducer::ReduceJSCallWithSpread(Node* node) {
   DCHECK_LE(3u, p.arity());
   int arity = static_cast<int>(p.arity() - 1);
 
-  // TODO(turbofan): Collect call counts on spread call/construct and thread it
+  // TODO (turbofan): Collect call counts on spread call/construct and thread it id:2255
   // through here.
   CallFrequency frequency;
   return ReduceCallOrConstructWithArrayLikeOrSpread(node, arity, frequency);
@@ -1353,7 +1353,7 @@ Reduction JSCallReducer::ReduceJSConstruct(Node* node) {
     }
 
     // Don't mess with other {node}s that have a constant {target}.
-    // TODO(bmeurer): Also support optimizing bound functions and proxies here.
+    // TODO (bmeurer): Also support optimizing bound functions and proxies here. id:1783
     return NoChange();
   }
 
@@ -1438,7 +1438,7 @@ Reduction JSCallReducer::ReduceJSConstructWithSpread(Node* node) {
   DCHECK_LE(3u, p.arity());
   int arity = static_cast<int>(p.arity() - 2);
 
-  // TODO(turbofan): Collect call counts on spread call/construct and thread it
+  // TODO (turbofan): Collect call counts on spread call/construct and thread it id:1917
   // through here.
   CallFrequency frequency;
   return ReduceCallOrConstructWithArrayLikeOrSpread(node, arity, frequency);
@@ -1459,7 +1459,7 @@ Reduction JSCallReducer::ReduceSoftDeoptimize(Node* node,
   Node* deoptimize =
       graph()->NewNode(common()->Deoptimize(DeoptimizeKind::kSoft, reason),
                        frame_state, effect, control);
-  // TODO(bmeurer): This should be on the AdvancedReducer somehow.
+  // TODO (bmeurer): This should be on the AdvancedReducer somehow. id:1741
   NodeProperties::MergeControlToEnd(graph(), common(), deoptimize);
   Revisit(graph()->end());
   node->TrimInputCount(0);

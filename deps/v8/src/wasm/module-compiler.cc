@@ -291,7 +291,7 @@ void ModuleCompiler::CompileSequentially(ModuleBytesEnv* module_env,
         thrower, isolate_, module_env, &func);
     if (code.is_null()) {
       WasmName str = module_env->wire_bytes.GetName(&func);
-      // TODO(clemensh): Truncate the function name in the output.
+      // TODO (clemensh): Truncate the function name in the output. id:3028
       thrower->CompileError("Compilation of #%d:%.*s failed.", i, str.length(),
                             str.start());
       break;
@@ -608,7 +608,7 @@ MaybeHandle<WasmModuleObject> ModuleCompiler::CompileToModuleObjectInternal(
     // Validate wasm modules for lazy compilation. Don't validate asm.js
     // modules, they are valid by construction (otherwise a CHECK will fail
     // during lazy compilation).
-    // TODO(clemensh): According to the spec, we can actually skip validation
+    // TODO (clemensh): According to the spec, we can actually skip validation id:3247
     // at module creation time, and return a function that always traps at
     // (lazy) compilation time.
     ValidateSequentially(&module_env, thrower);
@@ -636,7 +636,7 @@ MaybeHandle<WasmModuleObject> ModuleCompiler::CompileToModuleObjectInternal(
     asm_js_offset_table->copy_in(0, asm_js_offset_table_bytes.start(),
                                  asm_js_offset_table_bytes.length());
   }
-  // TODO(wasm): only save the sections necessary to deserialize a
+  // TODO (wasm): only save the sections necessary to deserialize a id:2339
   // {WasmModule}. E.g. function bodies could be omitted.
   Handle<String> module_bytes =
       factory
@@ -652,7 +652,7 @@ MaybeHandle<WasmModuleObject> ModuleCompiler::CompileToModuleObjectInternal(
   WasmModule* module = module_wrapper->get();
 
   // Create the shared module data.
-  // TODO(clemensh): For the same module (same bytes / same hash), we should
+  // TODO (clemensh): For the same module (same bytes / same hash), we should id:2504
   // only have one WasmSharedModuleData. Otherwise, we might only set
   // breakpoints on a (potentially empty) subset of the instances.
 
@@ -1244,7 +1244,7 @@ void InstanceBuilder::WriteGlobalValue(WasmGlobal& global,
       *GetRawGlobalPtr<int32_t>(global) = static_cast<int32_t>(num);
       break;
     case kWasmI64:
-      // TODO(titzer): initialization of imported i64 globals.
+      // TODO (titzer): initialization of imported i64 globals. id:2591
       UNREACHABLE();
       break;
     case kWasmF32:
@@ -1431,7 +1431,7 @@ int InstanceBuilder::ProcessImports(Handle<FixedArray> code_table,
           // workaround to support legacy asm.js code with broken binding. Note
           // that using {NaN} (or Smi::kZero) here is what using the observable
           // conversion via {ToPrimitive} would produce as well.
-          // TODO(mstarzinger): Still observable if Function.prototype.valueOf
+          // TODO (mstarzinger): Still observable if Function.prototype.valueOf id:3030
           // or friends are patched, we might need to check for that as well.
           if (value->IsJSFunction()) value = isolate_->factory()->nan_value();
           if (value->IsPrimitive() && !value->IsSymbol()) {
@@ -1804,7 +1804,7 @@ void InstanceBuilder::LoadTableSegments(Handle<FixedArray> code_table,
       }
     }
 
-    // TODO(titzer): this does redundant work if there are multiple tables,
+    // TODO (titzer): this does redundant work if there are multiple tables, id:3249
     // since initializations are not sorted by table index.
     for (auto table_init : module_->table_inits) {
       uint32_t base = EvalUint32InitExpr(table_init.offset);
@@ -1827,7 +1827,7 @@ void InstanceBuilder::LoadTableSegments(Handle<FixedArray> code_table,
         if (!all_dispatch_tables.is_null()) {
           if (js_wrappers_[func_index].is_null()) {
             // No JSFunction entry yet exists for this function. Create one.
-            // TODO(titzer): We compile JS->wasm wrappers for functions are
+            // TODO (titzer): We compile JS->wasm wrappers for functions are id:2343
             // not exported but are in an exported table. This should be done
             // at module compile time and cached instead.
 
@@ -1865,7 +1865,7 @@ void InstanceBuilder::LoadTableSegments(Handle<FixedArray> code_table,
     }
 #endif
 
-    // TODO(titzer): we add the new dispatch table at the end to avoid
+    // TODO (titzer): we add the new dispatch table at the end to avoid id:2507
     // redundant work and also because the new instance is not yet fully
     // initialized.
     if (!table_instance.table_object.is_null()) {
@@ -2094,7 +2094,7 @@ class AsyncCompileJob::PrepareAndStartCompile : public CompileStep {
     // Initialize {code_table_} with the illegal builtin. All call sites
     // will be patched at instantiation.
     Handle<Code> illegal_builtin = job_->isolate_->builtins()->Illegal();
-    // TODO(wasm): Fix this for lazy compilation.
+    // TODO (wasm): Fix this for lazy compilation. id:2594
     for (uint32_t i = 0; i < module_->functions.size(); ++i) {
       job_->code_table_->set(static_cast<int>(i), *illegal_builtin);
       job_->temp_instance_->function_code[i] = illegal_builtin;
@@ -2261,7 +2261,7 @@ class AsyncCompileJob::FinishCompile : public CompileStep {
     // shared module data. Asm.js is not compiled asynchronously.
     Handle<Script> script = CreateWasmScript(job_->isolate_, job_->wire_bytes_);
     Handle<ByteArray> asm_js_offset_table;
-    // TODO(wasm): Improve efficiency of storing module wire bytes.
+    // TODO (wasm): Improve efficiency of storing module wire bytes. id:3034
     //   1. Only store relevant sections, not function bodies
     //   2. Don't make a second copy of the bytes here; reuse the copy made
     //      for asynchronous compilation and store it as an external one
@@ -2280,7 +2280,7 @@ class AsyncCompileJob::FinishCompile : public CompileStep {
         job_->isolate_, job_->compiler_->ReleaseModule().release());
 
     // Create the shared module data.
-    // TODO(clemensh): For the same module (same bytes / same hash), we should
+    // TODO (clemensh): For the same module (same bytes / same hash), we should id:3252
     // only have one WasmSharedModuleData. Otherwise, we might only set
     // breakpoints on a (potentially empty) subset of the instances.
 
@@ -2304,7 +2304,7 @@ class AsyncCompileJob::FinishCompile : public CompileStep {
     DeferredHandleScope deferred(job_->isolate_);
     job_->compiled_module_ = handle(*job_->compiled_module_, job_->isolate_);
     job_->deferred_handles_.push_back(deferred.Detach());
-    // TODO(wasm): compiling wrappers should be made async as well.
+    // TODO (wasm): compiling wrappers should be made async as well. id:2345
     job_->DoSync<CompileWrappers>();
   }
 };

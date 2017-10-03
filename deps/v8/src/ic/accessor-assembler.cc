@@ -28,7 +28,7 @@ Node* AccessorAssembler::TryMonomorphicCase(Node* slot, Node* vector,
   Comment("TryMonomorphicCase");
   DCHECK_EQ(MachineRepresentation::kTagged, var_handler->rep());
 
-  // TODO(ishell): add helper class that hides offset computations for a series
+  // TODO (ishell): add helper class that hides offset computations for a series id:2076
   // of loads.
   int32_t header_size = FixedArray::kHeaderSize - kHeapObjectTag;
   // Adding |header_size| with a separate IntPtrAdd rather than passing it
@@ -1265,7 +1265,7 @@ void AccessorAssembler::EmitElementLoad(
     Node* details =
         LoadDetailsByKeyIndex<SeededNumberDictionary>(elements, index);
     Node* kind = DecodeWord32<PropertyDetails::KindField>(details);
-    // TODO(jkummerow): Support accessors without missing?
+    // TODO (jkummerow): Support accessors without missing? id:2198
     GotoIfNot(Word32Equal(kind, Int32Constant(kData)), miss);
     // Finally, load the value.
     exit_point->Return(
@@ -1522,7 +1522,7 @@ void AccessorAssembler::GenericPropertyLoad(Node* receiver, Node* receiver_map,
 
     BIND(&stub_cache_miss);
     {
-      // TODO(jkummerow): Check if the property exists on the prototype
+      // TODO (jkummerow): Check if the property exists on the prototype id:2155
       // chain. If it doesn't, then there's no point in missing.
       Comment("KeyedLoadGeneric_miss");
       TailCallRuntime(Runtime::kKeyedLoadIC_Miss, p->context, p->receiver,
@@ -1733,7 +1733,7 @@ void AccessorAssembler::LoadIC_BytecodeHandler(const LoadICParameters* p,
   // This function is hand-tuned to omit frame construction for common cases,
   // e.g.: monomorphic field and constant loads through smi handlers.
   // Polymorphic ICs with a hit in the first two entries also omit frames.
-  // TODO(jgruber): Frame omission is fragile and can be affected by minor
+  // TODO (jgruber): Frame omission is fragile and can be affected by minor id:1681
   // changes in control flow and logic. We currently have no way of ensuring
   // that no frame is constructed, so it's easy to break this optimization by
   // accident.
@@ -2055,7 +2055,7 @@ void AccessorAssembler::KeyedLoadIC(const LoadICParameters* p) {
     Comment("KeyedLoadIC_try_megamorphic");
     GotoIfNot(WordEqual(feedback, LoadRoot(Heap::kmegamorphic_symbolRootIndex)),
               &try_polymorphic_name);
-    // TODO(jkummerow): Inline this? Or some of it?
+    // TODO (jkummerow): Inline this? Or some of it? id:3060
     TailCallStub(
         Builtins::CallableFor(isolate(), Builtins::kKeyedLoadIC_Megamorphic),
         p->context, p->receiver, p->name, p->slot, p->vector);
@@ -2127,7 +2127,7 @@ void AccessorAssembler::KeyedLoadICGeneric(const LoadICParameters* p) {
   {
     Comment("KeyedLoadGeneric_slow");
     IncrementCounter(isolate()->counters()->ic_keyed_load_generic_slow(), 1);
-    // TODO(jkummerow): Should we use the GetProperty TF stub instead?
+    // TODO (jkummerow): Should we use the GetProperty TF stub instead? id:2078
     TailCallRuntime(Runtime::kKeyedGetProperty, p->context, p->receiver,
                     p->name);
   }

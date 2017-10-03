@@ -70,7 +70,7 @@ void BytecodeArrayWriter::Write(BytecodeNode* node) {
 void BytecodeArrayWriter::WriteJump(BytecodeNode* node, BytecodeLabel* label) {
   DCHECK(Bytecodes::IsJump(node->bytecode()));
 
-  // TODO(rmcilroy): For forward jumps we could also mark the label as dead,
+  // TODO (rmcilroy): For forward jumps we could also mark the label as dead, id:2097
   // thereby avoiding emitting dead code when we bind the label.
   if (exit_seen_in_block_) return;  // Don't emit dead code.
   UpdateExitSeenInBlock(node->bytecode());
@@ -84,7 +84,7 @@ void BytecodeArrayWriter::WriteSwitch(BytecodeNode* node,
                                       BytecodeJumpTable* jump_table) {
   DCHECK(Bytecodes::IsSwitch(node->bytecode()));
 
-  // TODO(rmcilroy): For jump tables we could also mark the table as dead,
+  // TODO (rmcilroy): For jump tables we could also mark the table as dead, id:2242
   // thereby avoiding emitting dead code when we bind the entries.
   if (exit_seen_in_block_) return;  // Don't emit dead code.
   UpdateExitSeenInBlock(node->bytecode());

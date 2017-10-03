@@ -721,7 +721,7 @@ module.exports = {
             let elementsIndent;
             const parentVarNode = getVariableDeclaratorNode(node);
 
-            // TODO - come up with a better strategy in future
+            // TODO - come up with a better strategy in future id:3156
             if (isNodeFirstInLine(node)) {
                 const parent = node.parent;
 
@@ -1025,7 +1025,7 @@ module.exports = {
 
                 // The typical layout of variable declarations and assignments
                 // alter the expectation of correct indentation. Skip them.
-                // TODO: Add appropriate configuration options for variable
+                // TODO: Add appropriate configuration options for variable id:3359
                 // declarations and assignments.
                 if (getParentNodeByType(node, "VariableDeclarator", ["FunctionExpression", "ArrowFunctionExpression"])) {
                     return;

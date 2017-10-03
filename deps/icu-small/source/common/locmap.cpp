@@ -34,7 +34,7 @@
 
 #if U_PLATFORM == U_PF_WINDOWS && defined(_MSC_VER) && (_MSC_VER >= 1500)
 /*
- * TODO: It seems like we should widen this to
+ * TODO: It seems like we should widen this to id:147
  * either U_PLATFORM_USES_ONLY_WIN32_API (includes MinGW)
  * or U_PLATFORM_HAS_WIN32_API (includes MinGW and Cygwin)
  * but those use gcc and won't have defined(_MSC_VER).
@@ -138,7 +138,7 @@ static const ILcidPosixElement locmap_ ## id [] =
 ////////////////////////////////////////////
 */
 
-// TODO: For Windows ideally this table would be a list of exceptions rather than a complete list as
+// TODO: For Windows ideally this table would be a list of exceptions rather than a complete list as id:62
 // LocaleNameToLCID and LCIDToLocaleName provide 90% of these.
 
 ILCID_POSIX_ELEMENT_ARRAY(0x0436, af, af_ZA)
@@ -464,7 +464,7 @@ ILCID_POSIX_SUBTABLE(ks) {         /* We could add PK and CN too */
 };
 
 ILCID_POSIX_ELEMENT_ARRAY(0x0440, ky, ky_KG)   /* Kyrgyz is spoken in Kyrgyzstan */
-ILCID_POSIX_ELEMENT_ARRAY(0x0476, la, la_IT)   /* TODO: Verify the country */
+ILCID_POSIX_ELEMENT_ARRAY(0x0476, la, la_IT)   /* TODO: Verify the country  id:70*/
 ILCID_POSIX_ELEMENT_ARRAY(0x046e, lb, lb_LU)
 ILCID_POSIX_ELEMENT_ARRAY(0x0454, lo, lo_LA)
 ILCID_POSIX_ELEMENT_ARRAY(0x0427, lt, lt_LT)
@@ -509,7 +509,7 @@ ILCID_POSIX_SUBTABLE(nl) {
 };
 
 /* The "no" locale split into nb and nn.  By default in ICU, "no" is nb.*/
-// TODO: Not all of these are needed on Windows, but I don't know how ICU treats preferred ones here.
+// TODO: Not all of these are needed on Windows, but I don't know how ICU treats preferred ones here. id:68
 ILCID_POSIX_SUBTABLE(no) {
     {0x14,   "no"},     /* really nb_NO - actually Windows differentiates between neutral (no region) and specific (with region) */
     {0x7c14, "nb"},     /* really nb */
@@ -520,10 +520,10 @@ ILCID_POSIX_SUBTABLE(no) {
     {0x0814, "no_NO_NY"}/* really nn_NO */
 };
 
-ILCID_POSIX_ELEMENT_ARRAY(0x046c, nso,nso_ZA)   /* TODO: Verify the ISO-639 code */
+ILCID_POSIX_ELEMENT_ARRAY(0x046c, nso,nso_ZA)   /* TODO: Verify the ISO-639 code  id:67*/
 ILCID_POSIX_ELEMENT_ARRAY(0x0482, oc, oc_FR)
 
-ILCID_POSIX_SUBTABLE(om) { /* TODO: Verify the country */
+ILCID_POSIX_SUBTABLE(om) { /* TODO: Verify the country  id:149*/
     {0x72,   "om"},
     {0x0472, "om_ET"},
     {0x0472, "gaz_ET"}
@@ -600,7 +600,7 @@ ILCID_POSIX_SUBTABLE(ro) {
     {0x0818, "ro_MD"}
 };
 
-// TODO: This is almost certainly 'wrong'.  0 in Windows is a synonym for LOCALE_USER_DEFAULT.
+// TODO: This is almost certainly 'wrong'.  0 in Windows is a synonym for LOCALE_USER_DEFAULT. id:148
 // More likely this is a similar concept to the Windows 0x7f Invariant locale ""
 // (Except that it's not invariant in ICU)
 ILCID_POSIX_SUBTABLE(root) {
@@ -645,7 +645,7 @@ ILCID_POSIX_ELEMENT_ARRAY(0x045b, si, si_LK)
 ILCID_POSIX_ELEMENT_ARRAY(0x041b, sk, sk_SK)
 ILCID_POSIX_ELEMENT_ARRAY(0x0424, sl, sl_SI)
 
-ILCID_POSIX_SUBTABLE(so) { /* TODO: Verify the country */
+ILCID_POSIX_SUBTABLE(so) { /* TODO: Verify the country  id:73*/
     {0x77,   "so"},
     {0x0477, "so_ET"},
     {0x0477, "so_SO"}
@@ -730,7 +730,7 @@ ILCID_POSIX_SUBTABLE(uz) {
     {0x7c43, "uz_Latn"} /* Latin based */
 };
 
-ILCID_POSIX_SUBTABLE(ve) { /* TODO: Verify the country */
+ILCID_POSIX_SUBTABLE(ve) { /* TODO: Verify the country  id:71*/
     {0x33,   "ve"},
     {0x0433, "ve_ZA"},
     {0x0433, "ven_ZA"}
@@ -743,7 +743,7 @@ ILCID_POSIX_ELEMENT_ARRAY(0x043d, yi, yi)
 ILCID_POSIX_ELEMENT_ARRAY(0x046a, yo, yo_NG)
 
 // Windows & ICU tend to different names for some of these
-// TODO: Windows probably does not need all of these entries, but I don't know how the precedence works.
+// TODO: Windows probably does not need all of these entries, but I don't know how the precedence works. id:69
 ILCID_POSIX_SUBTABLE(zh) {
     {0x0004, "zh_Hans"},
     {0x7804, "zh"},
@@ -767,7 +767,7 @@ ILCID_POSIX_SUBTABLE(zh) {
     {0x20804,"zh_Hans@collation=stroke"},
     {0x20804,"zh_Hans_CN@collation=stroke"},
     {0x20804,"zh_CN@collation=stroke"}
-    // TODO: Alternate collations for other LCIDs are missing, eg: 0x50804
+    // TODO: Alternate collations for other LCIDs are missing, eg: 0x50804 id:151
 };
 
 ILCID_POSIX_ELEMENT_ARRAY(0x0435, zu, zu_ZA)
@@ -1058,7 +1058,7 @@ uprv_convertToPosix(uint32_t hostid, char *posixID, int32_t posixIDCapacity, UEr
                 if (windowsLocaleName[i] == L'_')
                 {
                     // Keep the base locale, without variant
-                    // TODO: Should these be mapped from _phoneb to @collation=phonebook, etc.?
+                    // TODO: Should these be mapped from _phoneb to @collation=phonebook, etc.? id:150
                     locName[i] = '\0';
                     tmpLen = i;
                     bLookup = TRUE;
@@ -1075,7 +1075,7 @@ uprv_convertToPosix(uint32_t hostid, char *posixID, int32_t posixIDCapacity, UEr
                     break;
                 }
             }
-            // TODO: Need to understand this better, why isn't it an alias?
+            // TODO: Need to understand this better, why isn't it an alias? id:77
             FIX_LANGUAGE_ID_TAG(locName, tmpLen);
             pPosixID = locName;
         }

@@ -206,7 +206,7 @@ Mutex::Mutex()
 Mutex::~Mutex() {
   // Static mutexes are leaked intentionally. It is not thread-safe to try
   // to clean them up.
-  // TODO(yukawa): Switch to Slim Reader/Writer (SRW) Locks, which requires
+  // TODO (yukawa): Switch to Slim Reader/Writer (SRW) Locks, which requires id:16
   // nothing to clean it up but is available only on Vista and later.
   // http://msdn.microsoft.com/en-us/library/windows/desktop/aa904937.aspx
   if (type_ == kDynamic) {
@@ -288,7 +288,7 @@ class ThreadWithParamSupport : public ThreadWithParamBase {
                              Notification* thread_can_start) {
     ThreadMainParam* param = new ThreadMainParam(runnable, thread_can_start);
     DWORD thread_id;
-    // TODO(yukawa): Consider to use _beginthreadex instead.
+    // TODO (yukawa): Consider to use _beginthreadex instead. id:59
     HANDLE thread_handle = ::CreateThread(
         NULL,    // Default security.
         0,       // Default stack size.
@@ -640,7 +640,7 @@ std::string FormatRegexSyntaxError(const char* regex, int index) {
 // otherwise returns true.
 bool ValidateRegex(const char* regex) {
   if (regex == NULL) {
-    // TODO(wan@google.com): fix the source file location in the
+    // TODO (wan@google.com): fix the source file location in the id:33
     // assertion failures to match where the regex is used in user
     // code.
     ADD_FAILURE() << "NULL is not a valid simple regular expression.";

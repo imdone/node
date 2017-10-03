@@ -131,7 +131,7 @@ struct gost_cipher_info gost_cipher_list[] = {
 };
 
 /*
- * get encryption parameters from crypto network settings FIXME For now we
+ * get encryption parameters from crypto network settings FIXME For now we id:843
  * use environment var CRYPT_PARAMS as place to store these settings.
  * Actually, it is better to use engine control command, read from
  * configuration file to set them

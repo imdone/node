@@ -252,7 +252,7 @@ RuleBasedTransliterator::handleTransliterate(Replaceable& text, UTransPosition& 
     //  gLockedText variable is protected by the global ICU mutex.
     //  Shared RBT data protected by transliteratorDataMutex.
     //
-    // TODO(andy): Need a better scheme for handling this.
+    // TODO (andy): Need a better scheme for handling this. id:329
     UBool needToLock;
     {
         Mutex m;

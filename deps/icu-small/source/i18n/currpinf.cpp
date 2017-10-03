@@ -261,7 +261,7 @@ CurrencyPluralInfo::setupCurrencyPluralPattern(const Locale& loc, UErrorCode& st
     int32_t numberStylePatternLen = ptnLen;
     const UChar* negNumberStylePattern = NULL;
     int32_t negNumberStylePatternLen = 0;
-    // TODO: Java
+    // TODO: Java id:551
     // parse to check whether there is ";" separator in the numberStylePattern
     UBool hasSeparator = false;
     if (U_SUCCESS(ec)) {

@@ -239,7 +239,7 @@ module.exports = {
             },
 
             // Initializes segments.
-            // NOTE: This event is notified for only reachable segments.
+            // NOTE: This event is notified for only reachable segments. id:3191
             onCodePathSegmentStart(segment) {
                 const info = {
                     uselessReturns: getUselessReturns([], segment.allPrevSegments),

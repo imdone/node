@@ -132,7 +132,7 @@
             utf16Path[UPRV_LENGTHOF(utf16Path) - 1] = '\0';
         }
 
-        // TODO: Is it worth setting extended parameters to specify random access?
+        // TODO: Is it worth setting extended parameters to specify random access? id:121
         file = CreateFile2(utf16Path, GENERIC_READ, FILE_SHARE_READ, OPEN_EXISTING, NULL);
 #endif
         if(file==INVALID_HANDLE_VALUE) {
@@ -141,7 +141,7 @@
 
         /* Declare and initialize a security descriptor.
            This is required for multiuser systems on Windows 2000 SP4 and beyond */
-        // TODO: UWP does not have this function and I do not think it is required?
+        // TODO: UWP does not have this function and I do not think it is required? id:188
 #if U_PLATFORM_HAS_WINUWP_API == 0
         if (InitializeSecurityDescriptor(&securityDesc, SECURITY_DESCRIPTOR_REVISION)) {
             /* give the security descriptor a Null Dacl done using the  "TRUE, (PACL)NULL" here */
@@ -347,7 +347,7 @@
      *                       Returns:
      *                          Pointer to null termination in returned pathBuffer.
      *
-     *                    TODO:  This works the way ICU historically has, but the
+     *                    TODO: This works the way ICU historically has, but the id:190
      *                           whole data fallback search path is so complicated that
      *                           proabably almost no one will ever really understand it,
      *                           the potential for confusion is large.  (It's not just

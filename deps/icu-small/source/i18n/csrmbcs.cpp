@@ -22,7 +22,7 @@ U_NAMESPACE_BEGIN
 #define min(x,y) (((x)<(y))?(x):(y))
 
 static const uint16_t commonChars_sjis [] = {
-// TODO:  This set of data comes from the character frequency-
+// TODO: This set of data comes from the character frequency- id:543
 //        of-occurence analysis tool.  The data needs to be moved
 //        into a resource and loaded from there.
 0x8140, 0x8141, 0x8142, 0x8145, 0x815b, 0x8169, 0x816a, 0x8175, 0x8176, 0x82a0,
@@ -33,7 +33,7 @@ static const uint16_t commonChars_sjis [] = {
 0x838a, 0x838b, 0x838d, 0x8393, 0x8e96, 0x93fa, 0x95aa};
 
 static const uint16_t commonChars_euc_jp[] = {
-// TODO:  This set of data comes from the character frequency-
+// TODO: This set of data comes from the character frequency- id:235
 //        of-occurence analysis tool.  The data needs to be moved
 //        into a resource and loaded from there.
 0xa1a1, 0xa1a2, 0xa1a3, 0xa1a6, 0xa1bc, 0xa1ca, 0xa1cb, 0xa1d6, 0xa1d7, 0xa4a2,
@@ -48,7 +48,7 @@ static const uint16_t commonChars_euc_jp[] = {
 0xbbc8, 0xbef0, 0xbfb7, 0xc4ea, 0xc6fc, 0xc7bd, 0xcab8, 0xcaf3, 0xcbdc, 0xcdd1};
 
 static const uint16_t commonChars_euc_kr[] = {
-// TODO:  This set of data comes from the character frequency-
+// TODO: This set of data comes from the character frequency- id:210
 //        of-occurence analysis tool.  The data needs to be moved
 //        into a resource and loaded from there.
 0xb0a1, 0xb0b3, 0xb0c5, 0xb0cd, 0xb0d4, 0xb0e6, 0xb0ed, 0xb0f8, 0xb0fa, 0xb0fc,
@@ -63,7 +63,7 @@ static const uint16_t commonChars_euc_kr[] = {
 0xc1f8, 0xc4a1, 0xc5cd, 0xc6ae, 0xc7cf, 0xc7d1, 0xc7d2, 0xc7d8, 0xc7e5, 0xc8ad};
 
 static const uint16_t commonChars_big5[] = {
-// TODO:  This set of data comes from the character frequency-
+// TODO: This set of data comes from the character frequency- id:280
 //        of-occurence analysis tool.  The data needs to be moved
 //        into a resource and loaded from there.
 0xa140, 0xa141, 0xa142, 0xa143, 0xa147, 0xa149, 0xa175, 0xa176, 0xa440, 0xa446,
@@ -78,7 +78,7 @@ static const uint16_t commonChars_big5[] = {
 0xbba1, 0xbdd1, 0xc2c4, 0xc3b9, 0xc440, 0xc45f};
 
 static const uint16_t commonChars_gb_18030[] = {
-// TODO:  This set of data comes from the character frequency-
+// TODO: This set of data comes from the character frequency- id:404
 //        of-occurence analysis tool.  The data needs to be moved
 //        into a resource and loaded from there.
 0xa1a1, 0xa1a2, 0xa1a3, 0xa1a4, 0xa1b0, 0xa1b1, 0xa1f1, 0xa1f3, 0xa3a1, 0xa3ac,

@@ -6,7 +6,7 @@ module.exports = whoami
 whoami.usage = 'npm whoami [--registry <registry>]\n(just prints username according to given registry)'
 
 function whoami (args, silent, cb) {
-  // FIXME: need tighter checking on this, but is a breaking change
+  // FIXME: need tighter checking on this, but is a breaking change id:443
   if (typeof cb !== 'function') {
     cb = silent
     silent = false

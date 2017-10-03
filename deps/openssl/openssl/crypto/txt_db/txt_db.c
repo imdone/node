@@ -231,7 +231,7 @@ int TXT_DB_create_index(TXT_DB *db, int field, int (*qual) (OPENSSL_STRING *),
         db->error = DB_ERROR_INDEX_OUT_OF_RANGE;
         return (0);
     }
-    /* FIXME: we lose type checking at this point */
+    /* FIXME: we lose type checking at this point  id:1195*/
     if ((idx = (LHASH_OF(OPENSSL_STRING) *)lh_new(hash, cmp)) == NULL) {
         db->error = DB_ERROR_MALLOC;
         return (0);

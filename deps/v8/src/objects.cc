@@ -464,7 +464,7 @@ bool Object::BooleanValue() {
 
 namespace {
 
-// TODO(bmeurer): Maybe we should introduce a marker interface Number,
+// TODO (bmeurer): Maybe we should introduce a marker interface Number, id:1993
 // where we put all these methods at some point?
 ComparisonResult NumberCompare(double x, double y) {
   if (std::isnan(x) || std::isnan(y)) {
@@ -1142,7 +1142,7 @@ Handle<Object> JSReceiver::GetDataProperty(LookupIterator* it) {
         it->NotFound();
         return it->isolate()->factory()->undefined_value();
       case LookupIterator::ACCESSOR:
-        // TODO(verwaest): For now this doesn't call into AccessorInfo, since
+        // TODO (verwaest): For now this doesn't call into AccessorInfo, since id:3144
         // clients don't need it. Update once relevant.
         it->NotFound();
         return it->isolate()->factory()->undefined_value();
@@ -1498,7 +1498,7 @@ MaybeHandle<Object> Object::GetPropertyWithAccessor(LookupIterator* it) {
         isolate, false, Handle<FunctionTemplateInfo>::cast(getter), receiver, 0,
         nullptr, isolate->factory()->undefined_value());
   } else if (getter->IsCallable()) {
-    // TODO(rossberg): nicer would be to cast to some JSCallable here...
+    // TODO (rossberg): nicer would be to cast to some JSCallable here... id:2205
     return Object::GetPropertyWithDefinedGetter(
         receiver, Handle<JSReceiver>::cast(getter));
   }
@@ -1566,7 +1566,7 @@ Maybe<bool> Object::SetPropertyWithAccessor(LookupIterator* it,
         v8::ToCData<GenericNamedPropertySetterCallback>(info->setter());
 
     if (call_fun == nullptr) {
-      // TODO(verwaest): We should not get here anymore once all AccessorInfos
+      // TODO (verwaest): We should not get here anymore once all AccessorInfos id:2342
       // are marked as special_data_property. They cannot both be writable and
       // not have a setter.
       return Just(true);
@@ -1603,7 +1603,7 @@ Maybe<bool> Object::SetPropertyWithAccessor(LookupIterator* it,
         Nothing<bool>());
     return Just(true);
   } else if (setter->IsCallable()) {
-    // TODO(rossberg): nicer would be to cast to some JSCallable here...
+    // TODO (rossberg): nicer would be to cast to some JSCallable here... id:2365
     return SetPropertyWithDefinedSetter(
         receiver, Handle<JSReceiver>::cast(setter), value, should_throw);
   }
@@ -1761,7 +1761,7 @@ Maybe<PropertyAttributes> GetPropertyAttributesWithInterceptorInternal(
       return Just(static_cast<PropertyAttributes>(value));
     }
   } else if (!interceptor->getter()->IsUndefined(isolate)) {
-    // TODO(verwaest): Use GetPropertyWithInterceptor?
+    // TODO (verwaest): Use GetPropertyWithInterceptor? id:1995
     Handle<Object> result;
     if (it->IsElement()) {
       uint32_t index = it->index();
@@ -1808,7 +1808,7 @@ Maybe<bool> SetPropertyWithInterceptorInternal(
     uint32_t index = it->index();
     v8::IndexedPropertySetterCallback setter =
         v8::ToCData<v8::IndexedPropertySetterCallback>(interceptor->setter());
-    // TODO(neis): In the future, we may want to actually return the
+    // TODO (neis): In the future, we may want to actually return the id:3147
     // interceptor's result, which then should be a boolean.
     result = !args.Call(setter, index, value).is_null();
   } else {
@@ -2063,7 +2063,7 @@ namespace {
 bool HasExcludedProperty(
     const ScopedVector<Handle<Object>>* excluded_properties,
     Handle<Object> search_element) {
-  // TODO(gsathya): Change this to be a hashtable.
+  // TODO (gsathya): Change this to be a hashtable. id:2208
   for (int i = 0; i < excluded_properties->length(); i++) {
     if (search_element->SameValue(*excluded_properties->at(i))) {
       return true;
@@ -2499,7 +2499,7 @@ std::ostream& operator<<(std::ostream& os, const Brief& v) {
   if (v.value->IsSmi()) {
     Smi::cast(v.value)->SmiPrint(os);
   } else {
-    // TODO(svenpanne) Const-correct HeapObjectShortPrint!
+    // TODO (svenpanne) Const-correct HeapObjectShortPrint! id:2346
     HeapObject* obj = const_cast<HeapObject*>(HeapObject::cast(v.value));
     obj->HeapObjectShortPrint(os);
   }
@@ -4461,7 +4461,7 @@ void Map::GeneralizeField(Handle<Map> map, int modify_index,
   }
 }
 
-// TODO(ishell): remove.
+// TODO (ishell): remove. id:2368
 // static
 Handle<Map> Map::ReconfigureProperty(Handle<Map> map, int modify_index,
                                      PropertyKind new_kind,
@@ -4474,7 +4474,7 @@ Handle<Map> Map::ReconfigureProperty(Handle<Map> map, int modify_index,
                                    new_representation, new_field_type);
 }
 
-// TODO(ishell): remove.
+// TODO (ishell): remove. id:1997
 // static
 Handle<Map> Map::ReconfigureElementsKind(Handle<Map> map,
                                          ElementsKind new_elements_kind) {
@@ -4698,7 +4698,7 @@ Maybe<bool> Object::SetPropertyInternal(LookupIterator* it,
         return SetPropertyWithAccessor(it, value, should_throw);
       }
       case LookupIterator::INTEGER_INDEXED_EXOTIC:
-        // TODO(verwaest): We should throw an exception if holder is receiver.
+        // TODO (verwaest): We should throw an exception if holder is receiver. id:3151
         return Just(true);
 
       case LookupIterator::DATA:
@@ -4894,7 +4894,7 @@ Maybe<bool> Object::SetDataProperty(LookupIterator* it, Handle<Object> value) {
       // underlying buffer was neutered, so just check that.
       if (Handle<JSArrayBufferView>::cast(receiver)->WasNeutered()) {
         return Just(true);
-        // TODO(neis): According to the spec, this should throw a TypeError.
+        // TODO (neis): According to the spec, this should throw a TypeError. id:2210
       }
     }
   }
@@ -5052,7 +5052,7 @@ Handle<Map> Map::GetObjectCreateMap(Handle<HeapObject> prototype) {
     }
     Handle<PrototypeInfo> info =
         Map::GetOrCreatePrototypeInfo(js_prototype, isolate);
-    // TODO(verwaest): Use inobject slack tracking for this map.
+    // TODO (verwaest): Use inobject slack tracking for this map. id:2349
     if (info->HasObjectCreateMap()) {
       map = handle(info->ObjectCreateMap(), isolate);
     } else {
@@ -5824,7 +5824,7 @@ Maybe<bool> JSObject::DefineOwnPropertyIgnoreAttributes(
       // In case of success, the attributes will have been reset to the default
       // attributes of the interceptor, rather than the incoming attributes.
       //
-      // TODO(verwaest): JSProxy afterwards verify the attributes that the
+      // TODO (verwaest): JSProxy afterwards verify the attributes that the id:2379
       // JSProxy claims it has, and verifies that they are compatible. If not,
       // they throw. Here we should do the same.
       case LookupIterator::INTERCEPTOR:
@@ -6092,7 +6092,7 @@ void JSObject::MigrateSlowToFast(Handle<JSObject> object,
     int index = Smi::ToInt(iteration_order->get(i));
     Name* k = dictionary->NameAt(index);
     // Dictionary keys are internalized upon insertion.
-    // TODO(jkummerow): Turn this into a DCHECK if it's not hit in the wild.
+    // TODO (jkummerow): Turn this into a DCHECK if it's not hit in the wild. id:1999
     CHECK(k->IsUniqueName());
     Handle<Name> key(k, isolate);
 
@@ -6110,7 +6110,7 @@ void JSObject::MigrateSlowToFast(Handle<JSObject> object,
       } else {
         d = Descriptor::DataField(
             key, current_offset, details.attributes(), kDefaultFieldConstness,
-            // TODO(verwaest): value->OptimalRepresentation();
+            // TODO (verwaest): value->OptimalRepresentation(); id:3154
             Representation::Tagged(), FieldType::Any(isolate));
       }
     } else {
@@ -6386,7 +6386,7 @@ Maybe<bool> JSReceiver::DeleteProperty(LookupIterator* it,
         // An exception was thrown in the interceptor. Propagate.
         if (isolate->has_pending_exception()) return Nothing<bool>();
         // Delete with interceptor succeeded. Return result.
-        // TODO(neis): In strict mode, we should probably throw if the
+        // TODO (neis): In strict mode, we should probably throw if the id:2213
         // interceptor returns false.
         if (result.IsJust()) return result;
         break;
@@ -6569,7 +6569,7 @@ Maybe<bool> JSReceiver::DefineOwnProperty(Isolate* isolate,
     return JSTypedArray::DefineOwnProperty(
         isolate, Handle<JSTypedArray>::cast(object), key, desc, should_throw);
   }
-  // TODO(neis): Special case for JSModuleNamespace?
+  // TODO (neis): Special case for JSModuleNamespace? id:2352
 
   // OrdinaryDefineOwnProperty, by virtue of calling
   // DefineOwnPropertyIgnoreAttributes, can handle arguments
@@ -6627,7 +6627,7 @@ Maybe<bool> JSReceiver::OrdinaryDefineOwnProperty(LookupIterator* it,
   PropertyDescriptor current;
   MAYBE_RETURN(GetOwnPropertyDescriptor(it, &current), Nothing<bool>());
 
-  // TODO(jkummerow/verwaest): It would be nice if we didn't have to reset
+  // TODO (jkummerow/verwaest): It would be nice if we didn't have to reset id:2382
   // the iterator every time. Currently, the reasons why we need it are:
   // - handle interceptors correctly
   // - handle accessors correctly (which might change the holder's map)
@@ -6966,7 +6966,7 @@ Maybe<bool> JSObject::CreateDataProperty(LookupIterator* it,
 }
 
 
-// TODO(jkummerow): Consider unification with FastAsArrayLength() in
+// TODO (jkummerow): Consider unification with FastAsArrayLength() in id:2000
 // accessors.cc.
 bool PropertyKeyToArrayLength(Handle<Object> value, uint32_t* length) {
   DCHECK(value->IsNumber() || value->IsName());
@@ -6988,7 +6988,7 @@ Maybe<bool> JSArray::DefineOwnProperty(Isolate* isolate, Handle<JSArray> o,
                                        ShouldThrow should_throw) {
   // 1. Assert: IsPropertyKey(P) is true. ("P" is |name|.)
   // 2. If P is "length", then:
-  // TODO(jkummerow): Check if we need slow string comparison.
+  // TODO (jkummerow): Check if we need slow string comparison. id:3157
   if (*name == isolate->heap()->length_string()) {
     // 2a. Return ArraySetLength(A, Desc).
     return ArraySetLength(isolate, o, desc, should_throw);
@@ -7695,7 +7695,7 @@ bool JSObject::ReferencesObject(Object* obj) {
     if (context->has_extension() && !context->IsCatchContext() &&
         !context->IsModuleContext()) {
       // With harmony scoping, a JSFunction may have a script context.
-      // TODO(mvstanton): walk into the ScopeInfo.
+      // TODO (mvstanton): walk into the ScopeInfo. id:2216
       if (context->IsScriptContext()) {
         return false;
       }
@@ -8007,7 +8007,7 @@ Maybe<bool> JSObject::PreventExtensions(Handle<JSObject> object,
 
   // Do a map transition, other objects with this map may still
   // be extensible.
-  // TODO(adamk): Extend the NormalizedMapCache to handle non-extensible maps.
+  // TODO (adamk): Extend the NormalizedMapCache to handle non-extensible maps. id:2355
   Handle<Map> new_map = Map::Copy(handle(object->map()), "PreventExtensions");
 
   new_map->set_is_extensible(false);
@@ -8197,7 +8197,7 @@ Maybe<bool> JSObject::PreventExtensionsWithTransition(
                         "SlowPreventExtensions");
 
     // Create a new map, since other objects with this map may be extensible.
-    // TODO(adamk): Extend the NormalizedMapCache to handle non-extensible maps.
+    // TODO (adamk): Extend the NormalizedMapCache to handle non-extensible maps. id:2384
     Handle<Map> new_map =
         Map::Copy(handle(object->map()), "SlowCopyForPreventExtensions");
     new_map->set_is_extensible(false);
@@ -8327,9 +8327,9 @@ MaybeHandle<Object> JSReceiver::OrdinaryToPrimitive(
 }
 
 
-// TODO(cbruni/jkummerow): Consider moving this into elements.cc.
+// TODO (cbruni/jkummerow): Consider moving this into elements.cc. id:2002
 bool JSObject::HasEnumerableElements() {
-  // TODO(cbruni): cleanup
+  // TODO (cbruni): cleanup id:3161
   JSObject* object = this;
   switch (object->GetElementsKind()) {
     case PACKED_SMI_ELEMENTS:
@@ -8660,7 +8660,7 @@ MaybeHandle<Object> JSObject::SetAccessor(Handle<JSObject> object,
   // Duplicate ACCESS_CHECK outside of GetPropertyAttributes for the case that
   // the FailedAccessCheckCallbackFunction doesn't throw an exception.
   //
-  // TODO(verwaest): Force throw an exception if the callback doesn't, so we can
+  // TODO (verwaest): Force throw an exception if the callback doesn't, so we can id:2219
   // remove reliance on default return values.
   if (it.state() == LookupIterator::ACCESS_CHECK) {
     if (!it.HasAccess()) {
@@ -9145,7 +9145,7 @@ void Map::InstallDescriptors(Handle<Map> parent, Handle<Map> child,
                                                 full_layout_descriptor);
     child->set_layout_descriptor(*layout_descriptor);
 #ifdef VERIFY_HEAP
-    // TODO(ishell): remove these checks from VERIFY_HEAP mode.
+    // TODO (ishell): remove these checks from VERIFY_HEAP mode. id:2358
     if (FLAG_verify_heap) {
       CHECK(child->layout_descriptor()->IsConsistentWithMap(*child));
     }
@@ -10447,7 +10447,7 @@ int HandlerTable::LookupRange(int pc_offset, int* data_out,
 }
 
 
-// TODO(turbofan): Make sure table is sorted and use binary search.
+// TODO (turbofan): Make sure table is sorted and use binary search. id:2386
 int HandlerTable::LookupReturn(int pc_offset) {
   for (int i = 0; i < length(); i += kReturnEntrySize) {
     int return_offset = Smi::ToInt(get(i + kReturnOffsetIndex));
@@ -11697,7 +11697,7 @@ MaybeHandle<String> String::GetSubstitution(Isolate* isolate, Match* match,
     }
 
     // Go the the next $ in the replacement.
-    // TODO(jgruber): Single-char lookups could be much more efficient.
+    // TODO (jgruber): Single-char lookups could be much more efficient. id:2028
     DCHECK_NE(continue_from_ix, -1);
     next_dollar_ix =
         String::IndexOf(isolate, replacement, dollar_string, continue_from_ix);
@@ -15951,7 +15951,7 @@ bool JSObject::WasConstructedFromApiFunction() {
     }
   }
 #endif
-  // TODO(titzer): Clean this up somehow. WebAssembly objects should not be
+  // TODO (titzer): Clean this up somehow. WebAssembly objects should not be id:3163
   // considered "constructed from API functions" even though they have
   // function template info, since that would make the V8 GC identify them to
   // the embedder, e.g. the Oilpan GC.
@@ -16744,7 +16744,7 @@ Maybe<bool> JSTypedArray::DefineOwnProperty(Isolate* isolate,
       // 3b i. If IsInteger(numericIndex) is false, return false.
       // 3b ii. If numericIndex = -0, return false.
       // 3b iii. If numericIndex < 0, return false.
-      // FIXME: the standard allows up to 2^53 elements.
+      // FIXME: the standard allows up to 2^53 elements. id:2222
       uint32_t index;
       if (numeric_index->IsMinusZero() || !numeric_index->ToUint32(&index)) {
         RETURN_FAILURE(isolate, should_throw,
@@ -18053,7 +18053,7 @@ Handle<ObjectHashTable> ObjectHashTable::Put(Handle<ObjectHashTable> table,
   }
 
   // Rehash if more than 33% of the entries are deleted entries.
-  // TODO(jochen): Consider to shrink the fixed array in place.
+  // TODO (jochen): Consider to shrink the fixed array in place. id:2361
   if ((table->NumberOfDeletedElements() << 1) > table->NumberOfElements()) {
     table->Rehash();
   }
@@ -18635,7 +18635,7 @@ Handle<Derived> SmallOrderedHashTable<Derived>::Grow(Handle<Derived> table) {
   int new_capacity = capacity;
 
   // Don't need to grow if we can simply clear out deleted entries instead.
-  // TODO(gsathya): Compact in place, instead of allocating a new table.
+  // TODO (gsathya): Compact in place, instead of allocating a new table. id:2388
   if (table->NumberOfDeletedElements() < (capacity >> 1)) {
     new_capacity = capacity << 1;
 
@@ -18646,7 +18646,7 @@ Handle<Derived> SmallOrderedHashTable<Derived>::Grow(Handle<Derived> table) {
       new_capacity = kMaxCapacity;
     }
 
-    // TODO(gsathya): Transition to OrderedHashTable for size > kMaxCapacity.
+    // TODO (gsathya): Transition to OrderedHashTable for size > kMaxCapacity. id:2032
   }
 
   return Rehash(table, new_capacity);
@@ -19113,7 +19113,7 @@ void JSArrayBuffer::FreeBackingStore() {
   // Zero out the backing store and allocation base to avoid dangling
   // pointers.
   set_backing_store(nullptr);
-  // TODO(eholk): set_byte_length(0) once we aren't using Smis for the
+  // TODO (eholk): set_byte_length(0) once we aren't using Smis for the id:3165
   // byte_length. We can't do it now because the GC needs to call
   // FreeBackingStore while it is collecting.
   set_allocation_base(nullptr);
@@ -19295,7 +19295,7 @@ PropertyCellConstantType PropertyCell::GetConstantType() {
 
 static bool RemainsConstantType(Handle<PropertyCell> cell,
                                 Handle<Object> value) {
-  // TODO(dcarney): double->smi and smi->double transition from kConstant
+  // TODO (dcarney): double->smi and smi->double transition from kConstant id:2225
   if (cell->value()->IsSmi() && value->IsSmi()) {
     return true;
   } else if (cell->value()->IsHeapObject() && value->IsHeapObject()) {
@@ -19862,7 +19862,7 @@ bool Module::PrepareInstantiate(Handle<Module> module,
     }
     Handle<Module> requested_module = Utils::OpenHandle(*api_requested_module);
     if (requested_module->status() == kErrored) {
-      // TODO(neis): Move this into callback?
+      // TODO (neis): Move this into callback? id:2363
       isolate->Throw(requested_module->GetException());
       module->RecordError();
       DCHECK_EQ(module->GetException(), requested_module->GetException());
@@ -19883,7 +19883,7 @@ bool Module::PrepareInstantiate(Handle<Module> module,
   }
 
   // Set up local exports.
-  // TODO(neis): Create regular_exports array here instead of in factory method?
+  // TODO (neis): Create regular_exports array here instead of in factory method? id:2390
   for (int i = 0, n = module_info->RegularExportCount(); i < n; ++i) {
     int cell_index = module_info->RegularExportCellIndex(i);
     Handle<FixedArray> export_names(module_info->RegularExportExportNames(i),
@@ -20134,7 +20134,7 @@ void FetchStarExports(Handle<Module> module, Zone* zone,
   Handle<ObjectHashTable> exports(module->exports(), isolate);
   UnorderedStringMap more_exports(zone);
 
-  // TODO(neis): Only allocate more_exports if there are star exports.
+  // TODO (neis): Only allocate more_exports if there are star exports. id:2900
   // Maybe split special_exports into indirect_exports and star_exports.
 
   Handle<FixedArray> special_exports(module->info()->special_exports(),

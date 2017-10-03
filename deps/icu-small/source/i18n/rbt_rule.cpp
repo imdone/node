@@ -297,7 +297,7 @@ UBool TransliterationRule::masks(const TransliterationRule& r2) const {
     int32_t right2 = r2.pattern.length() - left2;
     int32_t cachedCompare = r2.pattern.compare(left2 - left, len, pattern);
 
-    // TODO Clean this up -- some logic might be combinable with the
+    // TODO Clean this up -- some logic might be combinable with the id:273
     // next statement.
 
     // Test for anchor masking

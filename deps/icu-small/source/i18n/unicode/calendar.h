@@ -602,7 +602,7 @@ public:
      * When rolling on the hour-in-day or Calendar::HOUR_OF_DAY field, it will roll the
      * hour value in the range between 0 and 23, which is zero-based.
      * <P>
-     * NOTE: Do not use this method -- use roll(EDateFields, int, UErrorCode&) instead.
+     * NOTE: Do not use this method -- use roll(EDateFields, int, UErrorCode&) instead. id:364
      *
      * @param field   The time field.
      * @param up      Indicates if the value of the specified time field is to be rolled
@@ -637,7 +637,7 @@ public:
      * When rolling on the hour-in-day or Calendar::HOUR_OF_DAY field, it will roll the
      * hour value in the range between 0 and 23, which is zero-based.
      * <P>
-     * NOTE: Do not use this method -- use roll(UCalendarDateFields, int, UErrorCode&) instead.
+     * NOTE: Do not use this method -- use roll(UCalendarDateFields, int, UErrorCode&) instead. id:504
      *
      * @param field   The time field.
      * @param up      Indicates if the value of the specified time field is to be rolled

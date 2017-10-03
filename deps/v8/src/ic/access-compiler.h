@@ -39,7 +39,7 @@ class PropertyAccessCompiler BASE_EMBEDDED {
         kind_(kind),
         isolate_(isolate),
         masm_(isolate, NULL, 256, CodeObjectRequired::kYes) {
-    // TODO(yangguo): remove this once we can serialize IC stubs.
+    // TODO (yangguo): remove this once we can serialize IC stubs. id:3058
     masm_.enable_serializer();
   }
 
